@@ -27,9 +27,9 @@ const ThemeToggler = () => {
       className='p-2 transition w-10 h-10 cursor-pointer bg-gray-100 dark:bg-gray-800 rounded-lg flex flex-col items-center justify-center'>
       {
         currentTheme === "dark" ? (
-          <Sun className='text-white w-7 h-7 cursor-pointer' />
+          <Sun className='text-white w-5 h-5 cursor-pointer' />
         ) : (
-          <Moon className='text-gray-800 w-7 h-7 cursor-pointer' />
+          <Moon className='text-gray-800 w-5 h-5 cursor-pointer' />
         )
       }
     </button>

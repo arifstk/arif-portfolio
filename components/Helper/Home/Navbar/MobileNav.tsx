@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { NavLinks } from '@/Constant/Constant'
+import SocialLinks from '@/components/SocialLinks'
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false)
@@ -55,7 +56,7 @@ const MobileNav = () => {
       <div
         ref={sidebarRef}
         className={`fixed top-20 left-0 right-0 h-[calc(100vh-4.25rem)] w-full z-50 md:hidden
-          bg-white/90 dark:bg-gray-950/90 
+          bg-white/97 dark:bg-gray-950/95 
           shadow-2xl border-r border-gray-200 dark:border-gray-800
           transition-transform duration-300 ease-in-out
           ${open ? 'translate-x-0' : '-translate-x-full'}`}
@@ -78,9 +79,6 @@ const MobileNav = () => {
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
                   }`}
               >
-                {/* <span className={`w-1.5 h-1.5 rounded-full transition-all duration-200
-                  ${active ? 'bg-blue-500 dark:bg-blue-400' : 'bg-transparent'}`}
-                /> */}
                 {link.name}
                 {active && (
                   <span className="ml-auto w-1 h-4 rounded-full bg-blue-500 dark:bg-blue-400" />
@@ -89,6 +87,9 @@ const MobileNav = () => {
             )
           })}
         </nav>
+        <div className='px-6'>
+          <SocialLinks />
+        </div>
       </div>
     </>
   )

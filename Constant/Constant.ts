@@ -8,3 +8,9 @@ export const NavLinks = [
   {name: 'Contact', path: '/contact'},
 ];
 
+export const statsData = [
+  {num: 2, text: "Years of experience"},
+  {num: 50, text: "Projects completed"},
+  {num: 20, text: "Happy clients"},
+];
+

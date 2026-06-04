@@ -3,6 +3,7 @@ import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Provider from "@/components/Hoc/Provider";
+import ResponsiveNav from "@/components/Helper/Home/Navbar/ResponsiveNav";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -28,7 +29,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col ">
         <Provider>
-          NAVBAR
+          <ResponsiveNav />
           {children}
           FOOTER
         </Provider>

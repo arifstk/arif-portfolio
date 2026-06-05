@@ -4,6 +4,7 @@ import React from 'react';
 import { Code2, Bolt } from 'lucide-react';
 import { FaCubes } from 'react-icons/fa';
 import { BsDatabase } from 'react-icons/bs';
+import Image from 'next/image';
 
 export default function About() {
   const pillars = [
@@ -33,13 +34,23 @@ export default function About() {
     <section id="about" className="py-15 md:py-20  text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
-      <div className="text-center mb-8 md:mb-16">
+      <div className="text-center mb-8 md:mb-10">
         <p className="text-xs font-semibold uppercase tracking-widest text-[#64748b] mb-2">
           Get To Know Me
         </p>
         <h2 className="text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-1 after:bg-[#007bff] after:rounded-full">
           About Me
         </h2>
+      </div>
+      {/* banner */}
+      <div className="w-full h-full md:w-full md:h-full overflow-hidden rounded-lg mb-10 md:mb-16">
+        <Image
+          src="/images/about-banner1.jpeg" width={400} height={400}
+          alt="about banner"
+          quality={100}
+          className="object-contain w-full h-full"
+          priority={true}
+        />
       </div>
 
       {/* Main Layout Split */}

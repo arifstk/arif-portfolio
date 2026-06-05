@@ -11,6 +11,3 @@ const HomePage = () => {
 
 export default HomePage;
 
-// /about
-// /about/team
-// /about/team/arif

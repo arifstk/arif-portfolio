@@ -4,7 +4,7 @@ import React from 'react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import SocialLinks from './SocialLinks'
-import Statistics from './Statistics'
+// import Statistics from './Statistics'
 import Photo from './Photo'
 
 const Hero = () => {
@@ -23,7 +23,7 @@ const Hero = () => {
           <Button className='bg-transparent rounded-full border border-gray-500 dark:border-gray-500 text-gray-800 dark:text-white/70 hover:bg-sky-700 hover:text-white px-6 text-sm cursor-pointer'>My Works</Button>
         </Link>
         <SocialLinks />
-        <Statistics />
+        {/* <Statistics /> */}
       </div>
       {/* photo */}
       <div>

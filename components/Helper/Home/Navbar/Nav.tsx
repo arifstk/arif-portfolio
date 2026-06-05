@@ -13,7 +13,7 @@ const Nav = () => {
 
   return (
     <div>
-      <div className='transition-all duration-200 h-[12vh] z-100 fixed w-full backdrop-blur-sm border-b border-gray-300 dark:border-gray-500'>
+      <div className='transition-all duration-200 py-2 z-100 fixed w-full backdrop-blur-sm border-b border-gray-200 dark:border-gray-600'>
         <div className='flex items-center justify-between w-[90%] xl:w-[80%] mx-auto h-full'>
           {/* Logo */}
           {/* <div className='text-2xl font-bold'>Logo</div> */}

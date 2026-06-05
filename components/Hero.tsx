@@ -14,9 +14,8 @@ const Hero = () => {
       <div className='flex flex-col items-center md:items-start gap-5 md:gap-7 text-center md:text-start'>
         <div>
           <h3 className='font-semibold text-gray-800 dark:text-white/70 tracking-wider mb-1'>Software Developer</h3>
-          <h2 className='text-3xl md:text-5xl mb-2'>Hello I&apos;m</h2>
-          <h1 className='bg-linear-to-r  from-blue-600 via-purple-600 to-pink-600
-          text-transparent bg-clip-text
+          <h2 className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider'>Hello I&apos;m</h2>
+          <h1 className='text-sky-600 dark:text-sky-400
             text-5xl md:text-7xl tracking-normal font-semibold'>Arif Hossain</h1>
         </div>
         <p className='w-auto md:max-w-[90%] font-thin leading-6'>As a Software Engineer, I design and build innovative software solutions, solve complex problems, and ensure systems are scalable and user-friendly. From creating web apps to optimizing backend systems, I bridge the gap between technology and user needs.</p>

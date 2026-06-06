@@ -1,4 +1,4 @@
-// app/(auth)/login/page.tsx — Login page with credentials form and Google OAuth button
+// app/(auth)/login/page.tsx 
 
 "use client";
 import { signIn } from "next-auth/react";
@@ -23,15 +23,17 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-slate-950">
       <div className="w-full max-w-md bg-slate-900 rounded-2xl px-4 shadow-2xl border border-slate-800">
+
+        {/* Header */}
         <h1 className="text-2xl font-bold text-white mb-1">Welcome back</h1>
-        <p className="text-slate-400 text-sm mb-8 text-center">Sign in to your account</p>
+        <p className="text-slate-400 text-sm mb-8">Sign in to your account</p>
 
         {/* Google OAuth */}
         <button
           onClick={() => signIn("google", { callbackUrl: "/" })}
-          className="w-full flex items-center justify-center gap-3 py-2.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 transition text-white font-medium mb-6"
+          className="w-full flex items-center justify-center gap-3 py-2.5 rounded-xl border border-slate-600 bg-slate-800 hover:bg-slate-700 transition text-white font-medium mb-6"
         >
-          <svg className="w-5 h-5" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
@@ -40,40 +42,56 @@ export default function LoginPage() {
           Continue with Google
         </button>
 
+        {/* Divider */}
         <div className="relative mb-6">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-slate-700" />
           </div>
-          <div className="relative flex justify-center text-xs text-slate-500 px-3">or continue with email</div>
+          <div className="relative flex justify-center">
+            <span className="bg-slate-900 px-3 text-xs text-slate-500">or continue with email</span>
+          </div>
         </div>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm text-slate-300 mb-1">Email</label>
+            <label className="block text-sm text-slate-300 mb-1.5">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               placeholder="you@example.com"
             />
           </div>
+
           <div>
-            <label className="block text-sm text-slate-300 mb-1">Password</label>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-sm text-slate-300">Password</label>
+              <Link href="/forgot-password" className="text-xs text-indigo-400 hover:underline">
+                Forgot password?
+              </Link>
+            </div>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-5"
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent mb-3"
               placeholder="••••••••"
             />
           </div>
-          {error && <p className="text-red-400 text-sm">{error}</p>}
+
+          {error && (
+            <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2">
+              {error}
+            </p>
+          )}
+
           <button
             type="submit"
-            className="w-full py-2.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 transition font-semibold"
+            className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-semibold text-white"
           >
             Sign In
           </button>
@@ -81,10 +99,11 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-slate-500 mt-6">
           No account?{" "}
-          <Link href="/register" className="text-indigo-400 hover:underline">Register</Link>
+          <Link href="/register" className="text-indigo-400 hover:underline">
+            Register
+          </Link>
         </p>
       </div>
     </div>
   );
 }
-

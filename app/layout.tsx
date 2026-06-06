@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="en" suppressHydrationWarning
       className={cn("h-full", "antialiased", font.className, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <Provider>
           <ResponsiveNav />
           <main className='w-[90%] xl:w-[80%] mx-auto'>

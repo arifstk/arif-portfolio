@@ -7,11 +7,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { NavLinks } from '@/Constant/Constant'
 import SocialLinks from '@/components/SocialLinks'
+import { useSession, signOut } from 'next-auth/react'
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const sidebarRef = useRef<HTMLDivElement>(null)
+  const { data: session } = useSession()
+  const role = (session?.user as any)?.role
 
   // Close on route change
   useEffect(() => { setOpen(false) }, [pathname])
@@ -32,6 +35,8 @@ const MobileNav = () => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
+
+   const totalLinks = NavLinks.length
 
   return (
     <>
@@ -86,6 +91,41 @@ const MobileNav = () => {
               </Link>
             )
           })}
+
+ {/* ── Admin Dashboard link ── */}
+          {session && role === 'admin' && (
+            <Link
+              href="/admin/dashboard"
+              style={{ transitionDelay: open ? `${totalLinks * 50}ms` : '0ms' }}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
+                transition-all duration-200
+                ${open ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
+                ${pathname === '/admin/dashboard'
+                  ? 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400'
+                  : 'text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/50'
+                }`}
+            >
+              Admin Dashboard
+              {pathname === '/admin/dashboard' && (
+                <span className="ml-auto w-1 h-4 rounded-full bg-indigo-500 dark:bg-indigo-400" />
+              )}
+            </Link>
+          )}
+
+          {/* ── Logout button ── */}
+          {session && (
+            <button
+              onClick={() => signOut({ callbackUrl: '/' })}
+              style={{ transitionDelay: open ? `${(totalLinks + (role === 'admin' ? 1 : 0)) * 50}ms` : '0ms' }}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
+                transition-all duration-200 w-full text-left
+                ${open ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
+                text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30`}
+            >
+              Logout
+            </button>
+          )}
+
         </nav>
         <div className='px-6'>
           <SocialLinks />

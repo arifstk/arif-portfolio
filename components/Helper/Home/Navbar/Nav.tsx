@@ -7,9 +7,12 @@ import { NavLinks } from '@/Constant/Constant'
 import { usePathname } from 'next/navigation'
 import Logo from './Logo'
 import MobileNav from './MobileNav'
+import { useSession, signOut } from 'next-auth/react'
 
 const Nav = () => {
   const pathname = usePathname()
+  const { data: session } = useSession()
+  const role = (session?.user as any)?.role
 
   return (
     <div>
@@ -42,6 +45,26 @@ const Nav = () => {
           </nav>
           <div className='flex items-center gap-4'>
             <ThemeToggler />
+
+            {/* Auth actions — desktop only */}
+            {session && (
+              <div className='hidden md:flex items-center gap-3'>
+                {role === 'admin' && (
+                  <Link
+                    href='/admin/dashboard'
+                    className='text-sm font-medium px-3 py-1.5 rounded-md bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors duration-200'
+                  >
+                    Admin Dashboard
+                  </Link>
+                )}
+                <button
+                  onClick={() => signOut({ callbackUrl: '/' })}
+                  className='text-sm font-medium px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200'
+                >
+                  Logout
+                </button>
+              </div>
+            )}
             {/* Mobile Navigation */}
             <div className='md:hidden'>
               <MobileNav />

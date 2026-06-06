@@ -5,6 +5,9 @@ import { cn } from "@/lib/utils";
 import Provider from "@/components/Hoc/Provider";
 import ResponsiveNav from "@/components/Helper/Home/Navbar/ResponsiveNav";
 import Footer from "@/components/Footer";
+import { SessionProvider } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -18,18 +21,19 @@ export const metadata: Metadata = {
   description: "Portfolio website of Arif",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions)
   return (
     <html
       lang="en" suppressHydrationWarning
       className={cn("h-full", "antialiased", font.className, "font-sans", geist.variable)}
     >
       <body className="min-h-screen flex flex-col">
-        <Provider>
+        <Provider session={session}>
           <ResponsiveNav />
           <main className='w-[90%] xl:w-[80%] mx-auto'>
             {children}

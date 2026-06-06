@@ -111,7 +111,7 @@ export default function Contact() {
         </div>
 
         {/* ── Two columns ── */}
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start">
+        <div className="grid md:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start">
 
           {/* ── Left — Contact links ── */}
           <div className="fade-up fade-up-2 space-y-4">
@@ -121,7 +121,7 @@ export default function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-5 rounded-2xl border border-white/10 dark:border-gray-200  dark:bg-gray-800 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300"
+                className="group flex items-center gap-4 p-5 rounded-2xl border border-violet-500/40 dark:border-gray-200  dark:bg-gray-900 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300"
               >
                 <span className="shrink-0 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-violet-400 group-hover:border-violet-500/40 transition-colors duration-300">
                   {link.icon}
@@ -177,7 +177,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocused("name")}
                       onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 ${focused === "name"
+                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "name"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                         : "border-white/10 hover:border-white/20"
                         }`}
@@ -195,7 +195,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocused("email")}
                       onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 ${focused === "email"
+                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "email"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                         : "border-white/10 hover:border-white/20"
                         }`}
@@ -215,7 +215,7 @@ export default function Contact() {
                     onChange={handleChange}
                     onFocus={() => setFocused("subject")}
                     onBlur={() => setFocused(null)}
-                    className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 ${focused === "subject"
+                    className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "subject"
                       ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                       : "border-white/10 hover:border-white/20"
                       }`}
@@ -236,7 +236,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocused("message")}
                       onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 resize-none ${focused === "message"
+                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 resize-none ${focused === "message"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                         : "border-white/10 hover:border-white/20"
                         }`}

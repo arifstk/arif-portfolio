@@ -22,7 +22,7 @@ export default function Footer() {
       <div className=" py-15 w-[90%] xl:w-[80%] mx-auto">
 
         {/* Top Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 justify-center md:justify-between items-center gap-4 border-b border-slate-200/50">
+        <div className="grid grid-cols-1 sm:grid-cols-3 justify-center md:justify-between items-center gap-4 mb-5">
 
           {/* Logo / Name Branding */}
           <div className="w-full md:w-auto flex justify-center md:justify-start">

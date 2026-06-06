@@ -179,7 +179,7 @@ export default function Contact() {
                       onBlur={() => setFocused(null)}
                       className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "name"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
-                        : "border-white/10 hover:border-white/20"
+                        : "border-violet-500/40 hover:border-white/20"
                         }`}
                     />
                   </div>
@@ -197,7 +197,7 @@ export default function Contact() {
                       onBlur={() => setFocused(null)}
                       className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "email"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
-                        : "border-white/10 hover:border-white/20"
+                        : "border-violet-500/40 hover:border-white/20"
                         }`}
                     />
                   </div>
@@ -217,7 +217,7 @@ export default function Contact() {
                     onBlur={() => setFocused(null)}
                     className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "subject"
                       ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
-                      : "border-white/10 hover:border-white/20"
+                      : "border-violet-500/40 hover:border-white/20"
                       }`}
                   />
                 </div>
@@ -238,7 +238,7 @@ export default function Contact() {
                       onBlur={() => setFocused(null)}
                       className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 resize-none ${focused === "message"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
-                        : "border-white/10 hover:border-white/20"
+                        : "border-violet-500/40 hover:border-white/20"
                         }`}
                     />
                     <span className="absolute bottom-0 right-0 text-[10px] text-slate-600 font-mono">

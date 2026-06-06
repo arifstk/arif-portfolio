@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4 pt-8 mt-10">
+        <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4 pt-2 mt-10">
 
           {/* Copyright text */}
           <p className="text-xs text-[#64748b] text-center sm:text-left">
@@ -63,13 +63,11 @@ export default function Footer() {
             className="group flex items-center gap-1.5 text-xs font-semibold text-[#64748b] hover:text-[#007bff] transition-colors duration-300 cursor-pointer"
           >
             Back to top
-            <div className="p-1.5 rounded-lg bg-white border border-slate-100 group-hover:border-[#007bff]/20 group-hover:bg-[#007bff]/5 transition-all duration-300">
-              <ArrowUp className="w-3.5 h-3.5 text-[#64748b] group-hover:text-[#007bff] group-hover:-translate-y-0.5 transition-all duration-300" />
+            <div className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-500 group-hover:border-[#007bff]/20 group-hover:bg-[#007bff]/5 transition-all duration-300">
+              <ArrowUp className="w-3.5 h-3.5 group-hover:text-[#007bff] group-hover:-translate-y-0.5 transition-all duration-300" />
             </div>
           </button>
-
         </div>
-
       </div>
     </footer>
   );

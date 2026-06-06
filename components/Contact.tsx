@@ -121,7 +121,7 @@ export default function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-5 rounded-2xl border border-white/10 dark:border-gray-200 bg-white/2 dark:bg-gray-200 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300"
+                className="group flex items-center gap-4 p-5 rounded-2xl border border-white/10 dark:border-gray-200  dark:bg-gray-800 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300"
               >
                 <span className="shrink-0 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-violet-400 group-hover:border-violet-500/40 transition-colors duration-300">
                   {link.icon}

@@ -1,7 +1,7 @@
 // components/Hero.tsx
 
 import React from 'react'
-import { Button } from './ui/button'
+// import { Button } from './ui/button'
 import Link from 'next/link'
 import SocialLinks from './SocialLinks'
 // import Statistics from './Statistics'
@@ -22,7 +22,7 @@ const Hero = () => {
         {/* <p className='w-auto md:max-w-[90%] font-thin leading-6'>As a Software Engineer, I design and build innovative software solutions, solve complex problems, and ensure systems are scalable and user-friendly. From creating web apps to optimizing backend systems, I bridge the gap between technology and user needs.</p> */}
         <HeroDescription />
         <Link href="/projects">
-          <Button className='bg-transparent rounded-full border border-gray-500 dark:border-gray-500 text-gray-800 dark:text-white/70 hover:bg-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-200 px-6 text-sm cursor-pointer'>My Works</Button>
+          <button className='bg-transparent rounded-full border border-gray-500 dark:border-gray-500 text-gray-800 dark:text-white/70 hover:bg-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-200 px-6 py-2 text-sm cursor-pointer'>My Works</button>
         </Link>
         <SocialLinks />
         {/* <Statistics /> */}

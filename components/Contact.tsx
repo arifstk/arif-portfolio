@@ -130,7 +130,7 @@ export default function Contact() {
                   <p className="text-[10px] font-semibold tracking-widest text-slate-500 uppercase mb-0.5">
                     {link.label}
                   </p>
-                  <p className="text-sm text-slate-300 group-hover:text-white truncate transition-colors duration-200">
+                  <p className="text-sm text-slate-500 dark:text-slate-200 truncate transition-colors duration-200">
                     {link.value}
                   </p>
                 </div>
@@ -177,7 +177,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocused("name")}
                       onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "name"
+                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "name"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                         : "border-violet-500/40 hover:border-white/20"
                         }`}
@@ -195,7 +195,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocused("email")}
                       onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "email"
+                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "email"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                         : "border-violet-500/40 hover:border-white/20"
                         }`}
@@ -215,7 +215,7 @@ export default function Contact() {
                     onChange={handleChange}
                     onFocus={() => setFocused("subject")}
                     onBlur={() => setFocused(null)}
-                    className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "subject"
+                    className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 ${focused === "subject"
                       ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                       : "border-violet-500/40 hover:border-white/20"
                       }`}
@@ -236,12 +236,12 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocused("message")}
                       onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 resize-none ${focused === "message"
+                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border border-violet-500/40 transition-all duration-300 resize-none ${focused === "message"
                         ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]"
                         : "border-violet-500/40 hover:border-white/20"
                         }`}
                     />
-                    <span className="absolute bottom-0 right-0 text-[10px] text-slate-600 font-mono">
+                    <span className="absolute bottom-2 right-2 text-[10px] text-slate-600 font-mono">
                       {form.message.length}
                     </span>
                   </div>

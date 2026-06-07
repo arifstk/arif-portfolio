@@ -18,11 +18,11 @@ export default function Footer() {
 
 
   return (
-    <footer className="w-full border-t border-slate-100/50 text-[#1e293b] mt-15">
-      <div className=" py-15 w-[90%] xl:w-[80%] mx-auto">
+    <footer className="w-full text-[#1e293b] mt-15 pb-4">
+      <div className=" pt-15 w-[90%] xl:w-[80%] mx-auto">
 
         {/* Top Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 justify-center md:justify-between items-center gap-4 mb-5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 justify-center md:justify-between items-center gap-4">
 
           {/* Logo / Name Branding */}
           <div className="w-full md:w-auto flex justify-center md:justify-start">
@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4 pt-2 mt-10">
+        <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4 pt-4">
 
           {/* Copyright text */}
           <p className="text-xs text-[#64748b] text-center sm:text-left">

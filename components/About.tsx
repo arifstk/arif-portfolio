@@ -31,7 +31,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-15 md:py-20  text-gray-800 dark:text-gray-200">
+    <section id="about" className="pt-15 md:pt-20  text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
       <div className="text-center mb-8 md:mb-10">

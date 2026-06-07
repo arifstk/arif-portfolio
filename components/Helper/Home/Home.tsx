@@ -6,7 +6,7 @@ import Skills from "@/components/Skills"
 
 const Home = () => {
   return (
-    <div className='overflow-hidden min-h-screen mt-13 md:mt-20'>
+    <div className='overflow-hidden min-h-screen pt-10 md:pt-20'>
       <Hero />
       <Projects />
       <Skills />

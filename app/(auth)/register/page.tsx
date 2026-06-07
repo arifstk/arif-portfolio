@@ -1,4 +1,4 @@
-// app/(auth)/register/page.tsx — Registration with name, email, password and Google signup
+// app/(auth)/register/page.tsx 
 
 "use client";
 import { signIn } from "next-auth/react";
@@ -25,8 +25,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-slate-950 mt-35">
-      <div className="w-full max-w-md bg-slate-900 rounded-2xl px-4 shadow-2xl border border-slate-800">
+    <div className="min-h-screen flex items-center justify-center mt-20">
+      <div className="w-full max-w-md bg-slate-900 rounded-2xl px-4 py-4 shadow-2xl border border-slate-800">
         <h1 className="text-2xl font-bold  pb-3">Create account</h1>
 
         <button

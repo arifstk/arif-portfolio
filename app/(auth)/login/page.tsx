@@ -21,8 +21,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-slate-950">
-      <div className="w-full max-w-md bg-slate-900 rounded-2xl px-4 shadow-2xl border border-slate-800">
+    <div className="min-h-screen flex items-center justify-center -mt-2 md:mt-10">
+      <div className="w-full max-w-md bg-slate-900 rounded-2xl px-4 shadow-2xl border border-slate-800 py-4">
 
         {/* Header */}
         <h1 className="text-2xl font-bold text-white mb-1">Welcome back</h1>

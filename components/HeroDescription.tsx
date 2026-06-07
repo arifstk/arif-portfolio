@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 const HomeDescription = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const description =
-    " As a Software & Web App Developer, I design and build innovative software solutions, solve complex problems, and ensure systems are scalable and user-friendly. From creating web apps to optimizing backend systems, I bridge the gap between technology and user needs.";
+    " As a Software Developer, I design and build innovative software solutions, solve complex problems, and ensure systems are scalable and user-friendly. From creating web apps to optimizing backend systems, I bridge the gap between technology and user needs.";
   const { displayedText, isComplete } = useTypewriter(description, 30);
 
   useEffect(() => {

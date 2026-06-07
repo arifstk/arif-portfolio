@@ -1,9 +1,12 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+
+/* @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+*/
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *)); 
 
+/* 
 @theme inline {
     --font-heading: var(--font-sans);
     --font-sans: var(--font-sans);
@@ -115,9 +118,10 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
 }
+  
 
 @layer base {
-  * {
+   {
     @apply border-border outline-ring/50;
     }
   body {
@@ -126,4 +130,5 @@
   html {
     @apply font-sans;
     }
-}
+}   */
+

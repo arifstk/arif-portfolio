@@ -1,4 +1,4 @@
-// types/index.ts — Shared TypeScript interfaces across the app
+// types/index.ts 
 
 export interface IUser {
   _id?: string;
@@ -16,4 +16,24 @@ export interface SocialItem {
   order: number
 }
 
+
+export type ContactItem = {
+  _id: string;
+  label: string;
+  value: string;
+  href: string;
+  iconName: string;
+};
+
+export type Project = {
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  imagePublicId?: string;
+  techStack: string[];
+  demoUrl: string;
+  githubUrl: string;
+  order: number;
+};
 

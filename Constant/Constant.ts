@@ -132,3 +132,4 @@ export const skillCategories = [
   },
 ];
 
+// some constants data invalid after completed backend.

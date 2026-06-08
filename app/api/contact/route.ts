@@ -1,4 +1,4 @@
-// app/api/admin/contact/route.ts
+// api/contact/route.ts  (public/user/frontend api)
 
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
@@ -13,5 +13,3 @@ export async function GET() {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }
 }
-
-

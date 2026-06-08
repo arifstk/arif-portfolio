@@ -1,4 +1,4 @@
-// app/api/register/route.ts — User registration with password hashing
+// app/api/register/route.ts 
 
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";

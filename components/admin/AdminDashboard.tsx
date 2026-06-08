@@ -566,8 +566,9 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{p.description}</p>
                 {p.techStack.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-2">
-                    {p.techStack.map(t => (
-                      <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium">{t}</span>
+                    {p.techStack.map((t, i) => (
+                      <span key={`${t}-${i}`} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium">
+                        {t}</span>
                     ))}
                   </div>
                 )}
@@ -690,8 +691,8 @@ function ContactPanel({ autoOpen }: { autoOpen?: boolean }) {
                     title={label}
                     onClick={() => setEditing(p => p && ({ ...p, iconName: key }))}
                     className={`flex flex-col items-center justify-center gap-1 p-2 rounded-xl border-2 transition-all ${editing.iconName === key
-                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                        : "border-transparent hover:border-slate-200 dark:hover:border-slate-600 " + bg
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                      : "border-transparent hover:border-slate-200 dark:hover:border-slate-600 " + bg
                       }`}
                   >
                     <Icon size={18} className={color} />
@@ -901,8 +902,8 @@ function SocialsPanel({ autoOpen }: { autoOpen?: boolean }) {
                     type="button"
                     onClick={() => setEditing(p => p && ({ ...p, iconName: key }))}
                     className={`flex items-center gap-2 px-3 py-2 rounded-xl border-2 transition-all ${editing.iconName === key
-                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                        : "border-transparent hover:border-slate-200 dark:hover:border-slate-600 " + bg
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                      : "border-transparent hover:border-slate-200 dark:hover:border-slate-600 " + bg
                       }`}
                   >
                     <Icon size={16} className={color} />
@@ -1069,8 +1070,8 @@ export default function AdminDashboard() {
               key={item.id}
               onClick={() => setTab(item.id)}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${tab === item.id
-                  ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
-                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
+                ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
             >
               <span className={tab === item.id ? "text-blue-500" : "text-slate-400"}>{item.icon}</span>

@@ -1,4 +1,5 @@
-// app/api/admin/projects/route.ts
+// app/api/admin/projects/route.ts (for admin only api)
+
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";

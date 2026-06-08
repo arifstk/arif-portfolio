@@ -1,4 +1,5 @@
 // app/api/admin/socials/[id]/route.ts
+
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -13,15 +14,16 @@ async function guardAdmin() {
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await guardAdmin();
     await connectDB();
+    const { id } = await params;          // ← await here
     const body = await req.json();
-    const updated = await SocialLink.findByIdAndUpdate(params.id, body, {
-      new: true,
-    });
+    const updated = await SocialLink.findByIdAndUpdate(id, body, { new: true });
+    if (!updated)
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json(updated);
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
@@ -30,14 +32,16 @@ export async function PUT(
 
 export async function DELETE(
   _: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await guardAdmin();
     await connectDB();
-    await SocialLink.findByIdAndDelete(params.id);
+    const { id } = await params;          // ← await here
+    await SocialLink.findByIdAndDelete(id);
     return NextResponse.json({ success: true });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }
 }
+

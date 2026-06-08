@@ -1,15 +1,20 @@
-// components/admin/AdminDashboard.tsx
+// components/AdminDashboard.tsx
 
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  FaGithubSquare, FaLinkedin, FaInstagramSquare, FaYoutube, FaDribbble,
+} from "react-icons/fa";
+import { FaXTwitter, FaTiktok, FaBehance } from "react-icons/fa6";
+import { Mail, Phone, MapPin, Globe } from "lucide-react";
 
 // ─── Types ───────────────────────────────────────
 type Project = {
   _id?: string; title: string; description: string;
-  image: string; techStack: string[]; demoUrl: string;
-  githubUrl: string; order: number;
+  image: string; imagePublicId?: string; techStack: string[];
+  demoUrl: string; githubUrl: string; order: number;
 };
 type ContactItem = {
   _id?: string; label: string; value: string;
@@ -22,8 +27,8 @@ type SocialItem = {
 type Tab = "projects" | "contact" | "socials";
 
 const blankProject = (): Project => ({
-  title: "", description: "", image: "", techStack: [],
-  demoUrl: "", githubUrl: "", order: 0,
+  title: "", description: "", image: "", imagePublicId: "",
+  techStack: [], demoUrl: "", githubUrl: "", order: 0,
 });
 const blankContact = (): ContactItem => ({
   label: "", value: "", href: "#", iconName: "Mail",
@@ -32,7 +37,36 @@ const blankSocial = (): SocialItem => ({
   name: "", href: "", iconName: "github", order: 0,
 });
 
-// ─── Shared UI atoms ──────────────────────────────────────────────────────────
+// ─── Icon maps ────────────────────────────────────
+const SOCIAL_ICONS: { key: string; label: string; Icon: React.ElementType; color: string; bg: string }[] = [
+  { key: "github", label: "GitHub", Icon: FaGithubSquare, color: "text-gray-800 dark:text-gray-200", bg: "bg-gray-100 dark:bg-gray-800" },
+  { key: "linkedin", label: "LinkedIn", Icon: FaLinkedin, color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
+  { key: "twitter", label: "Twitter/X", Icon: FaXTwitter, color: "text-sky-500 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-900/30" },
+  { key: "instagram", label: "Instagram", Icon: FaInstagramSquare, color: "text-pink-500 dark:text-pink-400", bg: "bg-pink-50 dark:bg-pink-900/30" },
+  { key: "youtube", label: "YouTube", Icon: FaYoutube, color: "text-red-600 dark:text-red-400", bg: "bg-red-50 dark:bg-red-900/30" },
+  { key: "tiktok", label: "TikTok", Icon: FaTiktok, color: "text-slate-900 dark:text-slate-100", bg: "bg-slate-100 dark:bg-slate-800" },
+  { key: "dribbble", label: "Dribbble", Icon: FaDribbble, color: "text-pink-400 dark:text-pink-300", bg: "bg-pink-50 dark:bg-pink-900/20" },
+  { key: "behance", label: "Behance", Icon: FaBehance, color: "text-blue-700 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
+];
+
+const SOCIAL_ICON_MAP: Record<string, typeof SOCIAL_ICONS[0]> = Object.fromEntries(
+  SOCIAL_ICONS.map(s => [s.key, s])
+);
+
+const CONTACT_ICONS: { key: string; label: string; Icon: React.ElementType; color: string; bg: string }[] = [
+  { key: "Mail", label: "Mail", Icon: Mail, color: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-900/30" },
+  { key: "Phone", label: "Phone", Icon: Phone, color: "text-green-600 dark:text-green-400", bg: "bg-green-50 dark:bg-green-900/30" },
+  { key: "MapPin", label: "MapPin", Icon: MapPin, color: "text-red-500 dark:text-red-400", bg: "bg-red-50 dark:bg-red-900/30" },
+  { key: "Globe", label: "Globe", Icon: Globe, color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
+  { key: "Twitter", label: "Twitter", Icon: FaXTwitter, color: "text-sky-500 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-900/30" },
+  { key: "Linkedin", label: "LinkedIn", Icon: FaLinkedin, color: "text-blue-700 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
+];
+
+const CONTACT_ICON_MAP: Record<string, typeof CONTACT_ICONS[0]> = Object.fromEntries(
+  CONTACT_ICONS.map(c => [c.key, c])
+);
+
+// ─── Shared UI atoms ──────────────────────────────
 const inp = [
   "w-full bg-white dark:bg-slate-800/60 text-slate-900 dark:text-slate-100",
   "border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-sm",
@@ -59,8 +93,8 @@ function Modal({ title, onClose, children }: {
 }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-      <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800">
+      <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800 sticky top-0 bg-white dark:bg-slate-900 z-10">
           <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</h3>
           <button onClick={onClose} className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
             <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" /></svg>
@@ -103,7 +137,7 @@ function Skeleton() {
   return (
     <div className="space-y-3 animate-pulse">
       {[...Array(3)].map((_, i) => (
-        <div key={i} className="h-[76px] rounded-2xl bg-slate-100 dark:bg-slate-800" />
+        <div key={i} className="h-19 rounded-2xl bg-slate-100 dark:bg-slate-800" />
       ))}
     </div>
   );
@@ -126,7 +160,148 @@ function EmptyState({ label, onAdd }: { label: string; onAdd: () => void }) {
   );
 }
 
-// ─── Icon components ──────────────────────────────────────────────────────────
+// ─── Image Upload Component ────────────────────────────────────────────────────
+function ImageUploader({
+  currentImage,
+  onUploaded,
+  uploading,
+  setUploading,
+}: {
+  currentImage: string;
+  onUploaded: (url: string, publicId: string) => void;
+  uploading: boolean;
+  setUploading: (v: boolean) => void;
+}) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [preview, setPreview] = useState(currentImage);
+  const [dragOver, setDragOver] = useState(false);
+
+  useEffect(() => { setPreview(currentImage); }, [currentImage]);
+
+  async function handleFile(file: File) {
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please select an image file.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Image must be under 5MB.");
+      return;
+    }
+    setUploading(true);
+    try {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64 = reader.result as string;
+        setPreview(base64);
+        const res = await fetch("/api/admin/upload", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ base64, folder: "portfolio/projects" }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Upload failed");
+        onUploaded(data.url, data.publicId);
+        toast.success("Image uploaded!");
+      };
+      reader.readAsDataURL(file);
+    } catch (e: any) {
+      toast.error(e.message);
+      setPreview(currentImage);
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div className="space-y-2">
+      {/* Drop zone */}
+      <div
+        onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={e => {
+          e.preventDefault();
+          setDragOver(false);
+          const file = e.dataTransfer.files[0];
+          if (file) handleFile(file);
+        }}
+        onClick={() => fileRef.current?.click()}
+        className={`relative cursor-pointer rounded-xl border-2 border-dashed transition-all duration-200 overflow-hidden
+          ${dragOver
+            ? "border-blue-400 bg-blue-50 dark:bg-blue-900/10"
+            : "border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 bg-slate-50 dark:bg-slate-800/40"
+          }`}
+      >
+        {preview ? (
+          <div className="relative h-40 w-full">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={preview} alt="preview" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <span className="text-white text-xs font-medium">Click or drop to replace</span>
+            </div>
+            {uploading && (
+              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-2">
+                  <svg className="animate-spin w-6 h-6 text-white" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                  </svg>
+                  <span className="text-white text-xs">Uploading…</span>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-8 gap-2">
+            {uploading ? (
+              <>
+                <svg className="animate-spin w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                </svg>
+                <span className="text-xs text-slate-400">Uploading…</span>
+              </>
+            ) : (
+              <>
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-slate-400" viewBox="0 0 24 24">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Drop image here or click to browse</p>
+                <p className="text-[10px] text-slate-400">PNG, JPG, WEBP up to 5MB</p>
+              </>
+            )}
+          </div>
+        )}
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={e => { if (e.target.files?.[0]) handleFile(e.target.files[0]); }}
+        />
+      </div>
+
+      {/* Manual URL fallback */}
+      <div className="flex items-center gap-2">
+        <div className="flex-1 h-px bg-slate-100 dark:bg-slate-700" />
+        <span className="text-[10px] text-slate-400 uppercase tracking-wider">or paste URL</span>
+        <div className="flex-1 h-px bg-slate-100 dark:bg-slate-700" />
+      </div>
+      <input
+        className={inp}
+        value={preview.startsWith("data:") ? "" : preview}
+        onChange={e => {
+          setPreview(e.target.value);
+          onUploaded(e.target.value, "");
+        }}
+        placeholder="https://example.com/image.jpg"
+      />
+    </div>
+  );
+}
+
+// ─── Icon components ──────────────────────────────
 const EditIcon = () => (
   <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -146,26 +321,42 @@ const PlusIcon = () => (
   </svg>
 );
 
-// ─── Projects Panel ────────────────────────────────────────────────────────────
-function ProjectsPanel() {
+// ─── Projects Panel ───────────────────────────────
+function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
   const [items, setItems] = useState<Project[]>([]);
   const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<Project | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [confirm, setConfirm] = useState<string | null>(null);
   const [techInput, setTechInput] = useState("");
+  const didAutoOpen = useRef(false);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/projects");
-    const data = await res.json();
-    setItems(Array.isArray(data) ? data : []);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/admin/projects");
+      if (!res.ok) throw new Error("Failed to load");
+      const data = await res.json();
+      setItems(Array.isArray(data) ? data : []);
+    } catch {
+      toast.error("Failed to load projects.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => { load(); }, [load]);
+
+  useEffect(() => {
+    if (autoOpen && !didAutoOpen.current) {
+      didAutoOpen.current = true;
+      openNew();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpen]);
 
   function openNew() {
     setEditing(blankProject());
@@ -183,62 +374,135 @@ function ProjectsPanel() {
 
   async function save() {
     if (!editing) return;
+    if (!editing.title.trim()) { toast.error("Title is required."); return; }
+    if (!editing.description.trim()) { toast.error("Description is required."); return; }
     setSaving(true);
-    const payload = { ...editing, techStack: techInput.split(",").map(s => s.trim()).filter(Boolean) };
-    const res = isNew
-      ? await fetch("/api/admin/projects", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
-      : await fetch(`/api/admin/projects/${editing._id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-    if (res.ok) {
+    try {
+      const payload = {
+        ...editing,
+        techStack: techInput.split(",").map(s => s.trim()).filter(Boolean),
+      };
+      const url = isNew ? "/api/admin/projects" : `/api/admin/projects/${editing._id}`;
+      const method = isNew ? "POST" : "PUT";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Save failed");
+      }
       toast.success(isNew ? "Project created!" : "Project updated!");
       setModal(false);
       load();
-    } else toast.error("Failed to save.");
-    setSaving(false);
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function del(id: string) {
-    const res = await fetch(`/api/admin/projects/${id}`, { method: "DELETE" });
-    if (res.ok) { toast.success("Deleted."); load(); }
-    else toast.error("Failed to delete.");
-    setConfirm(null);
+    try {
+      const res = await fetch(`/api/admin/projects/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      toast.success("Project deleted.");
+      load();
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setConfirm(null);
+    }
   }
 
   return (
     <>
-      {confirm && <ConfirmModal msg="This will permanently delete the project." onConfirm={() => del(confirm)} onCancel={() => setConfirm(null)} />}
+      {confirm && (
+        <ConfirmModal
+          msg="This will permanently delete the project and its image."
+          onConfirm={() => del(confirm)}
+          onCancel={() => setConfirm(null)}
+        />
+      )}
       {modal && editing && (
         <Modal title={isNew ? "Add project" : "Edit project"} onClose={() => setModal(false)}>
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <Field label="Title">
-                <input className={inp} value={editing.title} onChange={e => setEditing(p => p && ({ ...p, title: e.target.value }))} placeholder="Project title" />
+                <input
+                  className={inp}
+                  value={editing.title}
+                  onChange={e => setEditing(p => p && ({ ...p, title: e.target.value }))}
+                  placeholder="Project title"
+                />
               </Field>
               <Field label="Order">
-                <input className={inp} type="number" value={editing.order} onChange={e => setEditing(p => p && ({ ...p, order: Number(e.target.value) }))} />
+                <input
+                  className={inp}
+                  type="number"
+                  value={editing.order}
+                  onChange={e => setEditing(p => p && ({ ...p, order: Number(e.target.value) }))}
+                />
               </Field>
             </div>
             <Field label="Description">
-              <textarea className={inp + " resize-none"} rows={3} value={editing.description} onChange={e => setEditing(p => p && ({ ...p, description: e.target.value }))} placeholder="Short description..." />
+              <textarea
+                className={inp + " resize-none"}
+                rows={3}
+                value={editing.description}
+                onChange={e => setEditing(p => p && ({ ...p, description: e.target.value }))}
+                placeholder="Short description…"
+              />
             </Field>
             <div className="grid grid-cols-2 gap-3">
               <Field label="Demo URL">
-                <input className={inp} value={editing.demoUrl} onChange={e => setEditing(p => p && ({ ...p, demoUrl: e.target.value }))} placeholder="https://..." />
+                <input
+                  className={inp}
+                  value={editing.demoUrl}
+                  onChange={e => setEditing(p => p && ({ ...p, demoUrl: e.target.value }))}
+                  placeholder="https://…"
+                />
               </Field>
               <Field label="GitHub URL">
-                <input className={inp} value={editing.githubUrl} onChange={e => setEditing(p => p && ({ ...p, githubUrl: e.target.value }))} placeholder="https://github.com/..." />
+                <input
+                  className={inp}
+                  value={editing.githubUrl}
+                  onChange={e => setEditing(p => p && ({ ...p, githubUrl: e.target.value }))}
+                  placeholder="https://github.com/…"
+                />
               </Field>
             </div>
-            <Field label="Image URL">
-              <input className={inp} value={editing.image} onChange={e => setEditing(p => p && ({ ...p, image: e.target.value }))} placeholder="/images/p1.jpg" />
+            <Field label="Project Image">
+              <ImageUploader
+                currentImage={editing.image}
+                uploading={uploading}
+                setUploading={setUploading}
+                onUploaded={(url, publicId) =>
+                  setEditing(p => p && ({ ...p, image: url, imagePublicId: publicId || p.imagePublicId }))
+                }
+              />
             </Field>
             <Field label="Tech Stack (comma-separated)">
-              <input className={inp} value={techInput} onChange={e => setTechInput(e.target.value)} placeholder="Next.js, TypeScript, MongoDB" />
+              <input
+                className={inp}
+                value={techInput}
+                onChange={e => setTechInput(e.target.value)}
+                placeholder="Next.js, TypeScript, MongoDB"
+              />
             </Field>
             <div className="flex gap-2 pt-2">
-              <button onClick={save} disabled={saving} className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors">
-                {saving ? "Saving…" : isNew ? "Create project" : "Save changes"}
+              <button
+                onClick={save}
+                disabled={saving || uploading}
+                className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
+              >
+                {saving ? "Saving…" : uploading ? "Uploading image…" : isNew ? "Create project" : "Save changes"}
               </button>
-              <button onClick={() => setModal(false)} className="px-4 py-2.5 text-sm text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors">
+              <button
+                onClick={() => setModal(false)}
+                className="px-4 py-2.5 text-sm text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+              >
                 Cancel
               </button>
             </div>
@@ -260,14 +524,22 @@ function ProjectsPanel() {
         ))}
       </div>
 
-      {loading ? <Skeleton /> : items.length === 0 ? <EmptyState label="projects" onAdd={openNew} /> : (
+      {loading ? <Skeleton /> : items.length === 0 ? (
+        <EmptyState label="projects" onAdd={openNew} />
+      ) : (
         <div className="space-y-2.5">
           {items.map(p => (
             <div key={p._id} className="group flex items-start gap-3 p-4 bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/60 rounded-2xl hover:border-slate-200 dark:hover:border-slate-600 transition-all">
               {p.image ? (
-                <img src={p.image} alt="" className="w-12 h-12 rounded-xl object-cover bg-slate-100 dark:bg-slate-700 shrink-0" onError={e => (e.currentTarget.style.opacity = "0")} />
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-12 h-12 rounded-xl object-cover bg-slate-100 dark:bg-slate-700 shrink-0"
+                  onError={e => (e.currentTarget.style.opacity = "0")}
+                />
               ) : (
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-liner-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center shrink-0">
                   <svg width="18" height="18" fill="none" stroke="#378ADD" strokeWidth="1.5" viewBox="0 0 24 24">
                     <rect x="3" y="3" width="18" height="18" rx="3" /><path d="M3 9h18M9 21V9" />
                   </svg>
@@ -277,10 +549,16 @@ function ProjectsPanel() {
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate">{p.title}</p>
                   <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={() => openEdit(p)} className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 dark:hover:border-blue-500 transition-colors bg-white dark:bg-slate-800">
+                    <button
+                      onClick={() => openEdit(p)}
+                      className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 dark:hover:border-blue-500 transition-colors bg-white dark:bg-slate-800"
+                    >
                       <EditIcon />
                     </button>
-                    <button onClick={() => setConfirm(p._id!)} className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 dark:hover:border-red-500 transition-colors bg-white dark:bg-slate-800">
+                    <button
+                      onClick={() => setConfirm(p._id!)}
+                      className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 dark:hover:border-red-500 transition-colors bg-white dark:bg-slate-800"
+                    >
                       <TrashIcon />
                     </button>
                   </div>
@@ -302,8 +580,8 @@ function ProjectsPanel() {
   );
 }
 
-// ─── Contact Panel ─────────────────────────────────────────────────────────────
-function ContactPanel() {
+// ─── Contact Panel ────────────────────────────────
+function ContactPanel({ autoOpen }: { autoOpen?: boolean }) {
   const [items, setItems] = useState<ContactItem[]>([]);
   const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<ContactItem | null>(null);
@@ -311,71 +589,147 @@ function ContactPanel() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [confirm, setConfirm] = useState<string | null>(null);
+  const didAutoOpen = useRef(false);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/contact");
-    const data = await res.json();
-    setItems(Array.isArray(data) ? data : []);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/admin/contact");
+      if (!res.ok) throw new Error("Failed to load");
+      const data = await res.json();
+      setItems(Array.isArray(data) ? data : []);
+    } catch {
+      toast.error("Failed to load contact entries.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => { load(); }, [load]);
 
+  useEffect(() => {
+    if (autoOpen && !didAutoOpen.current) {
+      didAutoOpen.current = true;
+      openNew();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpen]);
+
+  function openNew() {
+    setEditing(blankContact());
+    setIsNew(true);
+    setModal(true);
+  }
+
   async function save() {
     if (!editing) return;
+    if (!editing.label.trim()) { toast.error("Label is required."); return; }
+    if (!editing.value.trim()) { toast.error("Value is required."); return; }
     setSaving(true);
-    const res = isNew
-      ? await fetch("/api/admin/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(editing) })
-      : await fetch(`/api/admin/contact/${editing._id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(editing) });
-    if (res.ok) { toast.success(isNew ? "Created!" : "Updated!"); setModal(false); load(); }
-    else toast.error("Failed.");
-    setSaving(false);
+    try {
+      const url = isNew ? "/api/admin/contact" : `/api/admin/contact/${editing._id}`;
+      const method = isNew ? "POST" : "PUT";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editing),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Save failed");
+      }
+      toast.success(isNew ? "Contact entry created!" : "Contact entry updated!");
+      setModal(false);
+      load();
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function del(id: string) {
-    const res = await fetch(`/api/admin/contact/${id}`, { method: "DELETE" });
-    if (res.ok) { toast.success("Deleted."); load(); }
-    else toast.error("Failed.");
-    setConfirm(null);
+    try {
+      const res = await fetch(`/api/admin/contact/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      toast.success("Deleted.");
+      load();
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setConfirm(null);
+    }
   }
-
-  const iconOpts = ["Mail", "Phone", "MapPin", "Globe", "Twitter", "Linkedin"];
-  const iconColors: Record<string, string> = {
-    Mail: "from-violet-50 to-violet-100 dark:from-violet-900/30 dark:to-violet-800/20",
-    Phone: "from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20",
-    MapPin: "from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/20",
-    Globe: "from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20",
-    default: "from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700",
-  };
 
   return (
     <>
-      {confirm && <ConfirmModal msg="This will permanently delete this contact entry." onConfirm={() => del(confirm)} onCancel={() => setConfirm(null)} />}
+      {confirm && (
+        <ConfirmModal
+          msg="This will permanently delete this contact entry."
+          onConfirm={() => del(confirm)}
+          onCancel={() => setConfirm(null)}
+        />
+      )}
       {modal && editing && (
         <Modal title={isNew ? "Add contact entry" : "Edit contact entry"} onClose={() => setModal(false)}>
           <div className="space-y-3">
-            <div className="grid grid-cols-2 gap-3">
-              <Field label="Label">
-                <input className={inp} value={editing.label} onChange={e => setEditing(p => p && ({ ...p, label: e.target.value }))} placeholder="Email" />
+            <Field label="Label">
+              <input
+                className={inp}
+                value={editing.label}
+                onChange={e => setEditing(p => p && ({ ...p, label: e.target.value }))}
+                placeholder="Email"
+              />
+            </Field>
+            <Field label="Icon">
+              <div className="grid grid-cols-6 gap-1.5">
+                {CONTACT_ICONS.map(({ key, label, Icon, color, bg }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    title={label}
+                    onClick={() => setEditing(p => p && ({ ...p, iconName: key }))}
+                    className={`flex flex-col items-center justify-center gap-1 p-2 rounded-xl border-2 transition-all ${editing.iconName === key
+                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                        : "border-transparent hover:border-slate-200 dark:hover:border-slate-600 " + bg
+                      }`}
+                  >
+                    <Icon size={18} className={color} />
+                    <span className="text-[9px] text-slate-500 dark:text-slate-400 leading-none">{label}</span>
+                  </button>
+                ))}
+              </div>
+            </Field>
+            <div className="grid grid-cols-1 gap-3">
+              <Field label="Display Value">
+                <input
+                  className={inp}
+                  value={editing.value}
+                  onChange={e => setEditing(p => p && ({ ...p, value: e.target.value }))}
+                  placeholder="hello@you.dev"
+                />
               </Field>
-              <Field label="Icon">
-                <select className={sel} value={editing.iconName} onChange={e => setEditing(p => p && ({ ...p, iconName: e.target.value }))}>
-                  {iconOpts.map(i => <option key={i} value={i}>{i}</option>)}
-                </select>
+              <Field label="Link (href)">
+                <input
+                  className={inp}
+                  value={editing.href}
+                  onChange={e => setEditing(p => p && ({ ...p, href: e.target.value }))}
+                  placeholder="mailto:hello@you.dev"
+                />
               </Field>
             </div>
-            <Field label="Display Value">
-              <input className={inp} value={editing.value} onChange={e => setEditing(p => p && ({ ...p, value: e.target.value }))} placeholder="hello@you.dev" />
-            </Field>
-            <Field label="Link (href)">
-              <input className={inp} value={editing.href} onChange={e => setEditing(p => p && ({ ...p, href: e.target.value }))} placeholder="mailto:hello@you.dev" />
-            </Field>
             <div className="flex gap-2 pt-2">
-              <button onClick={save} disabled={saving} className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors">
+              <button
+                onClick={save}
+                disabled={saving}
+                className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
+              >
                 {saving ? "Saving…" : isNew ? "Create entry" : "Save changes"}
               </button>
-              <button onClick={() => setModal(false)} className="px-4 py-2.5 text-sm text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors">
+              <button
+                onClick={() => setModal(false)}
+                className="px-4 py-2.5 text-sm text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+              >
                 Cancel
               </button>
             </div>
@@ -384,7 +738,10 @@ function ContactPanel() {
       )}
 
       <div className="grid grid-cols-2 gap-3 mb-6">
-        {[{ v: items.length, l: "Total entries" }, { v: items.filter(c => c.href !== "#").length, l: "With links" }].map(s => (
+        {[
+          { v: items.length, l: "Total entries" },
+          { v: items.filter(c => c.href !== "#").length, l: "With links" },
+        ].map(s => (
           <div key={s.l} className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4">
             <div className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{s.v}</div>
             <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{s.l}</div>
@@ -392,36 +749,49 @@ function ContactPanel() {
         ))}
       </div>
 
-      {loading ? <Skeleton /> : items.length === 0 ? <EmptyState label="contact entries" onAdd={() => { setEditing(blankContact()); setIsNew(true); setModal(true); }} /> : (
+      {loading ? <Skeleton /> : items.length === 0 ? (
+        <EmptyState label="contact entries" onAdd={openNew} />
+      ) : (
         <div className="space-y-2.5">
-          {items.map(c => (
-            <div key={c._id} className="group flex items-center gap-3 p-4 bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/60 rounded-2xl hover:border-slate-200 dark:hover:border-slate-600 transition-all">
-              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${iconColors[c.iconName] ?? iconColors.default} flex items-center justify-center shrink-0`}>
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300">{c.iconName.slice(0, 2)}</span>
+          {items.map(c => {
+            const meta = CONTACT_ICON_MAP[c.iconName];
+            const ContactIcon = meta?.Icon;
+            return (
+              <div key={c._id} className="group flex items-center gap-3 p-4 bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/60 rounded-2xl hover:border-slate-200 dark:hover:border-slate-600 transition-all">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${meta?.bg ?? "bg-slate-100 dark:bg-slate-700"}`}>
+                  {ContactIcon
+                    ? <ContactIcon size={18} className={meta?.color ?? "text-slate-500"} />
+                    : <span className="text-xs font-bold text-slate-500">{c.iconName.slice(0, 2)}</span>
+                  }
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">{c.label}</p>
+                  <p className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate mt-0.5">{c.value}</p>
+                  <p className="text-[11px] text-slate-400 truncate">{c.href}</p>
+                </div>
+                <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={() => { setEditing({ ...c }); setIsNew(false); setModal(true); }}
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800"
+                  >
+                    <EditIcon />
+                  </button>
+                  <button
+                    onClick={() => setConfirm(c._id!)}
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800"
+                  >
+                    <TrashIcon />
+                  </button>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">{c.label}</p>
-                <p className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate mt-0.5">{c.value}</p>
-                <p className="text-[11px] text-slate-400 truncate">{c.href}</p>
-              </div>
-              <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={() => { setEditing({ ...c }); setIsNew(false); setModal(true); }} className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800">
-                  <EditIcon />
-                </button>
-                <button onClick={() => setConfirm(c._id!)} className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800">
-                  <TrashIcon />
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </>
   );
 }
-
-// ─── Socials Panel ─────────────────────────────────────────────────────────────
-function SocialsPanel() {
+function SocialsPanel({ autoOpen }: { autoOpen?: boolean }) {
   const [items, setItems] = useState<SocialItem[]>([]);
   const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<SocialItem | null>(null);
@@ -429,71 +799,146 @@ function SocialsPanel() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [confirm, setConfirm] = useState<string | null>(null);
+  const didAutoOpen = useRef(false);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/socials");
-    const data = await res.json();
-    setItems(Array.isArray(data) ? data : []);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/admin/socials");
+      if (!res.ok) throw new Error("Failed to load");
+      const data = await res.json();
+      setItems(Array.isArray(data) ? data : []);
+    } catch {
+      toast.error("Failed to load social links.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => { load(); }, [load]);
 
+  useEffect(() => {
+    if (autoOpen && !didAutoOpen.current) {
+      didAutoOpen.current = true;
+      openNew();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpen]);
+
+  function openNew() {
+    setEditing(blankSocial());
+    setIsNew(true);
+    setModal(true);
+  }
+
   async function save() {
     if (!editing) return;
+    if (!editing.name.trim()) { toast.error("Platform name is required."); return; }
+    if (!editing.href.trim()) { toast.error("Profile URL is required."); return; }
     setSaving(true);
-    const res = isNew
-      ? await fetch("/api/admin/socials", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(editing) })
-      : await fetch(`/api/admin/socials/${editing._id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(editing) });
-    if (res.ok) { toast.success(isNew ? "Created!" : "Updated!"); setModal(false); load(); }
-    else toast.error("Failed.");
-    setSaving(false);
+    try {
+      const url = isNew ? "/api/admin/socials" : `/api/admin/socials/${editing._id}`;
+      const method = isNew ? "POST" : "PUT";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editing),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Save failed");
+      }
+      toast.success(isNew ? "Social link created!" : "Social link updated!");
+      setModal(false);
+      load();
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function del(id: string) {
-    const res = await fetch(`/api/admin/socials/${id}`, { method: "DELETE" });
-    if (res.ok) { toast.success("Deleted."); load(); }
-    else toast.error("Failed.");
-    setConfirm(null);
+    try {
+      const res = await fetch(`/api/admin/socials/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      toast.success("Deleted.");
+      load();
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setConfirm(null);
+    }
   }
 
-  const iconOpts = ["github", "linkedin", "twitter", "instagram", "youtube", "tiktok", "dribbble", "behance"];
-  const platformColors: Record<string, string> = {
-    github: "from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700",
-    linkedin: "from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20",
-    twitter: "from-sky-50 to-sky-100 dark:from-sky-900/30 dark:to-sky-800/20",
-    instagram: "from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/20",
-    default: "from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700",
-  };
+  const iconOpts = SOCIAL_ICONS;
 
   return (
     <>
-      {confirm && <ConfirmModal msg="This will permanently delete this social link." onConfirm={() => del(confirm)} onCancel={() => setConfirm(null)} />}
+      {confirm && (
+        <ConfirmModal
+          msg="This will permanently delete this social link."
+          onConfirm={() => del(confirm)}
+          onCancel={() => setConfirm(null)}
+        />
+      )}
       {modal && editing && (
         <Modal title={isNew ? "Add social link" : "Edit social link"} onClose={() => setModal(false)}>
           <div className="space-y-3">
-            <div className="grid grid-cols-2 gap-3">
-              <Field label="Platform Name">
-                <input className={inp} value={editing.name} onChange={e => setEditing(p => p && ({ ...p, name: e.target.value }))} placeholder="GitHub" />
-              </Field>
-              <Field label="Icon">
-                <select className={sel} value={editing.iconName} onChange={e => setEditing(p => p && ({ ...p, iconName: e.target.value }))}>
-                  {iconOpts.map(i => <option key={i} value={i}>{i}</option>)}
-                </select>
-              </Field>
-            </div>
+            <Field label="Platform Name">
+              <input
+                className={inp}
+                value={editing.name}
+                onChange={e => setEditing(p => p && ({ ...p, name: e.target.value }))}
+                placeholder="GitHub"
+              />
+            </Field>
+            <Field label="Icon">
+              <div className="grid grid-cols-4 gap-1.5">
+                {iconOpts.map(({ key, label, Icon, color, bg }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setEditing(p => p && ({ ...p, iconName: key }))}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-xl border-2 transition-all ${editing.iconName === key
+                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                        : "border-transparent hover:border-slate-200 dark:hover:border-slate-600 " + bg
+                      }`}
+                  >
+                    <Icon size={16} className={color} />
+                    <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">{label}</span>
+                  </button>
+                ))}
+              </div>
+            </Field>
             <Field label="Profile URL">
-              <input className={inp} value={editing.href} onChange={e => setEditing(p => p && ({ ...p, href: e.target.value }))} placeholder="https://github.com/..." />
+              <input
+                className={inp}
+                value={editing.href}
+                onChange={e => setEditing(p => p && ({ ...p, href: e.target.value }))}
+                placeholder="https://github.com/…"
+              />
             </Field>
             <Field label="Display Order">
-              <input className={inp} type="number" value={editing.order} onChange={e => setEditing(p => p && ({ ...p, order: Number(e.target.value) }))} />
+              <input
+                className={inp}
+                type="number"
+                value={editing.order}
+                onChange={e => setEditing(p => p && ({ ...p, order: Number(e.target.value) }))}
+              />
             </Field>
             <div className="flex gap-2 pt-2">
-              <button onClick={save} disabled={saving} className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors">
+              <button
+                onClick={save}
+                disabled={saving}
+                className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
+              >
                 {saving ? "Saving…" : isNew ? "Create link" : "Save changes"}
               </button>
-              <button onClick={() => setModal(false)} className="px-4 py-2.5 text-sm text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors">
+              <button
+                onClick={() => setModal(false)}
+                className="px-4 py-2.5 text-sm text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+              >
                 Cancel
               </button>
             </div>
@@ -502,7 +947,10 @@ function SocialsPanel() {
       )}
 
       <div className="grid grid-cols-2 gap-3 mb-6">
-        {[{ v: items.length, l: "Total links" }, { v: items.filter(s => s.href).length, l: "Active" }].map(s => (
+        {[
+          { v: items.length, l: "Total links" },
+          { v: items.filter(s => s.href).length, l: "Active" },
+        ].map(s => (
           <div key={s.l} className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4">
             <div className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{s.v}</div>
             <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{s.l}</div>
@@ -510,37 +958,52 @@ function SocialsPanel() {
         ))}
       </div>
 
-      {loading ? <Skeleton /> : items.length === 0 ? <EmptyState label="social links" onAdd={() => { setEditing(blankSocial()); setIsNew(true); setModal(true); }} /> : (
+      {loading ? <Skeleton /> : items.length === 0 ? (
+        <EmptyState label="social links" onAdd={openNew} />
+      ) : (
         <div className="space-y-2.5">
-          {items.map(s => (
-            <div key={s._id} className="group flex items-center gap-3 p-4 bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/60 rounded-2xl hover:border-slate-200 dark:hover:border-slate-600 transition-all">
-              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${platformColors[s.iconName] ?? platformColors.default} flex items-center justify-center shrink-0`}>
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300">{s.iconName.slice(0, 2).toUpperCase()}</span>
+          {items.map(s => {
+            const meta = SOCIAL_ICON_MAP[s.iconName];
+            const SocialIcon = meta?.Icon;
+            return (
+              <div key={s._id} className="group flex items-center gap-3 p-4 bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/60 rounded-2xl hover:border-slate-200 dark:hover:border-slate-600 transition-all">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${meta?.bg ?? "bg-slate-100 dark:bg-slate-700"}`}>
+                  {SocialIcon
+                    ? <SocialIcon size={20} className={meta?.color ?? "text-slate-500"} />
+                    : <span className="text-xs font-bold text-slate-500">{s.iconName.slice(0, 2).toUpperCase()}</span>
+                  }
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{s.name}</p>
+                  <p className="text-xs text-slate-400 truncate">{s.href}</p>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 shrink-0">
+                  #{s.order}
+                </span>
+                <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={() => { setEditing({ ...s }); setIsNew(false); setModal(true); }}
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800"
+                  >
+                    <EditIcon />
+                  </button>
+                  <button
+                    onClick={() => setConfirm(s._id!)}
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800"
+                  >
+                    <TrashIcon />
+                  </button>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{s.name}</p>
-                <p className="text-xs text-slate-400 truncate">{s.href}</p>
-              </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 shrink-0">
-                #{s.order}
-              </span>
-              <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={() => { setEditing({ ...s }); setIsNew(false); setModal(true); }} className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800">
-                  <EditIcon />
-                </button>
-                <button onClick={() => setConfirm(s._id!)} className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800">
-                  <TrashIcon />
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </>
   );
 }
 
-// ─── Sidebar nav items ────────────────────────────────────────────────────────
+// ─── Sidebar nav items ─────────────────────────────
 const navItems: { id: Tab; label: string; icon: React.ReactNode }[] = [
   {
     id: "projects", label: "Projects",
@@ -562,26 +1025,29 @@ const panelMeta: Record<Tab, { title: string; sub: string }> = {
   socials: { title: "Social Links", sub: "Control your social media presence" },
 };
 
-// ─── Root ─────────────────────────────────────────────────────────────────────
+// ─── Root ──────────────────────────────────────────
 export default function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("projects");
+  // addTrigger increments each time the header "Add" button is clicked
+  const [addTrigger, setAddTrigger] = useState<Record<Tab, number>>({
+    projects: 0, contact: 0, socials: 0,
+  });
+
+  function handleAdd() {
+    setAddTrigger(prev => ({ ...prev, [tab]: prev[tab] + 1 }));
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex mt-20">
       <Toaster
         position="top-right"
         toastOptions={{
-          style: {
-            background: "var(--tw-bg-opacity)",
-            fontSize: "13px",
-            borderRadius: "12px",
-          },
+          style: { fontSize: "13px", borderRadius: "12px" },
         }}
       />
 
       {/* ── Sidebar ── */}
       <aside className="w-60 shrink-0 text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 flex flex-col sticky top-0 h-screen">
-        {/* Logo area */}
         <div className="px-5 py-5 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg bg-blue-500 flex items-center justify-center shrink-0">
@@ -596,7 +1062,6 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Nav */}
         <nav className="flex-1 px-3 py-4 space-y-0.5">
           <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest px-2 mb-2">Content</p>
           {navItems.map(item => (
@@ -610,14 +1075,11 @@ export default function AdminDashboard() {
             >
               <span className={tab === item.id ? "text-blue-500" : "text-slate-400"}>{item.icon}</span>
               {item.label}
-              {tab === item.id && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500" />
-              )}
+              {tab === item.id && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500" />}
             </button>
           ))}
         </nav>
 
-        {/* Footer */}
         <div className="px-3 py-4 border-t border-slate-100 dark:border-slate-800">
           <Link
             href="/"
@@ -633,7 +1095,6 @@ export default function AdminDashboard() {
 
       {/* ── Main ── */}
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
-        {/* Top bar */}
         <header className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 px-8 py-4 flex items-center justify-between sticky top-0 z-10">
           <div>
             <h1 className="text-base font-semibold text-slate-900 dark:text-slate-100">
@@ -642,10 +1103,7 @@ export default function AdminDashboard() {
             <p className="text-xs text-slate-400 mt-0.5">{panelMeta[tab].sub}</p>
           </div>
           <button
-            onClick={() => {
-              // Dispatch a custom event that each panel listens for
-              window.dispatchEvent(new CustomEvent("admin:add", { detail: tab }));
-            }}
+            onClick={handleAdd}
             className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-blue-200 dark:shadow-none"
           >
             <PlusIcon />
@@ -653,44 +1111,28 @@ export default function AdminDashboard() {
           </button>
         </header>
 
-        {/* Panel content */}
         <main className="flex-1 px-8 py-6 max-w-3xl">
-          {tab === "projects" && <ProjectsPanelWithEvent />}
-          {tab === "contact" && <ContactPanelWithEvent />}
-          {tab === "socials" && <SocialsPanelWithEvent />}
+          {tab === "projects" && (
+            <ProjectsPanel
+              key={`proj-${addTrigger.projects}`}
+              autoOpen={addTrigger.projects > 0}
+            />
+          )}
+          {tab === "contact" && (
+            <ContactPanel
+              key={`contact-${addTrigger.contact}`}
+              autoOpen={addTrigger.contact > 0}
+            />
+          )}
+          {tab === "socials" && (
+            <SocialsPanel
+              key={`socials-${addTrigger.socials}`}
+              autoOpen={addTrigger.socials > 0}
+            />
+          )}
         </main>
       </div>
     </div>
   );
 }
 
-// ─── Event-bridged wrappers (header "Add" button → open modal inside panel) ───
-function ProjectsPanelWithEvent() {
-  const [trigger, setTrigger] = useState(0);
-  useEffect(() => {
-    const h = (e: Event) => { if ((e as CustomEvent).detail === "projects") setTrigger(t => t + 1); };
-    window.addEventListener("admin:add", h);
-    return () => window.removeEventListener("admin:add", h);
-  }, []);
-  return <ProjectsPanel key={`proj-${trigger}`} />;
-}
-
-function ContactPanelWithEvent() {
-  const [trigger, setTrigger] = useState(0);
-  useEffect(() => {
-    const h = (e: Event) => { if ((e as CustomEvent).detail === "contact") setTrigger(t => t + 1); };
-    window.addEventListener("admin:add", h);
-    return () => window.removeEventListener("admin:add", h);
-  }, []);
-  return <ContactPanel key={`contact-${trigger}`} />;
-}
-
-function SocialsPanelWithEvent() {
-  const [trigger, setTrigger] = useState(0);
-  useEffect(() => {
-    const h = (e: Event) => { if ((e as CustomEvent).detail === "socials") setTrigger(t => t + 1); };
-    window.addEventListener("admin:add", h);
-    return () => window.removeEventListener("admin:add", h);
-  }, []);
-  return <SocialsPanel key={`socials-${trigger}`} />;
-}

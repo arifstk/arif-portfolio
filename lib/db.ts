@@ -1,4 +1,4 @@
-// lib/db.ts — Singleton MongoDB connection via Mongoose
+// lib/db.ts 
 
 import mongoose from "mongoose";
 

@@ -5,6 +5,7 @@ export interface IProject extends Document {
   title: string;
   description: string;
   image: string;
+  imagePublicId?: string;
   techStack: string[];
   demoUrl: string;
   githubUrl: string;
@@ -16,6 +17,7 @@ const ProjectSchema = new Schema<IProject>(
     title: { type: String, required: true },
     description: { type: String, required: true },
     image: { type: String, default: "" },
+    imagePublicId: { type: String, default: "" },
     techStack: [{ type: String }],
     demoUrl: { type: String, default: "" },
     githubUrl: { type: String, default: "" },

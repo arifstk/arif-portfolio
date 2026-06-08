@@ -8,3 +8,12 @@ export interface IUser {
   role: "admin";
 }
 
+export interface SocialItem {
+  _id: string
+  name: string
+  href: string
+  iconName: string
+  order: number
+}
+
+

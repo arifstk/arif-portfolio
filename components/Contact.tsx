@@ -97,7 +97,7 @@ export default function Contact() {
               return (
                 <Link
                   key={item._id}
-                  href={item.href}
+                  href={resolvedHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-4 p-5 rounded-2xl border border-violet-500/40 dark:border-gray-200 dark:bg-gray-900 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300"

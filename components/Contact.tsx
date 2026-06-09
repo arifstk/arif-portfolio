@@ -28,18 +28,38 @@ export default function Contact() {
     fetch("/api/contact")
       .then((r) => r.json())
       .then((data) => { if (Array.isArray(data)) setContactLinks(data); })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setStatus("sending");
+  //   await new Promise((r) => setTimeout(r, 1500));
+  //   setStatus("success");
+  //   setForm({ name: "", email: "", subject: "", message: "" });
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1500));
-    setStatus("success");
-    setForm({ name: "", email: "", subject: "", message: "" });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Failed to send");
+      }
+      setStatus("success");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -81,6 +101,7 @@ export default function Contact() {
             )}
             {contactLinks.map((item) => {
               const Icon = ICON_MAP[item.iconName] ?? Mail;
+              const resolvedHref = item.iconName === "Mail" && !item.href.startsWith("mailto:") ? `mailto:${item.href}` : item.href;
               return (
                 <Link
                   key={item._id}

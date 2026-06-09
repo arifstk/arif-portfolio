@@ -1237,7 +1237,7 @@
 //     </div>
 //   )
 // }
-   
+
 
 // // ─── Sidebar nav items ─────────────────────────────
 // const navItems: { id: Tab; label: string; icon: React.ReactNode }[] = [
@@ -1939,16 +1939,16 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate">{p.title}</p>
-                  <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex gap-1 shrink-0 group-hover:opacity-100 transition-opacity">
                     <button
                       onClick={() => openEdit(p)}
-                      className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 dark:hover:border-blue-500 transition-colors bg-white dark:bg-slate-800"
+                      className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 dark:hover:border-blue-500 transition-colors bg-white dark:bg-slate-800 cursor-pointer"
                     >
                       <EditIcon />
                     </button>
                     <button
                       onClick={() => setConfirm(p._id!)}
-                      className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 dark:hover:border-red-500 transition-colors bg-white dark:bg-slate-800"
+                      className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 dark:hover:border-red-500 transition-colors bg-white dark:bg-slate-800 cursor-pointer"
                     >
                       <TrashIcon />
                     </button>
@@ -2161,16 +2161,16 @@ function ContactPanel({ autoOpen }: { autoOpen?: boolean }) {
                   <p className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate mt-0.5">{c.value}</p>
                   <p className="text-[11px] text-slate-400 truncate">{c.href}</p>
                 </div>
-                <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex gap-1 shrink-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => { setEditing({ ...c }); setIsNew(false); setModal(true); }}
-                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800"
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800 cursor-pointer"
                   >
                     <EditIcon />
                   </button>
                   <button
                     onClick={() => setConfirm(c._id!)}
-                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800"
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800 cursor-pointer"
                   >
                     <TrashIcon />
                   </button>
@@ -2373,16 +2373,16 @@ function SocialsPanel({ autoOpen }: { autoOpen?: boolean }) {
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 shrink-0">
                   #{s.order}
                 </span>
-                <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex gap-1 shrink-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => { setEditing({ ...s }); setIsNew(false); setModal(true); }}
-                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800"
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-20000 dark:border-slate-600 text-slate-400 hover:text-blue-500 hover:border-blue-300 transition-colors bg-white dark:bg-slate-800 cursor-pointer"
                   >
                     <EditIcon />
                   </button>
                   <button
                     onClick={() => setConfirm(s._id!)}
-                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800"
+                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-600 text-slate-400 hover:text-red-500 hover:border-red-300 transition-colors bg-white dark:bg-slate-800 cursor-pointer"
                   >
                     <TrashIcon />
                   </button>
@@ -2486,7 +2486,7 @@ function MessagesPanel() {
               )}
               <button
                 onClick={() => setConfirm(selected._id)}
-                className="px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors border border-red-200 dark:border-red-800"
+                className="px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors border border-red-200 dark:border-red-800 cursor-pointer"
               >
                 <TrashIcon />
               </button>

@@ -43,7 +43,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-10 md:py-20">
+    <section className="pt-10 md:pt-20">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap');
         .font-syne { font-family: 'Syne', sans-serif; }
@@ -114,7 +114,7 @@ export default function Contact() {
           {/* ── Right — Form (100% unchanged from your original) ── */}
           <div className="fade-up fade-up-3">
             {status === "success" ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-16 px-8 rounded-3xl border border-emerald-500/20 bg-emerald-500/5">
+              <div className="h-full flex flex-col items-center justify-center text-center py-16 rounded-3xl border border-emerald-500/20 bg-emerald-500/5">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4 mt-5">
                   <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="text-emerald-400">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m5 13 4 4L19 7" />

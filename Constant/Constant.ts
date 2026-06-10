@@ -1,7 +1,9 @@
 // Constant/Constant.ts
 
 // import { Mail, MapPin, Phone } from "lucide-react";
-import { Cloud, Code2, Cpu, Database, GitBranch, Globe, Layers, Layout, Mail, MapPin, Palette, Phone, Server, Smartphone, Terminal } from "lucide-react";
+import { Cloud, Code2, Database, GitBranch, Globe, Layers, Mail, MapPin, Palette, Phone, Server, Smartphone, Terminal } from "lucide-react";
+import { FiGithub } from "react-icons/fi";
+import { FaStripe } from "react-icons/fa6";
 
 export const NavLinks = [
   {name: 'Home', path: '/'},
@@ -104,8 +106,7 @@ export const skillCategories = [
       { name: "Next.js", icon: Globe },
       { name: "TypeScript", icon: Terminal },
       { name: "Tailwind CSS", icon: Palette },
-      { name: "React Native", icon: Smartphone },
-      { name: "Vue.js", icon: Layout },
+      // { name: "React Native", icon: Smartphone },
     ],
   },
   {
@@ -114,8 +115,8 @@ export const skillCategories = [
       { name: "Node.js", icon: Server },
       { name: "Express", icon: Layers },
       { name: "MongoDB", icon: Database },
-      { name: "PostgreSQL", icon: Database },
-      { name: "GraphQL", icon: Cpu },
+      // { name: "PostgreSQL", icon: Database },
+      // { name: "GraphQL", icon: Cpu },
       { name: "REST APIs", icon: Cloud },
     ],
   },
@@ -123,11 +124,13 @@ export const skillCategories = [
     title: "Tools & Others",
     skills: [
       { name: "Git", icon: GitBranch },
+      { name: "Github", icon: FiGithub },
       { name: "Docker", icon: Server },
-      { name: "AWS", icon: Cloud },
-      { name: "Linux", icon: Terminal },
+      // { name: "AWS", icon: Cloud },
+      // { name: "Linux", icon: Terminal },
       { name: "Figma", icon: Palette },
-      { name: "CI/CD", icon: Cpu },
+      { name: "Stripe", icon: FaStripe },
+      // { name: "CI/CD", icon: Cpu },
     ],
   },
 ];

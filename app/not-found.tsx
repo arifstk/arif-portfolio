@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <section className="py-10 mt-6 md:mt-15 text-gray-800 dark:text-gray-200 min-h-[70vh] flex items-center">
-      <div className='w-[95%] xl:w-[80%] mx-auto'>
+      <div className="w-[95%] xl:w-[80%] mx-auto">
 
         {/* ── Number ── */}
         <div className="relative mb-8 select-none">

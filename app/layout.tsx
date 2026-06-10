@@ -93,7 +93,7 @@ export default async function RootLayout({
           ) : (
             <>
               <ResponsiveNav />
-              <main className="w-[90%] xl:w-[80%] mx-auto">
+              <main className="w-[95%] xl:w-[80%] mx-auto">
                 {children}
               </main>
               <Footer />

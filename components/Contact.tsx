@@ -70,7 +70,7 @@ export default function Contact() {
         .fade-up-3 { animation-delay: 0.25s; }
       `}</style>
 
-      <div className="max-w-6xl mx-auto font-outfit">
+      <div className=" font-outfit">
         {/* Header — unchanged */}
         <div className="mb-16 fade-up fade-up-1">
           <span className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase mb-4">

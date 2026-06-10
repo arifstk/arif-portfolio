@@ -1,8 +1,6 @@
 // components/Footer.tsx
 
 "use client";
-
-import React from 'react';
 import Link from 'next/link';
 import Logo from './Helper/Home/Navbar/Logo';
 import { NavLinks } from '@/Constant/Constant';
@@ -16,10 +14,9 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-
   return (
     <footer className="w-full text-[#1e293b] mt-15 pb-4">
-      <div className=" pt-15 w-[90%] xl:w-[80%] mx-auto">
+      <div className=" pt-15 w-[95%] xl:w-[80%] mx-auto">
 
         {/* Top Section */}
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-center md:justify-between items-center gap-4">

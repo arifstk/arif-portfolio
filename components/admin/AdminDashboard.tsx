@@ -71,7 +71,7 @@ const CONTACT_ICON_MAP: Record<string, typeof CONTACT_ICONS[0]> = Object.fromEnt
   CONTACT_ICONS.map(c => [c.key, c])
 );
 
-// ─── Shared UI atoms ──────────────────────────────
+// ─── Shared UI atoms ──
 const inp = [
   "w-full bg-white dark:bg-slate-800/60 text-slate-900 dark:text-slate-100",
   "border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-sm",
@@ -98,10 +98,10 @@ function Modal({ title, onClose, children }: {
 }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-      <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div className="mt-7 w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl max-h-[80vh] overflow-y-auto">
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800 sticky top-0 bg-white dark:bg-slate-900 z-10">
           <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</h3>
-          <button onClick={onClose} className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          <button onClick={onClose} className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
             <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" /></svg>
           </button>
         </div>

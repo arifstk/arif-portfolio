@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <section className="py-10 mt-6 md:mt-15 text-gray-800 dark:text-gray-200 min-h-[70vh] flex items-center">
-      <div className="w-[95%] xl:w-[80%] mx-auto">
+      <div className="max-w-4xl mx-auto">
 
         {/* ── Number ── */}
         <div className="relative mb-8 select-none">
@@ -12,7 +12,7 @@ export default function NotFound() {
             404
           </p>
           <div className="absolute inset-0 flex items-center">
-            <div className="w-12 h-0.5 bg-blue-500 mr-4 shrink-0" />
+            <div className="w-12 h-0.5 bg-blue-500 mr-4 shrink-0"/>
             <p className="text-sm font-semibold text-blue-500 uppercase tracking-[0.2em]">
               Page not found
             </p>

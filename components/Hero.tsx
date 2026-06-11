@@ -1,10 +1,7 @@
 // components/Hero.tsx
 
-import React from 'react'
-// import { Button } from './ui/button'
 import Link from 'next/link'
 import SocialLinks from './SocialLinks'
-// import Statistics from './Statistics'
 import Photo from './Photo'
 import HeroDescription from './HeroDescription'
 

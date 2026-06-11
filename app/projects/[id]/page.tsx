@@ -55,8 +55,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       </div>
 
       <div>
-
-        {/* ── Hero image ───────────────────────────────── */}
+        {/*  Hero image  */}
         <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-slate-100 dark:bg-gray-900 mb-10 shadow-[0_8px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
           {image ? (
             <Image
@@ -65,7 +64,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               fill
               priority
               sizes="(max-width: 896px) 100vw, 896px"
-              className="object-cover object-center"
+              className="object-contain object-center"
             />
           ) : (
             <div className="flex flex-col items-center justify-center w-full h-full gap-3 text-slate-300 dark:text-gray-700">

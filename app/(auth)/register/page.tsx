@@ -27,7 +27,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center mt-20">
       <div className="w-full max-w-md bg-slate-900 rounded-2xl px-4 py-4 shadow-2xl border border-slate-800">
-        <h1 className="text-2xl font-bold  pb-3">Create account</h1>
+        <h1 className="text-2xl font-bold text-white pb-3">Create account</h1>
 
         <button
           onClick={() => signIn("google", { callbackUrl: "/" })}
@@ -66,7 +66,7 @@ export default function RegisterPage() {
           {error && <p className="text-red-400 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full py-2.5 rounded-xl border border-slate-700 transition font-semibold "
+            className="w-full py-2.5 text-white rounded-xl border border-slate-700 transition font-semibold "
           >
             Create Account
           </button>

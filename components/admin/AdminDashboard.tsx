@@ -1207,6 +1207,7 @@ const panelMeta: Record<Tab, { title: string; sub: string }> = {
 // ─── Root ──────────────────────────────────────────
 export default function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("projects");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [addTrigger, setAddTrigger] = useState<Record<Tab, number>>({
     projects: 0, contact: 0, socials: 0, messages: 0
   });
@@ -1224,8 +1225,27 @@ export default function AdminDashboard() {
         }}
       />
 
+      {/* ── Mobile overlay backdrop ── */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* ── Sidebar ── */}
-      <aside className="w-60 shrink-0 text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 flex flex-col sticky top-0 h-screen">
+      <aside
+        className={`
+        fixed z-500 sm:z-50 top-0 left-0 h-full w-60 shrink-0
+        text-gray-800 dark:text-gray-200
+        bg-white dark:bg-slate-900
+        border-r border-slate-100 dark:border-slate-800
+        flex flex-col
+        transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        md:sticky md:top-0 md:translate-x-0 md:h-screen
+      `}
+      >
         <div className="px-5 py-5 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg bg-blue-500 flex items-center justify-center shrink-0">
@@ -1245,7 +1265,10 @@ export default function AdminDashboard() {
           {navItems.map(item => (
             <button
               key={item.id}
-              onClick={() => setTab(item.id)}
+              onClick={() => {
+                setTab(item.id);
+                setSidebarOpen(false); // close on nav on mobile
+              }}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${tab === item.id
                 ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
                 : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
@@ -1272,24 +1295,36 @@ export default function AdminDashboard() {
       </aside>
 
       {/* ── Main ── */}
-      <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
-        <header className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 px-8 py-4 flex items-center justify-between sticky top-0 z-10">
-          <div>
-            <h1 className="text-base font-semibold text-slate-900 dark:text-slate-100">
-              {panelMeta[tab].title}
-            </h1>
-            <p className="text-xs text-slate-400 mt-0.5">{panelMeta[tab].sub}</p>
+      <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden -mt-12 sm:mt-0">
+        <header className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 py-4 flex items-center justify-between sticky top-0 z-10">
+          <div className="flex items-center gap-3">
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="md:hidden p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Open sidebar"
+            >
+              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M3 6h18M3 12h18M3 18h18" />
+              </svg>
+            </button>
+            <div>
+              <h1 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                {panelMeta[tab].title}
+              </h1>
+              <p className="text-xs text-slate-400 mt-0.5">{panelMeta[tab].sub}</p>
+            </div>
           </div>
           <button
             onClick={handleAdd}
             className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-blue-200 dark:shadow-none"
           >
             <PlusIcon />
-            Add {tab === "projects" ? "project" : tab === "contact" ? "entry" : "link"}
+            {tab === "projects" ? "project" : tab === "contact" ? "entry" : "link"}
           </button>
         </header>
 
-        <main className="flex-1 px-8 py-6 max-w-3xl">
+        <main className="flex-1 py-6 max-w-3xl">
           {tab === "projects" && (
             <ProjectsPanel
               key={`proj-${addTrigger.projects}`}

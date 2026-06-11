@@ -45,7 +45,7 @@ export default function About() {
       {/* banner */}
       <div className="w-full h-full md:w-full md:h-full overflow-hidden rounded-lg mb-10 md:mb-16">
         <Image
-          src="/images/about-banner1.jpeg" width={400} height={400}
+          src="/images/about-banner3.jpeg" width={400} height={400}
           alt="about banner"
           quality={100}
           className="object-contain w-full h-full"

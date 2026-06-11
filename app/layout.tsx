@@ -1,55 +1,5 @@
-// import type { Metadata } from "next";
-// import { Inter, Geist } from "next/font/google";
-// import "./globals.css";
-// import { cn } from "@/lib/utils";
-// import Provider from "@/components/Hoc/Provider";
-// import ResponsiveNav from "@/components/Helper/Home/Navbar/ResponsiveNav";
-// import Footer from "@/components/Footer";
-// import { SessionProvider } from "next-auth/react";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "./api/auth/[...nextauth]/route";
-
-// const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
-
-// const font = Inter({
-//   weight: ["400", "500", "600", "700", "800", "900"],
-//   subsets: ["latin"],
-// })
-
-// export const metadata: Metadata = {
-//   title: "Arif Portfolio",
-//   description: "Portfolio website of Arif",
-// };
-
-// export default async function RootLayout({
-//   children,
-// }: Readonly<{
-//   children: React.ReactNode;
-// }>) {
-//   const session = await getServerSession(authOptions)
-//   return (
-//     <html
-//       lang="en" suppressHydrationWarning
-//       className={cn("h-full", "antialiased", font.className, "font-sans", geist.variable)}
-//     >
-//       <body className="min-h-screen flex flex-col">
-//         <Provider session={session}>
-//           <ResponsiveNav />
-//           <main className='w-[90%] xl:w-[80%] mx-auto'>
-//             {children}
-//           </main>
-//           <Footer />
-//         </Provider>
-//       </body>
-//     </html>
-//   );
-// }
-
-
-
-
-
 // app/layout.tsx
+
 import type { Metadata } from "next";
 import { Inter, Geist } from "next/font/google";
 import "./globals.css";

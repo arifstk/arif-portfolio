@@ -41,7 +41,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const { title, description, image, techStack = [], demoUrl, githubUrl } = project;
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0f] pt-15 md:pt-24 pb-20">
+    <main className="min-h-screen bg-white dark:bg-[#0a0a0f] pt-15 md:pt-24 pb-10">
 
       {/* ── Back nav ─────────────────────────────────── */}
       <div className=" mb-8">

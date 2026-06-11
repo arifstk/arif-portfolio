@@ -45,13 +45,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Project Title */}
         <Link href={_id ? `/projects/${_id}` : "#"}>
-          <h4 className="text-xl font-bold text-[#1e293b] dark:text-gray-200 mb-2 transition-colors duration-300 hover:text-[#007bff] dark:hover:text-blue-400">
+          <h4 className="text-xl font-bold text-[#1e293b] dark:text-gray-200 mb-2 transition-colors duration-300 hover:text-[#007bff] dark:hover:text-blue-400 truncate">
             {title}
           </h4>
         </Link>
 
         {/* Short Description */}
-        <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-5 line-clamp-3">
+        <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-5 line-clamp-2">
           {description}
         </p>
 

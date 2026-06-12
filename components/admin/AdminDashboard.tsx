@@ -1324,7 +1324,7 @@ export default function AdminDashboard() {
           </button>
         </header>
 
-        <main className="flex-1 py-6 max-w-3xl">
+        <main className="flex-1 py-4 max-w-3xl">
           {tab === "projects" && (
             <ProjectsPanel
               key={`proj-${addTrigger.projects}`}

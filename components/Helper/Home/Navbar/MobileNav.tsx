@@ -36,7 +36,7 @@ const MobileNav = () => {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-   const totalLinks = NavLinks.length
+  const totalLinks = NavLinks.length
 
   return (
     <>
@@ -68,7 +68,7 @@ const MobileNav = () => {
       >
 
         {/* Nav Links */}
-        <nav className="flex flex-col px-4 py-6 gap-1">
+        <nav className="flex flex-col px-2 py-6 gap-1">
           {NavLinks.map((link, index) => {
             const active = pathname === link.path
             return (
@@ -92,7 +92,7 @@ const MobileNav = () => {
             )
           })}
 
- {/* ── Admin Dashboard link ── */}
+          {/* ── Admin Dashboard link ── */}
           {session && role === 'admin' && (
             <Link
               href="/admin/dashboard"

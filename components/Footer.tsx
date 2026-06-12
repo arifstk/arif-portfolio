@@ -15,8 +15,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full text-[#1e293b] mt-15 pb-4">
-      <div className=" pt-15 w-[95%] xl:w-[80%] mx-auto">
+    <footer className="w-full text-[#1e293b] mt-10 pb-4">
+      <div className="pt-10 w-[95%] xl:w-[80%] mx-auto">
 
         {/* Top Section */}
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-center md:justify-between items-center gap-4">
@@ -50,7 +50,7 @@ export default function Footer() {
 
           {/* Copyright text */}
           <p className="text-xs text-[#64748b] text-center sm:text-left">
-            &copy; {currentYear} Arif Hossain. All rights reserved.
+            &copy; {currentYear} Arif Hossain | All rights reserved.
           </p>
 
           {/* Back to Top Functional Button */}

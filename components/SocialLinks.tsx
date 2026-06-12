@@ -41,7 +41,7 @@ export default function SocialLinks() {
   }, [])
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-0">
       {socials.map(({ _id, name, href, iconName }) => {
         const Icon = iconMap[iconName.toLowerCase()] ?? FaGithubSquare
         const color = colorMap[iconName.toLowerCase()] ?? ''

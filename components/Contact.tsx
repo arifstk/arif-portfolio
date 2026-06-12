@@ -55,7 +55,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="pt-10 md:pt-20">
+    <section className="w-full px-1 sm:px-2 pt-10 md:pt-20 flex justify-center">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap');
         .font-syne { font-family: 'Syne', sans-serif; }
@@ -70,9 +70,10 @@ export default function Contact() {
         .fade-up-3 { animation-delay: 0.25s; }
       `}</style>
 
-      <div className=" font-outfit">
-        {/* Header — unchanged */}
-        <div className="mb-16 fade-up fade-up-1">
+      {/* Main */}
+      <div className="font-outfit w-full max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-12 md:mb-16 fade-up fade-up-1">
           <span className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase mb-4">
             Contact
           </span>
@@ -85,9 +86,10 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start">
+        {/* Layout Grid: Removed space-y-3 from the inputs, added direct layout alignment */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start w-full">
           {/* ── Left — Dynamic contact links ── */}
-          <div className="fade-up fade-up-2 space-y-4">
+          <div className="fade-up fade-up-2 space-y-4 w-full">
             {contactLinks.length === 0 && (
               <p className="text-xs text-slate-500">No contact info added yet.</p>
             )}
@@ -100,12 +102,12 @@ export default function Contact() {
                   href={resolvedHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-5 rounded-2xl border border-violet-500/40 dark:border-gray-200 dark:bg-gray-900 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300"
+                  className="group flex items-center gap-4 p-5 rounded-2xl border border-violet-500/40 dark:border-gray-200 dark:bg-gray-900 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300 w-full"
                 >
                   <span className="shrink-0 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-violet-400 group-hover:border-violet-500/40 transition-colors duration-300">
                     <Icon size={18} />
                   </span>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <p className="text-[10px] font-semibold tracking-widest text-slate-500 uppercase mb-0.5">
                       {item.label}
                     </p>
@@ -124,8 +126,8 @@ export default function Contact() {
             })}
           </div>
 
-          {/* ── Right — Form (100% unchanged from your original) ── */}
-          <div className="fade-up fade-up-3">
+          {/* ── Right — Form ── */}
+          <div className="fade-up fade-up-3 w-full">
             {status === "success" ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-16 rounded-3xl border border-emerald-500/20 bg-emerald-500/5">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4 mt-5">
@@ -140,10 +142,10 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-4 space-y-3">
+              <form onSubmit={handleSubmit} className="space-y-5 w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {(["name", "email"] as const).map((field) => (
-                    <div key={field} className="flex flex-col gap-1.5">
+                    <div key={field} className="flex flex-col gap-1.5 w-full">
                       <label htmlFor={field} className="text-xs font-semibold tracking-widest text-slate-400 uppercase">
                         {field === "name" ? "Your Name" : "Email Address"}
                       </label>
@@ -156,36 +158,36 @@ export default function Contact() {
                         onChange={handleChange}
                         onFocus={() => setFocused(field)}
                         onBlur={() => setFocused(null)}
-                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 ${focused === field ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 hover:border-white/20"}`}
+                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === field ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 "}`}
                       />
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-1.5 w-full">
                   <label htmlFor="subject" className="text-xs font-semibold tracking-widest text-slate-400 uppercase pt-2">Subject</label>
                   <input
                     id="subject" name="subject" type="text" required
                     placeholder="Project Inquiry / Freelance / Collaboration"
                     value={form.subject} onChange={handleChange}
                     onFocus={() => setFocused("subject")} onBlur={() => setFocused(null)}
-                    className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 ${focused === "subject" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 hover:border-white/20"}`}
+                    className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === "subject" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 "}`}
                   />
                 </div>
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-1.5 w-full">
                   <label htmlFor="message" className="text-xs font-semibold tracking-widest text-slate-400 uppercase">Message</label>
-                  <div className="relative">
+                  <div className="relative w-full">
                     <textarea
                       id="message" name="message" required rows={6}
                       placeholder="Tell me about your project..."
                       value={form.message} onChange={handleChange}
                       onFocus={() => setFocused("message")} onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 resize-none ${focused === "message" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 hover:border-white/20"}`}
+                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 resize-none ${focused === "message" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 "}`}
                     />
                     <span className="absolute bottom-2 right-2 text-[10px] text-slate-600 font-mono">{form.message.length}</span>
                   </div>
                 </div>
                 {status === "error" && (
-                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 text-sm">
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 text-sm w-full">
                     <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 8v4m0 4h.01" /></svg>
                     Something went wrong. Please try again or email me directly.
                   </div>
@@ -208,4 +210,3 @@ export default function Contact() {
     </section>
   );
 }
-

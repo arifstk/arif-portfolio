@@ -47,7 +47,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       <div className=" mb-8">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-[#007bff] dark:hover:text-blue-400 transition-colors group"
+          className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-[#369483] dark:hover:text-blue-400 transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
           Back to projects
@@ -97,7 +97,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {techStack.length > 0 && (
               <div className="mt-8">
                 <div className="flex items-center gap-2 mb-3">
-                  <Code2 className="w-4 h-4 text-[#007bff]" />
+                  <Code2 className="w-4 h-4 text-[#369483]" />
                   <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
                     Tech Stack
                   </h2>
@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {techStack.map((tech: string) => (
                     <span
                       key={tech}
-                      className="text-[12px] font-semibold px-3 py-1.5 rounded-lg bg-[#f0f7ff] dark:bg-blue-900/20 text-[#007bff] dark:text-blue-400 border border-blue-100 dark:border-blue-900/40"
+                      className="text-[12px] font-semibold px-3 py-1.5 bg-[#f8fafc] dark:bg-gray-900 dark:border-gray-700 text-[#6d7f98] rounded-md border border-slate-200 transition-colors duration-300"
                     >
                       {tech}
                     </span>
@@ -129,7 +129,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   href={demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-[#007bff] hover:bg-[#0062cc] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-[#2b7473] hover:bg-[#369483] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Live Demo
@@ -166,7 +166,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {techStack.length > 0 && (
               <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5">
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-3">Built with</p>
-                <p className="text-2xl font-bold text-[#1e293b] dark:text-white flex items-center">
+                <p className="text-2xl font-bold text-[#369483] tracking-widest flex items-center">
                   {techStack.length}
                   <span className="text-sm font-normal text-slate-400 ml-1.5">technologies</span>
                 </p>

@@ -45,7 +45,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Project Title */}
         <Link href={_id ? `/projects/${_id}` : "#"}>
-          <h4 className="text-xl font-bold text-[#1e293b] dark:text-gray-200 mb-2 transition-colors duration-300 hover:text-[#007bff] dark:hover:text-blue-400 truncate">
+          <h4 className="text-xl font-bold text-[#1e293b] dark:text-gray-200 mb-2 transition-colors duration-300 hover:text-[#369483] dark:hover:text-[#369483] truncate">
             {title}
           </h4>
         </Link>
@@ -60,7 +60,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {techStack.map((tech, index) => (
             <span
               key={index}
-              className="text-[11px] font-medium px-2.5 py-1 bg-[#f8fafc] dark:bg-gray-900 dark:border-gray-700 text-[#64748b] rounded-md border border-slate-100 transition-colors duration-300 group-hover:border-[#007bff]/10"
+              className="text-[11px] font-medium px-2.5 py-1 bg-[#f8fafc] dark:bg-gray-900 dark:border-gray-700 text-[#6d7f98] rounded-md border border-slate-100 transition-colors duration-300 group-hover:border-[#007bff]/10"
             >
               {tech}
             </span>
@@ -73,7 +73,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 py-2 rounded-xl text-sm font-semibold text-white bg-[#007bff] transition-all duration-300 hover:bg-[#0062cc] hover:shadow-[0_4px_12px_rgba(0,123,255,0.2)]"
+            className="flex items-center justify-center gap-1.5 py-2 rounded-xl text-sm font-semibold text-white bg-[#2b7473] transition-all duration-300 hover:bg-[#338a89] hover:shadow-[0_4px_12px_rgba(0,123,255,0.2)]"
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo
@@ -93,7 +93,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {_id && (
           <Link
             href={`/projects/${_id}`}
-            className="mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-[#007bff] dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-900/10 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
+            className="mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-[#2b7473] dark:text-[#369483] border border-blue-100 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-900/10 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
           >
             View Details
             <ArrowRight className="w-3.5 h-3.5" />

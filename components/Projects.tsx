@@ -104,10 +104,10 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-12 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#64748b] mb-2">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#6d7f98] mb-2">
             My Works
           </p>
-          <h2 className="text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-1 after:bg-[#007bff] after:rounded-full">
+          <h2 className="text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-1 after:bg-[#369483] after:rounded-full">
             Featured Projects
           </h2>
         </div>

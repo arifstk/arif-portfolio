@@ -74,10 +74,10 @@ export default function Contact() {
       <div className="font-outfit w-full max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12 md:mb-16 fade-up fade-up-1">
-          <span className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+          <span className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-semibold tracking-[0.2em] uppercase mb-4">
             Contact
           </span>
-          <h2 className="font-syne text-2xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2">
+          <h2 className="font-syne text-2xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2 text-[#369483] ">
             Let&apos;s work <span className="bg-clip-text">together.</span>
           </h2>
           <p className="mt-4 text-slate-400 text-base max-w-md leading-relaxed">
@@ -102,7 +102,7 @@ export default function Contact() {
                   href={resolvedHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-5 rounded-2xl border border-violet-500/40 dark:border-gray-200 dark:bg-gray-900 hover:border-violet-500/40 hover:bg-white/5 transition-all duration-300 w-full"
+                  className="group flex items-center gap-4 p-5 text-gray-400 rounded-2xl border border-gray-300 dark:border-gray-500 dark:bg-gray-900 hover:border-gray-400 hover:bg-white/5 transition-all duration-300 w-full"
                 >
                   <span className="shrink-0 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-violet-400 group-hover:border-violet-500/40 transition-colors duration-300">
                     <Icon size={18} />
@@ -158,7 +158,7 @@ export default function Contact() {
                         onChange={handleChange}
                         onFocus={() => setFocused(field)}
                         onBlur={() => setFocused(null)}
-                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === field ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 "}`}
+                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === field ? "border-gray-400 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500"}`}
                       />
                     </div>
                   ))}
@@ -170,7 +170,7 @@ export default function Contact() {
                     placeholder="Project Inquiry / Freelance / Collaboration"
                     value={form.subject} onChange={handleChange}
                     onFocus={() => setFocused("subject")} onBlur={() => setFocused(null)}
-                    className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === "subject" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 "}`}
+                    className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === "subject" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500 "}`}
                   />
                 </div>
                 <div className="flex flex-col gap-1.5 w-full">
@@ -181,7 +181,7 @@ export default function Contact() {
                       placeholder="Tell me about your project..."
                       value={form.message} onChange={handleChange}
                       onFocus={() => setFocused("message")} onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-600 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 resize-none ${focused === "message" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-violet-500/40 "}`}
+                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 resize-none ${focused === "message" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500 "}`}
                     />
                     <span className="absolute bottom-2 right-2 text-[10px] text-slate-600 font-mono">{form.message.length}</span>
                   </div>
@@ -194,7 +194,7 @@ export default function Contact() {
                 )}
                 <button
                   type="submit" disabled={status === "sending"}
-                  className="w-full relative flex items-center justify-center gap-3 py-2 px-6 rounded-2xl font-syne font-semibold text-sm tracking-wide transition-all duration-300 border border-gray-400 dark:border-white bg-linear-to-r from-violet-600 to-violet-500 hover:from-violet-500 hover:to-cyan-500 shadow-[0_0_30px_rgba(139,92,246,0.25)] hover:shadow-[0_0_40px_rgba(139,92,246,0.4)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="w-full relative flex items-center justify-center gap-3 py-2 px-6 rounded-xl font-syne font-semibold text-sm tracking-wide transition-all duration-300 bg-[#2b7473] text-white hover:bg-[#369483] border border-gray-400 dark:border-white/50 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {status === "sending" ? (
                     <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>Sending…</>

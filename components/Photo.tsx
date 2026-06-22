@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 
 const Photo = () => {
 
-const circleColors = ["#615fff"];
+const circleColors = ["#369483"];
 
   const circleVariants = {
     initial: {

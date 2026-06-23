@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
-import { ExternalLink, ArrowLeft, Code2, Layers } from "lucide-react";
+import { ExternalLink, ArrowLeft, Code2, Layers, MoveRight } from "lucide-react";
 import { FaGithubSquare } from "react-icons/fa";
 
 interface PageProps {
@@ -186,13 +186,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <div className='flex flex-col gap-3'>
             <Link href="/contact">
-              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer'>
-                Let's Talk
+              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer flex items-center gap-2'>
+                Let's Talk <MoveRight />
               </button>
             </Link>
             <Link href="#">
-              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer'>
-                Hire on Upwork
+              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer flex items-center gap-2'>
+                Hire on Upwork <MoveRight />
               </button></Link>
           </div>
         </div>

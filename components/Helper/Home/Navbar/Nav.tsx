@@ -17,7 +17,7 @@ const Nav = () => {
   return (
     <div>
       <div className='transition-all duration-200 py-1.5 z-100 fixed w-full backdrop-blur-sm border-b border-gray-200 dark:border-gray-600'>
-        <div className='flex items-center justify-between w-[95%] xl:w-[80%] mx-auto h-full'>
+        <div className='flex items-center justify-between w-[92%] xl:w-[80%] mx-auto h-full'>
           {/* Logo */}
           <Logo />
           {/* Desktop Navigation Links */}

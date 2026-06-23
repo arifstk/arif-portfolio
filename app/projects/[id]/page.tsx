@@ -41,7 +41,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const { title, description, image, techStack = [], demoUrl, githubUrl } = project;
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0f] pt-15 md:pt-24 pb-10">
+    <main className="min-h-screen pt-15 md:pt-24 pb-10">
 
       {/* ── Back nav ─────────────────────────────────── */}
       <div className=" mb-8">
@@ -173,6 +173,28 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </div>
             )}
           </aside>
+        </div>
+
+        {/* Hire button */}
+        <div className="mt-3 rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center justify-between">
+          <div className='col-span-2'>
+            <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-3">Let's Work Together</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-400 tracking-widest mb-3">Tell me <span className='text-[#369483] font-extrabold '>what you're Building</span> </h2>
+            <p className="text-lg font-semibold text-gray-600 dark:text-slate-300 tracking-tight flex items-center">
+              Share the scope, blockers, timeline, and outcome you're looking for. I'll review the context and follow up with clear next steps.
+            </p>
+          </div>
+          <div className='flex flex-col gap-3'>
+            <Link href="/contact">
+              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer'>
+                Let's Talk
+              </button>
+            </Link>
+            <Link href="#">
+              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer'>
+                Hire on Upwork
+              </button></Link>
+          </div>
         </div>
       </div>
     </main>

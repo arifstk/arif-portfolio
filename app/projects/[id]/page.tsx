@@ -56,7 +56,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
       <div>
         {/*  Hero image  */}
-        <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-slate-100 dark:bg-gray-900 mb-10 shadow-[0_8px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+        {/* <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-slate-100 dark:bg-gray-900 mb-10 shadow-[0_8px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.5)]"> */}
+        <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-linear-to-br from-teal-200 via-teal-100 to-cyan-100 dark:from-teal-950 dark:via-teal-900 dark:to-slate-900 mb-10 shadow-[0_10px_50px_rgba(20,184,166,0.25)] dark:shadow-[0_10px_50px_rgba(45,212,191,0.2)]">
           {image ? (
             <Image
               src={image}
@@ -176,7 +177,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
 
         {/* Hire button */}
-        <div className="mt-3 rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center justify-between">
+        <div className="mt-3 rounded-2xl bg-linear-to-br from-teal-200 via-teal-100 to-cyan-50 dark:from-teal-950 dark:via-teal-900 dark:to-slate-900 shadow-[0_10px_50px_rgba(20,184,166,0.25)] dark:shadow-[0_10px_50px_rgba(45,212,191,0.2)] p-5 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center justify-between border border-slate-200 dark:border-slate-600">
           <div className='col-span-2'>
             <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-3">Let's Work Together</p>
             <h2 className="text-2xl md:text-3xl font-semibold text-slate-400 tracking-widest mb-3">Tell me <span className='text-[#369483] font-extrabold '>what you're Building</span> </h2>
@@ -186,7 +187,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <div className='flex flex-col gap-3'>
             <Link href="/contact">
-              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer flex items-center gap-2'>
+              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-xl cursor-pointer flex items-center gap-2'>
                 Let's Talk <MoveRight />
               </button>
             </Link>

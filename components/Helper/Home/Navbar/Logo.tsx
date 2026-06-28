@@ -14,7 +14,7 @@ export default function Logo() {
     <div className="flex items-center justify-center gap-8">
       <Link href="/" className="group relative inline-block">
         <span
-          className={`${affectionateScript.className} text-4xl font-extrabold text-white transition-colors duration-300 bg-[#2b7473] px-2.5 flex items-center justify-center text-center rounded-md`}
+          className={`${affectionateScript.className} text-4xl font-extrabold text-white transition-colors duration-300 bg-[#2b7473] px-2.5 flex items-center justify-center text-center rounded-xl`}
         >
           a
         </span>

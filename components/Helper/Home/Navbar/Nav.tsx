@@ -46,7 +46,7 @@ const Nav = () => {
           <div className='flex items-center gap-0 md:gap-4'>
             {/* contact */}
             <Link href={'/contact'}
-              className='text-sm bg-[#2b7473] hover:bg-[#369483] font-medium px-3 py-1.5 rounded-md text-white transition-colors duration-200'
+              className='text-sm bg-[#2b7473] hover:bg-[#369483] font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200'
             >
               Contact
             </Link>

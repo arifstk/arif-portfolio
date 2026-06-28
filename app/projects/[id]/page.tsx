@@ -180,7 +180,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <div className='col-span-2'>
             <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-3">Let's Work Together</p>
             <h2 className="text-2xl md:text-3xl font-semibold text-slate-400 tracking-widest mb-3">Tell me <span className='text-[#369483] font-extrabold '>what you're Building</span> </h2>
-            <p className="text-lg font-semibold text-gray-600 dark:text-slate-300 tracking-tight flex items-center">
+            <p className="text-lg text-gray-600 dark:text-slate-300 flex items-center tracking-wider">
               Share the scope, blockers, timeline, and outcome you're looking for. I'll review the context and follow up with clear next steps.
             </p>
           </div>
@@ -191,7 +191,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </button>
             </Link>
             <Link href="#">
-              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer flex items-center gap-2'>
+              <button className='bg-transparent hover:bg-[#2b7473] hover:text-white hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-gray-800 dark:text-white font-semibold py-2 px-4 rounded-full cursor-pointer flex items-center gap-2 ring-1 ring-[#369483]'>
                 Hire on Upwork <MoveRight />
               </button></Link>
           </div>

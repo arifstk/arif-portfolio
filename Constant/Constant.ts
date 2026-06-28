@@ -4,6 +4,7 @@
 import { Cloud, Code2, Database, GitBranch, Globe, Layers, Mail, MapPin, Palette, Phone, Server, Smartphone, Terminal } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import { FaStripe } from "react-icons/fa6";
+import { SiMongoosedotws } from "react-icons/si";
 
 export const NavLinks = [
   {name: 'Home', path: '/'},
@@ -118,6 +119,7 @@ export const skillCategories = [
       // { name: "PostgreSQL", icon: Database },
       // { name: "GraphQL", icon: Cpu },
       { name: "REST APIs", icon: Cloud },
+      { name: "Mongoose", icon: SiMongoosedotws },
     ],
   },
   {

@@ -10,6 +10,7 @@ export interface IProject extends Document {
   demoUrl: string;
   githubUrl: string;
   order: number;
+  images: string[];
 }
 
 const ProjectSchema = new Schema<IProject>(
@@ -22,6 +23,7 @@ const ProjectSchema = new Schema<IProject>(
     demoUrl: { type: String, default: "" },
     githubUrl: { type: String, default: "" },
     order: { type: Number, default: 0 },
+    images: [{ type: String }],
   },
   { timestamps: true },
 );

@@ -30,6 +30,7 @@ export type Project = {
   title: string;
   description: string;
   image: string;
+  images: string[];
   imagePublicId?: string;
   techStack: string[];
   demoUrl: string;

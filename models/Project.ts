@@ -30,5 +30,3 @@ const ProjectSchema = new Schema<IProject>(
 
 export default models.Project ||
   mongoose.model<IProject>("Project", ProjectSchema);
-
-  

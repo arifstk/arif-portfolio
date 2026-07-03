@@ -80,13 +80,13 @@ const MobileNav = () => {
                   transition-all duration-200
                   ${open ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
                   ${active
-                    ? 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-400'
+                    ? 'bg-[#2b7473] dark:bg-blue-950 text-white'
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
-                  }`}
+                  }`} 
               >
                 {link.name}
                 {active && (
-                  <span className="ml-auto w-1 h-4 rounded-full bg-blue-500 dark:bg-blue-400" />
+                  <span className="ml-auto w-1 h-4 rounded-full bg-white dark:bg-indigo-400" />
                 )}
               </Link>
             )
@@ -101,13 +101,13 @@ const MobileNav = () => {
                 transition-all duration-200
                 ${open ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
                 ${pathname === '/admin/dashboard'
-                  ? 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400'
-                  : 'text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/50'
+                  ? 'bg-[#2b7473] dark:bg-blue-950 text-white'
+                  : 'text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/50'
                 }`}
             >
               Admin Dashboard
               {pathname === '/admin/dashboard' && (
-                <span className="ml-auto w-1 h-4 rounded-full bg-indigo-500 dark:bg-indigo-400" />
+                <span className="ml-auto w-1 h-4 rounded-full bg-[#2b7473]" />
               )}
             </Link>
           )}

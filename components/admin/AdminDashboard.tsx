@@ -2047,13 +2047,13 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
               <button
                 onClick={save}
                 disabled={saving || uploading}
-                className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
+                className="flex-1 py-2.5 bg-[#2b7473] hover:bg-[#2a6c6b] disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors cursor-pointer"
               >
                 {saving ? "Saving…" : uploading ? "Uploading image…" : isNew ? "Create project" : "Save changes"}
               </button>
               <button
                 onClick={() => setModal(false)}
-                className="px-4 py-2.5 text-sm text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                className="px-4 py-2.5 text-sm text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -2803,7 +2803,7 @@ export default function AdminDashboard() {
       >
         <div className="px-5 py-5 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-blue-500 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-[#2b7473] flex items-center justify-center shrink-0">
               <svg width="13" height="13" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
               </svg>
@@ -2872,7 +2872,7 @@ export default function AdminDashboard() {
           </div>
           <button
             onClick={handleAdd}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-blue-200 dark:shadow-none"
+            className="flex items-center gap-2 px-4 py-2 bg-[#2b7473] hover:bg-[#2a6c6b] text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-blue-200 dark:shadow-none"
           >
             <PlusIcon />
             {tab === "projects" ? "project" : tab === "contact" ? "entry" : "link"}

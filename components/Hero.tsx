@@ -7,13 +7,13 @@ import HeroDescription from './HeroDescription'
 
 const Hero = () => {
   return (
-    <div className='relative isolate overflow-hidden rounded-3xl md:overflow-visible md:rounded-none min-h-150 md:min-h-0 grid grid-cols-1 md:grid-cols-2 gap-10 py-1 md:py-5'>
+    <div className='relative isolate overflow-hidden rounded-3xl md:overflow-visible md:rounded-none min-h-150 md:min-h-0 grid grid-cols-1 md:grid-cols-2 gap-10 pt-2 md:py-5'>
 
-      {/* ── Mobile-only full-bleed background photo ─────────────── */}
+      {/* ── Mobile-only full-bleed background photo ─────── */}
       <div className='absolute inset-0 md:hidden'>
         <Image
           src="/images/hero.png"
-          alt="Arif Hossain"
+          alt="Image of me"
           fill
           priority
           quality={100}
@@ -34,14 +34,14 @@ const Hero = () => {
           <h2 className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider'>
             Hello I&apos;m
           </h2>
-          <h1 className='text-[#379685] md:text-[#369483] text-5xl md:text-7xl tracking-normal font-semibold'>
+          <h1 className='text-[#379685] md:text-[#369483] text-5xl md:text-7xl tracking-tight sm:tracking-normal font-semibold'>
             Arif Hossain
           </h1>
         </div>
         <HeroDescription />
 
         <Link href="/projects">
-          <button className='bg-white/10 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none rounded-full border border-white/40 md:border-gray-500 dark:md:border-gray-500 font-bold text-white md:text-gray-800 md:dark:text-white/70 hover:bg-[#369483] hover:text-white hover:border-[#369483] hover:shadow-md px-6 py-2 text-sm cursor-pointer transition-colors duration-200'>
+          <button className='bg-white/10 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none rounded-full border border-white/40 md:border-gray-500 dark:md:border-gray-500 font-semibold text-white md:text-gray-800 md:dark:text-white/70 hover:bg-[#369483] hover:text-white hover:border-[#369483] hover:shadow-md px-6 py-2 text-sm cursor-pointer transition-colors duration-200 tracking-widest'>
             My Works
           </button>
         </Link>

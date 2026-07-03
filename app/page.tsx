@@ -6,7 +6,7 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div className='overflow-hidden min-h-screen pt-10 md:pt-20'>
+    <div className='overflow-hidden min-h-screen pt-8 md:pt-20'>
       <Hero />
       <Projects />
       <Skills />

@@ -87,7 +87,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
           onClick={close}
         >
           <div
-            className="w-full max-w-4xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
+            className="w-full max-w-3xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}

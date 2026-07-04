@@ -1,5 +1,5 @@
-import React from 'react'
-import SocialLinks from './SocialLinks'
+
+// import SocialLinks from './SocialLinks'
 import Link from 'next/link'
 import Image from 'next/image'
 import HeroDescription from './HeroDescription'
@@ -7,7 +7,7 @@ import HeroDescription from './HeroDescription'
 const HeroMobile = () => {
   return (
     <div>
-      <div className=' md:hidden relative isolate overflow-hidden min-h-150 grid grid-cols-1 md:grid-cols-2 gap-10 -mt-3 pt-15'>
+      <div className=' md:hidden relative isolate overflow-hidden min-h-153 grid grid-cols-1 md:grid-cols-2 gap-10 -mt-3 pt-15'>
 
       {/* ── Mobile-only full-bleed background photo ─────── */}
       <div className='absolute inset-0 md:hidden'>
@@ -26,7 +26,7 @@ const HeroMobile = () => {
       </div>
 
       {/* ── Text ────────────── */}
-      <div className='relative z-10 flex flex-col items-start gap-3 md:gap-7 text-start px-3 pt-32 text-white md:text-gray-800 md:dark:text-white/70'>
+      <div className='relative z-10 flex flex-col items-start gap-3 md:gap-7 text-start px-3 pt-36 text-white md:text-gray-800 md:dark:text-white/70'>
         <div>
           <h3 className='font-semibold tracking-wider mb-1 text-gray-200 md:text-gray-800 md:dark:text-white/70'>
             Software Developer
@@ -45,7 +45,7 @@ const HeroMobile = () => {
             My Works
           </button>
         </Link>
-        <SocialLinks />
+        {/* <SocialLinks /> */}
       </div>
     </div>
     </div>

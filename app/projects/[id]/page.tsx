@@ -42,7 +42,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
 
   return (
-    <main className="min-h-screen pt-15 md:pt-24 pb-10">
+    <main className="min-h-screen pt-15 md:pt-24 pb-10 w-[92%] xl:w-[80%] mx-auto">
 
       {/* ── Back nav ─────────────────────────────────── */}
       <div className=" mb-8">
@@ -192,7 +192,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <div className='flex flex-col gap-3'>
             <Link href="/contact">
-              <button className='bg-[#369483] hover:bg-[#2b7473] hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-white font-semibold py-2 px-4 rounded-xl cursor-pointer flex items-center gap-2'>
+              <button className='bg-transparent hover:bg-[#2b7473] hover:text-white hover:shadow-[0_4px_16px_rgba(0,123,255,0.25)] transition-all duration-200 text-gray-800 dark:text-white font-semibold py-2 px-4 rounded-full cursor-pointer flex items-center gap-2 ring-1 ring-[#369483]'>
                 Let's Talk <MoveRight />
               </button>
             </Link>

@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full text-[#1e293b] mt-10 pb-4">
-      <div className="pt-10 w-[95%] xl:w-[80%] mx-auto">
+      <div className="pt-10 w-[92%] xl:w-[80%] mx-auto">
 
         {/* Top Section */}
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-center md:justify-between items-center gap-4">

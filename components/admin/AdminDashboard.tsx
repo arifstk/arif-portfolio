@@ -2772,7 +2772,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex mt-20">
+    <div className="min-h-screen w-[92%] xl:w-[80%] mx-auto bg-slate-50 dark:bg-slate-950 flex mt-20">
       <Toaster
         position="top-right"
         toastOptions={{
@@ -2850,7 +2850,7 @@ export default function AdminDashboard() {
       </aside>
 
       {/* ── Main ── */}
-      <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden -mt-12 sm:mt-0">
+      <div className="flex-1 flex flex-col min-h-screen w-[92%] xl:w-[80%] mx-auto overflow-x-hidden -mt-12 sm:mt-0">
         <header className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 py-4 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             {/* Hamburger — mobile only */}

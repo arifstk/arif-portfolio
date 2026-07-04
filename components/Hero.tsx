@@ -7,24 +7,7 @@ import HeroDescription from './HeroDescription'
 
 const Hero = () => {
   return (
-    <div className='relative isolate overflow-hidden rounded-3xl md:overflow-visible md:rounded-none min-h-150 md:min-h-0 grid grid-cols-1 md:grid-cols-2 gap-10 pt-2 md:py-5'>
-
-      {/* ── Mobile-only full-bleed background photo ─────── */}
-      <div className='absolute inset-0 md:hidden'>
-        <Image
-          src="/images/hero.png"
-          alt="Image of me"
-          fill
-          priority
-          quality={100}
-          sizes="100vw"
-          className="object-cover object-top"
-        />
-        {/* gradients so text stays readable over the photo */}
-        <div className='absolute inset-0 bg-linear-to-t from-black/95 via-black/55 to-black/10' />
-        <div className='absolute inset-0 bg-linear-to-r from-black/70 via-black/20 to-transparent' />
-      </div>
-
+    <div className='hidden md:flex justify-between relative isolate overflow-hidden md:overflow-visible md:rounded-none min-h-150 md:min-h-0 flex-1 md:flex-2 gap-10 pt-2 md:py-5 md:w-[92%] xl:w-[80%] mx-auto'>
       {/* ── Text ────────────── */}
       <div className='relative z-10 flex flex-col items-start gap-5 md:gap-7 text-start px-6 py-10 md:p-0 text-white md:text-gray-800 md:dark:text-white/70'>
         <div>

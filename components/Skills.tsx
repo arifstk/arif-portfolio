@@ -4,14 +4,14 @@ import { skillCategories } from '@/Constant/Constant';
 import React from 'react';
 export default function Skills() {
   return (
-    <section id="skills" className="pt-10 md:pt-20 text-gray-800 dark:text-gray-200">
+    <section id="skills" className="w-[92%] xl:w-[80%] mx-auto pt-10 md:pt-20 text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
       <div className="text-center mb-10">
         <p className="text-xs font-semibold uppercase tracking-widest text-[#64748b] mb-2">
           My Technical Arsenal
         </p>
-        <h2 className="text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-1 after:bg-[#369483] after:rounded-full">
+        <h2 className="text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-1 after:bg-[#369483] after:rounded-full tracking-wider">
           Skills & Abilities
         </h2>
       </div>

@@ -7,7 +7,7 @@ import HeroDescription from './HeroDescription'
 const HeroMobile = () => {
   return (
     <div>
-      <div className=' md:hidden relative isolate overflow-hidden h-screen grid grid-cols-1 md:grid-cols-2 gap-10 -mt-3 pt-15 pb-22'>
+      <div className=' md:hidden relative isolate overflow-hidden h-screen grid grid-cols-1 md:grid-cols-2 gap-10 -mt-3 pt-15 pb-[35%]'>
 
       {/* ── Mobile-only full-bleed background photo ─────── */}
       <div className='absolute inset-0 md:hidden'>

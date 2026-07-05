@@ -7,7 +7,7 @@ import HeroDescription from './HeroDescription'
 const HeroMobile = () => {
   return (
     <div>
-      <div className=' md:hidden relative isolate overflow-hidden min-h-153 grid grid-cols-1 md:grid-cols-2 gap-10 -mt-3 pt-15'>
+      <div className=' md:hidden relative isolate overflow-hidden h-screen grid grid-cols-1 md:grid-cols-2 gap-10 -mt-3 pt-15 pb-22'>
 
       {/* ── Mobile-only full-bleed background photo ─────── */}
       <div className='absolute inset-0 md:hidden'>
@@ -26,7 +26,7 @@ const HeroMobile = () => {
       </div>
 
       {/* ── Text ────────────── */}
-      <div className='relative z-10 flex flex-col items-start gap-3 md:gap-7 text-start px-3 pt-36 text-white md:text-gray-800 md:dark:text-white/70'>
+      <div className='relative z-10 flex flex-col items-start justify-end gap-3 md:gap-7 text-start px-3 pt-27 text-white md:text-gray-800 md:dark:text-white/70'>
         <div>
           <h3 className='font-semibold tracking-wider mb-1 text-gray-200 md:text-gray-800 md:dark:text-white/70'>
             Software Developer
@@ -41,7 +41,7 @@ const HeroMobile = () => {
         <HeroDescription />
 
         <Link href="/projects">
-          <button className='bg-white/10 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none rounded-full border border-white/40 md:border-gray-500 dark:md:border-gray-500 font-semibold text-white md:text-gray-800 md:dark:text-white/70 hover:bg-[#369483] hover:text-white hover:border-[#369483] hover:shadow-md px-6 py-2 text-sm cursor-pointer transition-colors duration-200 tracking-widest -mt-4'>
+          <button className='bg-white/10 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none rounded-full border border-white/40 md:border-gray-500 dark:md:border-gray-500 font-semibold text-white md:text-gray-800 md:dark:text-white/70 hover:bg-[#369483] hover:text-white hover:border-[#369483] hover:shadow-md px-6 py-2 text-sm cursor-pointer transition-colors duration-200 tracking-widest -mt-6 mb-3'>
             My Works
           </button>
         </Link>

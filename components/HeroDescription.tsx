@@ -16,7 +16,7 @@ const HomeDescription = () => {
   }, []);
   return (
     <motion.p
-      className="w-auto font-normal leading-7 mb-6 min-h-30"
+      className="w-auto md:font-normal leading-7 mb-6 min-h-30"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1, duration: 0.5 }}

@@ -77,7 +77,7 @@ export default function Contact() {
           <span className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-semibold tracking-[0.2em] uppercase mb-4">
             Contact
           </span>
-          <h2 className="font-syne text-2xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2 text-[#369483] ">
+          <h2 className="font-syne text-2xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2 text-violet-500 ">
             Let&apos;s work <span className="bg-clip-text">together.</span>
           </h2>
           <p className="mt-4 text-slate-400 text-base max-w-md leading-relaxed">
@@ -158,7 +158,7 @@ export default function Contact() {
                         onChange={handleChange}
                         onFocus={() => setFocused(field)}
                         onBlur={() => setFocused(null)}
-                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === field ? "border-gray-400 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500"}`}
+                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === field ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500"}`}
                       />
                     </div>
                   ))}
@@ -194,7 +194,7 @@ export default function Contact() {
                 )}
                 <button
                   type="submit" disabled={status === "sending"}
-                  className="w-full relative flex items-center justify-center gap-3 py-2 px-6 rounded-xl font-syne font-semibold text-sm tracking-wide transition-all duration-300 bg-[#2b7473] text-white hover:bg-[#369483] border border-gray-400 dark:border-white/50 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="w-full relative flex items-center justify-center gap-3 py-2 px-6 rounded-xl font-syne font-semibold text-sm tracking-wide transition-all duration-300 bg-violet-600 text-white hover:bg-violet-700 border border-gray-400 dark:border-white/50 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {status === "sending" ? (
                     <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>Sending…</>
@@ -210,3 +210,4 @@ export default function Contact() {
     </section>
   );
 }
+

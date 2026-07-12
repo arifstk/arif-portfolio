@@ -9,22 +9,22 @@ import Image from 'next/image';
 export default function About() {
   const pillars = [
     {
-      icon: <Code2 className="w-6 h-6 text-[#369483]" />,
+      icon: <Code2 className="w-6 h-6 text-violet-600" />,
       title: "Web Development",
       description: "Building high-performance, responsive web applications utilizing modern front-end and back-end ecosystems."
     },
     {
-      icon: <FaCubes className="w-6 h-6 text-[#369483]" />,
+      icon: <FaCubes className="w-6 h-6 text-violet-600" />,
       title: "Problem Solving",
       description: "Breaking down complex computational issues into practical, structured, and modular logic workflows."
     },
     {
-      icon: <BsDatabase className="w-6 h-6 text-[#369483]" />,
+      icon: <BsDatabase className="w-6 h-6 text-violet-600" />,
       title: "Backend & Databases",
       description: "Designing secure API endpoints, maintaining server architectures, and optimizing data layers."
     },
     {
-      icon: <Bolt className="w-6 h-6 text-[#369483]" />,
+      icon: <Bolt className="w-6 h-6 text-violet-600" />,
       title: "Optimization",
       description: "Ensuring fast load times, semantic structure, and maintaining a clean, highly scalable codebase."
     }
@@ -38,7 +38,7 @@ export default function About() {
         <p className="text-xs font-semibold uppercase tracking-widest text-[#6d7f98] mb-2">
           Get To Know Me
         </p>
-        <h2 className="text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-1 after:bg-[#369483] after:rounded-full tracking-wider">
+        <h2 className="text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-violet-600 after:rounded-full tracking-wider">
           About Me
         </h2>
       </div>
@@ -65,7 +65,7 @@ export default function About() {
             I am a software developer deeply passionate about crafting clean, efficient, and user-centric software solutions. My journey into tech stems from a curiosity about how complex back-end operations can elegantly translate into seamless front-end experiences.
           </p>
           <p className="text-[#64748b] text-[1.05rem] leading-relaxed">
-            Whether it’s architecting robust web applications, optimizing database workflows, or engineering responsive UI elements, I strive to write code that is not just functional, but <strong className="text-[#369483] font-bold">scalable and maintainable</strong>.
+            Whether it’s architecting robust web applications, optimizing database workflows, or engineering responsive UI elements, I strive to write code that is not just functional, but <strong className="text-violet-500 font-bold">scalable and maintainable</strong>.
           </p>
           <p className="text-[#64748b] text-[1.05rem] leading-relaxed">
             When I'm not coding, you can find me exploring new technical frameworks, refining my system design skills, or contributing to open-source collaborative projects.

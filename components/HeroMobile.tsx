@@ -34,7 +34,7 @@ const HeroMobile = () => {
           <h2 className='text-2xl mb-1 font-semibold tracking-wider'>
             Hello I&apos;m
           </h2>
-          <h1 className='text-[#379685] md:text-[#369483] text-4xl tracking-widest sm:tracking-normal font-semibold'>
+          <h1 className='text-violet-500 md:text-violet-500 text-4xl tracking-widest sm:tracking-normal font-semibold'>
             Arif Hossain
           </h1>
         </div>

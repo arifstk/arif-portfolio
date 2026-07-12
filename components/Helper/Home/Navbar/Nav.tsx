@@ -29,16 +29,11 @@ const Nav = () => {
                   key={link.path}
                   href={link.path}
                   className='relative group text-sm font-medium transition-colors duration-200 py-1 text-gray-800 dark:text-gray-300'
-                // className={`relative group text-sm font-medium transition-colors duration-200 py-1
-                //   ${active
-                //     ? 'text-[#2b7473] dark:text-[#3faf9b]'
-                //     : 'text-gray-800 dark:text-gray-300 hover:text-[#2b7473] dark:hover:text-[#369483]'
-                //   }`}
                 >
                   {link.name}
                   {/* Underline spans for active/hover effect */}
-                  <span className={`absolute -bottom-0.5 right-1/2 h-0.5 bg-[#369483] transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
-                  <span className={`absolute -bottom-0.5 left-1/2 h-0.5 bg-[#369483] transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
+                  <span className={`absolute -bottom-0.5 right-1/2 h-0.5 bg-violet-500 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
+                  <span className={`absolute -bottom-0.5 left-1/2 h-0.5 bg-violet-500 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
                 </Link>
               )
             })}
@@ -46,7 +41,7 @@ const Nav = () => {
           <div className='flex items-center gap-0 md:gap-4'>
             {/* contact */}
             <Link href={'/contact'}
-              className='text-sm bg-[#2b7473] hover:bg-[#369483] font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200'
+              className='text-sm bg-violet-200 hover:bg-violet-300 border border-violet-400 font-medium px-3 py-1.5 rounded-xl text-violet-800 transition-colors duration-200 dark:backdrop-blur dark:bg-violet-900/30 dark:text-violet-50 dark:hover:bg-violet-900/50 dark:border-violet-900'
             >
               Contact
             </Link>

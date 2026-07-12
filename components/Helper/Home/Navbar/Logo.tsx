@@ -11,10 +11,10 @@ const affectionateScript = Kalam({
 
 export default function Logo() {
   return (
-    <div className="flex items-center justify-center gap-8">
+    <div className="flex items-center justify-center">
       <Link href="/" className="group relative inline-block">
         <span
-          className={`${affectionateScript.className} text-4xl font-extrabold text-white transition-colors duration-300 bg-violet-600 px-2.5 flex items-center justify-center text-center rounded-xl`}
+          className={`${affectionateScript.className} text-4xl font-extrabold text-white transition-colors duration-300 bg-violet-600 px-3 flex items-center justify-center text-center rounded-xl`}
         >
           a
         </span>

@@ -73,7 +73,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 py-2 text-sm font-semibold bg-violet-100 hover:bg-violet-200 dark:bg-violet-950/30 dark:hover:bg-violet-900/50 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-900/60 px-3 rounded-xl transition-all duration-200 shadow-xs"
+            className="flex items-center justify-center gap-1.5 py-2 text-sm font-semibold bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-600 text-white dark:text-violet-300 border border-violet-200 dark:border-violet-900/60 px-3 rounded-xl transition-all duration-200 shadow-xs"
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo

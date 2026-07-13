@@ -59,7 +59,7 @@ const MobileNav = () => {
       {/* ── Sidebar ── */}
       <div
         ref={sidebarRef}
-        className={`fixed top-14 left-0 right-0 h-[calc(100vh-4.25rem)] w-full z-50 md:hidden
+        className={`fixed top-13 left-0 right-0 h-screen w-full z-50 md:hidden
           bg-white/97 dark:bg-gray-950/95 
           shadow-2xl border-r border-gray-200 dark:border-gray-800
           transition-transform duration-300 ease-in-out

@@ -57,7 +57,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
       <div>
         {/* Banner image frame with a soft violet shadow glow */}
-        <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-linear-to-br from-violet-200 via-indigo-100 to-purple-100 dark:bg-linear-to-br dark:from-violet-950/40 dark:via-indigo-950/20 dark:to-purple-900/40 mb-10 shadow-[0_10px_50px_rgba(139,92,246,0.2)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.15)]">
+        <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)]">
           {image ? (
             <Image
               src={image}
@@ -74,11 +74,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
           )}
           {/* Subtle gradient overlay at bottom */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-t  pointer-events-none" />
         </div>
 
         {/* ── Main grid: content + sidebar ─────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 mt-8">
 
           {/* Left — title, description, tech */}
           <div>
@@ -193,15 +193,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 Share the scope, blockers, timeline, and outcome you're looking for. I'll review the context and follow up with clear next steps.
               </p>
             </div>
-            <div className='flex flex-col gap-3 sm:pl-4'>
-              <Link href="/contact" className="w-full">
-                <button className='w-full bg-violet-600 hover:bg-violet-700 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2'>
-                  Let's Talk <MoveRight className="w-4 h-4" />
+            <div className='flex flex-col gap-3 sm:pl-4 w-full'>
+              <Link href="/contact">
+                <button className=' bg-violet-600 hover:bg-violet-700 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2'>
+                  Let's Talk <MoveRight className="w-6 h-4" />
                 </button>
               </Link>
-              <Link href="#" className="w-full">
-                <button className='w-full bg-transparent hover:bg-violet-100 dark:hover:bg-violet-950/40 text-gray-800 dark:text-white font-semibold py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2 ring-1 ring-violet-500/50 transition-all duration-200'>
-                  Hire on Upwork <MoveRight className="w-4 h-4" />
+              <Link href="#">
+                <button className=' bg-transparent hover:bg-violet-100 dark:hover:bg-violet-950/40 text-gray-800 dark:text-white font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2 ring-1 ring-violet-500/50 transition-all duration-200'>
+                  Hire on Upwork <MoveRight className="w-6 h-4" />
                 </button>
               </Link>
             </div>

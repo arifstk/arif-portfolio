@@ -79,13 +79,13 @@ const MobileNav = () => {
                   transition-all duration-200
                   ${open ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
                   ${active
-                    ? 'bg-violet-600 dark:bg-violet-900/60 text-white'
+                    ? 'bg-violet-200 hover:bg-violet-300 border border-violet-400 dark:border-violet-800 dark:bg-violet-900/40 text-violet-800 dark:text-violet-200'
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
                   }`} 
               >
                 {link.name}
                 {active && (
-                  <span className="ml-auto w-1 h-4 rounded-full bg-white dark:bg-violet-400" />
+                  <span className="ml-auto w-1 h-4 rounded-full bg-violet-800 dark:bg-violet-200" />
                 )}
               </Link>
             )

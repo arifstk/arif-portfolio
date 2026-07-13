@@ -49,11 +49,11 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
     <div className="mt-5">
       {/* ── Section header ─────────────────────────── */}
       <div className="flex items-center gap-2 mb-4">
-        <ImageIcon className="w-4 h-4 text-[#369483]" />
+        <ImageIcon className="w-4 h-4 text-violet-500" />
         <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
           More Images
         </h2>
-        <span className="text-xs text-slate-400 font-medium">({images.length})</span>
+        <span className="text-xs text-violet-500 font-medium tracking-widest">({images.length})</span>
       </div>
 
       {/* ── Thumbnail grid ─────────────────────────── */}

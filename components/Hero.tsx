@@ -24,7 +24,7 @@ const Hero = () => {
         <HeroDescription />
 
         <Link href="/projects">
-          <button className='text-sm bg-violet-200 hover:bg-violet-300 border border-violet-400 font-medium px-6 py-1.5 rounded-full text-violet-800 transition-colors duration-200 dark:backdrop-blur-sm dark:bg-violet-900/30 dark:text-violet-50 dark:hover:bg-violet-900/50 dark:border-violet-900 tracking-widest cursor-pointer'>
+          <button className='text-sm bg-violet-200 hover:bg-violet-300 border border-violet-400 font-medium px-6 py-1.5 rounded-full text-violet-800 transition-colors duration-200 dark:backdrop-blur-sm dark:bg-violet-900/30 dark:text-violet-50 dark:hover:bg-violet-900/50 dark:border-violet-90 tracking-widest cursor-pointer'>
             My Works
           </button>
         </Link>

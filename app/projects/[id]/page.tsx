@@ -89,7 +89,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             {/* Description */}
             <div className="prose prose-slate dark:prose-invert max-w-none">
-              <p className="text-base text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
+              <p className="text-sm text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
                 {description}
               </p>
             </div>

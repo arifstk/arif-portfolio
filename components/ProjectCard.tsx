@@ -51,7 +51,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </Link>
 
         {/* Short Description */}
-        <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-5 line-clamp-2">
+        <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-3 line-clamp-2">
           {description}
         </p>
 
@@ -60,7 +60,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {techStack.map((tech, index) => (
             <span
               key={index}
-              className="text-[11px] font-medium px-2.5 py-1 bg-[#f8fafc] dark:bg-gray-900 text-[#6d7f98] dark:text-slate-300 rounded-md border border-slate-100 dark:border-gray-800 transition-colors duration-300 group-hover:border-violet-500/20"
+              className="text-[11px] font-medium px-2.5 py-1 bg-[#f8fafc] dark:bg-gray-900 text-[#6d7f98] text-xs dark:text-slate-300 rounded-md border border-slate-100 dark:border-gray-800 transition-colors duration-300 group-hover:border-violet-500/20"
             >
               {tech}
             </span>

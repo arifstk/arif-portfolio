@@ -61,7 +61,7 @@ export default function Projects() {
               <div className="mt-8 text-center">
                 <button
                   onClick={handleShowMore}
-                  className="px-6 py-2 bg-violet-600 text-white rounded-xl hover:bg-violet-700 transition cursor-pointer"
+                  className="px-6 py-2 text-sm bg-violet-600 text-white rounded-xl hover:bg-violet-700 transition cursor-pointer"
                 >
                   Show More
                 </button>

@@ -12,6 +12,7 @@ interface ProjectGalleryProps {
 
 export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState(4); // Shows 4 images initially
 
   const isOpen = activeIndex !== null;
 
@@ -45,6 +46,10 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
   if (!images || images.length === 0) return null;
 
+  const handleShowMore = () => {
+    setVisibleCount((prev) => prev + 4); // Increases by 4 items per click
+  };
+
   return (
     <div className="mt-5">
       {/* ── Section header ─────────────────────────── */}
@@ -58,7 +63,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
       {/* ── Thumbnail grid ─────────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-        {images.map((src, i) => (
+        {images.slice(0, visibleCount).map((src, i) => (
           <button
             key={`${src}-${i}`}
             onClick={() => setActiveIndex(i)}
@@ -71,14 +76,26 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-200 flex items-center justify-center">
-              <span className="opacity-0 group-hover:opacity-100 text-white text-xs font-semibold transition-opacity duration-200">
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
+              <span className="opacity-0 group-hover:opacity-100 text-white text-sm font-semibold transition-opacity duration-200">
                 View
               </span>
             </div>
           </button>
         ))}
       </div>
+
+      {/* ── Show More Button ───────────────────────── */}
+      {visibleCount < images.length && (
+        <div className="mt-6 text-center">
+          <button
+            onClick={handleShowMore}
+            className="px-6 py-2 text-sm bg-violet-600 text-white rounded-xl hover:bg-violet-700 transition cursor-pointer"
+          >
+            Show More
+          </button>
+        </div>
+      )}
 
       {/* ── Lightbox ────────────────────────────────── */}
       {isOpen && activeIndex !== null && (
@@ -158,3 +175,4 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
     </div>
   );
 }
+

@@ -5,6 +5,7 @@ import { Cloud, Code2, Database, GitBranch, Globe, Layers, Mail, MapPin, Palette
 import { FiGithub } from "react-icons/fi";
 import { FaStripe } from "react-icons/fa6";
 import { SiMongoosedotws } from "react-icons/si";
+import { LuWebhook } from "react-icons/lu";
 
 export const NavLinks = [
   {name: 'Home', path: '/'},
@@ -132,6 +133,7 @@ export const skillCategories = [
       // { name: "Linux", icon: Terminal },
       { name: "Figma", icon: Palette },
       { name: "Stripe", icon: FaStripe },
+      {name: "Webhooks", icon: LuWebhook },
       // { name: "CI/CD", icon: Cpu },
     ],
   },

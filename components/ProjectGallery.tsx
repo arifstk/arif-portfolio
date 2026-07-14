@@ -53,16 +53,16 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
         <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
           More Images
         </h2>
-        <span className="text-xs text-violet-500 font-medium tracking-widest">({images.length})</span>
+        <span className="text-xs text-violet-500 font-semibold tracking-widest">({images.length})</span>
       </div>
 
       {/* ── Thumbnail grid ─────────────────────────── */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
         {images.map((src, i) => (
           <button
             key={`${src}-${i}`}
             onClick={() => setActiveIndex(i)}
-            className="group relative aspect-4/3 rounded-2xl overflow-hidden bg-slate-100 dark:bg-gray-900 border border-slate-100 dark:border-gray-800 cursor-pointer"
+            className="group relative aspect-4/3 rounded-2xl overflow-hidden bg-slate-100 dark:bg-gray-900 border border-violet-200 dark:border-gray-800 cursor-pointer"
           >
             <Image
               src={src}

@@ -4,7 +4,7 @@ import { skillCategories } from '@/Constant/Constant';
 import React from 'react';
 export default function Skills() {
   return (
-    <section id="skills" className="w-[92%] xl:w-[80%] mx-auto pt-10 md:pt-20 text-gray-800 dark:text-gray-200">
+    <section id="skills" className="w-[92%] xl:w-[80%] mx-auto pt-10 pb-13 md:pt-20 text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
       <div className="text-center mb-10">
@@ -27,7 +27,7 @@ export default function Skills() {
             </h3>
 
             {/* Skills Badges/Cards Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-8">
               {category.skills.map((skill, skillIndex) => {
                 // Instantiating the dynamic icon component assigned from constants
                 const IconComponent = skill.icon;
@@ -35,7 +35,7 @@ export default function Skills() {
                 return (
                   <div
                     key={skillIndex}
-                    className="group flex flex-col items-center justify-center p-5 bg-[#f8fafc] dark:bg-gray-900 dark:border-gray-700 rounded-xl border border-black/10 transition-all duration-300 hover:bg-white hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,123,255,0.06)] hover:border-[#007bff]/20"
+                    className="group flex flex-col items-center justify-center p-5 bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900  dark:border-gray-700 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] rounded-xl border border-black/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,123,255,0.06)] hover:border-[#007bff]/20"
                   >
                     {/* Icon Wrapper with Hover Animation */}
                     <div className="p-3 bg-white dark:bg-gray-700 dark:border-gray-400 rounded-lg text-[#64748b] dark:text-gray-300 transition-all duration-300 group-hover:text-[#2b7473] group-hover:scale-110 shadow-[0_2px_8px_rgba(0,0,0,0.02)] group-hover:shadow-[0_4px_12px_rgba(0,123,255,0.1)] mb-3">

@@ -41,7 +41,7 @@ const Nav = () => {
           <div className='flex items-center gap-0 md:gap-4'>
             {/* contact */}
             <Link href={'/contact'}
-              className='text-sm bg-violet-600 hover:bg-violet-700 font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200 dark:backdrop-blur-sm'
+              className='text-sm bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200 dark:backdrop-blur-sm'
             >
               Contact
             </Link>

@@ -17,8 +17,8 @@ export default async function SourceUnavailablePage({ searchParams }: PageProps)
   return (
     <main className="min-h-screen pt-0 sm:pt-20 pb-0 sm:pb-12 flex items-center justify-center">
       <div className="max-w-3xl w-full text-center px-6">
-        <div className="w-16 h-16 mx-auto rounded-full bg-violet-100 flex items-center justify-center mb-6 ring ring-violet-300">
-          <Lock className="w-7 h-7 text-violet-600" />
+        <div className="w-16 h-16 mx-auto rounded-full bg-linear-to-br from-violet-200 via-purple-100 to-indigo-100 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900  flex items-center justify-center mb-6 ring ring-violet-500/50">
+          <Lock className="w-7 h-7 text-violet-600 dark:text-violet-500" />
         </div>
 
         <h1 className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-white mb-3">

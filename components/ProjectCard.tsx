@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { FaGithubSquare } from "react-icons/fa";
+import SourceCodeButton from './SourceCodeButton';
 
 interface ProjectCardProps {
   project: {
@@ -78,8 +79,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <ExternalLink className="w-4 h-4" />
             Live Demo
           </Link>
-          
-          <Link
+
+          {/* <Link
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -87,7 +88,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           >
             <FaGithubSquare className="w-4 h-4 text-slate-700 dark:text-slate-400" />
             Source Code
-          </Link>
+          </Link> */}
+
+          <SourceCodeButton
+            githubUrl={githubUrl}
+            projectTitle={title}
+            className="flex items-center justify-center gap-1.5 py-2 rounded-xl text-sm font-semibold text-[#1e293b] dark:text-gray-200 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-gray-800 hover:border-violet-300 dark:hover:border-violet-800"
+          />
         </div>
 
         {/* View Details link */}

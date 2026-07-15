@@ -8,6 +8,7 @@ import Project from "@/models/Project";
 import { ExternalLink, ArrowLeft, Code2, Layers, MoveRight } from "lucide-react";
 import { FaGithubSquare } from "react-icons/fa";
 import ProjectGallery from "@/components/ProjectGallery";
+import SourceCodeButton from "@/components/SourceCodeButton";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -139,15 +140,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
               {/* Source Code */}
               {githubUrl && (
-                <Link
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-[#1e293b] dark:text-slate-100 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-700 hover:border-violet-300 dark:hover:border-violet-800 transition-all duration-200"
-                >
-                  <FaGithubSquare className="w-4 h-4 text-slate-700 dark:text-slate-300" />
-                  Source Code
-                </Link>
+                <SourceCodeButton
+                  githubUrl={githubUrl}
+                  projectTitle={title}
+                  className="flex items-center justify-center w-full gap-1.5 py-2 rounded-xl text-sm font-semibold text-[#1e293b] dark:text-gray-200 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-gray-800 hover:border-violet-300 dark:hover:border-violet-800"
+                />
               )}
 
               {/* Divider */}

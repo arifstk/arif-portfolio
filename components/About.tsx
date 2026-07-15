@@ -31,7 +31,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="pt-15 md:pt-20  text-gray-800 dark:text-gray-200">
+    <section id="about" className="pt-15 md:pt-25 text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
       <div className="text-center mb-8 md:mb-10">
@@ -77,7 +77,7 @@ export default function About() {
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="bg-[#f8fafc] dark:bg-gray-900 dark:border-gray-700 p-6 rounded-xl border border-black/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,123,255,0.04)]"
+              className="bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900  dark:border-gray-700 p-6 rounded-xl border border-black/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,123,255,0.04)]"
             >
               <div className="mb-4">
                 {pillar.icon}

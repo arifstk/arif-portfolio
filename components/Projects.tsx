@@ -25,7 +25,7 @@ export default function Projects() {
   };
 
   return (
-    <section className="pt-10 md:pt-20">
+    <section className="pt-15 md:pt-25">
       <div className="w-[92%] xl:w-[80%] mx-auto">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -51,7 +51,7 @@ export default function Projects() {
           <p className="text-slate-400 text-sm">No projects yet.</p>
         ) : (
           <>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
               {projects.slice(0, visibleCount).map((project) => (
                 <ProjectCard key={project._id} project={project} />
               ))}

@@ -30,7 +30,7 @@ type Message = {
   subject: string; message: string;
   read: boolean; createdAt: string;
 };
-type Tab = "projects" | "contact" | "socials" | "messages";
+type Tab = "projects" | "contact" | "socials" | "messages" | "hire";
 
 const blankProject = (): Project => ({
   title: "", description: "", image: "", imagePublicId: "",
@@ -1361,6 +1361,111 @@ function MessagesPanel() {
   );
 }
 
+
+
+
+// ─── Hire Button Panel (singleton settings, not a list) ────────────────────
+type HireButtonData = {
+  logo: string;
+  logoPublicId?: string;
+  text: string;
+  link: string;
+};
+
+function HireButtonPanel() {
+  const [data, setData] = useState<HireButtonData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/admin/hire-button")
+      .then(r => r.json())
+      .then(d => setData(d))
+      .catch(() => toast.error("Failed to load hire button settings"))
+      .finally(() => setLoading(false));
+  }, []);
+
+  async function save() {
+    if (!data) return;
+    setSaving(true);
+    try {
+      const res = await fetch("/api/admin/hire-button", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const updated = await res.json();
+      if (!res.ok) throw new Error(updated.error || "Failed to save");
+      setData(updated);
+      toast.success("Hire button updated!");
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  if (loading) return <Skeleton />;
+  if (!data) return null;
+
+  return (
+    <div className="space-y-5 max-w-md">
+      <Field label="Logo (optional)">
+        <ImageUploader
+          currentImage={data.logo}
+          uploading={uploading}
+          setUploading={setUploading}
+          onUploaded={(url, publicId) =>
+            setData(p => p && ({ ...p, logo: url, logoPublicId: publicId }))
+          }
+        />
+      </Field>
+
+      <Field label="Button Text">
+        <input
+          className={inp}
+          value={data.text}
+          onChange={e => setData(p => p && ({ ...p, text: e.target.value }))}
+          placeholder="Hire on Upwork"
+        />
+      </Field>
+
+      <Field label="Button Link">
+        <input
+          className={inp}
+          value={data.link}
+          onChange={e => setData(p => p && ({ ...p, link: e.target.value }))}
+          placeholder="https://www.upwork.com/freelancers/~yourprofile"
+        />
+      </Field>
+
+      <button
+        onClick={save}
+        disabled={saving || uploading}
+        className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-violet-700 hover:bg-violet-600 text-white transition-colors disabled:opacity-60 disabled:cursor-wait cursor-pointer"
+      >
+        {saving ? "Saving…" : "Save changes"}
+      </button>
+
+      {/* Live preview, matches the styling used on the project detail page */}
+      <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+        <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-3">Preview</p>
+        <span
+          className="inline-flex items-center gap-2 bg-transparent text-gray-800 dark:text-white font-semibold py-2 px-4 rounded-full ring-1 ring-[#369483]"
+        >
+          {data.logo && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={data.logo} alt="logo" className="w-4 h-4 object-contain" />
+          )}
+          {data.text || "Hire on Upwork"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+
 // ─── Sidebar nav items ─────────────────────────────
 const navItems: { id: Tab; label: string; icon: React.ReactNode }[] = [
   {
@@ -1381,6 +1486,12 @@ const navItems: { id: Tab; label: string; icon: React.ReactNode }[] = [
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>,
   },
+  {
+    id: "hire", label: "Hire Button",
+    icon: <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+      <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </svg>,
+  },
 ];
 
 const panelMeta: Record<Tab, { title: string; sub: string }> = {
@@ -1388,6 +1499,7 @@ const panelMeta: Record<Tab, { title: string; sub: string }> = {
   contact: { title: "Contact Info", sub: "Manage how visitors can reach you" },
   socials: { title: "Social Links", sub: "Control your social media presence" },
   messages: { title: "Messages", sub: "Contact form submissions from visitors" },
+  hire: { title: "Hire Button", sub: "Control the Hire on Upwork button on project pages" },
 };
 
 // ─── Root ──────────────────────────────────────────
@@ -1395,7 +1507,7 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("projects");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [addTrigger, setAddTrigger] = useState<Record<Tab, number>>({
-    projects: 0, contact: 0, socials: 0, messages: 0
+    projects: 0, contact: 0, socials: 0, messages: 0, hire: 0,
   });
 
   function handleAdd() {
@@ -1501,13 +1613,23 @@ export default function AdminDashboard() {
               <p className="text-xs text-slate-400 mt-0.5">{panelMeta[tab].sub}</p>
             </div>
           </div>
-          <button
+          {/* <button
             onClick={handleAdd}
             className="flex items-center gap-2 px-4 py-2 bg-violet-700 hover:bg-violet-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-violet-200 dark:shadow-none"
           >
             <PlusIcon />
             {tab === "projects" ? "project" : tab === "contact" ? "entry" : "link"}
-          </button>
+          </button> */}
+
+          {tab !== "messages" && tab !== "hire" && (
+            <button
+              onClick={handleAdd}
+              className="flex items-center gap-2 px-4 py-2 bg-violet-700 hover:bg-violet-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-violet-200 dark:shadow-none"
+            >
+              <PlusIcon />
+              {tab === "projects" ? "project" : tab === "contact" ? "entry" : "link"}
+            </button>
+          )}
         </header>
 
         <main className="flex-1 py-4 max-w-3xl">
@@ -1530,6 +1652,8 @@ export default function AdminDashboard() {
             />
           )}
           {tab === "messages" && <MessagesPanel />}
+
+          {tab === "hire" && <HireButtonPanel />}
         </main>
       </div>
     </div>

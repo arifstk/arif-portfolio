@@ -56,7 +56,7 @@ export default function SourceCodeButton({ githubUrl, projectTitle, className }:
         </>
       ) : (
         <>
-          <FaGithubSquare className="w-4 h-4" />
+          <FaGithubSquare className="w-4 h-4 rounded-md" />
           Source Code
         </>
       )}

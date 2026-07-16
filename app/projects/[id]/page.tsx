@@ -9,6 +9,7 @@ import { ExternalLink, ArrowLeft, Code2, Layers, MoveRight } from "lucide-react"
 import { FaGithubSquare } from "react-icons/fa";
 import ProjectGallery from "@/components/ProjectGallery";
 import SourceCodeButton from "@/components/SourceCodeButton";
+import HireButton from "@/models/HireButton";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -24,6 +25,17 @@ async function getProject(id: string) {
   }
 }
 
+async function getHireButton() {
+  try {
+    await connectDB();
+    const doc = await HireButton.findOne().lean();
+    return (doc as any) ?? { logo: "", text: "Hire on Upwork", link: "#" };
+  } catch {
+    return { logo: "", text: "Hire on Upwork", link: "#" };
+  }
+}
+
+
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
   const project = await getProject(id);
@@ -35,9 +47,16 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
+
+
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const project = await getProject(id);
+  // const project = await getProject(id);
+  // if (!project) notFound();
+
+  // const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
+
+  const [project, hireButton] = await Promise.all([getProject(id), getHireButton()]);
   if (!project) notFound();
 
   const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
@@ -196,9 +215,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   Let's Talk <MoveRight className="w-6 h-4" />
                 </button>
               </Link>
-              <Link href="#">
-                <button className=' bg-transparent hover:bg-violet-100 dark:hover:bg-violet-950/40 text-gray-800 dark:text-white font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2 ring-1 ring-violet-500/50 transition-all duration-200'>
-                  Hire on Upwork <MoveRight className="w-6 h-4" />
+              <Link href={hireButton.link || "#"} target="_blank" rel="noopener noreferrer">
+                <button className=' bg-transparent hover:bg-violet-100 dark:hover:bg-violet-950/40 text-gray-800 dark:text-white font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-1 ring-1 ring-violet-500/50 transition-all duration-200'>
+                  {hireButton.logo && (
+                    <Image src={hireButton.logo} alt="" width={16} height={16} className="object-contain rounded-sm" />
+                  )}
+                  {hireButton.text || "Hire on Upwork"} <MoveRight className="w-6 h-4" />
                 </button>
               </Link>
             </div>

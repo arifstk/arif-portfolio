@@ -32,7 +32,7 @@ export default function Projects() {
           <p className="text-xs font-semibold uppercase tracking-widest text-[#6d7f98] mb-2">
             My Works
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-violet-600 after:rounded-full tracking-wider">
+          <h2 className="text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-violet-700 after:rounded-full tracking-wider">
             Featured Projects
           </h2>
         </div>
@@ -61,7 +61,7 @@ export default function Projects() {
               <div className="mt-8 text-center">
                 <button
                   onClick={handleShowMore}
-                  className="px-6 py-2 text-sm bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-600 text-white rounded-xl  transition cursor-pointer"
+                  className="px-6 py-2 text-sm bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 text-white rounded-xl  transition cursor-pointer"
                 >
                   Show More
                 </button>

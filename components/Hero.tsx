@@ -17,7 +17,7 @@ const Hero = () => {
           <h2 className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider'>
             Hello I&apos;m
           </h2>
-          <h1 className='text-violet-600 dark:text-violet-500 text-5xl md:text-7xl tracking-tight sm:tracking-normal font-semibold'>
+          <h1 className='text-violet-700 dark:text-violet-600 text-5xl md:text-7xl tracking-tight sm:tracking-normal font-semibold'>
             Arif Hossain
           </h1>
         </div>

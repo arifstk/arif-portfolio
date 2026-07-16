@@ -32,8 +32,8 @@ const Nav = () => {
                 >
                   {link.name}
                   {/* Underline spans for active/hover effect */}
-                  <span className={`absolute -bottom-0.5 right-1/2 h-0.5 bg-violet-500 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
-                  <span className={`absolute -bottom-0.5 left-1/2 h-0.5 bg-violet-500 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
+                  <span className={`absolute -bottom-0.5 right-1/2 h-0.5 bg-violet-700 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
+                  <span className={`absolute -bottom-0.5 left-1/2 h-0.5 bg-violet-700 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
                 </Link>
               )
             })}
@@ -41,7 +41,7 @@ const Nav = () => {
           <div className='flex items-center gap-0 md:gap-4'>
             {/* contact */}
             <Link href={'/contact'}
-              className='text-sm bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200 dark:backdrop-blur-sm'
+              className='text-sm bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200 dark:backdrop-blur-sm'
             >
               Contact
             </Link>
@@ -53,7 +53,7 @@ const Nav = () => {
                 {role === 'admin' && (
                   <Link
                     href='/admin/dashboard'
-                    className='text-sm font-medium px-3 py-1.5 rounded-md bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors duration-200'
+                    className='text-sm font-medium px-3 py-1.5 rounded-md bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors duration-200'
                   >
                     Admin Dashboard
                   </Link>

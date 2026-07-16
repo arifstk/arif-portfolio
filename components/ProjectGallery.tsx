@@ -54,11 +54,11 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
     <div className="mt-5">
       {/* ── Section header ─────────────────────────── */}
       <div className="flex items-center gap-2 mb-4">
-        <ImageIcon className="w-4 h-4 text-violet-500" />
+        <ImageIcon className="w-4 h-4 text-violet-700" />
         <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
           More Images
         </h2>
-        <span className="text-xs text-violet-500 font-semibold tracking-widest">({images.length})</span>
+        <span className="text-xs text-violet-700 font-semibold tracking-widest">({images.length})</span>
       </div>
 
       {/* ── Thumbnail grid ─────────────────────────── */}
@@ -90,7 +90,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
         <div className="mt-6 text-center">
           <button
             onClick={handleShowMore}
-            className="px-6 py-2 text-sm bg-violet-600 text-white rounded-xl hover:bg-violet-700 transition cursor-pointer"
+            className="px-6 py-2 text-sm bg-violet-700 text-white rounded-xl hover:bg-violet-600 transition cursor-pointer"
           >
             Show More
           </button>
@@ -114,7 +114,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
               </h3>
               <button
                 onClick={close}
-                className="w-8 h-8 flex items-center justify-center rounded-full text-violet-600 dark:bg-violet-900/30 dark:text-violet-50 dark:hover:bg-violet-900/50 dark:border-violet-900 transition-colors cursor-pointer"
+                className="w-8 h-8 flex items-center justify-center rounded-full text-violet-700 dark:bg-violet-900/30 dark:text-violet-50 dark:hover:bg-violet-900/50 dark:border-violet-900 transition-colors cursor-pointer"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
@@ -164,7 +164,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                 href={images[activeIndex]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-white bg-violet-500 hover:bg-violet-600 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-white bg-violet-700 hover:bg-violet-600 transition-colors"
               >
                 Open full image <ExternalLink className="w-3.5 h-3.5" />
               </a>

@@ -18,7 +18,7 @@ export default async function SourceUnavailablePage({ searchParams }: PageProps)
     <main className="min-h-screen pt-0 sm:pt-20 pb-0 sm:pb-12 flex items-center justify-center">
       <div className="max-w-3xl w-full text-center px-6">
         <div className="w-16 h-16 mx-auto rounded-full bg-linear-to-br from-violet-200 via-purple-100 to-indigo-100 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900  flex items-center justify-center mb-6 ring ring-violet-500/50">
-          <Lock className="w-7 h-7 text-violet-600 dark:text-violet-500" />
+          <Lock className="w-7 h-7 text-violet-700 dark:text-violet-500" />
         </div>
 
         <h1 className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-white mb-3">
@@ -28,7 +28,7 @@ export default async function SourceUnavailablePage({ searchParams }: PageProps)
         <p className="text-sm text-gray-600 dark:text-slate-300 leading-relaxed mb-8">
           {project ? (
             <>
-              The repository for <span className="font-semibold text-violet-500">{project}</span> is
+              The repository for <span className="font-semibold text-violet-700">{project} </span> is
               kept private — usually because it&apos;s a client project or contains config I can&apos;t
               share publicly.
             </>
@@ -50,7 +50,7 @@ export default async function SourceUnavailablePage({ searchParams }: PageProps)
           </Link>
           <Link
             href="/contact"
-            className=" bg-violet-600 hover:bg-violet-700 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-6 rounded-full cursor-pointer flex items-center justify-center gap-2"
+            className=" bg-violet-700 hover:bg-violet-600 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-6 rounded-full cursor-pointer flex items-center justify-center gap-2"
           >
             Get in touch <MoveRight className="w-4 h-4" />
           </Link>

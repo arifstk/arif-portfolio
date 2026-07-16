@@ -99,7 +99,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {techStack.length > 0 && (
               <div className="mt-8">
                 <div className="flex items-center gap-2 mb-3">
-                  <Code2 className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+                  <Code2 className="w-4 h-4 text-violet-700 dark:text-violet-400" />
                   <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
                     Tech Stack
                   </h2>
@@ -131,7 +131,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   href={demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-600 hover:shadow-[0_4px_16px_rgba(139,92,246,0.3)] transition-all duration-200"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 hover:shadow-[0_4px_16px_rgba(139,92,246,0.3)] transition-all duration-200"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Live Demo
@@ -164,7 +164,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {techStack.length > 0 && (
               <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5">
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-3">Built with</p>
-                <p className="text-2xl font-bold text-violet-600 dark:text-violet-400 tracking-widest flex items-center">
+                <p className="text-2xl font-bold text-violet-700 dark:text-violet-400 tracking-widest flex items-center">
                   {techStack.length}
                   <span className="text-sm font-normal text-slate-400 ml-1.5">technologies</span>
                 </p>
@@ -192,7 +192,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
             <div className='flex flex-col gap-3 sm:pl-4 w-full'>
               <Link href="/contact">
-                <button className=' bg-violet-600 hover:bg-violet-700 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2'>
+                <button className=' bg-violet-700 hover:bg-violet-600 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2'>
                   Let's Talk <MoveRight className="w-6 h-4" />
                 </button>
               </Link>

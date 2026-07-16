@@ -32,7 +32,7 @@ export default function Footer() {
               <Link
                 key={idx}
                 href={link.path}
-                className="text-sm font-medium text-[#64748b] hover:text-violet-500 transition-colors duration-300"
+                className="text-sm font-medium text-[#64748b] hover:text-violet-600 transition-colors duration-300"
               >
                 {link.name}
               </Link>

@@ -159,7 +159,7 @@ function EmptyState({ label, onAdd }: { label: string; onAdd: () => void }) {
         </svg>
       </div>
       <p className="text-sm text-slate-500 dark:text-slate-400 mb-3">No {label} yet</p>
-      <button onClick={onAdd} className="text-xs font-medium text-violet-500 hover:text-violet-600 transition-colors">
+      <button onClick={onAdd} className="text-xs font-medium text-violet-700 hover:text-violet-600 transition-colors">
         Add your first →
       </button>
     </div>
@@ -678,7 +678,7 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
               <button
                 onClick={save}
                 disabled={saving || uploading}
-                className="flex-1 py-2.5 bg-violet-500 hover:bg-violet-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors cursor-pointer"
+                className="flex-1 py-2.5 bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors cursor-pointer"
               >
                 {saving ? "Saving…" : uploading ? "Uploading image…" : isNew ? "Create project" : "Save changes"}
               </button>
@@ -914,7 +914,7 @@ function ContactPanel({ autoOpen }: { autoOpen?: boolean }) {
               <button
                 onClick={save}
                 disabled={saving}
-                className="flex-1 py-2.5 bg-violet-500 hover:bg-violet-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
+                className="flex-1 py-2.5 bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
               >
                 {saving ? "Saving…" : isNew ? "Create entry" : "Save changes"}
               </button>
@@ -1124,7 +1124,7 @@ function SocialsPanel({ autoOpen }: { autoOpen?: boolean }) {
               <button
                 onClick={save}
                 disabled={saving}
-                className="flex-1 py-2.5 bg-violet-500 hover:bg-violet-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
+                className="flex-1 py-2.5 bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors"
               >
                 {saving ? "Saving…" : isNew ? "Create link" : "Save changes"}
               </button>
@@ -1272,7 +1272,7 @@ function MessagesPanel() {
             <div className="flex gap-2">
               <a
                 href={`mailto:${selected.email}?subject=Re: ${encodeURIComponent(selected.subject)}`}
-                className="flex-1 py-2.5 text-center bg-violet-500 hover:bg-violet-600 text-white text-sm font-medium rounded-xl transition-colors"
+                className="flex-1 py-2.5 text-center bg-violet-700 hover:bg-violet-600 text-white text-sm font-medium rounded-xl transition-colors"
               >
                 Reply via Email
               </a>
@@ -1332,7 +1332,7 @@ function MessagesPanel() {
                   : "bg-violet-50/50 dark:bg-violet-900/10 border-violet-200 dark:border-violet-800/50 hover:border-violet-300"
                 }`}
             >
-              <div className={`w-2 h-2 rounded-full mt-2 shrink-0 ${m.read ? "bg-transparent" : "bg-violet-500"}`} />
+              <div className={`w-2 h-2 rounded-full mt-2 shrink-0 ${m.read ? "bg-transparent" : "bg-violet-700"}`} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
                   <p className={`text-sm font-semibold truncate ${m.read ? "text-slate-700 dark:text-slate-300" : "text-slate-900 dark:text-slate-100"}`}>
@@ -1434,7 +1434,7 @@ export default function AdminDashboard() {
       >
         <div className="px-5 py-5 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-violet-500 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-violet-700 flex items-center justify-center shrink-0">
               <svg width="13" height="13" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
               </svg>
@@ -1503,7 +1503,7 @@ export default function AdminDashboard() {
           </div>
           <button
             onClick={handleAdd}
-            className="flex items-center gap-2 px-4 py-2 bg-violet-500 hover:bg-violet-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-violet-200 dark:shadow-none"
+            className="flex items-center gap-2 px-4 py-2 bg-violet-700 hover:bg-violet-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-violet-200 dark:shadow-none"
           >
             <PlusIcon />
             {tab === "projects" ? "project" : tab === "contact" ? "entry" : "link"}

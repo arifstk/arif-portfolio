@@ -46,7 +46,7 @@ export default function Footer() {
         <hr className="border-t border-violet-200/50 dark:border-slate-700/40 w-full m-0" />
 
         {/* Bottom Section */}
-        <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-2 sm:gap-4">
 
           {/* Copyright text */}
           <p className="text-sm text-[#64748b] text-center sm:text-left">

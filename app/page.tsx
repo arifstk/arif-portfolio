@@ -1,9 +1,10 @@
 // import Home from '@/components/Helper/Home/Home';
+
 import Hero from '@/components/Hero';
 import HeroMobile from '@/components/HeroMobile';
+import HireButtonBanner from '@/components/HireButtonBanner';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
-import React from 'react'
 
 const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ const HomePage = () => {
       <Hero />
       <Projects />
       <Skills />
+      <HireButtonBanner />
     </div>
   )
 }

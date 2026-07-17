@@ -35,7 +35,6 @@ async function getHireButton() {
   }
 }
 
-
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
   const project = await getProject(id);
@@ -46,8 +45,6 @@ export async function generateMetadata({ params }: PageProps) {
     openGraph: { images: project.image ? [project.image] : [] },
   };
 }
-
-
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params;

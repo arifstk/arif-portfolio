@@ -15,7 +15,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full text-[#1e293b] mt-10 pt-10 pb-8 bg-violet-50 dark:bg-slate-950">
+    <footer className="w-full text-[#1e293b] mt-10 pt-10 pb-8 ">
       <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-5">
 
         {/* Top Section */}

@@ -6,10 +6,9 @@ import Link from "next/link";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
 import { ExternalLink, ArrowLeft, Code2, Layers, MoveRight } from "lucide-react";
-import { FaGithubSquare } from "react-icons/fa";
 import ProjectGallery from "@/components/ProjectGallery";
 import SourceCodeButton from "@/components/SourceCodeButton";
-import HireButton from "@/models/HireButton";
+import HireButtonBanner from "@/components/HireButtonBanner";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -25,15 +24,15 @@ async function getProject(id: string) {
   }
 }
 
-async function getHireButton() {
-  try {
-    await connectDB();
-    const doc = await HireButton.findOne().lean();
-    return (doc as any) ?? { logo: "", text: "Hire on Upwork", link: "#" };
-  } catch {
-    return { logo: "", text: "Hire on Upwork", link: "#" };
-  }
-}
+// async function getHireButton() {
+//   try {
+//     await connectDB();
+//     const doc = await HireButton.findOne().lean();
+//     return (doc as any) ?? { logo: "", text: "Hire on Upwork", link: "#" };
+//   } catch {
+//     return { logo: "", text: "Hire on Upwork", link: "#" };
+//   }
+// }
 
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
@@ -48,18 +47,17 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params;
-  // const project = await getProject(id);
+  const project = await getProject(id);
+  if (!project) notFound();
+  const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
+
+  // const [project, hireButton] = await Promise.all([getProject(id), getHireButton()]);
   // if (!project) notFound();
 
   // const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
 
-  const [project, hireButton] = await Promise.all([getProject(id), getHireButton()]);
-  if (!project) notFound();
-
-  const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
-
   return (
-    <main className="min-h-screen pt-15 md:pt-24 pb-10 w-[92%] xl:w-[80%] mx-auto">
+    <main className="min-h-screen pt-15 md:pt-24 pb-5 w-[92%] xl:w-[80%] mx-auto">
 
       {/* ── Back nav ─────────────────────────────────── */}
       <div className=" mb-8">
@@ -193,35 +191,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <div className="mt-15">
           <ProjectGallery images={images} title={title} />
         </div>
-
-        {/* Hire button banner */}
-        <div className="mt-15">
-          <div className="mt-3 rounded-2xl bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-6 grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-between border border-slate-200 dark:border-slate-800">
-            <div className='col-span-2'>
-              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-2">Let's Work Together</p>
-              <h2 className="text-2xl md:text-3xl font-semibold text-slate-700 dark:text-slate-200 tracking-wide mb-3">
-                Tell me <span className='text-violet-600 dark:text-violet-400 font-extrabold'>what you're Building</span>
-              </h2>
-              <p className="text-sm text-gray-600 dark:text-slate-300 flex items-center tracking-normal leading-relaxed">
-                Share the scope, blockers, timeline, and outcome you're looking for. I'll review the context and follow up with clear next steps.
-              </p>
-            </div>
-            <div className='flex flex-col gap-3 sm:pl-4 w-full'>
-              <Link href="/contact">
-                <button className=' bg-violet-700 hover:bg-violet-600 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2'>
-                  Let's Talk <MoveRight className="w-6 h-4" />
-                </button>
-              </Link>
-              <Link href={hireButton.link || "#"} target="_blank" rel="noopener noreferrer">
-                <button className=' bg-transparent hover:bg-violet-100 dark:hover:bg-violet-950/40 text-gray-800 dark:text-white font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-1 ring-1 ring-violet-500/50 transition-all duration-200'>
-                  {hireButton.logo && (
-                    <Image src={hireButton.logo} alt="" width={16} height={16} className="object-contain rounded-sm" />
-                  )}
-                  {hireButton.text || "Hire on Upwork"} <MoveRight className="w-6 h-4" />
-                </button>
-              </Link>
-            </div>
-          </div>
+        {/* Hire Button Banner */}
+        <div className='pt-10 sm:pt-11'>
+          <HireButtonBanner />
         </div>
       </div>
     </main>

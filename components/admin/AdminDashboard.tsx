@@ -5,8 +5,9 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import {
-  FaGithubSquare, FaLinkedin, FaInstagramSquare, FaYoutube, FaDribbble,
+  FaGithubSquare, FaLinkedin, FaInstagramSquare, FaYoutube, FaDribbble, FaWhatsapp
 } from "react-icons/fa";
+import { SiUpwork } from "react-icons/si";
 import { FaXTwitter, FaTiktok, FaBehance } from "react-icons/fa6";
 import { Mail, Phone, MapPin, Globe } from "lucide-react";
 
@@ -53,6 +54,8 @@ const SOCIAL_ICONS: { key: string; label: string; Icon: React.ElementType; color
   { key: "tiktok", label: "TikTok", Icon: FaTiktok, color: "text-slate-900 dark:text-slate-100", bg: "bg-slate-100 dark:bg-slate-800" },
   { key: "dribbble", label: "Dribbble", Icon: FaDribbble, color: "text-pink-400 dark:text-pink-300", bg: "bg-pink-50 dark:bg-pink-900/20" },
   { key: "behance", label: "Behance", Icon: FaBehance, color: "text-blue-700 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
+  { key: "upwork", label: "Upwork", Icon: SiUpwork, color: "text-[#14a800]", bg: "bg-green-50 dark:bg-green-950/20" },
+  { key: "whatsapp", label: "WhatsApp", Icon: FaWhatsapp, color: "text-[#25D366]", bg: "bg-emerald-50 dark:bg-emerald-950/20" },
 ];
 
 const SOCIAL_ICON_MAP: Record<string, typeof SOCIAL_ICONS[0]> = Object.fromEntries(

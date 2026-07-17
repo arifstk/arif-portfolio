@@ -4,8 +4,9 @@
 import { SocialItem } from '@/types'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { FaGithubSquare, FaLinkedin, FaInstagramSquare, FaYoutube, FaDribbble } from "react-icons/fa"
+import { FaGithubSquare, FaLinkedin, FaInstagramSquare, FaYoutube, FaDribbble, FaWhatsapp } from "react-icons/fa"
 import { FaXTwitter, FaTiktok, FaBehance } from "react-icons/fa6"
+import { SiUpwork } from 'react-icons/si'
 
 
 const iconMap: Record<string, React.ElementType> = {
@@ -17,6 +18,8 @@ const iconMap: Record<string, React.ElementType> = {
   tiktok: FaTiktok,
   dribbble: FaDribbble,
   behance: FaBehance,
+  upwork: SiUpwork,
+  whatsapp: FaWhatsapp,
 }
 
 const colorMap: Record<string, string> = {

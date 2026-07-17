@@ -32,7 +32,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             alt={`${title} Thumbnail`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-102"
           />
         ) : (
           <div className="flex items-center justify-center w-full h-full bg-slate-100 dark:bg-gray-900 text-slate-400 dark:text-gray-600 text-sm">

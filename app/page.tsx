@@ -13,7 +13,7 @@ const HomePage = () => {
       <Hero />
       <Projects />
       <Skills />
-      <div className='pt-3 sm:pt-11 w-[92%] xl:w-[80%] mx-auto'>
+      <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonBanner />
       </div>
     </div>

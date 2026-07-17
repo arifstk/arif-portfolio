@@ -24,13 +24,15 @@ const iconMap: Record<string, React.ElementType> = {
 
 const colorMap: Record<string, string> = {
   github: 'hover:text-gray-900 dark:hover:text-white',
-  linkedin: 'hover:text-blue-600 dark:hover:text-blue-400',
+  linkedin: 'hover:text-blue-600 dark:hover:text-blue-600 hover:bg-blue-100 hover:dark:bg-blue-900/30',
   twitter: 'hover:text-sky-500 dark:hover:text-sky-400',
   instagram: 'hover:text-pink-500 dark:hover:text-pink-400',
   youtube: 'hover:text-red-600 dark:hover:text-red-400',
   tiktok: 'hover:text-slate-900 dark:hover:text-slate-100',
   dribbble: 'hover:text-pink-400 dark:hover:text-pink-300',
   behance: 'hover:text-blue-700 dark:hover:text-blue-400',
+  upwork: 'hover:text-black dark:hover:text-white',
+  whatsapp: 'hover:text-green-800 hover:bg-green-100 hover:dark:bg-green-900/30',
 }
 
 export default function SocialLinks() {
@@ -58,9 +60,10 @@ export default function SocialLinks() {
             className={`relative group p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ${color}`}
           >
             <Icon size={18} />
-            <span className="absolute -bottom-9 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 ease-out shadow-lg">
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 ease-out shadow-lg z-10">
               {name}
-              <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gray-900 dark:bg-gray-100" />
+              {/* Little triangle arrow pointing down */}
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gray-900 dark:bg-gray-100" />
             </span>
           </Link>
         )

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="py-10 mt-6 md:mt-15 text-gray-800 dark:text-gray-200 min-h-[70vh] flex items-center">
+    <section className="py-10 mt-6 md:mt-15 text-gray-800 dark:text-gray-200 min-h-[70vh] flex items-center justify-center">
       <div className="max-w-4xl mx-auto">
 
         {/* ── Number ── */}
@@ -12,7 +12,7 @@ export default function NotFound() {
             404
           </p>
           <div className="absolute inset-0 flex items-center">
-            <div className="w-12 h-0.5 bg-violet-700 mr-4 shrink-0"/>
+            <div className="w-12 h-0.5 bg-violet-700 mr-4 shrink-0" />
             <p className="text-md font-semibold text-violet-700 uppercase tracking-[0.2em]">
               Page not found
             </p>
@@ -48,7 +48,6 @@ export default function NotFound() {
             </svg>
           </Link>
         </div>
-
       </div>
     </section>
   );

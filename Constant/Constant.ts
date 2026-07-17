@@ -132,7 +132,7 @@ export const skillCategories = [
     skills: [
       { name: "Git", icon: GitBranch },
       { name: "Github", icon: FiGithub },
-      { name: "Docker", icon: FaDocker },
+      // { name: "Docker", icon: FaDocker },
       // { name: "AWS", icon: Cloud },
       // { name: "Linux", icon: Terminal },
       { name: "Figma", icon: FaFigma },

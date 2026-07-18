@@ -1,7 +1,7 @@
 // app/layout.tsx
 
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Inter, Geist, Nunito } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Provider from "@/components/Hoc/Provider";
@@ -12,13 +12,18 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
-const font = Inter({
+// const font = Inter({
+//   weight: ["400", "500", "600", "700", "800", "900"],
+//   subsets: ["latin"],
+// });
+
+const font = Nunito({
   weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Arif Portfolio",
+  title: "Arif Hossain",
   description: "Portfolio website of Arif",
 };
 
@@ -55,3 +60,4 @@ export default async function RootLayout({
     </html>
   );
 }
+

@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <section className="py-10 mt-6 md:mt-15 text-gray-800 dark:text-gray-200 min-h-[70vh] flex items-center justify-center">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
 
         {/* ── Number ── */}
         <div className="relative mb-8 select-none">
@@ -13,7 +13,7 @@ export default function NotFound() {
           </p>
           <div className="absolute inset-0 flex items-center">
             <div className="w-12 h-0.5 bg-violet-700 mr-4 shrink-0" />
-            <p className="text-md font-semibold text-violet-700 uppercase tracking-[0.2em]">
+            <p className="text-sm sm:text-md font-semibold text-violet-700 uppercase tracking-[0.2em]">
               Page not found
             </p>
           </div>
@@ -23,7 +23,7 @@ export default function NotFound() {
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-700 dark:text-slate-100 mb-3 leading-snug">
           Looks like you're lost.
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed mb-10 max-w-sm">
+        <p className="text-sm sm:text-md text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-sm">
           The page you're looking for doesn't exist or has been moved. Let's get you back on track.
         </p>
 

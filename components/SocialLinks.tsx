@@ -46,7 +46,7 @@ export default function SocialLinks() {
   }, [])
 
   return (
-    <div className="flex items-center gap-0">
+    <div className="flex items-center gap-1.5">
       {socials.map(({ _id, name, href, iconName }) => {
         const Icon = iconMap[iconName.toLowerCase()] ?? FaGithubSquare
         const color = colorMap[iconName.toLowerCase()] ?? ''
@@ -57,7 +57,7 @@ export default function SocialLinks() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={name}
-            className={`relative group p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ${color}`}
+            className={`relative group p-1.5 rounded-lg border border-slate-400 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ${color}`}
           >
             <Icon size={18} />
             <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 ease-out shadow-lg z-10">

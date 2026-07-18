@@ -38,7 +38,7 @@ export default function About() {
         <p className="text-xs font-semibold uppercase tracking-widest text-[#6d7f98] mb-2">
           Get To Know Me
         </p>
-        <h2 className="text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-violet-700 after:rounded-full tracking-wider">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-violet-700 after:rounded-full tracking-wider">
           About Me
         </h2>
       </div>
@@ -61,13 +61,13 @@ export default function About() {
           <h3 className="text-lg md:text-2xl font-bold text-gray-800 dark:text-gray-300">
             Bridging Creativity & Code
           </h3>
-          <p className="text-[#64748b] text-[1.05rem] leading-relaxed">
+          <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
             I am a software developer deeply passionate about crafting clean, efficient, and user-centric software solutions. My journey into tech stems from a curiosity about how complex back-end operations can elegantly translate into seamless front-end experiences.
           </p>
-          <p className="text-[#64748b] text-[1.05rem] leading-relaxed">
+          <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
             Whether it’s architecting robust web applications, optimizing database workflows, or engineering responsive UI elements, I strive to write code that is not just functional, but <strong className="text-violet-700 font-bold">scalable and maintainable</strong>.
           </p>
-          <p className="text-[#64748b] text-[1.05rem] leading-relaxed">
+          <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
             When I'm not coding, you can find me exploring new technical frameworks, refining my system design skills, or contributing to open-source collaborative projects.
           </p>
         </div>

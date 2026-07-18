@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className=" text-[#1e293b] pt-10 pb-3 ">
-      <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-2">
+      <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-4">
 
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
@@ -28,25 +28,14 @@ export default function Footer() {
               Coded in <span className='text-violet-700 dark:text-violet-600 font-semibold'>Visual Studio</span> Code with GitHub dark theme by yours truly. Built with <span className='text-violet-700 dark:text-violet-600 font-semibold'>Next.js</span> and deployed on <span className='text-violet-700 dark:text-violet-600 font-semibold'>Vercel.</span>
             </p>
           </div>
-
-          {/* Back to Top Button */}
-          <button
-            onClick={handleScrollToTop}
-            aria-label="Scroll back to top"
-            className="group flex items-center gap-1.5 text-xs font-semibold text-[#64748b] hover:text-violet-600 transition-colors duration-300 cursor-pointer self-end md:self-auto"
-          >
-            Back to top
-            <div className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-500 group-hover:border-[#007bff]/20 group-hover:bg-[#007bff]/5 transition-all duration-300">
-              <ArrowUp className="w-3.5 h-3.5 group-hover:text-violet-600 group-hover:-translate-y-1 transition-all duration-300" />
-            </div>
-          </button>
+          <div className="text-sm text-[#64748b] leading-relaxed">
+            {/* right side's text affair here... */}
+          </div>
         </div>
 
-        {/* Divider Line */}
-        <hr className="border-t border-violet-200/50 dark:border-slate-700/40 w-full m-0" />
-
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-0 sm:gap-2">
+        <hr className="border-t border-violet-200/50 dark:border-slate-700/40 w-full m-0" />
+        <div className="flex flex-col md:flex-row items-start justify-between sm:items-center gap-1 sm:gap-2">
 
           {/* Copyright text */}
           <p className="flex text-sm text-[#64748b] text-left whitespace-nowrap">
@@ -54,11 +43,24 @@ export default function Footer() {
           </p>
 
           {/* Social Platforms Links */}
-          <div className=" flex justify-end mt-2 sm:mt-0">
+          <div className=" flex justify-end mt-1 sm:mt-0">
             <SocialLinks />
           </div>
-
         </div>
+      </div>
+
+      {/* Back to Top Button */}
+      <div className="w-[92%] xl:w-[80%] mx-auto flex justify-end pt-2">
+        <button
+          onClick={handleScrollToTop}
+          aria-label="Scroll back to top"
+          className="group flex items-center gap-1.5 text-xs text-gray-400 hover:text-violet-600 transition-colors duration-300 cursor-pointer self-end md:self-auto"
+        >
+          Back to top
+          <div className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-500 group-hover:border-[#007bff]/20 group-hover:bg-[#007bff]/5 transition-all duration-300">
+            <ArrowUp className="w-3.5 h-3.5 group-hover:text-violet-600 group-hover:-translate-y-1 transition-all duration-300" />
+          </div>
+        </button>
       </div>
     </footer>
   );

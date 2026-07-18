@@ -3,7 +3,7 @@
 "use client";
 import Link from 'next/link';
 import Logo from './Helper/Home/Navbar/Logo';
-import { NavLinks } from '@/Constant/Constant';
+// import { NavLinks } from '@/Constant/Constant';
 import SocialLinks from './SocialLinks';
 import { ArrowUp } from 'lucide-react';
 
@@ -15,7 +15,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full text-[#1e293b] pt-10 pb-4 ">
+    <footer className=" text-[#1e293b] pt-10 pb-3 ">
       <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-2">
 
         {/* Top Section */}
@@ -46,15 +46,15 @@ export default function Footer() {
         <hr className="border-t border-violet-200/50 dark:border-slate-700/40 w-full m-0" />
 
         {/* Bottom Section */}
-        <div className="flex  justify-between items-center gap-1 sm:gap-2">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-0 sm:gap-2">
 
           {/* Copyright text */}
-          <p className="text-sm text-[#64748b] text-left whitespace-nowrap">
+          <p className="flex text-sm text-[#64748b] text-left whitespace-nowrap">
             &copy; {currentYear} Arif Hossain
           </p>
 
           {/* Social Platforms Links */}
-          <div className=" flex justify-end">
+          <div className=" flex justify-end mt-2 sm:mt-0">
             <SocialLinks />
           </div>
 

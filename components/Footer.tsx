@@ -3,7 +3,6 @@
 "use client";
 import Link from 'next/link';
 import Logo from './Helper/Home/Navbar/Logo';
-// import { NavLinks } from '@/Constant/Constant';
 import SocialLinks from './SocialLinks';
 import { ArrowUp } from 'lucide-react';
 
@@ -24,11 +23,11 @@ export default function Footer() {
           {/* Branding & Description */}
           <div className="flex flex-col items-start gap-4 max-w-2xl">
             <Logo />
-            <p className="text-sm text-[#64748b] leading-relaxed">
+            <p className="text-base text-[#64748b] leading-relaxed">
               Coded in <span className='text-violet-700 dark:text-violet-600 font-semibold'>Visual Studio</span> Code with GitHub dark theme by yours truly. Built with <span className='text-violet-700 dark:text-violet-600 font-semibold'>Next.js</span> and deployed on <span className='text-violet-700 dark:text-violet-600 font-semibold'>Vercel.</span>
             </p>
           </div>
-          <div className="text-sm text-[#64748b] leading-relaxed">
+          <div className="text-base text-[#64748b] leading-relaxed">
             {/* right side's text affair here... */}
           </div>
         </div>

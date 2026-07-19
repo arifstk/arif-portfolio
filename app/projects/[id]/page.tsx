@@ -98,13 +98,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           {/* Left — title, description, tech */}
           <div>
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl font-bold text-[#1e293b] dark:text-white leading-tight mb-4">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#1e293b] dark:text-white leading-tight mb-4">
               {title}
             </h1>
 
             {/* Description */}
             <div className="prose prose-slate dark:prose-invert max-w-none">
-              <p className="text-sm text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
+              <p className="text-base text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
                 {description}
               </p>
             </div>

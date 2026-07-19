@@ -12,15 +12,15 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
-// const font = Inter({
-//   weight: ["400", "500", "600", "700", "800", "900"],
-//   subsets: ["latin"],
-// });
-
-const font = Nunito({
+const font = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
+
+// const font = Nunito({
+//   weight: ["400", "500", "600", "700", "800", "900"],
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Arif Hossain",

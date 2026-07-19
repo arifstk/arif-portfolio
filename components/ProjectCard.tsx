@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ExternalLink, MoveRight } from 'lucide-react';
 // import { FaGithubSquare } from "react-icons/fa";
 import SourceCodeButton from './SourceCodeButton';
 
@@ -104,7 +104,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             className="mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-violet-700 dark:text-violet-500 border border-violet-100/70 dark:border-violet-900/30 bg-violet-50/40 dark:bg-violet-950/20 hover:bg-violet-100/60 dark:hover:bg-violet-900/30 transition-all duration-200"
           >
             View Details
-            <ArrowRight className="w-3.5 h-3.5" />
+            <MoveRight className="w-6 h-4" />
           </Link>
         )}
       </div>

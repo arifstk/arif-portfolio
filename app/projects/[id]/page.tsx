@@ -49,7 +49,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params;
   const project = await getProject(id);
   if (!project) notFound();
-  const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
+  const { title, description, image, images = [], techStack = [], demoUrl, githubUrl, outcome } = project;
 
   // const [project, hireButton] = await Promise.all([getProject(id), getHireButton()]);
   // if (!project) notFound();
@@ -134,11 +134,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Right — sticky action sidebar */}
           <aside className="lg:sticky lg:top-28 self-start space-y-4">
-
-<div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
-<p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Outcome</p>
-
-</div>
+            {/* Outcome */}
+            <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
+              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Outcome</p>
+              <p>{outcome}</p>
+            </div>
             {/* Card */}
             <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
               <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Project Links</p>

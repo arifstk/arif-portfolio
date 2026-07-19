@@ -17,6 +17,7 @@ type Project = {
   image: string; imagePublicId?: string;
   images: string[]; techStack: string[];
   demoUrl: string; githubUrl: string; order: number;
+  outcome: string;
 };
 type ContactItem = {
   _id?: string; label: string; value: string;
@@ -35,7 +36,7 @@ type Tab = "projects" | "contact" | "socials" | "messages" | "hire";
 
 const blankProject = (): Project => ({
   title: "", description: "", image: "", imagePublicId: "",
-  images: [], techStack: [], demoUrl: "", githubUrl: "", order: 0,
+  images: [], techStack: [], demoUrl: "", githubUrl: "", order: 0, outcome: "",
 });
 const blankContact = (): ContactItem => ({
   label: "", value: "", href: "#", iconName: "Mail",
@@ -628,13 +629,24 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
             </div>
             <Field label="Description">
               <textarea
-                className={inp + " resize-none"}
+                className={inp + " resize-y"}
                 rows={3}
                 value={editing.description}
                 onChange={e => setEditing(p => p && ({ ...p, description: e.target.value }))}
                 placeholder="Short description…"
               />
             </Field>
+
+            <Field label="Outcome">
+              <textarea
+                value={editing.outcome || ""}
+                onChange={(e) => setEditing(p => p && ({ ...p, outcome: e.target.value }))}
+                className={inp + " resize-y"}
+                rows={3}
+                placeholder="text here..."
+              />
+            </Field>
+
             <div className="grid grid-cols-2 gap-3">
               <Field label="Demo URL">
                 <input

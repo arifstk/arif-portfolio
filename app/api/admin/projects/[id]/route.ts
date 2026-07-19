@@ -15,12 +15,12 @@ async function guardAdmin() {
 
 export async function PUT(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await guardAdmin();
     await connectDB();
-    const { id } = await params;          // ← await here
+    const { id } = await params;
     const body = await req.json();
     const updated = await Project.findByIdAndUpdate(id, body, { new: true });
     if (!updated)
@@ -33,12 +33,12 @@ export async function PUT(
 
 export async function DELETE(
   _: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await guardAdmin();
     await connectDB();
-    const { id } = await params;          // ← await here
+    const { id } = await params; // ← await here
     const project = await Project.findById(id);
     if (project?.imagePublicId) {
       await deleteImage(project.imagePublicId).catch(() => {});

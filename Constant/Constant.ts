@@ -11,10 +11,10 @@ import { RiNextjsLine, RiTailwindCssFill } from "react-icons/ri";
 import { TbBrandMongodb, TbBrandSocketIo, TbBrandTypescript } from "react-icons/tb";
 
 export const NavLinks = [
-  {name: 'Home', path: '/'},
+  // {name: 'Home', path: '/'},
   {name: 'About', path: '/about'},
-  {name: 'Skills', path: '/skills'},
-  {name: 'Projects', path: '/projects'},
+  // {name: 'Skills', path: '/skills'},
+  {name: 'Works', path: '/projects'},
   // {name: 'Contact', path: '/contact'},
 ];
 

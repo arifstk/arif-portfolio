@@ -20,7 +20,9 @@ const Nav = () => {
         <div className='flex items-center justify-between w-[92%] xl:w-[80%] mx-auto h-full'>
           {/* Logo */}
           <Logo />
-          {/* Desktop Navigation Links */}
+          <div className='flex items-center gap-0 md:gap-4'>
+
+{/* Desktop Navigation Links */}
           <nav className='hidden md:flex items-center gap-6'>
             {NavLinks.map((link) => {
               const active = pathname === link.path
@@ -38,7 +40,7 @@ const Nav = () => {
               )
             })}
           </nav>
-          <div className='flex items-center gap-0 md:gap-4'>
+
             {/* contact */}
             <Link href={'/contact'}
               className='text-sm bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200 dark:backdrop-blur-sm'

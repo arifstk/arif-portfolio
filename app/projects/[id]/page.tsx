@@ -130,15 +130,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
               </div>
             )}
+
+            {/* Outcome */}
+            <div className="mt-8">
+              <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider pb-2">✔️ Outcome</p>
+              <div className=" rounded-2xl space-y-3 bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-6 border border-slate-200 dark:border-slate-800
+            ">
+                <p>{outcome}</p>
+              </div>
+            </div>
           </div>
 
           {/* Right — sticky action sidebar */}
           <aside className="lg:sticky lg:top-28 self-start space-y-4">
-            {/* Outcome */}
-            <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
-              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Outcome</p>
-              <p>{outcome}</p>
-            </div>
             {/* Card */}
             <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
               <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Project Links</p>

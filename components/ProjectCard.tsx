@@ -57,7 +57,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Tech Stack Badges */}
-        <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
+        {/* <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
           {techStack.map((tech, index) => (
             <span
               key={index}
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {tech}
             </span>
           ))}
-        </div>
+        </div> */}
 
         {/* Action Buttons */}
         <div className="grid grid-cols-2 gap-3">
@@ -79,16 +79,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <ExternalLink className="w-4 h-4" />
             Live Demo
           </Link>
-
-          {/* <Link
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 py-2 rounded-xl text-sm font-semibold text-[#1e293b] dark:text-gray-200 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-gray-800 hover:border-violet-300 dark:hover:border-violet-800"
-          >
-            <FaGithubSquare className="w-4 h-4 text-slate-700 dark:text-slate-400" />
-            Source Code
-          </Link> */}
 
           <SourceCodeButton
             githubUrl={githubUrl}

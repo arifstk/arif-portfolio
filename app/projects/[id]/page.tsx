@@ -122,7 +122,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {techStack.map((tech: string) => (
                     <span
                       key={tech}
-                      className="text-[12px] font-semibold px-3 py-1.5 bg-[#f8fafc] dark:bg-gray-900 dark:border-gray-700 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
+                      className="text-[12px] font-semibold px-3 py-1 bg-violet-100 dark:bg-gray-900 border-violet-300 dark:border-gray-700 text-slate-600 dark:text-slate-300 rounded-lg border hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
                     >
                       {tech}
                     </span>
@@ -133,8 +133,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
 
           {/* Right — sticky action sidebar */}
-          <aside className="lg:sticky lg:top-28 self-start space-y-3">
+          <aside className="lg:sticky lg:top-28 self-start space-y-4">
 
+<div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
+<p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Outcome</p>
+
+</div>
             {/* Card */}
             <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
               <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Project Links</p>

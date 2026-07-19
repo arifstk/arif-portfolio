@@ -145,7 +145,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   href={demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 hover:shadow-[0_4px_16px_rgba(139,92,246,0.3)] transition-all duration-200"
+                  className="flex items-center justify-center gap-2 w-full py-2 rounded-xl text-sm font-semibold text-white bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 hover:shadow-[0_4px_16px_rgba(139,92,246,0.3)] transition-all duration-200"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Live Demo

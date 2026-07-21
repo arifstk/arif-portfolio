@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation'
 import Logo from './Logo'
 import MobileNav from './MobileNav'
 import { useSession, signOut } from 'next-auth/react'
+import LinkedInNavBtn from '@/components/LinkedInNavBtn'
 
 const Nav = () => {
   const pathname = usePathname()
@@ -22,24 +23,29 @@ const Nav = () => {
           <Logo />
           <div className='flex items-center gap-0 md:gap-4'>
 
-{/* Desktop Navigation Links */}
-          <nav className='hidden md:flex items-center gap-6'>
-            {NavLinks.map((link) => {
-              const active = pathname === link.path
-              return (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  className='relative group text-sm font-medium transition-colors duration-200 py-1 text-gray-800 dark:text-gray-300'
-                >
-                  {link.name}
-                  {/* Underline spans for active/hover effect */}
-                  <span className={`absolute -bottom-0.5 right-1/2 h-0.5 bg-violet-700 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
-                  <span className={`absolute -bottom-0.5 left-1/2 h-0.5 bg-violet-700 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
-                </Link>
-              )
-            })}
-          </nav>
+            {/* Desktop Navigation Links */}
+            <nav className='hidden sm:flex items-center gap-6'>
+              {NavLinks.map((link) => {
+                const active = pathname === link.path
+                return (
+                  <Link
+                    key={link.path}
+                    href={link.path}
+                    className='relative group text-sm font-semibold transition-colors duration-200 py-1 text-gray-800 dark:text-gray-300'
+                  >
+                    {link.name}
+                    {/* Underline spans for active/hover effect */}
+                    <span className={`absolute -bottom-0.5 right-1/2 h-0.5 bg-violet-700 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
+                    <span className={`absolute -bottom-0.5 left-1/2 h-0.5 bg-violet-700 transition-all duration-300 ease-out ${active ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`} />
+                  </Link>
+                )
+              })}
+            </nav>
+
+            {/* LinkedIn Nav Button */}
+            <div className='hidden md:flex'>
+              <LinkedInNavBtn />
+            </div>
 
             {/* contact */}
             <Link href={'/contact'}

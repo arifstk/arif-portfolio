@@ -122,7 +122,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {techStack.map((tech: string) => (
                     <span
                       key={tech}
-                      className="text-[12px] font-semibold px-3 py-1 bg-violet-100 dark:bg-gray-900 border-violet-300 dark:border-gray-700 text-slate-600 dark:text-slate-300 rounded-lg border hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
+                      className="text-sm px-3.5 py-0.5 bg-violet-50 dark:bg-gray-900 border-violet-200 dark:border-gray-700 text-violet-700 dark:text-slate-300 rounded-full border hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
                     >
                       {tech}
                     </span>
@@ -132,13 +132,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             )}
 
             {/* Outcome */}
-            <div className="mt-8">
-              <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider pb-2">✔️ Outcome</p>
-              <div className=" rounded-2xl space-y-3 bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-6 border border-slate-200 dark:border-slate-800
+            {outcome && (
+              <div className="mt-8">
+                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider pb-2">✔️ Outcome</p>
+                <div className=" rounded-2xl space-y-3 bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-6 border border-violet-200 dark:border-slate-800
             ">
-                <p>{outcome}</p>
+                  <p className="text-base text-[#505c6c] dark:text-slate-300 leading-relaxed whitespace-pre-line">{outcome}</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Right — sticky action sidebar */}

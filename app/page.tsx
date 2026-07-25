@@ -5,13 +5,15 @@ import HeroMobile from '@/components/HeroMobile';
 import HireButtonBanner from '@/components/HireButtonBanner';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
+import { getProjects } from '@/lib/data/projects';
 
-const HomePage = () => {
+const HomePage = async () => {
+  const projects = await getProjects();
   return (
     <div className='overflow-hidden min-h-screen pt-8 md:pt-20'>
       <HeroMobile />
       <Hero />
-      <Projects />
+      <Projects projects={projects} />
       <Skills />
       <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonBanner />

@@ -43,7 +43,6 @@ export default async function RootLayout({
       className={cn("h-full", "antialiased", font.className, "font-sans", geist.variable)}
     >
       <body className="min-h-screen flex flex-col">
-        <SmoothScroll />
         <Provider session={session}>
           {isAdmin ? (
             <>{children}</>

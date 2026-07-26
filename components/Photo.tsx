@@ -43,7 +43,7 @@ const circleColors = ["#8e51ff"];
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
-          transition: { delay: 2, duration: 0.4, ease: "easeIn" },
+          transition: { delay: 0.5, duration: 0.4, ease: "easeIn" },
         }}
         className="relative"
       >
@@ -51,7 +51,7 @@ const circleColors = ["#8e51ff"];
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
-            transition: { delay: 2.4, duration: 0.4, ease: "easeInOut" },
+            transition: { delay: 0.5, duration: 0.4, ease: "easeInOut" },
           }}
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
         >

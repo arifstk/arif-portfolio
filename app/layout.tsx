@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 const font = Inter({
@@ -23,9 +24,46 @@ const font = Inter({
 // });
 
 export const metadata: Metadata = {
-  title: "Arif Hossain",
-  description: "Portfolio website of Arif",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: "%s | Arif Hossain",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "Arif Hossain",
+    "Arif Hossain Portfolio",
+    "Full-Stack Developer",
+    "Next.js Developer",
+    "Node.js Developer",
+    "Express.js Developer",
+    "React Developer",
+    "MongoDB Developer",
+    "Tailwind CSS",
+    "Web Developer Portfolio",
+  ],
+  authors: [{ name: "Arif Hossain" }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: SITE_NAME,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
+  verification: {
+    // google-verification-code
+  }
 };
+
 
 export default async function RootLayout({
   children,

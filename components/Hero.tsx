@@ -11,12 +11,12 @@ const Hero = () => {
       {/* ── Text ────────────── */}
       <div className='relative z-10 flex flex-col items-start gap-5 md:gap-7 text-start px-6 py-10 md:p-0 text-white md:text-gray-800 md:dark:text-white/70'>
         <div>
-          <h3 className='font-semibold tracking-wider mb-1 text-gray-200 md:text-gray-800 md:dark:text-white/70'>
+          <p className='font-semibold tracking-wider mb-1 text-gray-200 md:text-gray-800 md:dark:text-white/70'>
             Software Developer
-          </h3>
-          <h2 className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider'>
+          </p>
+          <p className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider'>
             Hello I&apos;m
-          </h2>
+          </p>
           <h1 className='text-violet-700 dark:text-violet-600 text-5xl md:text-7xl tracking-tight sm:tracking-normal font-semibold'>
             Arif Hossain
           </h1>

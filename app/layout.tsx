@@ -10,7 +10,6 @@ import Footer from "@/components/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
-import SmoothScroll from "@/components/Helper/SmoothScroll";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 const font = Inter({

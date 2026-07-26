@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
+import SmoothScroll from "@/components/Helper/SmoothScroll";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 const font = Inter({
@@ -42,6 +43,7 @@ export default async function RootLayout({
       className={cn("h-full", "antialiased", font.className, "font-sans", geist.variable)}
     >
       <body className="min-h-screen flex flex-col">
+        <SmoothScroll />
         <Provider session={session}>
           {isAdmin ? (
             <>{children}</>

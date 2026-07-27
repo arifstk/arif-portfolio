@@ -55,10 +55,19 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
         alt: 'Arif Hossain - Software Developer Portfolio',
+        type: 'image/png',
+      },
+      // Additional image as callback
+      {
+        url: `${SITE_URL}/og-image.png`,
+        width: 800,
+        height: 420,
+        alt: 'Arif Hossain Portfolio',
+        type: 'image/png',
       },
     ],
   },
@@ -66,12 +75,33 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [`${SITE_URL}/og-image.jpg`],
+    images: [`${SITE_URL}/og-image.png`],
   },
   verification: {
     // google-verification-code
     google: 'btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8',
-  }
+  },
+
+  other: {
+    // Facebook / WhatsApp / Messenger
+    'og:image:type': 'image/png',
+    'og:image:width': '1200',
+    'og:image:height': '630',
+    'og:image:alt': 'Arif Hossain - Software Developer Portfolio',
+    'og:locale': 'en_US',
+    'og:updated_time': new Date().toISOString(),
+
+    // LinkedIn / Pinterest
+    'og:image:secure_url': `${SITE_URL}/og-image.png`,
+
+    // Instagram (via WhatsApp/Facebook)
+    'og:type': 'website',
+
+    // Pinterest Specific
+    'pinterest': 'nopin',
+    // Google Search Console
+    'format-detection': 'telephone=no',
+  },
 };
 
 
@@ -89,6 +119,21 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={cn("h-full", "antialiased", font.className, "font-sans", geist.variable)}
     >
+      <head>
+        {/* ✅ Pinterest Specific */}
+        <meta name="pinterest-rich-pin" content="true" />
+        {/* ✅ LinkedIn Specific */}
+        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.png`} />
+        {/* ✅ WhatsApp / Instagram / Messenger */}
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        {/* ✅ Fallback for all platforms */}
+        <meta name="image" content={`${SITE_URL}/og-image.png`} />
+        {/* ✅ Google verification (backup) */}
+        <meta name="google-site-verification" content="btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8" />
+      </head>
+
       <body className="min-h-screen flex flex-col">
         <Provider session={session}>
           {isAdmin ? (

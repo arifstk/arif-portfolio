@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "Express.js Developer",
     "React Developer",
     "MongoDB Developer",
-    "Tailwind CSS",
+    "Tailwind CSS Developer",
     "Web Developer Portfolio",
   ],
   authors: [{ name: "Arif Hossain" }],
@@ -50,14 +50,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    url: "/",
+    url: SITE_URL,
     siteName: SITE_NAME,
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Arif Hossain - Software Developer Portfolio',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   verification: {
     // google-verification-code

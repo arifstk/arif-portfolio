@@ -24,16 +24,6 @@ async function getProject(id: string) {
   }
 }
 
-// async function getHireButton() {
-//   try {
-//     await connectDB();
-//     const doc = await HireButton.findOne().lean();
-//     return (doc as any) ?? { logo: "", text: "Hire on Upwork", link: "#" };
-//   } catch {
-//     return { logo: "", text: "Hire on Upwork", link: "#" };
-//   }
-// }
-
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
   const project = await getProject(id);
@@ -51,13 +41,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   if (!project) notFound();
   const { title, description, image, images = [], techStack = [], demoUrl, githubUrl, outcome } = project;
 
-  // const [project, hireButton] = await Promise.all([getProject(id), getHireButton()]);
-  // if (!project) notFound();
-
-  // const { title, description, image, images = [], techStack = [], demoUrl, githubUrl } = project;
-
   return (
-    <main className="min-h-screen pt-15 md:pt-24 pb-5 w-[92%] xl:w-[80%] mx-auto">
+    <main className="min-h-screen pt-20 md:pt-24 pb-5 w-[92%] xl:w-[80%] mx-auto">
 
       {/* ── Back nav ─────────────────────────────────── */}
       <div className=" mb-8">

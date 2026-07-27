@@ -29,7 +29,7 @@ const HomePage = async () => {
   };
 
   return (
-    <div className='overflow-hidden min-h-screen pt-8 md:pt-20'>
+    <div className='overflow-hidden min-h-screen mt-1 pt-15 md:pt-20'>
       <Script
         id="person-jsonld"
         type="application/ld+json"

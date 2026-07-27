@@ -81,7 +81,7 @@ const MobileNav = () => {
                   ${active
                     ? 'bg-violet-200 hover:bg-violet-300 border border-violet-400 dark:border-violet-800 dark:bg-violet-900/40 text-violet-800 dark:text-violet-200'
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
-                  }`} 
+                  }`}
               >
                 {link.name}
                 {active && (

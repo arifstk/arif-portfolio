@@ -34,9 +34,6 @@ export const metadata: Metadata = {
 export default async function Page() {
   const projects = await getProjects();
 
-  // Structured data — helps search engines understand this is a
-  // list/collection of individual project pages, and can surface
-  // rich results (e.g. site links) for the project titles.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -54,7 +51,7 @@ export default async function Page() {
   };
 
   return (
-    <div className="pt-15 md:pt-25 mb-10">
+    <div className="pt-20 md:pt-25 mb-10">
       <Script
         id="projects-jsonld"
         type="application/ld+json"

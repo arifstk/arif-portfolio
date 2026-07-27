@@ -55,19 +55,19 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Arif Hossain - Software Developer Portfolio',
-        type: 'image/png',
+        type: 'image/jpg',
       },
       // Additional image as callback
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 800,
         height: 420,
         alt: 'Arif Hossain Portfolio',
-        type: 'image/png',
+        type: 'image/jpeg',
       },
     ],
   },
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [`${SITE_URL}/og-image.png`],
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   verification: {
     // google-verification-code
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
 
   other: {
     // Facebook / WhatsApp / Messenger
-    'og:image:type': 'image/png',
+    'og:image:type': 'image/jpg',
     'og:image:width': '1200',
     'og:image:height': '630',
     'og:image:alt': 'Arif Hossain - Software Developer Portfolio',
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     'og:updated_time': new Date().toISOString(),
 
     // LinkedIn / Pinterest
-    'og:image:secure_url': `${SITE_URL}/og-image.png`,
+    'og:image:secure_url': `${SITE_URL}/og-image.jpg`,
 
     // Instagram (via WhatsApp/Facebook)
     'og:type': 'website',
@@ -123,13 +123,13 @@ export default async function RootLayout({
         {/* ✅ Pinterest Specific */}
         <meta name="pinterest-rich-pin" content="true" />
         {/* ✅ LinkedIn Specific */}
-        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.jpg`} />
         {/* ✅ WhatsApp / Instagram / Messenger */}
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:type" content="image/jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         {/* ✅ Fallback for all platforms */}
-        <meta name="image" content={`${SITE_URL}/og-image.png`} />
+        <meta name="image" content={`${SITE_URL}/og-image.jpg`} />
         {/* ✅ Google verification (backup) */}
         <meta name="google-site-verification" content="btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8" />
       </head>

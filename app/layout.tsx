@@ -18,10 +18,8 @@ const font = Inter({
   subsets: ["latin"],
 });
 
-// const font = Nunito({
-//   weight: ["400", "500", "600", "700", "800", "900"],
-//   subsets: ["latin"],
-// });
+
+const getCurrentTimestamp = () => new Date().toISOString();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -55,15 +53,14 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/og-image.jpg?t=${Date.now()}`, // URL with timestamp
         width: 1200,
         height: 630,
         alt: 'Arif Hossain - Software Developer Portfolio',
-        type: 'image/jpg',
+        type: 'image/jpeg',
       },
-      // Additional image as callback
       {
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
         width: 800,
         height: 420,
         alt: 'Arif Hossain Portfolio',
@@ -75,35 +72,25 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [`${SITE_URL}/og-image.jpg`],
+    images: [`${SITE_URL}/og-image.jpg?t=${Date.now()}`],
   },
   verification: {
-    // google-verification-code
     google: 'btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8',
   },
-
+  // ✅ others social media
   other: {
-    // Facebook / WhatsApp / Messenger
-    'og:image:type': 'image/jpg',
+    'og:image': `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
+    'og:image:secure_url': `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
+    'og:image:type': 'image/jpeg',
     'og:image:width': '1200',
     'og:image:height': '630',
     'og:image:alt': 'Arif Hossain - Software Developer Portfolio',
-    'og:locale': 'en_US',
     'og:updated_time': new Date().toISOString(),
-
-    // LinkedIn / Pinterest
-    'og:image:secure_url': `${SITE_URL}/og-image.jpg`,
-
-    // Instagram (via WhatsApp/Facebook)
-    'og:type': 'website',
-
-    // Pinterest Specific
+    'og:locale': 'en_US',
     'pinterest': 'nopin',
-    // Google Search Console
     'format-detection': 'telephone=no',
   },
 };
-
 
 export default async function RootLayout({
   children,
@@ -113,6 +100,9 @@ export default async function RootLayout({
   const pathname = headersList.get("x-pathname") ?? "";
   const isAdmin = pathname.startsWith("/admin");
 
+  // ✅ dynamic timestamp
+  const timestamp = Date.now();
+
   return (
     <html
       lang="en"
@@ -120,17 +110,28 @@ export default async function RootLayout({
       className={cn("h-full", "antialiased", font.className, "font-sans", geist.variable)}
     >
       <head>
-        {/* ✅ Pinterest Specific */}
+        {/* ✅ Pinterest */}
         <meta name="pinterest-rich-pin" content="true" />
-        {/* ✅ LinkedIn Specific */}
-        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.jpg`} />
+
+        {/* ✅ LinkedIn */}
+        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.jpg?t=${timestamp}`} />
+
         {/* ✅ WhatsApp / Instagram / Messenger */}
-        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        {/* ✅ Fallback for all platforms */}
-        <meta name="image" content={`${SITE_URL}/og-image.jpg`} />
-        {/* ✅ Google verification (backup) */}
+        <meta property="og:image:alt" content="Arif Hossain - Software Developer Portfolio" />
+
+        {/* ✅ dynamic  og:image  */}
+        <meta property="og:image" content={`${SITE_URL}/og-image.jpg?t=${timestamp}`} />
+
+        {/* ✅ og:updated_time */}
+        <meta property="og:updated_time" content={new Date().toISOString()} />
+
+        {/* ✅ Fallback */}
+        <meta name="image" content={`${SITE_URL}/og-image.jpg?t=${timestamp}`} />
+
+        {/* ✅ Google verification */}
         <meta name="google-site-verification" content="btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8" />
       </head>
 

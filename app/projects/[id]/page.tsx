@@ -107,7 +107,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {techStack.map((tech: string) => (
                     <span
                       key={tech}
-                      className="text-xs font-semibold px-3.5 py-0.5 bg-violet-50 dark:bg-gray-900 border-violet-100 dark:border-gray-700 text-slate-500 dark:text-slate-400 rounded-full border hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
+                      className="text-xs px-3.5 py-0.5 border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60
+                       text-slate-500 dark:text-slate-400 rounded-full hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
                     >
                       {tech}
                     </span>

@@ -9,6 +9,7 @@ import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import { getProjects } from '@/lib/data/projects';
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/seo';
+import GitHubActivity from "@/components/GitHubActivity";
 
 export const metadata: Metadata = {
   title: { absolute: SITE_NAME },
@@ -41,6 +42,9 @@ const HomePage = async () => {
       <Skills />
       <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonBanner />
+      </div>
+      <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
+        <GitHubActivity />
       </div>
     </div>
   )

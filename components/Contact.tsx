@@ -3,15 +3,25 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { FaGithub  } from "react-icons/fa"
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { ContactItem } from "@/types";
 
 // Map icon names → components (mirrors your admin setup)
 const ICON_MAP: Record<string, React.ElementType> = {
-  Mail, Phone, MapPin, Globe,
+  Mail, Phone, MapPin, 
+  Github: FaGithub,
   Twitter: FaXTwitter,
   Linkedin: FaLinkedin,
+
+  // Lowercase fallback for legacy data
+  mail: Mail,
+  phone: Phone,
+  mappin: MapPin,
+  github: FaGithub,
+  twitter: FaXTwitter,
+  linkedin: FaLinkedin,
 };
 
 type FormState = { name: string; email: string; subject: string; message: string };

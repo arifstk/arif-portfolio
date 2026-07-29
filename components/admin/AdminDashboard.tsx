@@ -9,7 +9,8 @@ import {
 } from "react-icons/fa";
 import { SiUpwork } from "react-icons/si";
 import { FaXTwitter, FaTiktok, FaBehance } from "react-icons/fa6";
-import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { FaGithub  } from "react-icons/fa"
 
 // ─── Types ───────────────────────────────────────
 type Project = {
@@ -67,7 +68,7 @@ const CONTACT_ICONS: { key: string; label: string; Icon: React.ElementType; colo
   { key: "Mail", label: "Mail", Icon: Mail, color: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-900/30" },
   { key: "Phone", label: "Phone", Icon: Phone, color: "text-green-600 dark:text-green-400", bg: "bg-green-50 dark:bg-green-900/30" },
   { key: "MapPin", label: "MapPin", Icon: MapPin, color: "text-red-500 dark:text-red-400", bg: "bg-red-50 dark:bg-red-900/30" },
-  { key: "Globe", label: "Globe", Icon: Globe, color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
+  { key: "Github", label: "Github", Icon: FaGithub, color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
   { key: "Twitter", label: "Twitter", Icon: FaXTwitter, color: "text-sky-500 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-900/30" },
   { key: "Linkedin", label: "LinkedIn", Icon: FaLinkedin, color: "text-blue-700 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-900/30" },
 ];

@@ -25,12 +25,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_NAME,
-    template: "%s | Arif Hossain",
+    template: "%s | Shaikh Arif",
   },
   description: SITE_DESCRIPTION,
   keywords: [
+    "Shaikh Arif",
     "Arif Hossain",
-    "Arif Hossain Portfolio",
+    "Shaikh Arif Developer",
+    "Shaikh Arif Portfolio",
     "Full-Stack Developer",
     "Next.js Developer",
     "Node.js Developer",
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
     "Tailwind CSS Developer",
     "Web Developer Portfolio",
   ],
-  authors: [{ name: "Arif Hossain" }],
+  authors: [{ name: "Shaikh Arif" }],
   robots: {
     index: true,
     follow: true,
@@ -56,14 +58,14 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og-image.jpg?t=${Date.now()}`, // URL with timestamp
         width: 1200,
         height: 630,
-        alt: 'Arif Hossain - Software Developer Portfolio',
+        alt: 'Shaikh Arif | Software Developer Portfolio',
         type: 'image/jpeg',
       },
       {
         url: `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
         width: 800,
         height: 420,
-        alt: 'Arif Hossain Portfolio',
+        alt: 'Shaikh Arif | Software Developer Portfolio',
         type: 'image/jpeg',
       },
     ],
@@ -84,7 +86,7 @@ export const metadata: Metadata = {
     'og:image:type': 'image/jpeg',
     'og:image:width': '1200',
     'og:image:height': '630',
-    'og:image:alt': 'Arif Hossain - Software Developer Portfolio',
+    'og:image:alt': 'Shaikh Arif | Software Developer Portfolio',
     'og:updated_time': new Date().toISOString(),
     'og:locale': 'en_US',
     'pinterest': 'nopin',
@@ -120,7 +122,7 @@ export default async function RootLayout({
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Arif Hossain - Software Developer Portfolio" />
+        <meta property="og:image:alt" content="Shaikh Arif | Software Developer Portfolio" />
 
         {/* ✅ dynamic  og:image  */}
         <meta property="og:image" content={`${SITE_URL}/og-image.jpg?t=${timestamp}`} />

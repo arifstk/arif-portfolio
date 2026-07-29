@@ -15,7 +15,7 @@ export default function Footer() {
 
   return (
     <footer className=" text-[#1e293b] pt-10 pb-3 ">
-      <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-4">
+      <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-4 md:pb-7">
 
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
@@ -49,15 +49,15 @@ export default function Footer() {
       </div>
 
       {/* Back to Top Button */}
-      <div className="w-[92%] xl:w-[80%] mx-auto flex justify-end pt-2 animate-pulse">
+      <div className="relative w-[92%] xl:w-[80%] mx-auto flex justify-end pt-2 animate-pulse">
         <button
           onClick={handleScrollToTop}
           aria-label="Scroll back to top"
-          className="group flex items-center gap-1.5 text-xs text-gray-400 hover:text-violet-600 transition-colors duration-300 cursor-pointer self-end md:self-auto"
+          className="fixed bottom-1.5 group flex items-center gap-1.5 text-xs text-gray-400 hover:text-violet-600 transition-colors duration-300 cursor-pointer self-end md:self-auto"
         >
-          Back to top
+        
           <div className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-500 group-hover:border-[#007bff]/20 group-hover:bg-[#007bff]/5 transition-all duration-300">
-            <ArrowUp className="w-3.5 h-3.5 group-hover:text-violet-600 text-violet-700 group-hover:-translate-y-1 transition-all duration-300" />
+            <ArrowUp className="w-5 h-5 font-bold group-hover:text-violet-600 text-violet-700 group-hover:-translate-y-1 transition-all duration-300" />
           </div>
         </button>
       </div>

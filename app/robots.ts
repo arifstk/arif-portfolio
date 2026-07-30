@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: "/", "/_next/image",
+        allow: ["/", "/_next/image"],
         disallow: ["/admin", "/api", "/_next/static", "/_next/data"],
       },
     ],

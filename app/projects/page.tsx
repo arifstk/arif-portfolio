@@ -8,7 +8,7 @@ import { getProjects } from "@/lib/data/projects";
 
 export const dynamic = "force-dynamic";
 
-const PAGE_TITLE = "Projects — Arif Hossain | Full-Stack Next.js Developer";
+const PAGE_TITLE = "Projects — Shaikh Arif | Full-Stack Next.js Developer";
 const PAGE_DESCRIPTION =
   "Selected Next.js full-stack projects covering production systems, admin dashboards, and internal tools — built with MongoDB, Tailwind CSS, and NextAuth.";
 

@@ -65,7 +65,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="w-full px-1 sm:px-2 pt-10 md:pt-20 flex justify-center">
+    <section className="w-full px-1 sm:px-2 pt-20 md:pt-25 flex justify-center">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap');
         .font-syne { font-family: 'Syne', sans-serif; }

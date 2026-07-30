@@ -4,7 +4,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import toast from "react-hot-toast";
 
-
 type BlogSection = {
   heading: string;
   paragraph: string;
@@ -24,7 +23,6 @@ type BlogItem = {
   sections: BlogSection[];
   createdAt?: string;
 };
-
 
 const fileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -48,18 +46,17 @@ const blankBlog = (): BlogItem => ({
 });
 
 const inputClasses = [
-  "w-full bg-slate-800/80 text-slate-100",
-  "border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-sm",
-  "placeholder-slate-500",
+  "w-full bg-slate-50 dark:bg-slate-900/80 text-slate-800 dark:text-slate-100",
+  "border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-sm",
+  "placeholder-slate-400 dark:placeholder-slate-500",
   "focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600",
-  "transition-all",
+  "transition-all duration-200",
 ].join(" ");
-
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+      <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">
         {label}
       </label>
       {children}
@@ -69,13 +66,13 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-      <div className="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl max-h-[88vh] overflow-y-auto">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 sticky top-0 bg-slate-900 z-10">
-          <h3 className="text-base font-bold text-slate-100">{title}</h3>
+    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="w-full max-w-2xl bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800/80 rounded-3xl shadow-[0_20px_50px_rgba(124,58,237,0.15)] max-h-[88vh] overflow-y-auto">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800/80 sticky top-0 bg-white/95 dark:bg-[#0b1329]/95 backdrop-blur-md z-10">
+          <h3 className="text-base font-bold text-slate-800 dark:text-slate-100">{title}</h3>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors cursor-pointer"
+            className="w-8 h-8 flex items-center justify-center rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
           >
             ✕
           </button>
@@ -135,7 +132,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     setModal(true);
   }
 
-
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !editing) return;
@@ -144,7 +140,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     try {
       const base64 = await fileToBase64(file);
 
-      // 2. Call admin upload endpoint
       const res = await fetch("/api/admin/upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -174,7 +169,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
       setUploading(false);
     }
   };
-
 
   function addSection() {
     if (!editing) return;
@@ -250,41 +244,45 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="relative space-y-6">
+
+      {/* Background Glow Effect */}
+      <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-48 bg-violet-600/10 dark:bg-violet-600/15 blur-[100px] rounded-full" />
+
       {/* Top Header Controls */}
-      <div className="flex items-center justify-between">
+      {/* <div className="relative flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-slate-100">Blog Posts</h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Blog Posts</h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Manage your articles, headings, paragraphs, and cover photos
           </p>
         </div>
         <button
           onClick={openNew}
-          className="px-4 py-2.5 bg-violet-700 hover:bg-violet-600 text-white rounded-xl text-xs font-semibold transition-colors cursor-pointer shadow-lg shadow-violet-950/40"
+          className="px-4 py-2.5 bg-violet-700 hover:bg-violet-600 text-white rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer shadow-lg shadow-violet-700/25 dark:shadow-violet-950/50 hover:shadow-violet-600/40 hover:-translate-y-0.5"
         >
           + Add New Article
         </button>
-      </div>
+      </div> */}
 
       {/* Delete Confirmation Modal */}
       {confirmDelete && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="w-80 bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl">
-            <h4 className="text-sm font-bold text-slate-100">Confirm Deletion</h4>
-            <p className="text-xs text-slate-400 mt-1 mb-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-80 bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-2xl">
+            <h4 className="text-sm font-bold text-slate-800 dark:text-slate-100">Confirm Deletion</h4>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-5">
               Are you sure you want to delete this blog post? This action cannot be undone.
             </p>
             <div className="flex gap-2 justify-end">
               <button
                 onClick={() => setConfirmDelete(null)}
-                className="px-3.5 py-2 rounded-xl text-xs font-medium text-slate-400 hover:bg-slate-800 transition-colors"
+                className="px-3.5 py-2 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDelete(confirmDelete)}
-                className="px-3.5 py-2 rounded-xl text-xs font-medium bg-red-600 hover:bg-red-700 text-white transition-colors"
+                className="px-3.5 py-2 rounded-xl text-xs font-medium bg-red-600 hover:bg-red-700 text-white transition-colors cursor-pointer"
               >
                 Delete
               </button>
@@ -306,7 +304,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                 className={inputClasses}
                 value={editing.title}
                 onChange={(e) => setEditing({ ...editing, title: e.target.value })}
-                placeholder="Turn Google Drive Into an AI Knowledge Base..."
+                placeholder="Write Blog Title..."
               />
             </Field>
 
@@ -327,10 +325,10 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                   accept="image/*"
                   onChange={handleImageUpload}
                   disabled={uploading}
-                  className="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-violet-700 file:text-white hover:file:bg-violet-600 cursor-pointer border border-slate-700/80 rounded-xl bg-slate-800/80 p-1"
+                  className="w-full text-xs text-slate-500 dark:text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-violet-700 file:text-white hover:file:bg-violet-600 cursor-pointer border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-900/80 p-1 transition-colors"
                 />
                 {uploading && (
-                  <p className="text-[11px] text-violet-400 mt-1 font-medium">
+                  <p className="text-[11px] text-violet-600 dark:text-violet-400 mt-1 font-medium">
                     Uploading image to Cloudinary...
                   </p>
                 )}
@@ -339,7 +337,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
 
             {/* Cover Image Preview */}
             {editing.coverImage && (
-              <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/60 mt-2">
+              <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mt-2">
                 <img
                   src={editing.coverImage}
                   alt="Cover preview"
@@ -355,7 +353,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                 rows={2}
                 value={editing.excerpt}
                 onChange={(e) => setEditing({ ...editing, excerpt: e.target.value })}
-                placeholder="DriveIntel transforms Google Drive into a searchable AI-powered knowledge base..."
+                placeholder="Write card Summary..."
               />
             </Field>
 
@@ -380,15 +378,15 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
             </div>
 
             {/* Content Sections Block */}
-            <div className="pt-3 border-t border-slate-800 space-y-3">
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold text-violet-400 uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-violet-700 dark:text-violet-400 uppercase tracking-wider">
                   Article Body Sections
                 </span>
                 <button
                   type="button"
                   onClick={addSection}
-                  className="text-xs font-semibold text-violet-400 hover:text-violet-300 hover:underline cursor-pointer"
+                  className="text-xs font-semibold text-violet-700 dark:text-violet-400 hover:text-violet-600 dark:hover:text-violet-300 hover:underline cursor-pointer"
                 >
                   + Add Heading & Paragraph
                 </button>
@@ -397,13 +395,13 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
               {editing.sections.map((sec, idx) => (
                 <div
                   key={idx}
-                  className="p-4 bg-slate-800/40 border border-slate-800 rounded-2xl space-y-3 relative"
+                  className="p-4 bg-slate-50/80 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3 relative"
                 >
                   {editing.sections.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeSection(idx)}
-                      className="absolute top-3 right-3 text-xs font-semibold text-red-400 hover:text-red-300"
+                      className="absolute top-3 right-3 text-xs font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 cursor-pointer"
                     >
                       Remove
                     </button>
@@ -430,17 +428,17 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
             </div>
 
             {/* Modal Actions */}
-            <div className="flex gap-2 pt-4 border-t border-slate-800">
+            <div className="flex gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
               <button
                 onClick={handleSave}
                 disabled={saving || uploading}
-                className="flex-1 py-3 bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-colors cursor-pointer shadow-lg shadow-violet-950/50"
+                className="flex-1 py-3 bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all cursor-pointer shadow-lg shadow-violet-700/25 dark:shadow-violet-950/50"
               >
                 {saving ? "Saving Post..." : isNew ? "Publish Blog Post" : "Save Changes"}
               </button>
               <button
                 onClick={() => setModal(false)}
-                className="px-5 py-3 text-xs font-semibold text-slate-400 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+                className="px-5 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -453,33 +451,35 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
       {loading ? (
         <div className="space-y-3 animate-pulse">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="h-20 rounded-2xl bg-slate-900 border border-slate-800" />
+            <div key={i} className="h-20 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800" />
           ))}
         </div>
       ) : items.length === 0 ? (
-        <div className="text-center py-12 text-slate-500 bg-slate-900/50 border border-slate-800 rounded-2xl">
+        <div className="text-center py-12 text-slate-500 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xs">
           No blog posts found. Click "+ Add New Article" to write one!
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="relative space-y-3">
           {items.map((b) => (
             <div
               key={b._id}
-              className="flex items-center justify-between p-4 bg-slate-900 border border-slate-800 rounded-2xl hover:border-slate-700 transition-all"
+              className="flex items-center justify-between p-4 bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800 rounded-2xl hover:border-violet-500/50 dark:hover:border-violet-500/50 shadow-xs hover:shadow-[0_8px_25px_rgba(124,58,237,0.12)] transition-all duration-300 group"
             >
               <div className="flex items-center gap-4 min-w-0">
                 <img
                   src={b.coverImage}
                   alt={b.title}
-                  className="w-16 h-12 rounded-xl object-cover bg-slate-800 shrink-0 border border-slate-800"
+                  className="w-16 h-12 rounded-xl object-cover bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-800"
                 />
                 <div className="min-w-0">
-                  <h4 className="text-sm font-semibold text-slate-100 truncate">{b.title}</h4>
+                  <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100 group-hover:text-violet-700 dark:group-hover:text-violet-400 transition-colors truncate">
+                    {b.title}
+                  </h4>
                   <div className="flex items-center gap-2 mt-0.5">
-                    <span className="text-[10px] font-bold text-violet-400 bg-violet-950/60 border border-violet-800/50 px-2 py-0.5 rounded-full uppercase">
+                    <span className="text-[10px] font-bold text-violet-700 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/60 border border-violet-200/80 dark:border-violet-800/50 px-2 py-0.5 rounded-md uppercase">
                       {b.category || "SAAS"}
                     </span>
-                    <span className="text-xs text-slate-500 truncate">{b.excerpt}</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{b.excerpt}</span>
                   </div>
                 </div>
               </div>
@@ -487,13 +487,13 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
               <div className="flex gap-2 shrink-0 ml-4">
                 <button
                   onClick={() => openEdit(b)}
-                  className="px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-semibold text-violet-400 hover:bg-violet-600/10 hover:border-violet-600 transition-colors cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-violet-700 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-600/10 hover:border-violet-600 transition-colors cursor-pointer"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => setConfirmDelete(b._id!)}
-                  className="px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-semibold text-red-400 hover:bg-red-600/10 hover:border-red-600 transition-colors cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-600/10 hover:border-red-600 transition-colors cursor-pointer"
                 >
                   Delete
                 </button>

@@ -4,9 +4,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import toast from "react-hot-toast";
 
-/* ==========================================================================
-   Types & Interfaces
-   ========================================================================== */
 
 type BlogSection = {
   heading: string;
@@ -19,7 +16,7 @@ type BlogItem = {
   slug?: string;
   category: string;
   coverImage: string;
-  coverImagePublicId?: string; // CHANGELOG: Added to track Cloudinary public ID for deletion
+  coverImagePublicId?: string;
   excerpt: string;
   authorName: string;
   authorRole: string;
@@ -28,11 +25,7 @@ type BlogItem = {
   createdAt?: string;
 };
 
-/* ==========================================================================
-   Helper Functions & Constants
-   ========================================================================== */
 
-// CHANGELOG: Helper function to convert uploaded File object to Base64 string
 const fileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -44,12 +37,12 @@ const fileToBase64 = (file: File): Promise<string> => {
 
 const blankBlog = (): BlogItem => ({
   title: "",
-  category: "SAAS",
+  category: "Web Application",
   coverImage: "",
   coverImagePublicId: "",
   excerpt: "",
-  authorName: "Alamin Shaikh",
-  authorRole: "Full-Stack & AI Developer",
+  authorName: "Shaikh Arif",
+  authorRole: "Full-Stack Developer",
   authorImage: "/author.jpg",
   sections: [{ heading: "", paragraph: "" }],
 });
@@ -62,9 +55,6 @@ const inputClasses = [
   "transition-all",
 ].join(" ");
 
-/* ==========================================================================
-   UI Sub-components
-   ========================================================================== */
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -95,10 +85,6 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
     </div>
   );
 }
-
-/* ==========================================================================
-   Main BlogsPanel Component
-   ========================================================================== */
 
 export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
   const [items, setItems] = useState<BlogItem[]>([]);
@@ -149,18 +135,13 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     setModal(true);
   }
 
-  /* ==========================================================================
-     Image Upload Handler (UPDATED to match /api/admin/upload)
-     ========================================================================== */
 
-  // CHANGELOG: Refactored image upload to handle Base64 payload and custom route parameters
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !editing) return;
 
     setUploading(true);
     try {
-      // 1. Convert file to base64 format
       const base64 = await fileToBase64(file);
 
       // 2. Call admin upload endpoint
@@ -169,8 +150,8 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           base64,
-          folder: "portfolio/blogs", // Places image under blogs subfolder in Cloudinary
-          oldPublicId: editing.coverImagePublicId || undefined, // Cleans up previous image if editing
+          folder: "portfolio/blogs",
+          oldPublicId: editing.coverImagePublicId || undefined,
         }),
       });
 
@@ -180,7 +161,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
         throw new Error(data.error || "Image upload failed");
       }
 
-      // 3. Save resulting image URL and publicId into state
       setEditing({
         ...editing,
         coverImage: data.url,
@@ -195,9 +175,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     }
   };
 
-  /* ==========================================================================
-     Dynamic Section Handling
-     ========================================================================== */
 
   function addSection() {
     if (!editing) return;
@@ -222,10 +199,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     setEditing({ ...editing, sections: updated });
   }
 
-  /* ==========================================================================
-     Save & Delete Actions
-     ========================================================================== */
-
   async function handleSave() {
     if (!editing) return;
     if (!editing.title.trim()) {
@@ -239,7 +212,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
 
     setSaving(true);
     try {
-      const url = isNew ? "/api/admin/blogs" : `/api/admin/blogs/${editing._id}`;
+      const url = "/api/admin/blogs";
       const method = isNew ? "POST" : "PUT";
 
       const res = await fetch(url, {
@@ -262,7 +235,10 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
 
   async function handleDelete(id: string) {
     try {
-      const res = await fetch(`/api/admin/blogs/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/blogs?id=${id}`, {
+        method: "DELETE"
+      });
+
       if (!res.ok) throw new Error("Delete failed");
       toast.success("Blog deleted.");
       loadBlogs();
@@ -345,7 +321,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                 />
               </Field>
 
-              {/* CHANGELOG: Upload input triggers fileToBase64 and hits /api/admin/upload */}
               <Field label="Cover Image Upload">
                 <input
                   type="file"
@@ -364,8 +339,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
 
             {/* Cover Image Preview */}
             {editing.coverImage && (
-              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/60 mt-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/60 mt-2">
                 <img
                   src={editing.coverImage}
                   alt="Cover preview"
@@ -392,7 +366,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                   className={inputClasses}
                   value={editing.authorName}
                   onChange={(e) => setEditing({ ...editing, authorName: e.target.value })}
-                  placeholder="Alamin Shaikh"
+                  placeholder="Shaikh Arif"
                 />
               </Field>
               <Field label="Author Role">
@@ -494,7 +468,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
               className="flex items-center justify-between p-4 bg-slate-900 border border-slate-800 rounded-2xl hover:border-slate-700 transition-all"
             >
               <div className="flex items-center gap-4 min-w-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={b.coverImage}
                   alt={b.title}

@@ -75,12 +75,12 @@ export async function POST(req: Request) {
     const newBlog = await Blog.create({
       title,
       slug,
-      category: category || "SAAS",
+      category: category || "Web Application",
       coverImage,
       coverImagePublicId,
       excerpt,
-      authorName: authorName || "Alamin Shaikh",
-      authorRole: authorRole || "Full-Stack & AI Developer",
+      authorName: authorName || "Shaikh Arif",
+      authorRole: authorRole || "Full-Stack Developer",
       authorImage: authorImage || "/author.jpg",
       sections: sections || [],
     });
@@ -130,7 +130,7 @@ export async function PUT(req: Request) {
   }
 }
 
-// DELETE: Delete blog by _id (via URL query params e.g. /api/admin/blogs?id=xxx)
+// DELETE
 export async function DELETE(req: Request) {
   try {
     await guardAdmin();

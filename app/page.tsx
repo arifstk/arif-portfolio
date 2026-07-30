@@ -23,7 +23,7 @@ const HomePage = async () => {
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Arif Hossain",
+    name: "Shaikh Arif",
     url: SITE_URL,
     jobTitle: "Full-Stack Developer",
     sameAs: [],

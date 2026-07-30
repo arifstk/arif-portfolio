@@ -57,16 +57,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Tech Stack Badges */}
-        {/* <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
+        <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
           {techStack.map((tech, index) => (
             <span
               key={index}
-              className="text-[11px] font-medium px-2.5 py-1 bg-[#f8fafc] dark:bg-gray-900 text-[#6d7f98] text-xs dark:text-slate-300 rounded-md border border-slate-100 dark:border-gray-800 transition-colors duration-300 group-hover:border-violet-500/20"
+              className="text-[10px] font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-100 dark:border-violet-900/40 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
             >
               {tech}
             </span>
           ))}
-        </div> */}
+        </div>
 
         {/* Action Buttons */}
         <div className="grid grid-cols-2 gap-3">
@@ -74,7 +74,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 py-2 text-sm font-semibold bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 text-white border  dark:border-violet-900/60 px-3 rounded-xl transition-all duration-200 shadow-xs"
+            className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 text-white border  dark:border-violet-900/60 px-3 rounded-xl transition-all duration-200 shadow-xs"
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo
@@ -83,7 +83,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <SourceCodeButton
             githubUrl={githubUrl}
             projectTitle={title}
-            className="flex items-center justify-center gap-1.5 py-2 rounded-xl text-sm font-semibold text-[#1e293b] dark:text-gray-200 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-gray-800 hover:border-violet-300 dark:hover:border-violet-800"
+            className="flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-[#1e293b] dark:text-gray-200 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-gray-800 hover:border-violet-300 dark:hover:border-violet-800"
           />
         </div>
 
@@ -91,7 +91,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {_id && (
           <Link
             href={`/projects/${_id}`}
-            className="mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-violet-700 dark:text-violet-500 border border-violet-100/70 dark:border-violet-900/30 bg-violet-50/40 dark:bg-violet-950/20 hover:bg-violet-100/60 dark:hover:bg-violet-900/30 transition-all duration-200"
+            className="mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-violet-700 dark:text-violet-500 border border-violet-100 dark:border-violet-900/30 bg-violet-50/40 dark:bg-violet-950/20 hover:bg-violet-100/60 dark:hover:bg-violet-900/30 transition-all duration-200"
           >
             View Details
             <MoveRight className="w-6 h-4" />

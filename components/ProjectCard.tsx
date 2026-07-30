@@ -61,7 +61,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {techStack.map((tech, index) => (
             <span
               key={index}
-              className="text-[10px] font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-100 dark:border-violet-900/40 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
+              className="text-[9px] font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-100 dark:border-violet-900/40 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
             >
               {tech}
             </span>

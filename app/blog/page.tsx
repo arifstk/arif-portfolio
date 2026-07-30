@@ -1,6 +1,29 @@
 // app/blog/page.tsx
 
 import BlogCard, { BlogCardProps } from "@/components/BlogCard";
+import { Metadata } from "next";
+
+const PAGE_TITLE = "Blog & Articles — Shaikh Arif | Full-Stack Next.js Developer";
+const PAGE_DESCRIPTION = "Insights, tutorials, and deep-dives into modern web development, Next.js, TypeScript, MongoDB, and software architecture.";
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: "/blog",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
+};
 
 async function getBlogs(): Promise<BlogCardProps[]> {
   try {

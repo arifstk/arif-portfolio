@@ -3,13 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { FiCopy, FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import SocialLinks from "@/components/SocialLinks";
+import { Metadata } from "next";
 
-// Direct Database Query Helper
+interface Props {
+  params: Promise<{ slug: string }>;
+}
+
+// Database Helper
 async function getBlogBySlug(slug: string) {
   if (!slug || slug === "undefined") return null;
 
@@ -27,7 +31,47 @@ async function getBlogBySlug(slug: string) {
   }
 }
 
-export default async function SingleBlogPage({ params }: { params: { slug: string } }) {
+// Dynamic SEO Metadata Generator
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
+
+  if (!blog) {
+    return {
+      title: "Blog Post Not Found",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  const title = `${blog.title} — Shaikh Arif`;
+  const description = blog.excerpt || `Read ${blog.title} on Shaikh Arif's developer blog.`;
+  const images = blog.coverImage ? [{ url: blog.coverImage }] : [];
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/blog/${slug}`,
+      type: "article",
+      publishedTime: blog.createdAt,
+      authors: [blog.authorName || "Shaikh Arif"],
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images,
+    },
+  };
+}
+
+export default async function SingleBlogPage({ params }: Props) {
   const { slug } = await params;
   const blog = await getBlogBySlug(slug);
 

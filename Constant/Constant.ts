@@ -15,6 +15,7 @@ export const NavLinks = [
   {name: 'About', path: '/about'},
   // {name: 'Skills', path: '/skills'},
   {name: 'Work', path: '/projects'},
+  {name: 'Blog', path: '/blog'},
   // {name: 'Contact', path: '/contact'},
 ];
 

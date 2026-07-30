@@ -10,7 +10,8 @@ import {
 import { SiUpwork } from "react-icons/si";
 import { FaXTwitter, FaTiktok, FaBehance } from "react-icons/fa6";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { FaGithub  } from "react-icons/fa"
+import { FaGithub } from "react-icons/fa"
+import BlogsPanel from "./BlogPanel";
 
 // ─── Types ───────────────────────────────────────
 type Project = {
@@ -33,7 +34,7 @@ type Message = {
   subject: string; message: string;
   read: boolean; createdAt: string;
 };
-type Tab = "projects" | "contact" | "socials" | "messages" | "hire";
+type Tab = "projects" | "blogs" | "contact" | "socials" | "messages" | "hire";
 
 const blankProject = (): Project => ({
   title: "", description: "", image: "", imagePublicId: "",
@@ -1489,6 +1490,10 @@ const navItems: { id: Tab; label: string; icon: React.ReactNode }[] = [
     icon: <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M3 9h18M9 21V9" /></svg>,
   },
   {
+    id: "blogs", label: "Blogs",
+    icon: <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l5 5v11a2 2 0 0 1-2 2z" /><path d="M14 2v6h6" /></svg>,
+  },
+  {
     id: "contact", label: "Contact Info",
     icon: <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 7 10-7" /></svg>,
   },
@@ -1512,6 +1517,7 @@ const navItems: { id: Tab; label: string; icon: React.ReactNode }[] = [
 
 const panelMeta: Record<Tab, { title: string; sub: string }> = {
   projects: { title: "Projects", sub: "Add, edit, and remove your portfolio projects" },
+  blogs: { title: "Blog Posts", sub: "Create and manage your blog content" },
   contact: { title: "Contact Info", sub: "Manage how visitors can reach you" },
   socials: { title: "Social Links", sub: "Control your social media presence" },
   messages: { title: "Messages", sub: "Contact form submissions from visitors" },
@@ -1523,7 +1529,7 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("projects");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [addTrigger, setAddTrigger] = useState<Record<Tab, number>>({
-    projects: 0, contact: 0, socials: 0, messages: 0, hire: 0,
+    projects: 0, blogs: 0, contact: 0, socials: 0, messages: 0, hire: 0,
   });
 
   function handleAdd() {
@@ -1653,6 +1659,12 @@ export default function AdminDashboard() {
             <ProjectsPanel
               key={`proj-${addTrigger.projects}`}
               autoOpen={addTrigger.projects > 0}
+            />
+          )}
+          {tab === "blogs" && (
+            <BlogsPanel
+              key={`blog-${addTrigger.blogs}`}
+              autoOpen={addTrigger.blogs > 0}
             />
           )}
           {tab === "contact" && (

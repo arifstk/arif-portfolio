@@ -162,7 +162,7 @@ export default function Contact() {
                         id={field} name={field}
                         type={field === "email" ? "email" : "text"}
                         required
-                        placeholder={field === "name" ? "John Doe" : "john@example.com"}
+                        placeholder={field === "name" ? "Full Name" : "yourname@example.com"}
                         value={form[field]}
                         onChange={handleChange}
                         onFocus={() => setFocused(field)}

@@ -1,12 +1,19 @@
-// components/BlogsPanel.tsx
+// components/admin/BlogPanel.tsx
+
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import toast from "react-hot-toast";
 
+type ContentBlock = {
+  type: "paragraph" | "code";
+  value: string;
+};
+
 type BlogSection = {
-  heading: string;
-  paragraph: string;
+  heading?: string;
+  paragraph?: string;
+  blocks?: ContentBlock[];
 };
 
 type BlogItem = {
@@ -42,7 +49,12 @@ const blankBlog = (): BlogItem => ({
   authorName: "Shaikh Arif",
   authorRole: "Full-Stack Developer",
   authorImage: "/author.jpg",
-  sections: [{ heading: "", paragraph: "" }],
+  sections: [
+    {
+      heading: "",
+      blocks: [{ type: "paragraph", value: "" }],
+    },
+  ],
 });
 
 const inputClasses = [
@@ -67,7 +79,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-2xl bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800/80 rounded-3xl shadow-[0_20px_50px_rgba(124,58,237,0.15)] max-h-[88vh] overflow-y-auto">
+      <div className="w-full max-w-3xl bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800/80 rounded-3xl shadow-[0_20px_50px_rgba(124,58,237,0.15)] max-h-[88vh] overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800/80 sticky top-0 bg-white/95 dark:bg-[#0b1329]/95 backdrop-blur-md z-10">
           <h3 className="text-base font-bold text-slate-800 dark:text-slate-100">{title}</h3>
           <button
@@ -94,7 +106,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const didAutoOpen = useRef(false);
 
-  // Fetch all blogs
   const loadBlogs = useCallback(async () => {
     setLoading(true);
     try {
@@ -127,7 +138,26 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
   }
 
   function openEdit(b: BlogItem) {
-    setEditing({ ...b });
+    const normalizedSections = (b.sections || []).map((sec) => {
+
+      const blocks = sec.blocks
+        ? sec.blocks.filter((blk) => blk.type === "paragraph" || blk.type === "code")
+        : [];
+
+      if (sec.paragraph && blocks.length === 0) {
+        blocks.push({ type: "paragraph", value: sec.paragraph });
+      }
+
+      return {
+        ...sec,
+        blocks,
+      };
+    });
+
+    setEditing({
+      ...b,
+      sections: normalizedSections,
+    });
     setIsNew(false);
     setModal(true);
   }
@@ -151,10 +181,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
       });
 
       const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Image upload failed");
-      }
+      if (!res.ok) throw new Error(data.error || "Image upload failed");
 
       setEditing({
         ...editing,
@@ -162,7 +189,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
         coverImagePublicId: data.publicId,
       });
 
-      toast.success("Image uploaded successfully!");
+      toast.success("Cover image uploaded!");
     } catch (err: any) {
       toast.error(err.message || "Failed to upload image");
     } finally {
@@ -170,26 +197,74 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     }
   };
 
+  // Section Handlers
   function addSection() {
     if (!editing) return;
     setEditing({
       ...editing,
-      sections: [...editing.sections, { heading: "", paragraph: "" }],
+      sections: [
+        ...(editing.sections || []),
+        { heading: "", blocks: [{ type: "paragraph", value: "" }] },
+      ],
     });
   }
 
-  function removeSection(index: number) {
+  function removeSection(secIdx: number) {
     if (!editing) return;
     setEditing({
       ...editing,
-      sections: editing.sections.filter((_, i) => i !== index),
+      sections: editing.sections.filter((_, i) => i !== secIdx),
     });
   }
 
-  function updateSection(index: number, field: "heading" | "paragraph", value: string) {
+  function updateSectionHeading(secIdx: number, heading: string) {
     if (!editing) return;
     const updated = [...editing.sections];
-    updated[index][field] = value;
+    updated[secIdx] = { ...updated[secIdx], heading };
+    setEditing({ ...editing, sections: updated });
+  }
+
+  // Dynamic Paragraph & Code Snippet Handlers
+  function addBlock(secIdx: number, type: "paragraph" | "code") {
+    if (!editing) return;
+    const updated = [...editing.sections];
+    const currentBlocks = updated[secIdx].blocks || [];
+
+    updated[secIdx] = {
+      ...updated[secIdx],
+      blocks: [...currentBlocks, { type, value: "" }],
+    };
+
+    setEditing({ ...editing, sections: updated });
+  }
+
+  function removeBlock(secIdx: number, blockIdx: number) {
+    if (!editing) return;
+    const updated = [...editing.sections];
+    const currentBlocks = updated[secIdx].blocks || [];
+
+    updated[secIdx] = {
+      ...updated[secIdx],
+      blocks: currentBlocks.filter((_, i) => i !== blockIdx),
+    };
+
+    setEditing({ ...editing, sections: updated });
+  }
+
+  function updateBlockValue(secIdx: number, blockIdx: number, value: string) {
+    if (!editing) return;
+    const updated = [...editing.sections];
+    const currentBlocks = [...(updated[secIdx].blocks || [])];
+
+    if (currentBlocks[blockIdx]) {
+      currentBlocks[blockIdx] = { ...currentBlocks[blockIdx], value };
+    }
+
+    updated[secIdx] = {
+      ...updated[secIdx],
+      blocks: currentBlocks,
+    };
+
     setEditing({ ...editing, sections: updated });
   }
 
@@ -229,10 +304,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
 
   async function handleDelete(id: string) {
     try {
-      const res = await fetch(`/api/admin/blogs?id=${id}`, {
-        method: "DELETE"
-      });
-
+      const res = await fetch(`/api/admin/blogs?id=${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Delete failed");
       toast.success("Blog deleted.");
       loadBlogs();
@@ -245,33 +317,14 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
 
   return (
     <div className="relative space-y-6">
-
-      {/* Background Glow Effect */}
       <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-48 bg-violet-600/10 dark:bg-violet-600/15 blur-[100px] rounded-full" />
 
-      {/* Top Header Controls */}
-      {/* <div className="relative flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Blog Posts</h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Manage your articles, headings, paragraphs, and cover photos
-          </p>
-        </div>
-        <button
-          onClick={openNew}
-          className="px-4 py-2.5 bg-violet-700 hover:bg-violet-600 text-white rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer shadow-lg shadow-violet-700/25 dark:shadow-violet-950/50 hover:shadow-violet-600/40 hover:-translate-y-0.5"
-        >
-          + Add New Article
-        </button>
-      </div> */}
-
-      {/* Delete Confirmation Modal */}
       {confirmDelete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="w-80 bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-2xl">
             <h4 className="text-sm font-bold text-slate-800 dark:text-slate-100">Confirm Deletion</h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-5">
-              Are you sure you want to delete this blog post? This action cannot be undone.
+              Are you sure you want to delete this blog post?
             </p>
             <div className="flex gap-2 justify-end">
               <button
@@ -291,14 +344,9 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
         </div>
       )}
 
-      {/* Main Form Modal */}
       {modal && editing && (
-        <Modal
-          title={isNew ? "Create New Blog Post" : "Edit Blog Post"}
-          onClose={() => setModal(false)}
-        >
+        <Modal title={isNew ? "Create New Blog Post" : "Edit Blog Post"} onClose={() => setModal(false)}>
           <div className="space-y-4">
-            {/* Title */}
             <Field label="Blog Title">
               <input
                 className={inputClasses}
@@ -308,14 +356,13 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
               />
             </Field>
 
-            {/* Category & Cover Image */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Field label="Category Tag">
                 <input
                   className={inputClasses}
                   value={editing.category}
                   onChange={(e) => setEditing({ ...editing, category: e.target.value })}
-                  placeholder="SAAS"
+                  placeholder="Web Application"
                 />
               </Field>
 
@@ -327,26 +374,15 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                   disabled={uploading}
                   className="w-full text-xs text-slate-500 dark:text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-violet-700 file:text-white hover:file:bg-violet-600 cursor-pointer border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-900/80 p-1 transition-colors"
                 />
-                {uploading && (
-                  <p className="text-[11px] text-violet-600 dark:text-violet-400 mt-1 font-medium">
-                    Uploading image to Cloudinary...
-                  </p>
-                )}
               </Field>
             </div>
 
-            {/* Cover Image Preview */}
             {editing.coverImage && (
               <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mt-2">
-                <img
-                  src={editing.coverImage}
-                  alt="Cover preview"
-                  className="w-full h-full object-cover"
-                />
+                <img src={editing.coverImage} alt="Cover preview" className="w-full h-full object-cover" />
               </div>
             )}
 
-            {/* Excerpt */}
             <Field label="Excerpt / Card Summary">
               <textarea
                 className={inputClasses + " resize-y"}
@@ -357,7 +393,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
               />
             </Field>
 
-            {/* Author Details */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Field label="Author Name">
                 <input
@@ -372,67 +407,128 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                   className={inputClasses}
                   value={editing.authorRole}
                   onChange={(e) => setEditing({ ...editing, authorRole: e.target.value })}
-                  placeholder="Full-Stack & AI Developer"
+                  placeholder="Full-Stack Developer"
                 />
               </Field>
             </div>
 
-            {/* Content Sections Block */}
-            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-3">
+            {/* Sections & Blocks */}
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-6">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold text-violet-700 dark:text-violet-400 uppercase tracking-wider">
-                  Article Body Sections
+                <span className="text-xs font-bold text-violet-700 dark:text-violet-400 uppercase tracking-wider">
+                  Article Sections
                 </span>
                 <button
                   type="button"
                   onClick={addSection}
-                  className="text-xs font-semibold text-violet-700 dark:text-violet-400 hover:text-violet-600 dark:hover:text-violet-300 hover:underline cursor-pointer"
+                  className="px-3 py-1.5 text-xs font-bold bg-violet-600/10 text-violet-700 dark:text-violet-300 rounded-xl hover:bg-violet-600/20 transition-colors cursor-pointer"
                 >
-                  + Add Heading & Paragraph
+                  + Add Section (H2)
                 </button>
               </div>
 
-              {editing.sections.map((sec, idx) => (
+              {editing.sections?.map((sec, secIdx) => (
                 <div
-                  key={idx}
-                  className="p-4 bg-slate-50/80 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3 relative"
+                  key={secIdx}
+                  className="p-4 bg-slate-50/80 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-4 relative"
                 >
-                  {editing.sections.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeSection(idx)}
-                      className="absolute top-3 right-3 text-xs font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 cursor-pointer"
-                    >
-                      Remove
-                    </button>
-                  )}
-                  <Field label={`Section ${idx + 1} Heading (H2)`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-extrabold text-slate-700 dark:text-slate-300">
+                      Section #{secIdx + 1}
+                    </span>
+                    {editing.sections.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeSection(secIdx)}
+                        className="text-xs font-semibold text-red-500 hover:text-red-600 dark:text-red-400 cursor-pointer"
+                      >
+                        Remove Section
+                      </button>
+                    )}
+                  </div>
+
+                  <Field label="Section Heading (H2 Optional)">
                     <input
                       className={inputClasses}
-                      value={sec.heading}
-                      onChange={(e) => updateSection(idx, "heading", e.target.value)}
-                      placeholder="e.g. Turn any drive folder into a searchable knowledge base"
+                      value={sec.heading || ""}
+                      onChange={(e) => updateSectionHeading(secIdx, e.target.value)}
+                      placeholder="e.g. Using the `useFormStatus` hook"
                     />
                   </Field>
-                  <Field label={`Section ${idx + 1} Paragraph Text`}>
-                    <textarea
-                      className={inputClasses + " resize-y"}
-                      rows={3}
-                      value={sec.paragraph}
-                      onChange={(e) => updateSection(idx, "paragraph", e.target.value)}
-                      placeholder="Write your detailed article paragraph here..."
-                    />
-                  </Field>
+
+                  {/* Content Blocks */}
+                  <div className="space-y-3 pt-2">
+                    <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">
+                      Section Content
+                    </label>
+
+                    {(sec.blocks || []).map((block, blockIdx) => (
+                      <div
+                        key={blockIdx}
+                        className="p-3 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl space-y-2 relative"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                            {block.type === "paragraph" && "Paragraph"}
+                            {block.type === "code" && "Code Snippet Block"}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => removeBlock(secIdx, blockIdx)}
+                            className="text-[11px] font-semibold text-red-500 hover:underline cursor-pointer"
+                          >
+                            Delete Block
+                          </button>
+                        </div>
+
+                        {block.type === "paragraph" && (
+                          <textarea
+                            className={inputClasses + " resize-y"}
+                            rows={3}
+                            value={block.value}
+                            onChange={(e) => updateBlockValue(secIdx, blockIdx, e.target.value)}
+                            placeholder="Type paragraph text... Wrap words in backticks `likeThis` for inline pill highlights."
+                          />
+                        )}
+
+                        {block.type === "code" && (
+                          <textarea
+                            className={inputClasses + " font-mono text-xs bg-slate-950 text-cyan-300 resize-y"}
+                            rows={4}
+                            value={block.value}
+                            onChange={(e) => updateBlockValue(secIdx, blockIdx, e.target.value)}
+                            placeholder="Paste your code snippet here..."
+                          />
+                        )}
+                      </div>
+                    ))}
+
+                    <div className="flex items-center gap-2 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => addBlock(secIdx, "paragraph")}
+                        className="px-2.5 py-1 text-[11px] font-bold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg transition-colors cursor-pointer"
+                      >
+                        + Add Paragraph
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => addBlock(secIdx, "code")}
+                        className="px-2.5 py-1 text-[11px] font-bold bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-cyan-300 rounded-lg transition-colors cursor-pointer"
+                      >
+                        + Add Code Snippet
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* Modal Actions */}
             <div className="flex gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
               <button
                 onClick={handleSave}
                 disabled={saving || uploading}
-                className="flex-1 py-3 bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all cursor-pointer shadow-lg shadow-violet-700/25 dark:shadow-violet-950/50"
+                className="flex-1 py-3 bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all cursor-pointer"
               >
                 {saving ? "Saving Post..." : isNew ? "Publish Blog Post" : "Save Changes"}
               </button>
@@ -447,7 +543,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
         </Modal>
       )}
 
-      {/* Blog List Items */}
       {loading ? (
         <div className="space-y-3 animate-pulse">
           {[...Array(3)].map((_, i) => (
@@ -455,15 +550,15 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
           ))}
         </div>
       ) : items.length === 0 ? (
-        <div className="text-center py-12 text-slate-500 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xs">
-          No blog posts found. Click "+ Add New Article" to write one!
+        <div className="text-center py-12 text-slate-500 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl">
+          No blog posts found.
         </div>
       ) : (
         <div className="relative space-y-3">
           {items.map((b) => (
             <div
               key={b._id}
-              className="flex items-center justify-between p-4 bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800 rounded-2xl hover:border-violet-500/50 dark:hover:border-violet-500/50 shadow-xs hover:shadow-[0_8px_25px_rgba(124,58,237,0.12)] transition-all duration-300 group"
+              className="flex items-center justify-between p-4 bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800 rounded-2xl hover:border-violet-500/50 transition-all duration-300 group"
             >
               <div className="flex items-center gap-4 min-w-0">
                 <img
@@ -487,13 +582,13 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
               <div className="flex gap-2 shrink-0 ml-4">
                 <button
                   onClick={() => openEdit(b)}
-                  className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-violet-700 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-600/10 hover:border-violet-600 transition-colors cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-violet-700 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-600/10 cursor-pointer"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => setConfirmDelete(b._id!)}
-                  className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-600/10 hover:border-red-600 transition-colors cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-600/10 cursor-pointer"
                 >
                   Delete
                 </button>

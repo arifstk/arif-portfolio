@@ -22,7 +22,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const { _id, title, description, image, techStack, demoUrl, githubUrl } = project;
 
   return (
-    <div className=" flex flex-col h-full rounded-2xl dark:bg-black/20 dark:border-gray-700 border border-slate-200 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(139,92,246,0.12)]">
+    <div className=" flex flex-col h-full rounded-2xl dark:bg-black/20 dark:border-gray-700 border border-slate-200 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/20 dark:hover:border-violet-500/20 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
 
       {/* Project Image Container — clicking takes you to detail page */}
       <Link href={_id ? `/projects/${_id}` : "#"} className="block relative w-full h-48 sm:h-52 overflow-hidden bg-slate-100">

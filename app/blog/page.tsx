@@ -78,8 +78,8 @@ export default async function BlogPage({ searchParams }: PageProps) {
             </p>
           </div>
         ) : (
-          <div className="space-y-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {paginatedBlogs.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}
@@ -87,7 +87,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
 
             {/* --- Pagination --- */}
             {totalPages > 1 && (
-              <div className="flex justify-center pt-4">
+              <div className="flex justify-center items-center pt-4">
                 <div className="inline-flex items-center justify-between gap-6 px-6 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 border border-slate-200/80 dark:border-gray-800 shadow-md backdrop-blur-md text-sm font-semibold">
 
                   {/* Previous Link */}
@@ -96,11 +96,11 @@ export default async function BlogPage({ searchParams }: PageProps) {
                       href={`/blog?page=${currentPage - 1}`}
                       className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
                     >
-                      ← Prev
+                      <span>←</span> Prev
                     </Link>
                   ) : (
                     <span className="flex items-center justify-center gap-1.5 text-slate-300 dark:text-gray-600 cursor-not-allowed">
-                      ← Prev
+                      <span>←</span> Prev
                     </span>
                   )}
 
@@ -115,11 +115,11 @@ export default async function BlogPage({ searchParams }: PageProps) {
                       href={`/blog?page=${currentPage + 1}`}
                       className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
                     >
-                      Next →
+                      Next <span>→</span>
                     </Link>
                   ) : (
                     <span className="flex items-center justify-center gap-1.5 text-slate-300 dark:text-gray-600 cursor-not-allowed">
-                      Next →
+                      Next <span>→</span>
                     </span>
                   )}
                 </div>

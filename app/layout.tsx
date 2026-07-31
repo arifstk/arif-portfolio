@@ -137,7 +137,7 @@ export default async function RootLayout({
         <meta name="google-site-verification" content="btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8" />
       </head>
 
-      <body className="min-h-screen flex flex-col bg-violet-50/60 dark:bg-transparent">
+      <body className="min-h-screen flex flex-col bg-violet-50/60 dark:bg-transparent font-sans">
         <Provider session={session}>
           {isAdmin ? (
             <>{children}</>

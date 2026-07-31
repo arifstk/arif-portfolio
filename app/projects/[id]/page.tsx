@@ -123,8 +123,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {outcome && (
               <div className="mt-8">
                 <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider pb-2">✔️ Outcome</p>
-                <div className=" rounded-2xl space-y-3 bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-3 sm:p-6 border border-violet-200 dark:border-slate-800
+                <div className="relative overflow-hidden rounded-2xl space-y-3 bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-3 sm:p-6 border border-violet-200 dark:border-slate-800
             ">
+
+                  <span className="absolute -bottom-2 sm:-bottom-7.5 -left-1.5 sm:-left-6 text-6xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
+                    Outcome
+                  </span>
+
                   <p className="text-base text-[#505c6c] dark:text-slate-300 leading-relaxed whitespace-pre-line">{outcome}</p>
                 </div>
               </div>

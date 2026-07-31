@@ -8,6 +8,7 @@ import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import SocialLinks from "@/components/SocialLinks";
 import { Metadata } from "next";
+import Newsletter from "@/components/Newsletter";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -266,6 +267,8 @@ export default async function SingleBlogPage({ params }: Props) {
             ))}
           </div>
         </article>
+
+        <Newsletter />
       </div>
     </main>
   );

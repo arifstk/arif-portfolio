@@ -1,14 +1,43 @@
 // app/api/blogs/route.ts
+
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     await connectDB();
 
-    const blogs = await Blog.find({}).sort({ createdAt: -1 });
+    const { searchParams } = new URL(request.url);
+    const pageParam = searchParams.get("page");
+    const limitParam = searchParams.get("limit");
 
+    // If page parameter is provided, perform paginated query
+    if (pageParam) {
+      const page = Math.max(1, parseInt(pageParam, 10) || 1);
+      const limit = Math.max(1, parseInt(limitParam || "6", 10));
+      const skip = (page - 1) * limit;
+
+      const [blogs, totalBlogs] = await Promise.all([
+        Blog.find({}).sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
+        Blog.countDocuments({}),
+      ]);
+
+      const totalPages = Math.ceil(totalBlogs / limit) || 1;
+
+      return NextResponse.json(
+        {
+          blogs,
+          totalPages,
+          currentPage: page,
+          totalBlogs,
+        },
+        { status: 200 },
+      );
+    }
+
+    // Default behavior: return all blogs if no page parameter is passed
+    const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
     return NextResponse.json(blogs, { status: 200 });
   } catch (error: any) {
     return NextResponse.json(

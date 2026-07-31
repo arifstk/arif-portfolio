@@ -22,7 +22,7 @@ async function getAllBlogs(): Promise<BlogCardProps[]> {
     if (!res.ok) return [];
 
     const data = await res.json();
-    // Handle whether data is nested inside an object or a direct array
+
     return Array.isArray(data) ? data : data.blogs || [];
   } catch {
     return [];
@@ -84,7 +84,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
               ))}
             </div>
 
-            {/* --- Capsule Pagination Control --- */}
+            {/* --- Pagination --- */}
             {totalPages > 1 && (
               <div className="flex justify-center pt-4">
                 <div className="inline-flex items-center justify-between gap-6 px-6 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 border border-slate-200/80 dark:border-gray-800 shadow-md backdrop-blur-md text-sm font-semibold">

@@ -12,7 +12,6 @@ export async function GET(request: Request) {
     const pageParam = searchParams.get("page");
     const limitParam = searchParams.get("limit");
 
-    // If page parameter is provided, perform paginated query
     if (pageParam) {
       const page = Math.max(1, parseInt(pageParam, 10) || 1);
       const limit = Math.max(1, parseInt(limitParam || "6", 10));
@@ -36,7 +35,6 @@ export async function GET(request: Request) {
       );
     }
 
-    // Default behavior: return all blogs if no page parameter is passed
     const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
     return NextResponse.json(blogs, { status: 200 });
   } catch (error: any) {

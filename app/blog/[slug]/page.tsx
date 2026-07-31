@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = `${blog.title} — Shaikh Arif`;
-  const description = blog.excerpt || `Read ${blog.title} on Shaikh Arif's developer blog.`;
+  const description = blog.excerpt || `Read ${blog.title} on Shaikh Arif's developer blog`;
   const images = blog.coverImage ? [{ url: blog.coverImage }] : [];
 
   return {
@@ -104,7 +104,7 @@ export default async function SingleBlogPage({ params }: Props) {
         </Link>
 
         {/* --- Top Header Card --- */}
-        <div className="rounded-2xl bg-white dark:bg-black/20 border border-slate-200 dark:border-gray-700 p-3 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-6">
+        <div className="rounded-2xl bg-linear-to-br from-violet-300/60 via-purple-50 to-indigo-200/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-gray-700 p-3 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-6">
           <div className="flex items-center gap-3">
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-400 border border-violet-100 dark:border-violet-900/40 uppercase tracking-wider">
               {blog.category || "Web Application"}

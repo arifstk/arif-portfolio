@@ -12,6 +12,7 @@ import { FaXTwitter, FaTiktok, FaBehance } from "react-icons/fa6";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FaGithub } from "react-icons/fa"
 import BlogsPanel from "./BlogPanel";
+import NewsletterAdmin from "./NewsletterAdmin";
 
 // ─── Types ───────────────────────────────────────
 type Project = {
@@ -34,7 +35,7 @@ type Message = {
   subject: string; message: string;
   read: boolean; createdAt: string;
 };
-type Tab = "projects" | "blogs" | "contact" | "socials" | "messages" | "hire";
+type Tab = "projects" | "blogs" | "contact" | "socials" | "messages" | "hire" | "newsletter";
 
 const blankProject = (): Project => ({
   title: "", description: "", image: "", imagePublicId: "",
@@ -1513,6 +1514,10 @@ const navItems: { id: Tab; label: string; icon: React.ReactNode }[] = [
       <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
     </svg>,
   },
+  {
+    id: "newsletter", label: "Newsletter",
+    icon: <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>,
+  },
 ];
 
 const panelMeta: Record<Tab, { title: string; sub: string }> = {
@@ -1522,6 +1527,7 @@ const panelMeta: Record<Tab, { title: string; sub: string }> = {
   socials: { title: "Social Links", sub: "Control your social media presence" },
   messages: { title: "Messages", sub: "Contact form submissions from visitors" },
   hire: { title: "Hire Button", sub: "Control the Hire on Upwork button on project pages" },
+  newsletter: { title: "Newsletter Subscriptions", sub: "Manage email subscribers and send updates" },
 };
 
 // ─── Root ──────────────────────────────────────────
@@ -1529,7 +1535,7 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("projects");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [addTrigger, setAddTrigger] = useState<Record<Tab, number>>({
-    projects: 0, blogs: 0, contact: 0, socials: 0, messages: 0, hire: 0,
+    projects: 0, blogs: 0, contact: 0, socials: 0, messages: 0, hire: 0, newsletter: 0,
   });
 
   function handleAdd() {
@@ -1643,7 +1649,7 @@ export default function AdminDashboard() {
             {tab === "projects" ? "project" : tab === "contact" ? "entry" : "link"}
           </button> */}
 
-          {tab !== "messages" && tab !== "hire" && (
+          {tab !== "messages" && tab !== "hire" && tab !== "newsletter" && (
             <button
               onClick={handleAdd}
               className="flex items-center gap-2 px-4 py-2 bg-violet-700 hover:bg-violet-600 text-white text-sm font-medium rounded-xl transition-colors shadow-sm shadow-violet-200 dark:shadow-none"
@@ -1682,6 +1688,8 @@ export default function AdminDashboard() {
           {tab === "messages" && <MessagesPanel />}
 
           {tab === "hire" && <HireButtonPanel />}
+
+          {tab === "newsletter" && <NewsletterAdmin />}
         </main>
       </div>
     </div>

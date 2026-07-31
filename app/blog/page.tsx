@@ -1,6 +1,7 @@
 // app/blog/page.tsx
 
 import BlogCard, { BlogCardProps } from "@/components/BlogCard";
+import HireButtonBanner from "@/components/HireButtonBanner";
 import HireButtonBlog from "@/components/HireButtonBlog";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -126,6 +127,8 @@ export default async function BlogPage({ searchParams }: PageProps) {
             )}
           </div>
         )}
+
+        <HireButtonBanner />
       </div>
     </main>
   );

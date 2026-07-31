@@ -3,7 +3,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { FaGithubSquare } from 'react-icons/fa'
+import { FaGithub } from 'react-icons/fa'
 import { Loader2 } from 'lucide-react'
 
 interface SourceCodeButtonProps {
@@ -28,13 +28,10 @@ export default function SourceCodeButton({ githubUrl, projectTitle, className }:
       const data = await res.json()
 
       if (data.available === false) {
-        // Confirmed private or missing — send to the custom fallback page.
         router.push(`/source-unavailable?project=${encodeURIComponent(projectTitle)}`)
         return
       }
 
-      // available === true, or null/unknown (couldn't verify, e.g. rate-limited)
-      // — fail open rather than blocking the user over something unrelated.
       window.open(githubUrl, '_blank', 'noopener,noreferrer')
     } catch {
       window.open(githubUrl, '_blank', 'noopener,noreferrer')
@@ -56,7 +53,7 @@ export default function SourceCodeButton({ githubUrl, projectTitle, className }:
         </>
       ) : (
         <>
-          <FaGithubSquare className="w-4 h-4 rounded-md" />
+          <FaGithub className="w-4 h-4 rounded-md" />
           Source Code
         </>
       )}

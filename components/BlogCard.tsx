@@ -33,7 +33,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
         {/* Upper Card Content */}
         <div className="p-6">
           {/* Category Badge */}
-          <span className="inline-block px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-400 border border-violet-100 dark:border-violet-900/40 mb-4 transition-colors duration-300 group-hover:bg-violet-600 group-hover:text-white dark:group-hover:bg-violet-600">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-400 border border-violet-100 dark:border-violet-900/40 mb-4 transition-colors duration-300 group-hover:bg-violet-600 group-hover:text-white dark:group-hover:bg-violet-600">
             {blog.category || "Web Application"}
           </span>
 
@@ -49,7 +49,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
         </div>
 
         {/* Filled Footer Section */}
-        <div className="px-6 py-4 bg-violet-50/60 dark:bg-violet-950/30 border-t border-violet-100 dark:border-violet-900/40 flex items-center justify-between mt-auto">
+        <div className="px-6 py-4 bg-violet-200/40 dark:bg-violet-950/30 border-t border-violet-200 dark:border-violet-900/40 flex items-center justify-between mt-auto">
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white dark:bg-gray-800 border border-violet-200 dark:border-violet-800/60 shrink-0">
               <Image
@@ -64,7 +64,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
                 {blog.authorName || "Shaikh Arif"}
               </h4>
               <p className="text-xs text-[#64748b] dark:text-gray-400">
-                {blog.authorRole || "Full-Stack Developer"}
+                {blog.authorRole || "Full-Stack JavaScript Developer"}
               </p>
             </div>
           </div>

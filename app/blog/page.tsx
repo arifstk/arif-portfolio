@@ -1,6 +1,7 @@
 // app/blog/page.tsx
 
 import BlogCard, { BlogCardProps } from "@/components/BlogCard";
+import HireButtonBlog from "@/components/HireButtonBlog";
 import { Metadata } from "next";
 
 const PAGE_TITLE = "Blog & Articles — Shaikh Arif | Full-Stack Next.js Developer";
@@ -44,11 +45,15 @@ export default async function BlogPage() {
   return (
     <main className="relative min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-16 pt-25 transition-colors duration-300 overflow-hidden">
 
+     
+
       {/* Background Ambient Violet Glow Effects */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-70 md:w-150 h-40 md:h-88 bg-violet-600/15 dark:bg-violet-600/20 blur-[120px] rounded-full" />
       <div className="pointer-events-none absolute top-1/3 -right-20 w-50 md:w-100 h-33 md:h-75 bg-violet-700/10 dark:bg-violet-700/15 blur-[100px] rounded-full" />
 
       <div className="relative w-[92%] xl:w-[80%] mx-auto space-y-10">
+
+         <HireButtonBlog />
 
         {/* Page Header */}
         <div className="space-y-3">

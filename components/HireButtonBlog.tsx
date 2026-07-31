@@ -14,18 +14,18 @@ async function getHireButtonData() {
   }
 }
 
-export default async function HireButtonBanner() {
+export default async function HireButtonBlog() {
   const hireButton = await getHireButtonData();
 
   return (
     <div className="mt-3 mb-10 rounded-2xl bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-between border border-violet-200 dark:border-slate-800">
       <div className='col-span-2'>
-        <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-2">Let's Work Together</p>
+
         <h2 className="text-2xl md:text-4xl font-semibold text-slate-700 dark:text-slate-200 tracking-wider mb-3">
-          Tell me <span className='text-violet-600 dark:text-violet-400 font-extrabold'>what you're Building</span>
+          My Blogs on <span className='text-violet-600 dark:text-violet-400 font-extrabold'>Building modern web experiences</span>
         </h2>
         <p className="text-base text-gray-600 dark:text-slate-300 flex items-center tracking-normal leading-relaxed">
-          Share the scope, blockers, timeline, and outcome you're looking for. I'll review the context and follow up with clear next steps.
+          Sharing insights on full-stack development, clean architecture, performance optimization, and modern web technologies.
         </p>
       </div>
       <div className='flex flex-col gap-3 sm:pl-4 items-start sm:items-end w-full'>

@@ -57,7 +57,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
       <div>
         {/* Banner image frame with a soft violet shadow glow */}
-        <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)]">
+        <div className="relative w-full aspect-16/8 rounded-2xl overflow-hidden bg-linear-to-br from-violet-100 via-purple-100 to-indigo-100 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-slate-600 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] mb-10">
           {image ? (
             <Image
               src={image}
@@ -65,7 +65,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               fill
               priority
               sizes="(max-width: 896px) 100vw, 896px"
-              className="object-contain object-center"
+              className="object-contain"
             />
           ) : (
             <div className="flex flex-col items-center justify-center w-full h-full gap-3 text-slate-300 dark:text-gray-700">
@@ -123,7 +123,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {outcome && (
               <div className="mt-8">
                 <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider pb-2">✔️ Outcome</p>
-                <div className=" rounded-2xl space-y-3 bg-linear-to-br from-violet-100 via-purple-50 to-indigo-50 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-6 border border-violet-200 dark:border-slate-800
+                <div className=" rounded-2xl space-y-3 bg-linear-to-br from-violet-200/60 via-purple-100/30 to-indigo-200/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-3 sm:p-6 border border-violet-200 dark:border-slate-800
             ">
                   <p className="text-base text-[#505c6c] dark:text-slate-300 leading-relaxed whitespace-pre-line">{outcome}</p>
                 </div>
@@ -134,7 +134,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           {/* Right — sticky action sidebar */}
           <aside className="lg:sticky lg:top-28 self-start space-y-4">
             {/* Card */}
-            <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
+            <div className="rounded-2xl border border-slate-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
               <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Project Links</p>
 
               {/* Live Demo */}
@@ -165,7 +165,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               {/* Back to all projects */}
               <Link
                 href="/projects"
-                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-all duration-200"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400  bg-violet-100/60 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-all duration-200"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 All projects
@@ -174,7 +174,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             {/* Tech count badge */}
             {techStack.length > 0 && (
-              <div className="rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5">
+              <div className="rounded-2xl border border-slate-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5">
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-3">Built with</p>
                 <p className="text-2xl font-bold text-violet-700 dark:text-violet-400 tracking-widest flex items-center">
                   {techStack.length}

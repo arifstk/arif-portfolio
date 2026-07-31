@@ -152,13 +152,13 @@ export default async function SingleBlogPage({ params }: Props) {
         <article className="rounded-2xl bg-white dark:bg-black/20 border border-slate-200 dark:border-gray-700 p-3 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-8">
 
           {blog.coverImage && (
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-gray-900 border border-slate-200 dark:border-gray-800">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-violet-100/40 dark:bg-gray-900 border border-slate-200 dark:border-gray-800">
               <Image
                 src={blog.coverImage}
                 alt={blog.title}
                 fill
                 priority
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           )}

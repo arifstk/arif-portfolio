@@ -57,7 +57,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Tech Stack Badges */}
-        <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
+        <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
           {techStack.map((tech, index) => (
             <span
               key={index}

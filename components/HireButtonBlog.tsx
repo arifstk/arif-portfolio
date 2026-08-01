@@ -40,7 +40,7 @@ export default async function HireButtonBlog() {
           </button>
         </Link>
         <Link href={hireButton.link || "#"} target="_blank" rel="noopener noreferrer">
-          <button className='group bg-transparent hover:bg-violet-100 dark:hover:bg-violet-950/40 text-gray-800 dark:text-white font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-1 ring-1 ring-violet-500/50 transition-all duration-200'>
+          <button className='group bg-transparent hover:bg-violet-100 dark:hover:bg-violet-950/40 text-violet-800 dark:text-white font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-1 ring-1 ring-violet-500/50 transition-all duration-200'>
             {hireButton.logo && (
               <Image src={hireButton.logo} alt="" width={16} height={16} className="object-contain rounded-sm" />
             )}

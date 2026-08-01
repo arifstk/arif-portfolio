@@ -18,8 +18,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const HomePage = async () => {
+interface HomePageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+const HomePage = async ({ searchParams }: HomePageProps) => {
+  const resolvedParams = await searchParams;
+  const currentPage = Math.max(1, Number(resolvedParams.page) || 1);
+  const ITEMS_PER_PAGE = 6;
   const projects = await getProjects();
+
+  const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE) || 1;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedProjects = projects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -39,7 +50,12 @@ const HomePage = async () => {
       />
       <HeroMobile />
       <Hero />
-      <Projects projects={projects} />
+      <Projects 
+        projects={paginatedProjects} 
+        currentPage={currentPage} 
+        totalPages={totalPages} 
+        baseUrl="/"
+      />
       <Skills />
       <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonBanner />
@@ -55,31 +71,4 @@ const HomePage = async () => {
 }
 
 export default HomePage;
-
-
-// // import Home from '@/components/Helper/Home/Home';
-
-// import Hero from '@/components/Hero';
-// import HeroMobile from '@/components/HeroMobile';
-// import HireButtonBanner from '@/components/HireButtonBanner';
-// import Projects from '@/components/Projects';
-// import Skills from '@/components/Skills';
-// import { getProjects } from '@/lib/data/projects';
-
-// const HomePage = async () => {
-//   const projects = await getProjects();
-//   return (
-//     <div className='overflow-hidden min-h-screen pt-8 md:pt-20'>
-//       <HeroMobile />
-//       <Hero />
-//       <Projects projects={projects} />
-//       <Skills />
-//       <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
-//         <HireButtonBanner />
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default HomePage;
 

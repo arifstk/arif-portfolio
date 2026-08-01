@@ -4,13 +4,13 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { FaGithub  } from "react-icons/fa"
+import { FaGithub } from "react-icons/fa"
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { ContactItem } from "@/types";
 
 // Map icon names → components (mirrors your admin setup)
 const ICON_MAP: Record<string, React.ElementType> = {
-  Mail, Phone, MapPin, 
+  Mail, Phone, MapPin,
   Github: FaGithub,
   Twitter: FaXTwitter,
   Linkedin: FaLinkedin,
@@ -138,15 +138,15 @@ export default function Contact() {
           {/* ── Right — Form ── */}
           <div className="fade-up fade-up-3 w-full">
             {status === "success" ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-16 rounded-3xl border border-emerald-500/20 bg-emerald-500/5">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4 mt-5">
-                  <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="text-emerald-400">
+              <div className="h-full flex flex-col items-center justify-center text-center py-20 bg-violet-500/5   rounded-2xl  bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] border border-violet-200 dark:border-slate-800 ">
+                <div className="w-16 h-16 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-4 mt-5">
+                  <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="text-violet-400">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m5 13 4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-syne text-2xl font-bold mb-2">Message sent!</h3>
+                <h3 className="font-syne text-2xl font-bold mb-2">Message sent Successfully!</h3>
                 <p className="text-sm mb-4">Thanks for reaching out. I&apos;ll be in touch within 24 hours.</p>
-                <button onClick={() => setStatus("idle")} className="text-xs font-semibold tracking-widest uppercase mb-4 hover:text-violet-300 transition-colors cursor-pointer">
+                <button onClick={() => setStatus("idle")} className="text-xs font-semibold tracking-widest uppercase mb-4 text-violet-700 hover:text-violet-600 transition-colors cursor-pointer">
                   Send another →
                 </button>
               </div>

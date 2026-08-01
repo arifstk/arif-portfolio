@@ -27,6 +27,7 @@ export type ContactItem = {
 
 export type Project = {
   _id: string;
+  type: string;
   title: string;
   description: string;
   image: string;

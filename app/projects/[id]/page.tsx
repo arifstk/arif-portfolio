@@ -28,9 +28,12 @@ export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
   const project = await getProject(id);
   if (!project) return { title: "Project Not Found" };
+  const desc = typeof project.description === "string"
+    ? project.description
+    : project.description?.[0]?.text || project.title;
   return {
     title: `${project.title} — Project`,
-    description: project.description,
+    description: desc,
     openGraph: { images: project.image ? [project.image] : [] },
   };
 }
@@ -93,11 +96,39 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </span>
 
             {/* Description */}
-            <div className="prose prose-slate dark:prose-invert max-w-none">
+            {/* <div className="prose prose-slate dark:prose-invert max-w-none">
               <p className="text-base text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
                 {description}
               </p>
-            </div>
+            </div> */}
+
+            {/* Description */}
+            {typeof description === "string" ? (
+              description && (
+                <div className="prose prose-slate dark:prose-invert max-w-none">
+                  <p className="text-base text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
+                    {description}
+                  </p>
+                </div>
+              )
+            ) : (
+              Array.isArray(description) && description.length > 0 && (
+                <div className="prose prose-slate dark:prose-invert max-w-none space-y-6">
+                  {description.map((block: any, i: number) => (
+                    <div key={i}>
+                      {block.header && (
+                        <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">
+                          {block.header}
+                        </h3>
+                      )}
+                      <p className="text-base text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
+                        {block.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )
+            )}
 
             {/* Tech stack */}
             {techStack.length > 0 && (

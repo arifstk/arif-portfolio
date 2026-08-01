@@ -11,7 +11,7 @@ interface ProjectCardProps {
     _id?: string;
     type: string;
     title: string;
-    description: string;
+    description: any;
     image: string;
     techStack: string[];
     demoUrl: string;
@@ -19,8 +19,15 @@ interface ProjectCardProps {
   };
 }
 
+function getDescriptionPreview(desc: any): string {
+  if (typeof desc === "string") return desc;
+  if (Array.isArray(desc) && desc.length > 0) return desc[0].text || "";
+  return "";
+}
+
 export default function ProjectCard({ project }: ProjectCardProps) {
   const { _id, title, description, image, techStack, demoUrl, githubUrl } = project;
+  const descriptionPreview = getDescriptionPreview(description);
 
   return (
     <div className=" flex flex-col h-full rounded-2xl dark:bg-black/20 dark:border-gray-700 border border-slate-200 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/20 dark:hover:border-violet-500/20 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
@@ -64,7 +71,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Short Description */}
         <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-3 line-clamp-2">
-          {description}
+          {descriptionPreview}
         </p>
 
         {/* Tech Stack Badges */}

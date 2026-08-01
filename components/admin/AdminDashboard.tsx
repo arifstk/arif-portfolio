@@ -16,12 +16,14 @@ import NewsletterAdmin from "./NewsletterAdmin";
 
 // ─── Types ───────────────────────────────────────
 type Project = {
-  _id?: string; type?: string; title: string; description: string;
+  _id?: string; type?: string; title: string; description: any;
   image: string; imagePublicId?: string;
   images: string[]; techStack: string[];
   demoUrl: string; githubUrl: string; order: number;
   outcome: string;
 };
+type DescriptionBlock = { header: string; text: string };
+
 type ContactItem = {
   _id?: string; label: string; value: string;
   href: string; iconName: string;
@@ -41,6 +43,37 @@ const blankProject = (): Project => ({
   title: "", type: "Web App", description: "", image: "", imagePublicId: "",
   images: [], techStack: [], demoUrl: "", githubUrl: "", order: 0, outcome: "",
 });
+
+// Turns whatever is stored (old plain string OR new array) into blocks for the form
+function normalizeDescription(desc: any): DescriptionBlock[] {
+  if (Array.isArray(desc) && desc.length > 0) {
+    return desc.map((b: any) => ({ header: b.header || "", text: b.text || "" }));
+  }
+  if (typeof desc === "string") {
+    return [{ header: "", text: desc }];
+  }
+  return [{ header: "", text: "" }];
+}
+
+// Turns the form blocks back into what gets saved to the database.
+// If there's only ONE block and it has no header, save it as a plain string
+// (this is what keeps untouched projects exactly the same as before).
+function denormalizeDescription(blocks: DescriptionBlock[]): any {
+  const cleaned = blocks
+    .map(b => ({ header: b.header.trim(), text: b.text.trim() }))
+    .filter(b => b.text);
+  if (cleaned.length === 0) return "";
+  if (cleaned.length === 1 && !cleaned[0].header) return cleaned[0].text;
+  return cleaned;
+}
+
+// For showing a short preview in the admin list
+function previewDescription(desc: any): string {
+  if (typeof desc === "string") return desc;
+  if (Array.isArray(desc) && desc.length > 0) return desc[0].text || "";
+  return "";
+}
+
 const blankContact = (): ContactItem => ({
   label: "", value: "", href: "#", iconName: "Mail",
 });
@@ -516,6 +549,7 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
   const [uploading, setUploading] = useState(false);
   const [confirm, setConfirm] = useState<string | null>(null);
   const [techInput, setTechInput] = useState("");
+  const [descBlocks, setDescBlocks] = useState<DescriptionBlock[]>([{ header: "", text: "" }]);
   const didAutoOpen = useRef(false);
 
   const load = useCallback(async () => {
@@ -545,6 +579,7 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
     setEditing(blankProject());
     setIsNew(true);
     setTechInput("");
+    setDescBlocks([{ header: "", text: "" }]);
     setModal(true);
   }
 
@@ -552,17 +587,21 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
     setEditing({ ...p });
     setIsNew(false);
     setTechInput(p.techStack.join(", "));
+    setDescBlocks(normalizeDescription(p.description));
     setModal(true);
   }
 
   async function save() {
     if (!editing) return;
     if (!editing.title.trim()) { toast.error("Title is required."); return; }
-    if (!editing.description.trim()) { toast.error("Description is required."); return; }
+    const description = denormalizeDescription(descBlocks);
+    const isEmpty = typeof description === "string" ? !description : description.length === 0;
+    if (isEmpty) { toast.error("Description is required."); return; }
     setSaving(true);
     try {
       const payload = {
         ...editing,
+        description,
         techStack: techInput.split(",").map(s => s.trim()).filter(Boolean),
       };
       const url = isNew ? "/api/admin/projects" : `/api/admin/projects/${editing._id}`;
@@ -638,13 +677,57 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
               </Field>
             </div>
             <Field label="Description">
-              <textarea
-                className={inp + " resize-y"}
-                rows={3}
-                value={editing.description}
-                onChange={e => setEditing(p => p && ({ ...p, description: e.target.value }))}
-                placeholder="Short description…"
-              />
+              <div className="space-y-3">
+                {descBlocks.map((block, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl border border-slate-200 dark:border-slate-700 p-3 space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-slate-400">
+                        Section {i + 1}
+                      </span>
+                      {descBlocks.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setDescBlocks(blocks => blocks.filter((_, idx) => idx !== i))}
+                          className="text-xs text-red-500 hover:text-red-600 cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <input
+                      className={inp}
+                      value={block.header}
+                      onChange={e =>
+                        setDescBlocks(blocks =>
+                          blocks.map((b, idx) => (idx === i ? { ...b, header: e.target.value } : b))
+                        )
+                      }
+                      placeholder="Section header (optional — leave empty for a plain paragraph)"
+                    />
+                    <textarea
+                      className={inp + " resize-y"}
+                      rows={3}
+                      value={block.text}
+                      onChange={e =>
+                        setDescBlocks(blocks =>
+                          blocks.map((b, idx) => (idx === i ? { ...b, text: e.target.value } : b))
+                        )
+                      }
+                      placeholder="Paragraph text…"
+                    />
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => setDescBlocks(blocks => [...blocks, { header: "", text: "" }])}
+                  className="text-sm font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 cursor-pointer"
+                >
+                  + Add section
+                </button>
+              </div>
             </Field>
 
             <Field label="Outcome">
@@ -770,7 +853,7 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
                     </button>
                   </div>
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{p.description}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{previewDescription(p.description)}</p>
                 {p.images?.length > 0 && (
                   <p className="text-[10px] text-slate-400 mt-1 flex items-center gap-1">
                     <svg width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

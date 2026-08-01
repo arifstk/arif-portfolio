@@ -13,7 +13,7 @@ export default function Projects({ projects = [] }: { projects?: Project[] }) {
             Selected Works
           </p>
           <p className="text-sm tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">
-            Selected Next.js Full-Stack Projects to work across production systems and internal tools
+            A collection of real-world Next.js full-stack projects showcasing scalable web applications, production-ready systems, and custom internal tools built with modern technologies.
           </p>
         </div>
 

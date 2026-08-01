@@ -16,7 +16,7 @@ import NewsletterAdmin from "./NewsletterAdmin";
 
 // ─── Types ───────────────────────────────────────
 type Project = {
-  _id?: string; title: string; description: string;
+  _id?: string; type?: string; title: string; description: string;
   image: string; imagePublicId?: string;
   images: string[]; techStack: string[];
   demoUrl: string; githubUrl: string; order: number;
@@ -38,7 +38,7 @@ type Message = {
 type Tab = "projects" | "blogs" | "contact" | "socials" | "messages" | "hire" | "newsletter";
 
 const blankProject = (): Project => ({
-  title: "", description: "", image: "", imagePublicId: "",
+  title: "", type: "Web App", description: "", image: "", imagePublicId: "",
   images: [], techStack: [], demoUrl: "", githubUrl: "", order: 0, outcome: "",
 });
 const blankContact = (): ContactItem => ({
@@ -539,7 +539,6 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
       didAutoOpen.current = true;
       openNew();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoOpen]);
 
   function openNew() {
@@ -619,6 +618,14 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
                   value={editing.title}
                   onChange={e => setEditing(p => p && ({ ...p, title: e.target.value }))}
                   placeholder="Project title"
+                />
+              </Field>
+              <Field label="Project Type">
+                <input
+                  className={inp}
+                  value={editing.type || ""}
+                  onChange={e => setEditing(p => p && ({ ...p, type: e.target.value }))}
+                  placeholder="e.g. Web App, SaaS, Mobile App"
                 />
               </Field>
               <Field label="Order">
@@ -732,7 +739,6 @@ function ProjectsPanel({ autoOpen }: { autoOpen?: boolean }) {
           {items.map(p => (
             <div key={p._id} className="group flex items-start gap-3 p-4 bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/60 rounded-2xl hover:border-slate-200 dark:hover:border-slate-600 transition-all">
               {p.image ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={p.image}
                   alt={p.title}

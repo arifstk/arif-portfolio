@@ -82,10 +82,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Left — title, description, tech */}
           <div>
-            {/* Title */}
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#1e293b] dark:text-white leading-tight mb-4">
+            {/* Project Title */}
+            <p className="text-sm font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 mb-1 truncate">
               {title}
-            </h1>
+            </p>
+
+            {/* Project Type */}
+            <span className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-200 rounded-full mb-4 sm:mb-6 inline-block">
+              {project.type || "Web App"}
+            </span>
 
             {/* Description */}
             <div className="prose prose-slate dark:prose-invert max-w-none">
@@ -107,7 +112,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {techStack.map((tech: string) => (
                     <span
                       key={tech}
-                      className="text-xs font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-100 dark:border-violet-900/40
+                      className="text-xs font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-700/10 dark:border-violet-900/40
                       
                       
                         rounded-full hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"

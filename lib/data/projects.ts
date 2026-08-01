@@ -13,6 +13,7 @@ export async function getProjects(): Promise<Project[]> {
 
     return projects.map((p: any) => ({
       _id: String(p._id),
+      type: p.type,
       title: p.title,
       description: p.description,
       image: p.image,

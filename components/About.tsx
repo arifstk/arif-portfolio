@@ -34,13 +34,16 @@ export default function About() {
     <section id="about" className="mt-1 pt-20 md:pt-25 mb-10 text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
-      <div className="text-center mb-8 md:mb-10">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#6d7f98] mb-2">
-          Get To Know Me
-        </p>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-violet-700 after:rounded-full tracking-wider">
+      <div className="">
+        <p className="text-lg font-semibold tracking-widest text-violet-700 dark:text-violet-500 mb-2">
           About Me
-        </h2>
+        </p>
+        <p className="text-sm tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">
+          Next.js Full-Stack Developer specializing in building modern, scalable web applications, production systems, and internal business tools with a focus on performance and user experience.
+        </p>
+      </div>
+
+      <div className="mb-8 md:mb-10">
       </div>
       {/* banner */}
       <div className="w-full h-full md:w-full md:h-full overflow-hidden rounded-2xl mb-10 md:mb-16">

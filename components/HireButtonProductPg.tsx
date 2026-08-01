@@ -18,10 +18,10 @@ export default async function HireButtonProductPg() {
   const hireButton = await getHireButtonData();
 
   return (
-    <div className="relative overflow-hidden mt-3 mb-10 rounded-2xl bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-between border border-violet-200 dark:border-slate-800">
+    <div className="relative overflow-hidden mt-3 mb-0 rounded-2xl bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-between border border-violet-200 dark:border-slate-800">
 
       <span className="absolute -bottom-1.5 sm:-bottom-6 -left-1.5 sm:-left-6 text-6xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
-        Selected
+        Works
       </span>
 
       <div className='col-span-2'>

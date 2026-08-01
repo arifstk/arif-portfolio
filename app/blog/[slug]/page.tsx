@@ -268,7 +268,7 @@ export default async function SingleBlogPage({ params }: Props) {
           </div>
         </article>
 
-        <Newsletter />
+        <div className='pt-8 sm:pt-12'><Newsletter /></div>
       </div>
     </main>
   );

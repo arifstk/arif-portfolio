@@ -86,12 +86,13 @@ import Link from "next/link";
 import HireButtonProductPg from '@/components/HireButtonProductPg';
 import Projects from '@/components/Projects';
 import { getProjects } from "@/lib/data/projects";
+import { MoveLeft, MoveRight } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-const PAGE_TITLE = "Projects — Shaikh Arif | Full-Stack Next.js Developer";
+const PAGE_TITLE = "Projects — Shaikh Arif | Full-Stack Developer";
 const PAGE_DESCRIPTION =
-  "Selected Next.js full-stack projects covering production systems, admin dashboards, and internal tools — built with MongoDB, Tailwind CSS, and NextAuth.";
+  "Selected Next.js full-stack projects covering production systems, admin dashboards, and internal tools — built with MongoDB, Tailwind CSS and NextAuth.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -154,7 +155,7 @@ export default async function Page({ searchParams }: PageProps) {
       />
 
       <div className='w-[92%] xl:w-[80%] mx-auto'>
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#6d7f98] mb-2">
+        <p className="text-lg font-semibold tracking-widest text-[#6d7f98] mb-2">
           Selected Works
         </p>
         <h1 className="text-sm tracking-wide text-[#6d7f98] mb-2 pb-3 font-normal">
@@ -169,7 +170,7 @@ export default async function Page({ searchParams }: PageProps) {
       {/* --- Capsule Pagination Control --- */}
       {totalPages > 1 && (
         <div className="flex justify-center pt-8">
-          <div className="inline-flex items-center justify-between gap-6 px-6 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 border border-slate-200/80 dark:border-gray-800 shadow-md backdrop-blur-md text-sm font-semibold">
+          <div className="inline-flex items-center justify-between gap-3 px-6 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 border border-slate-200/80 dark:border-gray-800 shadow-md backdrop-blur-md text-sm font-semibold">
 
             {/* Previous Link */}
             {currentPage > 1 ? (
@@ -177,11 +178,11 @@ export default async function Page({ searchParams }: PageProps) {
                 href={`/projects?page=${currentPage - 1}`}
                 className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
               >
-                ← Prev
+                <MoveLeft className="w-4 h-4" /> <span>Prev</span>
               </Link>
             ) : (
               <span className="flex items-center justify-center gap-1.5 text-slate-300 dark:text-gray-600 cursor-not-allowed">
-                ← Prev
+                <MoveLeft className="w-4 h-4" /> <span>Prev</span>
               </span>
             )}
 
@@ -196,11 +197,11 @@ export default async function Page({ searchParams }: PageProps) {
                 href={`/projects?page=${currentPage + 1}`}
                 className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
               >
-                Next →
+                <span>Next</span> <MoveRight className="w-4 h-4" />
               </Link>
             ) : (
               <span className="flex items-center justify-center gap-1.5 text-slate-300 dark:text-gray-600 cursor-not-allowed">
-                Next →
+                <span>Next</span> <MoveRight className="w-4 h-4" />
               </span>
             )}
           </div>

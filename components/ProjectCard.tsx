@@ -74,7 +74,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 py-2 text-sm font-semibold bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 text-white border  dark:border-violet-900/60 px-3 rounded-xl transition-all duration-200"
+            className="flex items-center justify-center gap-1.5 py-2 text-sm font-semibold bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 text-white border border-none dark:border-violet-900/60 shadow-md shadow-violet-700/20 px-3 rounded-xl transition-all duration-200"
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo
@@ -91,9 +91,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {_id && (
           <Link
             href={`/projects/${_id}`}
-            className="group mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-violet-700 dark:text-violet-500 border border-violet-100 dark:border-violet-900/30 bg-violet-50/40 dark:bg-violet-950/20 hover:bg-violet-100/60 dark:hover:bg-violet-900/30 transition-all duration-200"
+            className="group mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-violet-700 dark:text-violet-500 border border-violet-100 dark:border-violet-900/30 bg-violet-100/60 dark:bg-violet-950/20 hover:bg-violet-50/40 dark:hover:bg-violet-900/30 transition-all duration-200"
           >
-            View Details
+            View Project Details
             <MoveRight className="w-4 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1.5" />
           </Link>
         )}

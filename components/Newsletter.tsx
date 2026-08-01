@@ -1,97 +1,6 @@
-// // components/Newsletter.tsx
-
-// "use client";
-// import React, { useState } from "react";
-
-// export default function Newsletter() {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-
-//   const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//     // Handle newsletter subscription logic here
-//     console.log({ name, email });
-//   };
-
-//   return (
-//     <section className="w-full bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-gray-700 p-3 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)]    
-//     md:p-10 rounded-2xl bg-white dark:bg-[#0c1021] shadow-violet-500/5 font-sans relative overflow-hidden">
-
-//       <span className="absolute -top-1.5 sm:-top-6 -right-1.5 sm:-right-6 text-4xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
-//         Newsletter
-//       </span>
-
-//       {/* Badge */}
-//       <div className="inline-block mb-4 relative z-10">
-//         <span className="px-3.5 py-1.5 rounded-full bg-violet-100 dark:bg-violet-950/80 border border-violet-200/60 dark:border-violet-800/50 text-violet-700 dark:text-violet-300 text-xs font-bold tracking-wider uppercase">
-//           Newsletter
-//         </span>
-//       </div>
-
-//       {/* Content */}
-//       <div className="space-y-3 max-w-3xl mb-8 relative z-10">
-//         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
-//           Build Better, Faster Full-Stack Applications
-//         </h2>
-//         <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
-//           Get expert insights on Next.js, TypeScript architecture, scalable database patterns, and modern web performance strategies delivered straight to your inbox.
-//         </p>
-//       </div>
-
-//       {/* Form */}
-//       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end relative z-10">
-//         {/* Name Field */}
-//         <div className="md:col-span-4 space-y-1.5">
-//           <label htmlFor="name" className="block text-[11px] font-extrabold text-violet-700 dark:text-violet-400 uppercase tracking-wider">
-//             Name*
-//           </label>
-//           <input
-//             id="name"
-//             type="text"
-//             required
-//             value={name}
-//             onChange={(e) => setName(e.target.value)}
-//             placeholder="Preferred name"
-//             className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
-//           />
-//         </div>
-
-//         {/* Email Field */}
-//         <div className="md:col-span-5 space-y-1.5">
-//           <label htmlFor="email" className="block text-[11px] font-extrabold text-violet-700 dark:text-violet-400 uppercase tracking-wider">
-//             Email*
-//           </label>
-//           <input
-//             id="email"
-//             type="email"
-//             required
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             placeholder="you@example.com"
-//             className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
-//           />
-//         </div>
-
-//         {/* Submit Button */}
-//         <div className="md:col-span-3">
-//           <button
-//             type="submit"
-//             className="w-full py-3 px-6 bg-violet-700 hover:bg-violet-600 active:bg-violet-800 text-white font-semibold text-sm rounded-2xl transition-all duration-200 shadow-md shadow-violet-600/20 hover:shadow-violet-600/30 cursor-pointer"
-//           >
-//             Subscribe
-//           </button>
-//         </div>
-//       </form>
-//     </section>
-//   );
-// }
-
-
-
-
 // components/Newsletter.tsx
-"use client";
 
+"use client";
 import React, { useState } from "react";
 
 export default function Newsletter() {
@@ -131,7 +40,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="w-full bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-gray-700 p-3 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] md:p-10 rounded-2xl bg-white dark:bg-[#0c1021] shadow-violet-500/5 font-sans relative overflow-hidden">
+    <section className="w-full bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-gray-700 p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] md:p-10 rounded-2xl bg-white dark:bg-[#0c1021] shadow-violet-500/5 font-sans relative overflow-hidden">
 
       <span className="absolute -top-1.5 sm:-top-6 -right-1.5 sm:-right-6 text-4xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
         Newsletter
@@ -171,7 +80,7 @@ export default function Newsletter() {
         {/* Name Field */}
         <div className="md:col-span-4 space-y-1.5">
           <label htmlFor="name" className="block text-[11px] font-extrabold text-violet-700 dark:text-violet-400 uppercase tracking-wider">
-            Name*
+            Name <span className="text-rose-500">*</span>
           </label>
           <input
             id="name"
@@ -180,14 +89,14 @@ export default function Newsletter() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Preferred name"
-            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
+            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
           />
         </div>
 
         {/* Email Field */}
         <div className="md:col-span-5 space-y-1.5">
           <label htmlFor="email" className="block text-[11px] font-extrabold text-violet-700 dark:text-violet-400 uppercase tracking-wider">
-            Email*
+            Email <span className="text-rose-500">*</span>
           </label>
           <input
             id="email"
@@ -196,7 +105,7 @@ export default function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
+            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
           />
         </div>
 
@@ -205,7 +114,7 @@ export default function Newsletter() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-6 bg-violet-700 hover:bg-violet-600 active:bg-violet-800 disabled:bg-violet-500/50 text-white font-semibold text-sm rounded-2xl transition-all duration-200 shadow-md shadow-violet-600/20 hover:shadow-violet-600/30 cursor-pointer disabled:cursor-not-allowed"
+            className="w-full py-3 px-6 bg-violet-700 hover:bg-violet-600 active:bg-violet-800 disabled:bg-violet-500/50 text-white font-semibold text-sm rounded-lg transition-all duration-200 shadow-md shadow-violet-600/20 hover:shadow-violet-600/30 cursor-pointer disabled:cursor-not-allowed"
           >
             {loading ? "Subscribing..." : "Subscribe"}
           </button>

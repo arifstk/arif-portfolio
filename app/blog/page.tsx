@@ -3,6 +3,7 @@
 import BlogCard, { BlogCardProps } from "@/components/BlogCard";
 import HireButtonBanner from "@/components/HireButtonBanner";
 import HireButtonBlog from "@/components/HireButtonBlog";
+import { MoveLeft, MoveRight } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -72,13 +73,13 @@ export default async function BlogPage({ searchParams }: PageProps) {
 
         {/* Content Section */}
         {paginatedBlogs.length === 0 ? (
-          <div className="flex flex-col items-center justify-center p-7 rounded-2xl bg-white dark:bg-black/20 border border-slate-200 dark:border-gray-700 text-center shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+          <div className="flex flex-col items-center justify-center p-3 sm:p-7 rounded-2xl bg-white dark:bg-black/20 border border-slate-200 dark:border-gray-700 text-center shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
             <p className="text-slate-500 dark:text-gray-400 text-base font-medium">
               No blog posts found. Check back later!
             </p>
           </div>
         ) : (
-          <div className="space-y-10">
+          <div className="space-y-5 sm:space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {paginatedBlogs.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
@@ -88,7 +89,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
             {/* --- Pagination --- */}
             {totalPages > 1 && (
               <div className="flex justify-center items-center pt-4">
-                <div className="inline-flex items-center justify-between gap-6 px-6 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 border border-slate-200/80 dark:border-gray-800 shadow-md backdrop-blur-md text-sm font-semibold">
+                <div className="inline-flex items-center justify-between gap-3 px-6 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 border border-slate-200/80 dark:border-gray-800 shadow-md backdrop-blur-md text-sm font-semibold">
 
                   {/* Previous Link */}
                   {currentPage > 1 ? (
@@ -96,11 +97,11 @@ export default async function BlogPage({ searchParams }: PageProps) {
                       href={`/blog?page=${currentPage - 1}`}
                       className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
                     >
-                      <span>←</span> Prev
+                      <MoveLeft className="w-4 h-4" /> <span>Prev</span>
                     </Link>
                   ) : (
                     <span className="flex items-center justify-center gap-1.5 text-slate-300 dark:text-gray-600 cursor-not-allowed">
-                      <span>←</span> Prev
+                      <MoveLeft className="w-4 h-4" /> <span>Prev</span>
                     </span>
                   )}
 
@@ -115,11 +116,11 @@ export default async function BlogPage({ searchParams }: PageProps) {
                       href={`/blog?page=${currentPage + 1}`}
                       className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
                     >
-                      Next <span>→</span>
+                      <span>Next</span> <MoveRight className="w-4 h-4" />
                     </Link>
                   ) : (
                     <span className="flex items-center justify-center gap-1.5 text-slate-300 dark:text-gray-600 cursor-not-allowed">
-                      Next <span>→</span>
+                      <span>Next</span> <MoveRight className="w-4 h-4" />
                     </span>
                   )}
                 </div>

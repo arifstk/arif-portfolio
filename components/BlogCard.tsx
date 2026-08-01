@@ -28,10 +28,10 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
 
   return (
     <Link href={`/blog/${cardSlug}`} className="block group h-full">
-      <div className="flex flex-col justify-between h-full rounded-2xl bg-white dark:bg-black/20 border border-slate-200 dark:border-gray-700 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 dark:hover:border-violet-500/50 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
+      <div className="flex flex-col justify-between h-full rounded-2xl bg-white dark:bg-black/20 border border-slate-300 dark:border-gray-700 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 dark:hover:border-violet-500/50 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
 
         {/* Upper Card Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {/* Category Badge */}
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-400 border border-violet-100 dark:border-violet-900/40 mb-4 transition-colors duration-300 group-hover:bg-violet-600 group-hover:text-white dark:group-hover:bg-violet-600">
             {blog.category || "Web Application"}
@@ -49,7 +49,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
         </div>
 
         {/* Filled Footer Section */}
-        <div className="px-6 py-4 bg-violet-200/40 dark:bg-violet-950/30 border-t border-violet-200 dark:border-violet-900/40 flex items-center justify-between mt-auto">
+        <div className="px-4 sm:px-6 py-2 sm:py-4 bg-violet-200/40 dark:bg-violet-950/30 border-t border-violet-200 dark:border-violet-900/40 flex items-center justify-between mt-auto">
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white dark:bg-gray-800 border border-violet-200 dark:border-violet-800/60 shrink-0">
               <Image

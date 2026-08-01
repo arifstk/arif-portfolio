@@ -38,7 +38,7 @@ export default function Footer() {
 
           {/* Copyright text */}
           <p className="flex text-sm text-[#64748b] text-left whitespace-nowrap">
-            &copy; {currentYear} Arif Hossain
+            &copy; {currentYear} Shaikh Arif <span className=" px-2 text-slate-300 dark:text-slate-600">|</span> All rights reserved.
           </p>
 
           {/* Social Platforms Links */}

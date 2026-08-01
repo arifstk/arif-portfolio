@@ -49,7 +49,7 @@ const Nav = () => {
 
             {/* contact */}
             <Link href={'/contact'}
-              className='text-sm bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 py-1.5 rounded-xl text-white transition-colors duration-200 dark:backdrop-blur-sm'
+              className='text-sm bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 py-1.5 rounded-xl text-white shadow-md shadow-violet-700/20 transition-colors duration-200 dark:backdrop-blur-sm'
             >
               Contact
             </Link>

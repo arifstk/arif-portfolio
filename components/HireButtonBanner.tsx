@@ -35,7 +35,7 @@ export default async function HireButtonBanner() {
       </div>
       <div className='flex flex-col gap-3 sm:pl-4 items-start sm:items-end w-full'>
         <Link href="/contact">
-          <button className='group bg-violet-700 hover:bg-violet-600 text-white shadow-[0_4px_12px_rgba(139,92,246,0.2)] dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2'>
+          <button className='group bg-violet-700 hover:bg-violet-600 text-white shadow-md shadow-violet-700/20 dark:bg-violet-700 dark:hover:bg-violet-600 transition-all duration-200 font-semibold text-sm py-2.5 px-5 rounded-full cursor-pointer flex items-center justify-center gap-2'>
             Let's Talk <MoveRight className="w-6 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1.5" />
           </button>
         </Link>

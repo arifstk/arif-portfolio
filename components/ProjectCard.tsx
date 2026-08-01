@@ -27,12 +27,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       <Link href={_id ? `/projects/${_id}` : "#"} className="block relative w-full h-48 sm:h-52 overflow-hidden bg-slate-100">
         {image ? (
+          // <Image
+          //   src={image}
+          //   alt={`${title} Thumbnail`}
+          //   fill
+          //   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          //   className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-102"
+          // />
+
           <Image
             src={image}
             alt={`${title} Thumbnail`}
-            fill
+            width={600} // Target max width
+            height={400} // Target max height (Next.js uses width/height to infer aspect ratio)
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-102"
+            className="w-full h-auto object-center transition-transform duration-500 ease-out group-hover:scale-105"
           />
         ) : (
           <div className="flex items-center justify-center w-full h-full bg-slate-100 dark:bg-gray-900 text-slate-400 dark:text-gray-600 text-sm">

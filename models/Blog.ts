@@ -3,7 +3,7 @@
 import mongoose, { Schema, Document, models, model } from "mongoose";
 
 export interface IContentBlock {
-  type: "paragraph" | "code";
+  type: "paragraph" | "code" | "cliptext" | "clip" | "image";
   value: string;
 }
 
@@ -31,7 +31,7 @@ export interface IBlog extends Document {
 const ContentBlockSchema = new Schema<IContentBlock>({
   type: {
     type: String,
-    enum: ["paragraph", "code"],
+    enum: ["paragraph", "code", "cliptext", "clip", "image"],
     required: true,
   },
   value: { type: String, required: true },

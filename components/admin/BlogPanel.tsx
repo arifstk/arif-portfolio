@@ -1,3 +1,4 @@
+
 // components/admin/BlogPanel.tsx
 
 "use client";
@@ -6,7 +7,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import toast from "react-hot-toast";
 
 type ContentBlock = {
-  type: "paragraph" | "code";
+  type: "paragraph" | "code" | "cliptext";
   value: string;
 };
 
@@ -89,7 +90,7 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
             ✕
           </button>
         </div>
-        <div className="p-6">{children}</div>
+        <div className="p-4">{children}</div>
       </div>
     </div>
   );
@@ -139,9 +140,8 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
 
   function openEdit(b: BlogItem) {
     const normalizedSections = (b.sections || []).map((sec) => {
-
       const blocks = sec.blocks
-        ? sec.blocks.filter((blk) => blk.type === "paragraph" || blk.type === "code")
+        ? sec.blocks.filter((blk) => blk.type === "paragraph" || blk.type === "code" || blk.type === "cliptext")
         : [];
 
       if (sec.paragraph && blocks.length === 0) {
@@ -197,7 +197,6 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     }
   };
 
-  // Section Handlers
   function addSection() {
     if (!editing) return;
     setEditing({
@@ -224,8 +223,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
     setEditing({ ...editing, sections: updated });
   }
 
-  // Dynamic Paragraph & Code Snippet Handlers
-  function addBlock(secIdx: number, type: "paragraph" | "code") {
+  function addBlock(secIdx: number, type: "paragraph" | "code" | "cliptext") {
     if (!editing) return;
     const updated = [...editing.sections];
     const currentBlocks = updated[secIdx].blocks || [];
@@ -471,6 +469,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                           <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
                             {block.type === "paragraph" && "Paragraph"}
                             {block.type === "code" && "Code Snippet Block"}
+                            {block.type === "cliptext" && "Clip Text Block"}
                           </span>
                           <button
                             type="button"
@@ -500,6 +499,19 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                             placeholder="Paste your code snippet here..."
                           />
                         )}
+
+                        {/* Clip Text Input Block */}
+                        {block.type === "cliptext" && (
+                          <div>
+                            <input
+                              type="text"
+                              value={block.value || ""}
+                              onChange={(e) => updateBlockValue(secIdx, blockIdx, e.target.value)}
+                              className="w-full bg-slate-50 dark:bg-slate-900/80 text-violet-900 dark:text-violet-300 font-mono text-xs border border-violet-200/80 dark:border-violet-800/50 rounded-xl p-2.5 focus:outline-none focus:border-violet-500"
+                              placeholder="e.g. npm install lucide-react"
+                            />
+                          </div>
+                        )}
                       </div>
                     ))}
 
@@ -517,6 +529,13 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                         className="px-2.5 py-1 text-[11px] font-bold bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-cyan-300 rounded-lg transition-colors cursor-pointer"
                       >
                         + Add Code Snippet
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => addBlock(secIdx, "cliptext")}
+                        className="px-2.5 py-1 text-[11px] font-bold bg-violet-950/60 border border-violet-800/50 hover:bg-violet-900/60 text-violet-300 rounded-lg transition-colors cursor-pointer"
+                      >
+                        + Add Clip Text
                       </button>
                     </div>
                   </div>
@@ -572,7 +591,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                   </h4>
                   <div className="flex items-center gap-2 mt-0.5">
                     <span className="text-[10px] font-bold text-violet-700 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/60 border border-violet-200/80 dark:border-violet-800/50 px-2 py-0.5 rounded-md uppercase">
-                      {b.category || "SAAS"}
+                      {b.category || "Web Application"}
                     </span>
                     <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{b.excerpt}</span>
                   </div>

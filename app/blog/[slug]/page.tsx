@@ -71,21 +71,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Inline badge highlighting helper
-function FormattedParagraph({ text }: { text: string }) {
-  if (!text) return null;
 
+function FormattedInlineText({ text }: { text: string }) {
+  if (!text) return null;
   const parts = text.split(/(`[^`]+`)/g);
 
   return (
-    <p className="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+    <>
       {parts.map((part, i) => {
         if (part.startsWith("`") && part.endsWith("`")) {
           const codeText = part.slice(1, -1);
           return (
             <code
               key={i}
-              className="inline-block px-1.5 py-0.5 mx-0.5 text-xs font-mono font-medium rounded-md bg-amber-100/80 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/60"
+              className="inline-block px-1.5 py-0.5 mx-1 text-xs font-mono font-medium rounded-md bg-[#fff7ed] dark:bg-[#2c1a0e] text-[#c2410c] dark:text-[#f97316] border border-[#ffedd5] dark:border-[#7c2d12] shadow-xs align-baseline"
             >
               {codeText}
             </code>
@@ -93,8 +92,99 @@ function FormattedParagraph({ text }: { text: string }) {
         }
         return part;
       })}
-    </p>
+    </>
   );
+}
+
+
+function SectionBlocksRenderer({ blocks }: { blocks: any[] }) {
+  if (!blocks || blocks.length === 0) return null;
+
+  const groupedElements: React.ReactNode[] = [];
+  let inlineBuffer: any[] = [];
+
+  const flushBuffer = (keyIndex: number) => {
+    if (inlineBuffer.length === 0) return;
+
+    groupedElements.push(
+      <p
+        key={`grouped-${keyIndex}`}
+        className="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed font-normal"
+      >
+        {inlineBuffer.map((item, idx) => {
+          if (item.type === "paragraph") {
+            return <FormattedInlineText key={idx} text={item.value + " "} />;
+          }
+          if (item.type === "cliptext" || item.type === "clip") {
+            return (
+              <code
+                key={idx}
+                className="inline-block px-1.5 mx-1 text-sm font-mono font-medium rounded-md shadow-xs
+                
+                 bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50
+                
+                align-baseline"
+              >
+                {item.value}
+              </code>
+            );
+          }
+          return null;
+        })}
+      </p>
+    );
+
+    inlineBuffer = [];
+  };
+
+  blocks.forEach((block, idx) => {
+    if (
+      block.type === "paragraph" ||
+      block.type === "cliptext" ||
+      block.type === "clip"
+    ) {
+      inlineBuffer.push(block);
+    } else {
+      flushBuffer(idx);
+
+      if (block.type === "code" && block.value) {
+        groupedElements.push(
+          <div
+            key={idx}
+            className="relative my-4 rounded-2xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden"
+          >
+            <div className="flex items-center gap-2 px-4 py-3 bg-[#0d1527] border-b border-slate-800/80">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+            </div>
+            <pre className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-cyan-300 overflow-x-auto leading-relaxed">
+              <code>{block.value}</code>
+            </pre>
+          </div>
+        );
+      } else if (block.type === "image" && block.value) {
+        groupedElements.push(
+          <div
+            key={idx}
+            className="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-gray-900 border border-slate-200 dark:border-gray-800 my-4"
+          >
+            <Image
+              src={block.value}
+              alt={`Article Image ${idx + 1}`}
+              fill
+              className="object-cover"
+            />
+          </div>
+        );
+      }
+    }
+  });
+
+  // Flush remaining inline items at the end
+  flushBuffer(blocks.length);
+
+  return <>{groupedElements}</>;
 }
 
 export default async function SingleBlogPage({ params }: Props) {
@@ -208,59 +298,17 @@ export default async function SingleBlogPage({ params }: Props) {
           <div className="space-y-8 text-[#1e293b] dark:text-gray-300 leading-relaxed">
             {blog.sections?.map((sec: any, secIdx: number) => (
               <div key={secIdx} className="space-y-4 pt-2">
-
-                {/* Section Heading */}
+                {/* Section Headings */}
                 {sec.heading && (
                   <h2 className="text-xl sm:text-2xl font-bold text-[#1e293b] dark:text-gray-100 tracking-tight">
-                    {sec.heading}
+                    <FormattedInlineText text={sec.heading} />
                   </h2>
                 )}
 
-                {/* Render Flexible Blocks Array */}
+                {/* Render Grouped Blocks Array */}
                 {sec.blocks && sec.blocks.length > 0 ? (
-                  sec.blocks.map((block: any, blockIdx: number) => {
-                    if (block.type === "paragraph" && block.value) {
-                      return <FormattedParagraph key={blockIdx} text={block.value} />;
-                    }
-
-                    if (block.type === "code" && block.value) {
-                      return (
-                        <div
-                          key={blockIdx}
-                          className="relative my-4 rounded-2xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden"
-                        >
-                          <div className="flex items-center gap-2 px-4 py-3 bg-[#0d1527] border-b border-slate-800/80">
-                            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                          </div>
-                          <pre className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-cyan-300 overflow-x-auto leading-relaxed">
-                            <code>{block.value}</code>
-                          </pre>
-                        </div>
-                      );
-                    }
-
-                    if (block.type === "image" && block.value) {
-                      return (
-                        <div
-                          key={blockIdx}
-                          className="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-gray-900 border border-slate-200 dark:border-gray-800 my-4"
-                        >
-                          <Image
-                            src={block.value}
-                            alt={`Article Image ${blockIdx + 1}`}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      );
-                    }
-
-                    return null;
-                  })
+                  <SectionBlocksRenderer blocks={sec.blocks} />
                 ) : (
-                  /* Fallback for older legacy section schema */
                   <>
                     {sec.codeSnippet && (
                       <div className="relative my-4 rounded-2xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden">
@@ -276,10 +324,19 @@ export default async function SingleBlogPage({ params }: Props) {
                     )}
                     {sec.image && (
                       <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-gray-900 border border-slate-200 dark:border-gray-800 my-4">
-                        <Image src={sec.image} alt={sec.heading || "Section"} fill className="object-cover" />
+                        <Image
+                          src={sec.image}
+                          alt={sec.heading || "Section"}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
                     )}
-                    {sec.paragraph && <FormattedParagraph text={sec.paragraph} />}
+                    {sec.paragraph && (
+                      <p className="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+                        <FormattedInlineText text={sec.paragraph} />
+                      </p>
+                    )}
                   </>
                 )}
               </div>
@@ -287,7 +344,7 @@ export default async function SingleBlogPage({ params }: Props) {
           </div>
         </article>
 
-        <div className='pt-8 sm:pt-12'><Newsletter /></div>
+        <div className="pt-8 sm:pt-12"><Newsletter /></div>
       </div>
     </main>
   );

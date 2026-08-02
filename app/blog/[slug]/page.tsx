@@ -113,8 +113,26 @@ export default async function SingleBlogPage({ params }: Props) {
     })
     : "";
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: blog.title,
+    description: blog.excerpt,
+    image: blog.coverImage ? [blog.coverImage] : [],
+    datePublished: blog.createdAt,
+    author: {
+      "@type": "Person",
+      name: blog.authorName || "Shaikh Arif",
+      url: SITE_URL,
+    },
+  };
+
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-12 pt-25 transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="relative w-[92%] md:w-[80%] mx-auto space-y-6">
         <Link
           href="/blog"

@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ExternalLink, MoveRight } from 'lucide-react';
-// import { FaGithubSquare } from "react-icons/fa";
-import SourceCodeButton from './SourceCodeButton';
 
 interface ProjectCardProps {
   project: {
@@ -16,37 +14,23 @@ interface ProjectCardProps {
     techStack: string[];
     demoUrl: string;
     githubUrl: string;
+    outcome?: string;
   };
 }
 
-function getDescriptionPreview(desc: any): string {
-  if (typeof desc === "string") return desc;
-  if (Array.isArray(desc) && desc.length > 0) return desc[0].text || "";
-  return "";
-}
-
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const { _id, title, description, image, techStack, demoUrl, githubUrl } = project;
-  const descriptionPreview = getDescriptionPreview(description);
+  const { _id, title, description, image, techStack, demoUrl, githubUrl, outcome } = project;
 
   return (
     <div className=" flex flex-col h-full rounded-2xl dark:bg-black/20 dark:border-gray-700 border border-slate-200 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/20 dark:hover:border-violet-500/20 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
 
       <Link href={_id ? `/projects/${_id}` : "#"} className="block relative w-full h-48 sm:h-52 overflow-hidden bg-slate-100">
         {image ? (
-          // <Image
-          //   src={image}
-          //   alt={`${title} Thumbnail`}
-          //   fill
-          //   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          //   className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-102"
-          // />
-
           <Image
             src={image}
             alt={`${title} Thumbnail`}
-            width={600} // Target max width
-            height={400} // Target max height (Next.js uses width/height to infer aspect ratio)
+            width={600}
+            height={400}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="w-full h-auto object-center transition-transform duration-500 ease-out group-hover:scale-105"
           />
@@ -69,59 +53,32 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.type || "Web App"}
         </span>
 
-        {/* Short Description */}
-        <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-3 line-clamp-2">
-          {descriptionPreview}
-        </p>
+        {/* Outcome */}
+        {outcome && (
+          <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-3 line-clamp-2">
+            {outcome}
+          </p>
+        )}
 
         {/* Tech Stack Badges */}
         <div className="flex flex-wrap gap-1.5 mb-2 mt-auto">
           {techStack.map((tech, index) => (
             <span
               key={index}
-              className="text-xs font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-700/10 dark:border-violet-900/40 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
+              className="text-xs font-medium px-3 py-0.5
+               bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
             >
               {tech}
             </span>
           ))}
         </div>
 
-        {/* Action Buttons */}
-        {/* <div className="grid grid-cols-2 gap-3">
-          <Link
-            href={demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 py-2 text-sm font-semibold bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 text-white border border-none dark:border-violet-900/60 shadow-md shadow-violet-700/20 px-3 rounded-xl transition-all duration-200"
-          >
-            <ExternalLink className="w-4 h-4" />
-            Live Demo
-          </Link>
-
-          <SourceCodeButton
-            githubUrl={githubUrl}
-            projectTitle={title}
-            className="flex items-center justify-center gap-1.5 py-2 rounded-xl text-sm font-semibold text-[#1e293b] dark:text-gray-200 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-gray-800 hover:border-violet-300 dark:hover:border-violet-800"
-          />
-        </div> */}
-
-        {/* View Details link */}
-        {/* {_id && (
-          <Link
-            href={`/projects/${_id}`}
-            className="group mt-3 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-violet-700 dark:text-violet-500 border border-violet-100 dark:border-violet-900/30 bg-violet-100/60 dark:bg-violet-950/20 hover:bg-violet-50/40 dark:hover:bg-violet-900/30 transition-all duration-200"
-          >
-            View Project Details
-            <MoveRight className="w-4 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1.5" />
-          </Link>
-        )} */}
-
         {_id && (
           <Link
             href={`/projects/${_id}`}
             className="group mt-3 flex items-center justify-end gap-1.5 pb-1 pr-1 rounded-xl text-xs font-semibold text-violet-800 dark:text-violet-500 transition-all duration-200"
           >
-            Project Details
+            View Details
             <MoveRight className="w-4 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1.5" />
           </Link>
         )}

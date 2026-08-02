@@ -3,6 +3,7 @@
 import BlogCard, { BlogCardProps } from "@/components/BlogCard";
 import HireButtonBanner from "@/components/HireButtonBanner";
 import HireButtonBlog from "@/components/HireButtonBlog";
+import { SITE_URL } from "@/lib/seo";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -13,6 +14,9 @@ const PAGE_DESCRIPTION = "Insights, tutorials, and deep-dives into modern web de
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
 };
 
 async function getAllBlogs(): Promise<BlogCardProps[]> {

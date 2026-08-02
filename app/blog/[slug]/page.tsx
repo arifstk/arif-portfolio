@@ -9,6 +9,7 @@ import Blog from "@/models/Blog";
 import SocialLinks from "@/components/SocialLinks";
 import { Metadata } from "next";
 import Newsletter from "@/components/Newsletter";
+import { SITE_URL } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -50,12 +51,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `${SITE_URL}/blog/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `/blog/${slug}`,
+      url: `${SITE_URL}/blog/${slug}`,
       type: "article",
       publishedTime: blog.createdAt,
       authors: [blog.authorName || "Shaikh Arif"],

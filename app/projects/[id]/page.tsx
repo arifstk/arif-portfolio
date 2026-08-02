@@ -37,7 +37,6 @@ export async function generateMetadata({ params }: PageProps) {
     openGraph: { images: project.image ? [project.image] : [] },
   };
 }
-
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params;
   const project = await getProject(id);
@@ -94,13 +93,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <span className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-200 rounded-full mb-4 sm:mb-6 inline-block">
               {project.type || "Web App"}
             </span>
-
-            {/* Description */}
-            {/* <div className="prose prose-slate dark:prose-invert max-w-none">
-              <p className="text-base text-[#475569] dark:text-slate-300 leading-relaxed whitespace-pre-line">
-                {description}
-              </p>
-            </div> */}
 
             {/* Description */}
             {typeof description === "string" ? (

@@ -23,6 +23,7 @@ export async function getProjects(): Promise<Project[]> {
       demoUrl: p.demoUrl,
       githubUrl: p.githubUrl,
       order: p.order ?? 0,
+      outcome: p.outcome || "",
     }));
   } catch {
     return [];

@@ -52,7 +52,7 @@ export default function Projects({
       <div className="w-[92%] xl:w-[80%] mx-auto">
         {/* Header */}
         <div className="mb-3">
-          <p className="text-lg font-semibold tracking-widest text-violet-700 dark:text-violet-500 mb-2">
+          <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-600 mb-2">
             Selected Works
           </p>
           <p className="text-sm tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">
@@ -75,7 +75,7 @@ export default function Projects({
               {currentPage > 1 ? (
                 <Link
                   href={`${baseUrl}?page=${currentPage - 1}`}
-                  className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
+                  className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
                 >
                   <MoveLeft className="w-4 h-4" /> <span>Prev</span>
                 </Link>
@@ -86,7 +86,7 @@ export default function Projects({
               )}
 
               {/* Indicator Page / Total */}
-              <span className="text-violet-600 dark:text-violet-400 font-bold px-2">
+              <span className="text-violet-800 dark:text-violet-600 font-bold px-2">
                 {currentPage}/{totalPages}
               </span>
 
@@ -94,7 +94,7 @@ export default function Projects({
               {currentPage < totalPages ? (
                 <Link
                   href={`${baseUrl}?page=${currentPage + 1}`}
-                  className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
+                  className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
                 >
                   <span>Next</span> <MoveRight className="w-4 h-4" />
                 </Link>

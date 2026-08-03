@@ -35,7 +35,7 @@ export default function About() {
 
       {/* Section Header */}
       <div className="">
-        <p className="text-lg font-semibold tracking-widest text-violet-700 dark:text-violet-500 mb-2">
+        <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-600 mb-2">
           About Me
         </p>
         <p className="text-sm tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">

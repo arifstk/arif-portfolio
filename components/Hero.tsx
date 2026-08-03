@@ -17,14 +17,14 @@ const Hero = () => {
           <p className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider'>
             Hello I&apos;m
           </p>
-          <h1 className='text-violet-700 dark:text-violet-600 text-5xl md:text-7xl tracking-tight sm:tracking-normal font-semibold'>
+          <h1 className='text-violet-800 dark:text-violet-600 text-5xl md:text-7xl tracking-tight sm:tracking-normal font-semibold'>
             Arif Hossain
           </h1>
         </div>
         <HeroDescription />
 
         <Link href="/projects">
-          <button className='text-sm bg-violet-200 hover:bg-violet-300 border border-violet-400 font-medium px-6 py-1.5 rounded-full text-violet-800 transition-colors duration-200 dark:backdrop-blur-sm dark:bg-violet-900/30 dark:text-violet-50 dark:hover:bg-violet-900/50 dark:border-violet-90 tracking-wide cursor-pointer'>
+          <button className='text-sm bg-violet-50 hover:bg-violet-100 border border-violet-200 font-medium px-6 py-1.5 rounded-full text-violet-800 transition-colors duration-200 dark:backdrop-blur-sm dark:bg-violet-900/30 dark:text-violet-50 dark:hover:bg-violet-900/50 dark:border-slate-700 tracking-wide cursor-pointer'>
             My Works
           </button>
         </Link>

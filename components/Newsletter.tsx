@@ -40,7 +40,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="w-full bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-gray-700 p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] md:p-10 rounded-2xl bg-white dark:bg-[#0c1021] shadow-violet-500/5 font-sans relative overflow-hidden">
+    <section className="w-full bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-gray-700 px-5 py-10 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] md:p-10 bg-white dark:bg-[#0c1021] shadow-violet-500/5 font-sans relative overflow-hidden sm:rounded-2xl">
 
       <span className="absolute -top-1.5 sm:-top-6 -right-1.5 sm:-right-6 text-4xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
         Newsletter
@@ -48,14 +48,14 @@ export default function Newsletter() {
 
       {/* Badge */}
       <div className="inline-block mb-4 relative z-10">
-        <span className="px-3.5 py-1.5 rounded-full bg-violet-100 dark:bg-violet-950/80 border border-violet-200/60 dark:border-violet-800/50 text-violet-700 dark:text-violet-300 text-xs font-bold tracking-wider uppercase">
+        <span className="px-3.5 py-1.5 rounded-full bg-violet-100 dark:bg-violet-950/80 border border-violet-300/60 dark:border-violet-800/50 text-violet-800 dark:text-violet-500 text-xs font-bold tracking-wider uppercase">
           Newsletter
         </span>
       </div>
 
       {/* Content */}
       <div className="space-y-3 max-w-3xl mb-8 relative z-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
+        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
           Build Better, Faster Full-Stack Applications
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">

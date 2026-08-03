@@ -51,24 +51,25 @@ export default async function BlogPage({ searchParams }: PageProps) {
   const paginatedBlogs = allBlogs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <main className="relative min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-16 pt-25 transition-colors duration-300 overflow-hidden">
+    <main className="relative min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-13 transition-colors duration-300 overflow-hidden">
 
       {/* Background Ambient Violet Glow Effects */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-70 md:w-150 h-40 md:h-88 bg-violet-600/15 dark:bg-violet-600/20 blur-[120px] rounded-full" />
       <div className="pointer-events-none absolute top-1/3 -right-20 w-50 md:w-100 h-33 md:h-75 bg-violet-700/10 dark:bg-violet-700/15 blur-[100px] rounded-full" />
 
-      <div className="relative w-[92%] xl:w-[80%] mx-auto space-y-10">
-
+      <div className='w-full sm:w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonBlog />
+      </div>
 
+      <div className="relative w-[92%] xl:w-[80%] mx-auto space-y-10">
         {/* Page Header */}
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50 shadow-[0_0_15px_rgba(124,58,237,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-violet-600 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50 shadow-[0_0_15px_rgba(124,58,237,0.15)]">
+            <span className="w-2.5 h-2.5 rounded-full bg-green-900 animate-pulse" />
             Latest Updates
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e293b] dark:text-white tracking-wider">
-            Blog & <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-700 to-violet-500 dark:from-violet-400 dark:to-violet-600">Articles</span>
+            Blog & <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-800 to-violet-600 dark:from-violet-500 dark:to-violet-600">Articles</span>
           </h1>
           <p className="text-slate-600 dark:text-gray-400 text-sm sm:text-base max-w-3xl leading-relaxed">
             Insights, tutorials, and deep-dives into modern web development.
@@ -99,7 +100,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                   {currentPage > 1 ? (
                     <Link
                       href={`/blog?page=${currentPage - 1}`}
-                      className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
+                      className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-500 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
                     >
                       <MoveLeft className="w-4 h-4" /> <span>Prev</span>
                     </Link>
@@ -110,7 +111,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                   )}
 
                   {/* Indicator Page / Total */}
-                  <span className="text-violet-600 dark:text-violet-400 font-bold px-2">
+                  <span className="text-violet-800 dark:text-violet-500 font-bold px-2">
                     {currentPage}/{totalPages}
                   </span>
 
@@ -118,7 +119,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                   {currentPage < totalPages ? (
                     <Link
                       href={`/blog?page=${currentPage + 1}`}
-                      className="flex items-center justify-center gap-1.5 text-violet-600 dark:text-violet-400 hover:text-violet-900 dark:hover:text-violet-300 transition-colors"
+                      className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-500 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
                     >
                       <span>Next</span> <MoveRight className="w-4 h-4" />
                     </Link>

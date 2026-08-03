@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <span
               key={index}
               className="text-xs font-medium px-3 py-0.5
-               bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
+               bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-slate-400 border border-violet-200 dark:border-violet-800/50 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
             >
               {tech}
             </span>

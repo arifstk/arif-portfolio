@@ -66,14 +66,14 @@ export default async function Page({ searchParams }: PageProps) {
   };
 
   return (
-    <div className="pt-20 md:pt-25 mb-10">
+    <div className="pt-12 mb-10">
       <Script
         id="projects-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className='w-[92%] xl:w-[80%] mx-auto'>
+      <div className='w-full sm:w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonProductPg />
       </div>
 

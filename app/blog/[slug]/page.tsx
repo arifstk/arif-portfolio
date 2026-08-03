@@ -218,7 +218,7 @@ export default async function SingleBlogPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-12 pt-25 transition-colors duration-300">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-12 pt-20 transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -344,7 +344,9 @@ export default async function SingleBlogPage({ params }: Props) {
           </div>
         </article>
 
-        <div className="pt-8 sm:pt-12"><Newsletter /></div>
+      </div>
+      <div className="w-full sm:w-[92%] md:w-[80%] mx-auto pt-8 sm:pt-12">
+        <Newsletter />
       </div>
     </main>
   );

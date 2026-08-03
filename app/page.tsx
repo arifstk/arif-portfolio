@@ -57,7 +57,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
         baseUrl="/"
       />
       <Skills />
-      <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
+      <div className='pt-3 sm:pt-11 pb-4 w-full sm:w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonBanner />
       </div>
       <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>

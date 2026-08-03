@@ -53,7 +53,7 @@ export default function Footer() {
         <button
           onClick={handleScrollToTop}
           aria-label="Scroll back to top"
-          className="fixed bottom-1.5 group flex items-center gap-1.5 text-xs text-gray-400 hover:text-violet-600 transition-colors duration-300 cursor-pointer self-end md:self-auto"
+          className="fixed bottom-2 group flex items-center gap-1.5 text-xs text-gray-400 hover:text-violet-600 transition-colors duration-300 cursor-pointer self-end md:self-auto"
         >
           <ArrowUp className="w-5 h-5 font-bold group-hover:text-violet-600 text-violet-800 group-hover:-translate-y-1 transition-all duration-300" />
         </button>

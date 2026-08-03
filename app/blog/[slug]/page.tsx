@@ -71,23 +71,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-
-function FormattedInlineText({ text }: { text: string }) {
+// (**bold**) and inline code (`code`)
+function InlineFormattedText({ text }: { text: string }) {
   if (!text) return null;
-  const parts = text.split(/(`[^`]+`)/g);
+
+  const regex = /(`[^`]+`|\*\*[^*]+\*\*)/g;
+  const parts = text.split(regex);
 
   return (
     <>
       {parts.map((part, i) => {
         if (part.startsWith("`") && part.endsWith("`")) {
-          const codeText = part.slice(1, -1);
           return (
             <code
               key={i}
-              className="inline-block px-1.5 py-0.5 mx-1 text-xs font-mono font-medium rounded-md bg-[#fff7ed] dark:bg-[#2c1a0e] text-[#c2410c] dark:text-[#f97316] border border-[#ffedd5] dark:border-[#7c2d12] shadow-xs align-baseline"
+              className="inline-block px-1 py-0.5 mx-0.5 text-sm font-mono font-medium rounded-md bg-violet-100 dark:bg-slate-800 text-violet-800 dark:text-slate-300 border border-violet-200 dark:border-slate-500 shadow-xs align-baseline"
             >
-              {codeText}
+              {part.slice(1, -1)}
             </code>
+          );
+        }
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
+            <strong key={i} className="font-bold text-slate-900 dark:text-gray-100">
+              {part.slice(2, -2)}
+            </strong>
           );
         }
         return part;
@@ -96,95 +104,78 @@ function FormattedInlineText({ text }: { text: string }) {
   );
 }
 
+// clip text ([clip: ...]), and bold
+function RichParagraphRenderer({ content }: { content: string }) {
+  if (!content) return null;
 
-function SectionBlocksRenderer({ blocks }: { blocks: any[] }) {
-  if (!blocks || blocks.length === 0) return null;
+  // Split content by clip syntax [clip: ...]
+  const tokens = content.split(/(\[clip:\s*[^\]]+\])/g);
 
-  const groupedElements: React.ReactNode[] = [];
-  let inlineBuffer: any[] = [];
-
-  const flushBuffer = (keyIndex: number) => {
-    if (inlineBuffer.length === 0) return;
-
-    groupedElements.push(
-      <p
-        key={`grouped-${keyIndex}`}
-        className="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed font-normal"
-      >
-        {inlineBuffer.map((item, idx) => {
-          if (item.type === "paragraph") {
-            return <FormattedInlineText key={idx} text={item.value + " "} />;
-          }
-          if (item.type === "cliptext" || item.type === "clip") {
-            return (
-              <code
-                key={idx}
-                className="inline-block px-1.5 mx-1 text-sm font-mono font-medium rounded-md shadow-xs
-                
-                 bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50
-                
-                align-baseline"
-              >
-                {item.value}
-              </code>
-            );
-          }
-          return null;
-        })}
-      </p>
-    );
-
-    inlineBuffer = [];
-  };
-
-  blocks.forEach((block, idx) => {
-    if (
-      block.type === "paragraph" ||
-      block.type === "cliptext" ||
-      block.type === "clip"
-    ) {
-      inlineBuffer.push(block);
-    } else {
-      flushBuffer(idx);
-
-      if (block.type === "code" && block.value) {
-        groupedElements.push(
-          <div
-            key={idx}
-            className="relative my-4 rounded-2xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden"
-          >
-            <div className="flex items-center gap-2 px-4 py-3 bg-[#0d1527] border-b border-slate-800/80">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+  return (
+    <div className="space-y-3">
+      {tokens.map((token, index) => {
+        if (token.startsWith("[clip:") && token.endsWith("]")) {
+          const clipVal = token.slice(6, -1).trim();
+          return (
+            <div
+              key={index}
+              className="my-3 p-3.5 rounded-xl bg-violet-50/80 dark:bg-violet-950/30 border border-violet-200/80 dark:border-violet-800/50 flex items-center justify-between gap-3 text-xs sm:text-sm font-mono text-violet-950 dark:text-violet-200"
+            >
+              <span className="overflow-x-auto select-all">{clipVal}</span>
+              <span className="shrink-0 px-2.5 py-1 rounded-md text-[11px] font-bold bg-violet-600 text-white">
+                Clip
+              </span>
             </div>
-            <pre className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-cyan-300 overflow-x-auto leading-relaxed">
-              <code>{block.value}</code>
-            </pre>
+          );
+        }
+
+        const lines = token.split("\n");
+        return (
+          <div key={index} className="space-y-2">
+            {lines.map((line, lineIdx) => {
+              const trimmed = line.trim();
+              if (!trimmed) return null;
+
+              if (trimmed.startsWith("# ")) {
+                return (
+                  <h1 key={lineIdx} className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-gray-100 pt-3">
+                    <InlineFormattedText text={trimmed.replace(/^#\s+/, "")} />
+                  </h1>
+                );
+              }
+              if (trimmed.startsWith("## ")) {
+                return (
+                  <h2 key={lineIdx} className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-gray-100 pt-3">
+                    <InlineFormattedText text={trimmed.replace(/^##\s+/, "")} />
+                  </h2>
+                );
+              }
+              if (trimmed.startsWith("### ")) {
+                return (
+                  <h3 key={lineIdx} className="text-lg sm:text-xl font-bold text-slate-900 dark:text-gray-100 pt-2">
+                    <InlineFormattedText text={trimmed.replace(/^###\s+/, "")} />
+                  </h3>
+                );
+              }
+              if (trimmed.startsWith("#### ")) {
+                return (
+                  <h4 key={lineIdx} className="text-base sm:text-lg font-semibold text-slate-900 dark:text-gray-100 pt-2">
+                    <InlineFormattedText text={trimmed.replace(/^####\s+/, "")} />
+                  </h4>
+                );
+              }
+
+              return (
+                <p key={lineIdx} className="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed">
+                  <InlineFormattedText text={line} />
+                </p>
+              );
+            })}
           </div>
         );
-      } else if (block.type === "image" && block.value) {
-        groupedElements.push(
-          <div
-            key={idx}
-            className="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-gray-900 border border-slate-200 dark:border-gray-800 my-4"
-          >
-            <Image
-              src={block.value}
-              alt={`Article Image ${idx + 1}`}
-              fill
-              className="object-cover"
-            />
-          </div>
-        );
-      }
-    }
-  });
-
-  // Flush remaining inline items at the end
-  flushBuffer(blocks.length);
-
-  return <>{groupedElements}</>;
+      })}
+    </div>
+  );
 }
 
 export default async function SingleBlogPage({ params }: Props) {
@@ -218,7 +209,7 @@ export default async function SingleBlogPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-12 pt-20 transition-colors duration-300">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-12 pt-25 transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -294,59 +285,51 @@ export default async function SingleBlogPage({ params }: Props) {
             </p>
           )}
 
-          {/* Dynamic Article Content Renderer */}
+          {/* Article */}
           <div className="space-y-8 text-[#1e293b] dark:text-gray-300 leading-relaxed">
             {blog.sections?.map((sec: any, secIdx: number) => (
               <div key={secIdx} className="space-y-4 pt-2">
-                {/* Section Headings */}
+                {/* Section Heading */}
                 {sec.heading && (
                   <h2 className="text-xl sm:text-2xl font-bold text-[#1e293b] dark:text-gray-100 tracking-tight">
-                    <FormattedInlineText text={sec.heading} />
+                    <InlineFormattedText text={sec.heading} />
                   </h2>
                 )}
 
-                {/* Render Grouped Blocks Array */}
-                {sec.blocks && sec.blocks.length > 0 ? (
-                  <SectionBlocksRenderer blocks={sec.blocks} />
-                ) : (
-                  <>
-                    {sec.codeSnippet && (
-                      <div className="relative my-4 rounded-2xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden">
-                        <div className="flex items-center gap-2 px-4 py-3 bg-[#0d1527] border-b border-slate-800/80">
-                          <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                {/* Render Content Blocks */}
+                {sec.blocks && sec.blocks.length > 0 && (
+                  sec.blocks.map((block: any, blockIdx: number) => {
+                    if (block.type === "paragraph" && block.value) {
+                      return <RichParagraphRenderer key={blockIdx} content={block.value} />;
+                    }
+
+                    if (block.type === "code" && block.value) {
+                      return (
+                        <div
+                          key={blockIdx}
+                          className="relative my-4 rounded-2xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden"
+                        >
+                          <div className="flex items-center gap-2 px-4 py-3 bg-[#0d1527] border-b border-slate-800/80">
+                            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                          </div>
+                          <pre className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-cyan-400 overflow-x-auto leading-relaxed">
+                            <code>{block.value}</code>
+                          </pre>
                         </div>
-                        <pre className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-cyan-300 overflow-x-auto leading-relaxed">
-                          <code>{sec.codeSnippet}</code>
-                        </pre>
-                      </div>
-                    )}
-                    {sec.image && (
-                      <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-gray-900 border border-slate-200 dark:border-gray-800 my-4">
-                        <Image
-                          src={sec.image}
-                          alt={sec.heading || "Section"}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
-                    {sec.paragraph && (
-                      <p className="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-                        <FormattedInlineText text={sec.paragraph} />
-                      </p>
-                    )}
-                  </>
+                      );
+                    }
+
+                    return null;
+                  })
                 )}
               </div>
             ))}
           </div>
         </article>
 
-      </div>
-      <div className="w-full sm:w-[92%] md:w-[80%] mx-auto pt-8 sm:pt-12">
-        <Newsletter />
+        <div className="pt-8 sm:pt-12"><Newsletter /></div>
       </div>
     </main>
   );

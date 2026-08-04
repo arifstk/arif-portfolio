@@ -133,10 +133,9 @@ export default async function BlogPage({ searchParams }: PageProps) {
             )}
           </div>
         )}
-
-        <div className="pt-3 sm:pt-10">
-          <HireButtonBanner />
-        </div>
+      </div>
+      <div className="pt-15 w-full sm:w-[92%] xl:w-[80%] mx-auto">
+        <HireButtonBanner />
       </div>
     </main>
   );

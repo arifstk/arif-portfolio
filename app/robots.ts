@@ -11,16 +11,18 @@ export default function robots(): MetadataRoute.Robots {
         allow: [
           "/",
           "/_next/image",
-          "/_next/static",        // ✅ CSS/JS/ফন্ট ক্রল করার অনুমতি
-          "/_next/static/chunks", // ✅ আরও নির্দিষ্ট
-          "/_next/static/media",  // ✅ ফন্ট ফাইলের জন্য
-          "/_next/static/css",    // ✅ CSS ফাইলের জন্য
+          "/_next/static",
+          "/_next/static/chunks",
+          "/_next/static/media",
+          "/_next/static/css",
+          "/api/socials",
         ],
         disallow: [
           "/admin",
-          "/api",
-          "/_next/data",          // ✅ শুধু data ব্লক
-          "/_next/static/webpack",// ✅ webpack ফাইল ব্লক
+          "/api/admin",
+          "/api/auth",
+          "/_next/data",
+          "/_next/static/webpack",
         ],
       },
     ],

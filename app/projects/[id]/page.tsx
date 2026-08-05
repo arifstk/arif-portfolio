@@ -67,7 +67,7 @@ function FormattedText({ text }: { text: string }) {
             return (
               <code
                 key={pIdx}
-                className="px-1 py-0.5 text-sm font-medium bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 rounded mx-0.5"
+                className="px-1 py-0.5 mx-0.5 text-sm font-medium bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 border border-violet-300 dark:border-violet-600 rounded"
               >
                 {part.slice(1, -1)}
               </code>

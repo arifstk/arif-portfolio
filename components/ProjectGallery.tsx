@@ -47,12 +47,12 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
   if (!images || images.length === 0) return null;
 
   const handleShowMore = () => {
-    setVisibleCount((prev) => prev + 4); // Increases by 4 items per click
+    setVisibleCount((prev) => prev + 4);
   };
 
   return (
     <div className="mt-5">
-      {/* ── Section header ─────────────────────────── */}
+      {/* ── Section header ────────────── */}
       <div className="flex items-center gap-2 mb-4">
         <ImageIcon className="w-4 h-4 text-violet-700" />
         <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
@@ -61,7 +61,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
         <span className="text-xs text-violet-700 font-semibold tracking-widest">({images.length})</span>
       </div>
 
-      {/* ── Thumbnail grid ─────────────────────────── */}
+      {/* ── Thumbnail grid ───────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
         {images.slice(0, visibleCount).map((src, i) => (
           <button
@@ -85,19 +85,19 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
         ))}
       </div>
 
-      {/* ── Show More Button ───────────────────────── */}
+      {/* ── Show More Button ─────────── */}
       {visibleCount < images.length && (
         <div className="mt-6 text-center">
           <button
             onClick={handleShowMore}
-            className="px-6 py-2 text-sm bg-violet-700 text-white rounded-xl hover:bg-violet-600 transition cursor-pointer"
+            className="px-6 py-2 text-sm bg-violet-800 text-white rounded-xl hover:bg-violet-700 cursor-pointer shadow-md shadow-violet-700/20 transition-colors duration-200 dark:backdrop-blur-sm"
           >
             Show More
           </button>
         </div>
       )}
 
-      {/* ── Lightbox ────────────────────────────────── */}
+      {/* ── Lightbox ──────────────── */}
       {isOpen && activeIndex !== null && (
         <div
           className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"

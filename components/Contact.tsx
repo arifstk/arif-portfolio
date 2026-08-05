@@ -8,14 +8,14 @@ import { FaGithub } from "react-icons/fa"
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { ContactItem } from "@/types";
 
-// Map icon names → components (mirrors your admin setup)
+// Map icon names
 const ICON_MAP: Record<string, React.ElementType> = {
   Mail, Phone, MapPin,
   Github: FaGithub,
   Twitter: FaXTwitter,
   Linkedin: FaLinkedin,
 
-  // Lowercase fallback for legacy data
+  // Lowercase fallback
   mail: Mail,
   phone: Phone,
   mappin: MapPin,
@@ -95,10 +95,9 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Layout Grid: Removed space-y-3 from the inputs, added direct layout alignment */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start w-full">
-          {/* ── Left — Dynamic contact links ── */}
-          <div className="fade-up fade-up-2 space-y-4 w-full">
+          {/* ── Left Side ── */}
+          {/* <div className="fade-up fade-up-2 space-y-4 w-full">
             {contactLinks.length === 0 && (
               <p className="text-xs text-slate-500">No contact info added yet.</p>
             )}
@@ -126,6 +125,43 @@ export default function Contact() {
                   </div>
                   <svg
                     className="ml-auto shrink-0 text-slate-600 group-hover:text-violet-400 group-hover:translate-x-1 transition-all duration-200"
+                    width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"
+                  >
+                    <path d="M7 17 17 7M7 7h10v10" />
+                  </svg>
+                </Link>
+              );
+            })}
+          </div> */}
+
+          <div className="fade-up fade-up-2 space-y-4 w-full">
+            {contactLinks.length === 0 && (
+              <p className="text-xs text-slate-500">No contact info added yet.</p>
+            )}
+            {contactLinks.map((item) => {
+              const Icon = ICON_MAP[item.iconName] ?? Mail;
+              const resolvedHref = item.iconName === "Mail" && !item.href.startsWith("mailto:") ? `mailto:${item.href}` : item.href;
+              return (
+                <Link
+                  key={item._id}
+                  href={resolvedHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 p-5 text-gray-400 rounded-2xl border border-gray-300 dark:border-gray-500 dark:bg-gray-900 hover:border-violet-500 hover:bg-white/5 transition-all duration-300 w-full"
+                >
+                  <span className="shrink-0 w-10 h-10 rounded-xl bg-violet-800/10 border border-violet-500/20 flex items-center justify-center text-violet-700 dark:text-violet-400 group-hover:bg-violet-800 group-hover:text-white transition-colors duration-200">
+                    <Icon size={18} />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-semibold tracking-widest text-slate-500 uppercase mb-0.5">
+                      {item.label}
+                    </p>
+                    <p className="text-sm text-slate-500 dark:text-slate-200 truncate">
+                      {item.value}
+                    </p>
+                  </div>
+                  <svg
+                    className="ml-auto shrink-0 text-slate-600 group-hover:text-violet-500 group-hover:translate-x-1 transition-all duration-200"
                     width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"
                   >
                     <path d="M7 17 17 7M7 7h10v10" />
@@ -203,7 +239,7 @@ export default function Contact() {
                 )}
                 <button
                   type="submit" disabled={status === "sending"}
-                  className="w-full relative flex items-center justify-center gap-3 py-2 px-6 rounded-xl font-syne font-semibold text-sm tracking-wide transition-all duration-300 bg-violet-800 text-white hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-600 border border-gray-400 dark:border-white/50 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="w-full relative flex items-center justify-center gap-3 py-2 font-syne text-sm tracking-wide border border-gray-400 dark:border-white/50 bg-violet-800 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 rounded-xl text-white shadow-md shadow-violet-700/20 transition-colors duration-200 dark:backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {status === "sending" ? (
                     <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>Sending…</>

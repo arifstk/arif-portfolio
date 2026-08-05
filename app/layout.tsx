@@ -30,8 +30,12 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     "Shaikh Arif",
+    "Arif Shaikh",
     "Arif Hossain",
+    "Shaikh Arif Hossain",
     "Shaikh Arif Developer",
+    "Shaikh Arif Full Stack Developer",
+    "Shaikh Arif Full Stack Web Developer",
     "Shaikh Arif Portfolio",
     "Full-Stack Developer",
     "Next.js Developer",

@@ -55,7 +55,7 @@ export default function Newsletter() {
 
       {/* Content */}
       <div className="space-y-3 max-w-3xl mb-8 relative z-10">
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
+        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-700 dark:text-slate-300 tracking-wide">
           Build Better, Faster Full-Stack Applications
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
@@ -89,7 +89,7 @@ export default function Newsletter() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Preferred name"
-            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
+            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
           />
         </div>
 
@@ -105,7 +105,7 @@ export default function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
+            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600 transition-all"
           />
         </div>
 
@@ -114,7 +114,7 @@ export default function Newsletter() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-6 bg-violet-700 hover:bg-violet-600 active:bg-violet-800 disabled:bg-violet-500/50 text-white font-semibold text-sm rounded-lg transition-all duration-200 shadow-md shadow-violet-600/20 hover:shadow-violet-600/30 cursor-pointer disabled:cursor-not-allowed"
+            className="w-full py-3 px-6 bg-violet-800 hover:bg-violet-700 active:bg-violet-900 disabled:bg-violet-500/50 text-white font-semibold text-sm rounded-xl transition-all duration-200 shadow-md shadow-violet-700/20 hover:shadow-violet-700/30 cursor-pointer disabled:cursor-not-allowed"
           >
             {loading ? "Subscribing..." : "Subscribe"}
           </button>

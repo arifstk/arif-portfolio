@@ -44,18 +44,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       {/* Content Area */}
       <div className="flex flex-col grow p-3">
         {/* Project Title */}
-        <p className="text-sm font-bold uppercase tracking-widest tracking-relaxed text-violet-800 dark:text-violet-400 mb-1 truncate">
+        <p className="text-md font-bold uppercase tracking-widest tracking-relaxed text-violet-800 dark:text-violet-400 mb-1 truncate">
           {title}
         </p>
 
         {/* Project Type */}
-        <span className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-200 rounded-full mb-2 inline-block">
+        <span className="text-2xl sm:text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-200 rounded-full mb-2 inline-block">
           {project.type || "Web App"}
         </span>
 
         {/* Outcome */}
         {outcome && (
-          <p className="text-sm text-[#64748b] dark:text-gray-400 leading-relaxed mb-3 line-clamp-2">
+          <p className="text-md text-[#64748b] dark:text-gray-400 leading-relaxed mb-3 line-clamp-2">
             {outcome}
           </p>
         )}
@@ -74,13 +74,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {_id && (
-          <Link
-            href={`/projects/${_id}`}
-            className="group mt-3 flex items-center justify-end gap-1.5 pb-1 pr-1 rounded-xl text-xs font-semibold text-violet-800 dark:text-violet-500 transition-all duration-200"
-          >
-            View Details
-            <MoveRight className="w-4 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1.5" />
-          </Link>
+          <div className="mt-3 flex justify-end">
+            <Link
+              href={`/projects/${_id}`}
+              className="group inline-flex items-center gap-1.5 pb-1 pr-1 text-xs font-semibold text-violet-800 dark:text-violet-500 transition-all duration-200"
+            >
+              <span>View Details</span>
+              <MoveRight className="w-4 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1.5" />
+            </Link>
+          </div>
         )}
       </div>
     </div>

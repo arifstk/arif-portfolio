@@ -9,22 +9,22 @@ import Image from 'next/image';
 export default function About() {
   const pillars = [
     {
-      icon: <Code2 className="w-6 h-6 text-violet-700" />,
+      icon: <Code2 className="w-6 h-6 text-violet-800" />,
       title: "Web Development",
       description: "Building high-performance, responsive web applications utilizing modern front-end and back-end ecosystems."
     },
     {
-      icon: <FaCubes className="w-6 h-6 text-violet-700" />,
+      icon: <FaCubes className="w-6 h-6 text-violet-800" />,
       title: "Problem Solving",
       description: "Breaking down complex computational issues into practical, structured, and modular logic workflows."
     },
     {
-      icon: <BsDatabase className="w-6 h-6 text-violet-700" />,
+      icon: <BsDatabase className="w-6 h-6 text-violet-800" />,
       title: "Backend & Databases",
       description: "Designing secure API endpoints, maintaining server architectures, and optimizing data layers."
     },
     {
-      icon: <Bolt className="w-6 h-6 text-violet-700" />,
+      icon: <Bolt className="w-6 h-6 text-violet-800" />,
       title: "Optimization",
       description: "Ensuring fast load times, semantic structure, and maintaining a clean, highly scalable codebase."
     }
@@ -38,7 +38,7 @@ export default function About() {
         <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-600 mb-2">
           About Me
         </p>
-        <p className="text-sm tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">
+        <p className="text-md tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">
           Next.js Full-Stack Developer specializing in building modern, scalable web applications, production systems, and internal business tools with a focus on performance and user experience.
         </p>
       </div>

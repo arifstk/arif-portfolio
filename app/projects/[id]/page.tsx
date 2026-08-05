@@ -150,7 +150,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   return (
     <main className='min-h-screen pt-20 md:pt-24 pb-5'>
       <div className="w-[92%] xl:w-[80%] mx-auto">
-        {/* ── Back nav ─────────────────────────────────── */}
+        {/* ── Back nav ───────────────── */}
         <div className="mb-8">
           <Link
             href="/projects"
@@ -186,11 +186,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 mt-8 pt-10">
             {/* Left — title, description, tech */}
             <div>
-              <p className="text-sm font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 mb-1 truncate">
+              <p className="text-md font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 mb-1 truncate">
                 {title}
               </p>
 
-              <span className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-200 rounded-full mb-4 sm:mb-6 inline-block">
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 dark:text-slate-200 rounded-full mb-4 sm:mb-6 inline-block">
                 {project.type || "Web App"}
               </span>
 

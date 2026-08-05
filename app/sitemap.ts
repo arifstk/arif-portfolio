@@ -1,11 +1,10 @@
-// app/sitemap.ts
+// app/sitemap.ts ()
 
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
-// import Blog from "@/models/Blog";
+import Blog from "@/models/Blog";
 import { SITE_URL } from "@/lib/seo";
 import { MetadataRoute } from "next";
-import Blog from "@/models/Blog";
 
 export const dynamic = "force-dynamic";
 

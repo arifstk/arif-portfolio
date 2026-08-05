@@ -284,7 +284,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     href={demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-2 rounded-xl text-sm font-semibold text-white bg-violet-700 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 hover:shadow-[0_4px_16px_rgba(139,92,246,0.3)] transition-all duration-200"
+                    className="flex items-center justify-center gap-2 w-full py-2 rounded-xl text-sm font-semibold text-white bg-violet-800 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 hover:shadow-[0_4px_16px_rgba(139,92,246,0.3)] transition-all duration-200"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Live Demo
@@ -303,7 +303,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
                 <Link
                   href="/projects"
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 bg-violet-100/60 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-all duration-200"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 bg-violet-100/60 dark:bg-violet-900/30 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-all duration-200"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   All projects

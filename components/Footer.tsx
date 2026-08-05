@@ -8,6 +8,7 @@ import { ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "/";
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -15,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className=" text-[#1e293b] pt-10 pb-3 ">
-      <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-4 md:pb-7">
+      <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-4 md:pb-5">
 
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
@@ -24,7 +25,7 @@ export default function Footer() {
           <div className="flex flex-col items-start gap-4 max-w-2xl">
             <Logo />
             <p className="text-sm sm:text-base text-[#64748b] leading-relaxed">
-              Coded in <span className='text-violet-800 dark:text-violet-600 font-semibold'>Visual Studio</span> Code with GitHub dark theme by yours truly. Built with <span className='text-violet-800 dark:text-violet-600 font-semibold'>Next.js</span> and deployed on <span className='text-violet-800 dark:text-violet-600 font-semibold'>Vercel.</span>
+              Developed by yours truly in <span className='text-violet-800 dark:text-violet-600 font-semibold'>Visual Studio</span> Code with GitHub dark theme. Built with <span className='text-violet-800 dark:text-violet-600 font-semibold'>Next.js</span> and deployed on <span className='text-violet-800 dark:text-violet-600 font-semibold'>Vercel.</span>
             </p>
           </div>
           <div className="text-sm sm:text-base text-[#64748b] leading-relaxed">
@@ -37,9 +38,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start justify-between sm:items-center gap-1 sm:gap-2">
 
           {/* Copyright text */}
-          <p className="flex text-sm text-[#64748b] text-left whitespace-nowrap">
-            &copy; {currentYear} Shaikh Arif <span className=" px-2 text-slate-300 dark:text-slate-600">|</span> All rights reserved.
-          </p>
+          <div className="flex gap-1 text-sm text-[#64748b] text-left whitespace-nowrap">
+            <p>&copy; {currentYear}</p>
+            <Link href={siteUrl} className="hover:underline"> Shaikh Arif</Link>
+            <span className=" px-0.5 text-slate-300 dark:text-slate-600">|</span> All rights reserved.
+          </div>
 
           {/* Social Platforms Links */}
           <div className=" flex justify-end mt-1 sm:mt-0">
@@ -49,7 +52,7 @@ export default function Footer() {
       </div>
 
       {/* Back to Top Button */}
-      <div className="relative w-[92%] xl:w-[80%] mx-auto flex justify-end pt-2 animate-pulse">
+      <div className="relative w-[92%] xl:w-[80%] mx-auto flex justify-end animate-pulse">
         <button
           onClick={handleScrollToTop}
           aria-label="Scroll back to top"

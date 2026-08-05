@@ -6,7 +6,8 @@ interface Subscriber {
   _id: string;
   name: string;
   email: string;
-  subscribedAt: string;
+  subscribedAt?: string;
+  createdAt?: string;
 }
 
 export default function NewsletterAdmin() {
@@ -98,6 +99,17 @@ export default function NewsletterAdmin() {
       sub.email.toLowerCase().includes(search.toLowerCase())
   );
 
+  // Helper to safely format either subscribedAt or createdAt
+  const formatDate = (sub: Subscriber) => {
+    const dateVal = sub.subscribedAt || sub.createdAt;
+    if (!dateVal || isNaN(Date.parse(dateVal))) return "N/A";
+    return new Date(dateVal).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
   return (
     <div className="w-full space-y-8 font-sans">
       {/* Header & Tabs */}
@@ -118,8 +130,8 @@ export default function NewsletterAdmin() {
           <button
             onClick={() => setActiveTab("activity")}
             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${activeTab === "activity"
-                ? "bg-violet-700 text-white shadow-md shadow-violet-700/20"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
+              ? "bg-violet-700 text-white shadow-md shadow-violet-700/20"
+              : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
               }`}
           >
             Subscribers ({subscribers.length})
@@ -127,8 +139,8 @@ export default function NewsletterAdmin() {
           <button
             onClick={() => setActiveTab("compose")}
             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${activeTab === "compose"
-                ? "bg-violet-700 text-white shadow-md shadow-violet-700/20"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
+              ? "bg-violet-700 text-white shadow-md shadow-violet-700/20"
+              : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
               }`}
           >
             Compose Offer
@@ -199,11 +211,7 @@ export default function NewsletterAdmin() {
                           {sub.email}
                         </td>
                         <td className="p-4 text-xs text-slate-500">
-                          {new Date(sub.subscribedAt).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
+                          {formatDate(sub)}
                         </td>
                         <td className="p-4 text-right">
                           <button

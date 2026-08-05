@@ -112,14 +112,14 @@ function RichParagraphRenderer({ content }: { content: string }) {
   const tokens = content.split(/(\[clip:\s*[^\]]+\])/g);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {tokens.map((token, index) => {
         if (token.startsWith("[clip:") && token.endsWith("]")) {
           const clipVal = token.slice(6, -1).trim();
           return (
             <div
               key={index}
-              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 text-xs font-mono font-medium text-slate-800 dark:text-slate-300 bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900/80 rounded-md"
+              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-mono font-medium text-slate-800 dark:text-slate-300 bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900/80 rounded-md"
             >
               <span className="overflow-x-auto select-all">📋 {clipVal}</span>
             </div>
@@ -128,7 +128,7 @@ function RichParagraphRenderer({ content }: { content: string }) {
 
         const lines = token.split("\n");
         return (
-          <div key={index} className="space-y-2">
+          <div key={index} className="space-y-1">
             {lines.map((line, lineIdx) => {
               const trimmed = line.trim();
               if (!trimmed) return null;

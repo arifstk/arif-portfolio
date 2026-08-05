@@ -183,7 +183,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
 
           {/* ── Main grid ─────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 mt-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 mt-8 pt-10">
             {/* Left — title, description, tech */}
             <div>
               <p className="text-sm font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 mb-1 truncate">

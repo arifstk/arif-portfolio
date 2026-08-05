@@ -119,7 +119,7 @@ function RichParagraphRenderer({ content }: { content: string }) {
           return (
             <div
               key={index}
-              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 text-xs font-mono font-medium text-slate-800 dark:text-slate-200 bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-600 rounded-md"
+              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 text-xs font-mono font-medium text-slate-800 dark:text-slate-300 bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900/80 rounded-md"
             >
               <span className="overflow-x-auto select-all">📋 {clipVal}</span>
             </div>
@@ -206,7 +206,7 @@ export default async function SingleBlogPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-gray-200 py-12 pt-25 transition-colors duration-300">
+    <main className="min-h-screen text-slate-800 dark:text-gray-200 py-12 pt-25 transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -263,7 +263,7 @@ export default async function SingleBlogPage({ params }: Props) {
         </div>
 
         {/* Article Body */}
-        <article className="rounded-2xl bg-transparent sm:bg-white dark:bg-black/20 sm:border sm:border-slate-200 sm:dark:border-gray-700 sm:p-8 sm:shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-8">
+        <article className="rounded-2xl sm:border sm:border-slate-200 sm:dark:border-gray-700 sm:p-8 sm:shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-8">
           {blog.coverImage && (
             <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-violet-100/40 dark:bg-gray-900 border border-slate-200 dark:border-gray-800">
               <Image
@@ -304,7 +304,7 @@ export default async function SingleBlogPage({ params }: Props) {
                       return (
                         <div
                           key={blockIdx}
-                          className="relative my-4 rounded-2xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden"
+                          className="relative my-4 rounded-xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden"
                         >
                           <div className="flex items-center gap-2 px-4 py-3 bg-[#0d1527] border-b border-slate-800/80">
                             <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />

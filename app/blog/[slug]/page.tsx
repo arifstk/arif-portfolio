@@ -119,12 +119,9 @@ function RichParagraphRenderer({ content }: { content: string }) {
           return (
             <div
               key={index}
-              className="my-3 p-3.5 rounded-xl bg-violet-50/80 dark:bg-violet-950/30 border border-violet-200/80 dark:border-violet-800/50 flex items-center justify-between gap-3 text-xs sm:text-sm font-mono text-violet-950 dark:text-violet-200"
+              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 text-xs font-mono font-medium text-slate-800 dark:text-slate-200 bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-600 rounded-md"
             >
-              <span className="overflow-x-auto select-all">{clipVal}</span>
-              <span className="shrink-0 px-2.5 py-1 rounded-md text-[11px] font-bold bg-violet-600 text-white">
-                Clip
-              </span>
+              <span className="overflow-x-auto select-all">📋 {clipVal}</span>
             </div>
           );
         }

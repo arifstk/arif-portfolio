@@ -78,7 +78,7 @@ function FormattedText({ text }: { text: string }) {
             return (
               <span
                 key={pIdx}
-                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 text-xs font-mono font-medium text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md"
+                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 text-xs font-mono font-medium text-slate-800 dark:text-slate-200 bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-600 rounded-md"
               >
                 📋 {clipVal}
               </span>

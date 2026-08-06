@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 const HomeDescription = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const description =
-    " As a Software Developer, I design and build innovative software solutions, solve complex problems, and ensure systems are scalable and user-friendly. From creating web apps to optimizing backend systems, I bridge the gap between technology and user needs.";
+    " Full-stack web developer with a strong focus on modern JavaScript ecosystems. I specialize in building fast, SEO-friendly, and fully responsive web applications using Next.js, React, TypeScript, Tailwind CSS, MongoDB & Mongoose.";
   const { displayedText, isComplete } = useTypewriter(description, 30);
 
   useEffect(() => {

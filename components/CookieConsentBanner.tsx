@@ -25,9 +25,9 @@ export default function CookieConsentBanner() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900/91 text-white animate-in slide-in-from-bottom duration-300">
-      <div className="w-[92%] xl:w-[80%] mx-auto py-1.5 sm:py-3 flex flex-row items-center justify-between gap-2">
-        <p className="flex items-center justify-center gap-2 text-xs sm:text-sm text-neutral-300">
-          <Cookie size={13}/>  This site uses cookies to personalize your site experience.
+      <div className="w-[92%] xl:w-[80%] mx-auto py-2 sm:py-3 flex flex-row items-center justify-between gap-1 sm:gap-3">
+        <p className="flex sm:items-center gap-2 text-xs sm:text-sm text-neutral-300">
+          <Cookie size={15}/>  <span>This site uses cookies to personalize your site experience.</span>
         </p>
         <div className="flex gap-3 shrink-0">
           <button

@@ -11,6 +11,10 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { CookieConsentProvider } from "@/context/CookieConsentContext";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GAPageTracker from "@/components/GAPageTracker";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 const font = Inter({
@@ -143,21 +147,32 @@ export default async function RootLayout({
 
       <body className="min-h-screen flex flex-col bg-violet-50/60 dark:bg-transparent font-sans">
         <Provider session={session}>
-          {isAdmin ? (
-            <>{children}</>
-          ) : (
-            <>
-              <ResponsiveNav />
-              {/* <main className="w-[94%] xl:w-[80%] mx-auto"> */}
-              <main>
-                {children}
-              </main>
-              <Footer />
-            </>
-          )}
+          <CookieConsentProvider>
+            {isAdmin ? (
+              <>{children}</>
+            ) : (
+              <>
+                <ResponsiveNav />
+                <main>
+                  {children}
+                </main>
+                <Footer />
+              </>
+            )}
+            <GoogleAnalytics />
+            <GAPageTracker />
+            <CookieConsentBanner />
+          </CookieConsentProvider>
         </Provider>
       </body>
     </html>
   );
 }
 
+
+// Cookies & Google Analytics setup
+// create file CookieConsentContext.tsx in context folder
+// create file CookieConsentBanner.tsx in components folder
+// create file GoogleAnalytics.tsx in components folder
+// create file GAPageTracker.tsx in components folder
+// intigreat all these files in layout.tsx

@@ -63,10 +63,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Tech Stack Badges */}
         <div className="flex flex-wrap gap-1.5 mb-2 mt-auto">
           {techStack.map((tech, index) => (
+            // <span
+            //   key={index}
+            //   className="text-xs font-medium px-3 py-0.5
+            //    bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-slate-400 border border-violet-200 dark:border-violet-800/50 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
+            // >
+            //   {tech}
+            // </span>
             <span
               key={index}
-              className="text-xs font-medium px-3 py-0.5
-               bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-slate-400 border border-violet-200 dark:border-violet-800/50 rounded-full transition-colors duration-300 group-hover:border-violet-500/20 tracking-tight"
+              className="text-xs font-medium px-3 py-0.5 bg-slate-50 dark:bg-gray-900 text-[#64748b] dark:text-gray-400 border border-zinc-200 dark:border-gray-700 rounded-full transition-colors duration-300 group-hover:border-zinc-500/20 tracking-tight"
             >
               {tech}
             </span>

@@ -215,16 +215,16 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                         {block.type === "code" ? (
                           <div className="my-4 rounded-xl border border-slate-800 bg-slate-900 dark:bg-slate-950 p-4 shadow-lg overflow-x-auto">
                             <div className="flex items-center gap-2 px-0 pt-0 pb-3 bg-[#0d1527] border-b border-slate-800/80">
-                            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                          </div>
+                              <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                            </div>
                             <pre className="font-mono text-xs sm:text-sm text-cyan-400 overflow-x-auto leading-relaxed">
                               <code>{block.text}</code>
                             </pre>
                           </div>
                         ) : (
-                          <FormattedText text={block.text} /> 
+                          <FormattedText text={block.text} />
                         )}
                       </div>
                     ))}
@@ -245,7 +245,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     {techStack.map((tech: string, index: any) => (
                       <span
                         key={index}
-                        className="text-xs font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-700/10 dark:border-violet-900/40 rounded-full hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
+                        //   className="text-xs font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-700/10 dark:border-violet-900/40 rounded-full hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
+                        // >
+                        className="text-xs font-medium px-3 py-0.5 bg-slate-50 dark:bg-gray-900 text-[#64748b] dark:text-gray-400 border border-zinc-200 dark:border-gray-700 rounded-full transition-colors duration-300 group-hover:border-zinc-500/20 tracking-tight"
                       >
                         {tech}
                       </span>

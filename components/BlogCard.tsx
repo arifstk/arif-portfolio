@@ -28,7 +28,11 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
 
   return (
     <Link href={`/blog/${cardSlug}`} className="block group h-full">
-      <div className="flex flex-col justify-between h-full rounded-2xl bg-white dark:bg-black/20 border border-slate-300 dark:border-gray-700 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 dark:hover:border-violet-500/50 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
+      <div className="relative flex flex-col justify-between h-full rounded-2xl bg-white dark:bg-black/20 border border-slate-300 dark:border-gray-700 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 dark:hover:border-violet-500/50 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
+
+        <span className="absolute -top-2 sm:-top-3 lg:-top-2  -right-0.5 text-3xl sm:text-4xl lg:text-5xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
+          {blog.category || "Web Application"}
+        </span>
 
         {/* Upper Card Content */}
         <div className="p-4 sm:p-6">
@@ -81,4 +85,3 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
   );
 }
 
- 

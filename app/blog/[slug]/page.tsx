@@ -163,7 +163,7 @@ function RichParagraphRenderer({ content }: { content: string }) {
               }
 
               return (
-                <p key={lineIdx} className="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed">
+                <p key={lineIdx} className="text-md text-slate-700 dark:text-gray-300 leading-relaxed">
                   <InlineFormattedText text={line} />
                 </p>
               );
@@ -263,7 +263,7 @@ export default async function SingleBlogPage({ params }: Props) {
         </div>
 
         {/* Article Body */}
-        <article className="rounded-2xl sm:border sm:border-slate-200 sm:dark:border-gray-700 sm:p-8 sm:shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-8">
+        <article className="rounded-2xl sm:border sm:border-slate-200 sm:dark:border-gray-700 sm:p-5 sm:shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-8">
           {blog.coverImage && (
             <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-violet-100/40 dark:bg-gray-900 border border-slate-200 dark:border-gray-800">
               <Image

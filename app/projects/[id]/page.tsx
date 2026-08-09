@@ -232,30 +232,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 )
               )}
 
-              {/* Tech stack */}
-              {techStack.length > 0 && (
-                <div className="mt-8">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Code2 className="w-4 h-4 text-violet-700 dark:text-violet-400" />
-                    <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
-                      Tech Stack
-                    </h2>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {techStack.map((tech: string, index: any) => (
-                      <span
-                        key={index}
-                        //   className="text-xs font-medium px-2.5 py-0.5 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-slate-400 border border-violet-700/10 dark:border-violet-900/40 rounded-full hover:border-violet-300 dark:hover:border-violet-800 transition-colors duration-300"
-                        // >
-                        className="text-xs font-medium px-3 py-0.5 bg-slate-50 dark:bg-gray-900 text-[#64748b] dark:text-gray-400 border border-zinc-200 dark:border-gray-700 rounded-full transition-colors duration-300 group-hover:border-zinc-500/20 tracking-tight"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Outcome */}
               {outcome && (
                 <div className="mt-8">
@@ -314,13 +290,30 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
               {techStack.length > 0 && (
                 <div className="rounded-2xl border border-slate-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5">
-                  <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-3">
-                    Built with
-                  </p>
-                  <p className="text-2xl font-bold text-violet-700 dark:text-violet-400 tracking-widest flex items-center">
-                    {techStack.length}
-                    <span className="text-sm font-normal text-slate-400 ml-1.5">technologies</span>
-                  </p>
+                  {/* Tech stack */}
+                  {techStack.length > 0 && (
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h2 className="flex items-center justify-center gap-3 text-xs pb-2 font-semibold text-slate-500 dark:text-slate-100 uppercase tracking-wider">
+                          <Code2 className="w-4 h-4 text-violet-700 dark:text-violet-400" />
+                          Tech Stack
+                          <span className="text-lg font-bold text-violet-700 dark:text-violet-400 tracking-widest flex items-center">
+                            {techStack.length}
+                          </span>
+                        </h2>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {techStack.map((tech: string, index: any) => (
+                          <span
+                            key={index}
+                            className="text-xs px-3 py-0.5 bg-slate-50 dark:bg-gray-900 text-[#64748b] dark:text-gray-400 border border-zinc-200 dark:border-gray-700 rounded-full transition-colors duration-300 group-hover:border-zinc-500/20"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </aside>

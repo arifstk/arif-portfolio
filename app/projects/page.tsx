@@ -9,7 +9,7 @@ import Projects from '@/components/Projects';
 import { getProjects } from "@/lib/data/projects";
 import { MoveLeft, MoveRight } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 const PAGE_TITLE = "Projects — Shaikh Arif | Full-Stack Developer";
 const PAGE_DESCRIPTION =
@@ -70,6 +70,7 @@ export default async function Page({ searchParams }: PageProps) {
       <Script
         id="projects-jsonld"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 

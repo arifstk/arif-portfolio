@@ -8,6 +8,8 @@ import { MoveLeft, MoveRight } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 3600;
+
 const PAGE_TITLE = "Blog & Articles — Shaikh Arif | Full-Stack Developer";
 const PAGE_DESCRIPTION = "Insights, tutorials, and deep-dives into modern web development.";
 
@@ -23,7 +25,10 @@ async function getAllBlogs(): Promise<BlogCardProps[]> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const res = await fetch(`${baseUrl}/api/blogs`, {
-      cache: "no-store",
+      next: {
+        revalidate: 3600,
+        tags: ["blogs"]
+      },
     });
     if (!res.ok) return [];
 

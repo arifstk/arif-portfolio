@@ -7,6 +7,8 @@ import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
 import { deleteImage } from "@/lib/cloudinary";
 
+import { revalidateTag } from "next/cache";
+
 async function guardAdmin() {
   const session = await getServerSession(authOptions);
   if (!session || (session.user as any)?.role !== "admin")
@@ -25,6 +27,7 @@ export async function PUT(
     const updated = await Project.findByIdAndUpdate(id, body, { new: true });
     if (!updated)
       return NextResponse.json({ error: "Not found" }, { status: 404 });
+    revalidateTag("projects", "max");
     return NextResponse.json(updated);
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
@@ -44,6 +47,7 @@ export async function DELETE(
       await deleteImage(project.imagePublicId).catch(() => {});
     }
     await Project.findByIdAndDelete(id);
+    revalidateTag("projects", "max");
     return NextResponse.json({ success: true });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });

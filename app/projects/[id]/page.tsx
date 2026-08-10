@@ -9,19 +9,34 @@ import { ExternalLink, ArrowLeft, Code2, Layers } from "lucide-react";
 import ProjectGallery from "@/components/ProjectGallery";
 import SourceCodeButton from "@/components/SourceCodeButton";
 import HireButtonBanner from "@/components/HireButtonBanner";
+import { unstable_cache } from "next/cache";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+export const revalidate = 3600;
+
+const getCachedProjectById = (id: string) =>
+  unstable_cache(
+    async () => {
+      try {
+        await connectDB();
+        const project = await Project.findById(id).lean();
+        return project ? JSON.parse(JSON.stringify(project)) : null;
+      } catch {
+        return null;
+      }
+    },
+    [`project-detail-${id}`],
+    {
+      revalidate: 3600,
+      tags: ["projects", `project-${id}`],
+    }
+  )();
+
 async function getProject(id: string) {
-  try {
-    await connectDB();
-    const project = await Project.findById(id).lean();
-    return project as any;
-  } catch {
-    return null;
-  }
+  return await getCachedProjectById(id);
 }
 
 // ── Fixed Markdown & Rich Formatting Helper Component ──

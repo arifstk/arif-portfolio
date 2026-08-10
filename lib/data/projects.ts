@@ -37,9 +37,9 @@ export const getProjects = unstable_cache(
   async () => {
     return await fetchProjectsFromDB();
   },
-  ["projects-list-cache"], // ✅ Unique Key (Tags/Keys)
+  ["projects-list-cache"],
   {
-    revalidate: 3600, // ✅ [CHANGE] ১ ঘণ্টা (৩৬০০ সেকেন্ড) ক্যাশ থাকবে, এরপর ব্যাকগ্রাউন্ডে আপডেট হবে
-    tags: ["projects"], // ✅ পরবর্তীতে অন-ডিমান্ড ক্যাশ ক্লিয়ার (revalidateTag) করার জন্য ট্যাগ
+    revalidate: 3600,
+    tags: ["projects"],
   }
 );

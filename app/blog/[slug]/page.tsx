@@ -10,26 +10,41 @@ import SocialLinks from "@/components/SocialLinks";
 import { Metadata } from "next";
 import Newsletter from "@/components/Newsletter";
 import { SITE_URL } from "@/lib/seo";
+import { unstable_cache } from "next/cache";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-async function getBlogBySlug(slug: string) {
-  if (!slug || slug === "undefined") return null;
+export const revalidate = 3600;
 
-  try {
-    await connectDB();
-    let blog = await Blog.findOne({ slug }).lean();
-    if (!blog && slug.match(/^[0-9a-fA-F]{24}$/)) {
-      blog = await Blog.findById(slug).lean();
+const getCachedBlogBySlug = (slug: string) =>
+  unstable_cache(
+    async () => {
+      if (!slug || slug === "undefined") return null;
+
+      try {
+        await connectDB();
+        let blog = await Blog.findOne({ slug }).lean();
+        if (!blog && slug.match(/^[0-9a-fA-F]{24}$/)) {
+          blog = await Blog.findById(slug).lean();
+        }
+        if (!blog) return null;
+
+        return JSON.parse(JSON.stringify(blog));
+      } catch {
+        return null;
+      }
+    },
+    [`blog-detail-${slug}`],
+    {
+      revalidate: 3600,
+      tags: ["blogs", `blog-${slug}`],
     }
-    if (!blog) return null;
+  )();
 
-    return JSON.parse(JSON.stringify(blog));
-  } catch {
-    return null;
-  }
+async function getBlogBySlug(slug: string) {
+  return await getCachedBlogBySlug(slug);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -327,7 +342,7 @@ export default async function SingleBlogPage({ params }: Props) {
         </article>
 
       </div>
-        <div className="pt-15 w-full sm:w-[92%] md:w-[80%] mx-auto"><Newsletter /></div>
+      <div className="pt-15 w-full sm:w-[92%] md:w-[80%] mx-auto"><Newsletter /></div>
     </main>
   );
 }

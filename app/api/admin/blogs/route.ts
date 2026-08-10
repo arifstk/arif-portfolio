@@ -1,9 +1,11 @@
 // app/api/admin/blogs/route.ts
+
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
+import { revalidateTag } from "next/cache";
 
 // Admin Guard
 async function guardAdmin() {
@@ -84,6 +86,7 @@ export async function POST(req: Request) {
       authorImage: authorImage || "/author.jpg",
       sections: sections || [],
     });
+    revalidateTag("blogs", "max");
 
     return NextResponse.json(newBlog, { status: 201 });
   } catch (error: any) {
@@ -120,6 +123,7 @@ export async function PUT(req: Request) {
         { status: 404 },
       );
     }
+    revalidateTag("blogs", "max");
 
     return NextResponse.json(updatedBlog);
   } catch (error: any) {
@@ -151,6 +155,7 @@ export async function DELETE(req: Request) {
     if (!deletedBlog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
+    revalidateTag("blogs", "max");
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

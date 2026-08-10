@@ -6,6 +6,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
 
+import { revalidateTag } from "next/cache";
+
 async function guardAdmin() {
   const session = await getServerSession(authOptions);
   if (!session || (session.user as any)?.role !== "admin")
@@ -32,6 +34,7 @@ export async function POST(req: Request) {
     await connectDB();
     const body = await req.json();
     const project = await Project.create(body);
+    revalidateTag("projects", "max");
     return NextResponse.json(project, { status: 201 });
   } catch (e: any) {
     return NextResponse.json(

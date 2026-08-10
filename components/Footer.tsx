@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="flex flex-col items-start gap-4 max-w-2xl">
             <Logo />
             <p className="text-sm sm:text-base text-[#64748b] leading-relaxed">
-              Developed by yours truly in <span className='text-violet-800 dark:text-violet-600 font-semibold'>Visual Studio</span> Code with GitHub dark theme. Built with <span className='text-violet-800 dark:text-violet-600 font-semibold'>Next.js</span> and deployed on <span className='text-violet-800 dark:text-violet-600 font-semibold'>Vercel.</span>
+              Developed by yours truly in <span className='text-violet-800 dark:text-violet-400 font-semibold'>Visual Studio</span> Code with GitHub dark theme. Built with <span className='text-violet-800 dark:text-violet-400 font-semibold'>Next.js</span> and deployed on <span className='text-violet-800 dark:text-violet-400 font-semibold'>Vercel.</span>
             </p>
           </div>
           <div className="text-sm sm:text-base text-[#64748b] leading-relaxed">
@@ -58,7 +58,7 @@ export default function Footer() {
           aria-label="Scroll back to top"
           className="fixed bottom-2 group flex items-center gap-1.5 text-xs text-gray-400 hover:text-violet-600 transition-colors duration-300 cursor-pointer self-end md:self-auto"
         >
-          <ArrowUp className="w-5 h-5 font-bold group-hover:text-violet-600 text-violet-800 group-hover:-translate-y-1 transition-all duration-300" />
+          <ArrowUp className="w-5 h-5 font-bold group-hover:text-violet-600 text-violet-800 dark:text-violet-400 group-hover:-translate-y-1 transition-all duration-300" />
         </button>
       </div>
     </footer>

@@ -27,7 +27,7 @@ export default async function HireButtonBlog() {
       <div className='col-span-2'>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-700 dark:text-slate-200 tracking-wider mb-3">
-          My Blogs on <span className='text-violet-800 dark:text-violet-600 font-extrabold'>Building modern web experiences</span>
+          My Blogs on <span className='text-violet-800 dark:text-violet-400 font-extrabold'>Building modern web experiences</span>
         </h2>
         <p className="text-base text-gray-600 dark:text-slate-300 flex items-center tracking-normal leading-relaxed">
           Sharing insights on full-stack development, clean architecture, performance optimization, and modern web technologies.

@@ -9,22 +9,22 @@ import Image from 'next/image';
 export default function About() {
   const pillars = [
     {
-      icon: <Code2 className="w-6 h-6 text-violet-800" />,
+      icon: <Code2 className="w-6 h-6 text-violet-800 dark:text-violet-400" />,
       title: "Web Development",
       description: "Building high-performance, responsive web applications utilizing modern front-end and back-end ecosystems."
     },
     {
-      icon: <FaCubes className="w-6 h-6 text-violet-800" />,
+      icon: <FaCubes className="w-6 h-6 text-violet-800 dark:text-violet-400" />,
       title: "Problem Solving",
       description: "Breaking down complex computational issues into practical, structured, and modular logic workflows."
     },
     {
-      icon: <BsDatabase className="w-6 h-6 text-violet-800" />,
+      icon: <BsDatabase className="w-6 h-6 text-violet-800 dark:text-violet-400" />,
       title: "Backend & Databases",
       description: "Designing secure API endpoints, maintaining server architectures, and optimizing data layers."
     },
     {
-      icon: <Bolt className="w-6 h-6 text-violet-800" />,
+      icon: <Bolt className="w-6 h-6 text-violet-800 dark:text-violet-400" />,
       title: "Optimization",
       description: "Ensuring fast load times, semantic structure, and maintaining a clean, highly scalable codebase."
     }
@@ -35,7 +35,7 @@ export default function About() {
 
       {/* Section Header */}
       <div className="">
-        <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-600 mb-2">
+        <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-400 mb-2">
           About Me
         </p>
         <p className="text-md tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">
@@ -68,7 +68,7 @@ export default function About() {
             I am a software developer deeply passionate about crafting clean, efficient, and user-centric software solutions. My journey into tech stems from a curiosity about how complex back-end operations can elegantly translate into seamless front-end experiences.
           </p>
           <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
-            Whether it’s architecting robust web applications, optimizing database workflows, or engineering responsive UI elements, I strive to write code that is not just functional, but <strong className="text-violet-700 font-bold">scalable and maintainable</strong>.
+            Whether it’s architecting robust web applications, optimizing database workflows, or engineering responsive UI elements, I strive to write code that is not just functional, but <strong className="text-violet-700 dark:text-violet-400 font-bold">scalable and maintainable</strong>.
           </p>
           <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
             When I'm not coding, you can find me exploring new technical frameworks, refining my system design skills, or contributing to open-source collaborative projects.

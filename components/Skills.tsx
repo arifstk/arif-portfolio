@@ -8,7 +8,7 @@ export default function Skills() {
 
       {/* Section Header */}
       <div className="mb-5">
-        <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-600 mb-2">
+        <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-400 mb-2">
           Technical Skills
         </p>
         <p className="text-sm tracking-wide text-slate-600 dark:text-slate-400 mb-2 pb-3 font-normal">

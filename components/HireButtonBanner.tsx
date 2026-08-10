@@ -25,9 +25,9 @@ export default async function HireButtonBanner() {
       </span>
 
       <div className='col-span-2'>
-        <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-2">Let's Work Together</p>
+        <p className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-widest mb-2">Let's Work Together</p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-700 dark:text-slate-200 tracking-wider mb-3">
-          Tell me <span className='text-violet-800 dark:text-violet-500 font-extrabold'>what you're Building</span>
+          Tell me <span className='text-violet-800 dark:text-violet-400 font-extrabold'>what you're Building</span>
         </h2>
         <p className="text-base text-gray-600 dark:text-slate-300 flex items-center tracking-normal leading-relaxed">
           Share the scope, blockers, timeline, and outcome you're looking for. I'll review the context and follow up with clear next steps.

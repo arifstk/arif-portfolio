@@ -48,7 +48,7 @@ export default function Newsletter() {
 
       {/* Badge */}
       <div className="inline-block mb-4 relative z-10">
-        <span className="px-3.5 py-1.5 rounded-full bg-violet-100 dark:bg-violet-950/80 border border-violet-300/60 dark:border-violet-800/50 text-violet-800 dark:text-violet-500 text-sm font-bold tracking-wider uppercase">
+        <span className="px-3.5 py-1.5 rounded-full bg-violet-100 dark:bg-violet-950/80 border border-violet-300/60 dark:border-violet-800/50 text-violet-800 dark:text-violet-400 text-sm font-bold tracking-wider uppercase">
           Newsletter
         </span>
       </div>

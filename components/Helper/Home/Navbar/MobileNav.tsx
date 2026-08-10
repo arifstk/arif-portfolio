@@ -60,7 +60,7 @@ const MobileNav = () => {
       <div
         ref={sidebarRef}
         className={`fixed top-13 left-0 right-0 h-screen w-full z-50 md:hidden
-          bg-white/97 dark:bg-gray-950/95 
+          bg-violet-100/90 dark:bg-gray-950/90 
           shadow-2xl border-r border-gray-200 dark:border-gray-800
           transition-transform duration-300 ease-in-out
           ${open ? 'translate-x-0' : '-translate-x-full'}`}

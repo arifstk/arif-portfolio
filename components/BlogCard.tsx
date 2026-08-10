@@ -37,12 +37,12 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
         {/* Upper Card Content */}
         <div className="p-4 sm:p-6">
           {/* Category Badge */}
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-violet-50 dark:bg-violet-950/40 text-violet-800 dark:text-violet-500 border border-violet-100 dark:border-violet-900/40 mb-4 transition-colors duration-300">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-violet-50 dark:bg-violet-950/40 text-violet-800 dark:text-violet-300 border border-violet-100 dark:border-violet-900/40 mb-4 transition-colors duration-300">
             {blog.category || "Web Application"}
           </span>
 
           {/* Title */}
-          <h3 className="text-xl font-bold text-[#1e293b] dark:text-gray-100 group-hover:text-violet-700 dark:group-hover:text-violet-400 transition-colors leading-snug mb-3">
+          <h3 className="text-xl font-bold text-[#1e293b] dark:text-gray-100 group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors leading-snug mb-3">
             {blog.title}
           </h3>
 

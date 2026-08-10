@@ -50,10 +50,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
 
-            {/* Smooth Hover Card (Desktop only) */}
-            {/* <div className="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-5" /> */}
-
-            <div className="relative z-10 w-full bg-violet-100/90 dark:bg-slate-900/90 rounded-xl p-3.5 border-t border-violet-300 dark:border-gray-700 
+            <div className="relative z-10 w-full bg-violet-100/90 dark:bg-black/80 rounded-xl p-3.5 border-t border-violet-300 dark:border-gray-700 
             shadow-[0_20px_25px_-5px_rgba(0,0,0,0.3),0_8px_10px_-6px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_30px_-5px_rgba(0,0,0,0.8)] transform translate-y-[115%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-in-out
             ">
 

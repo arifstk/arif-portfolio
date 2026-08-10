@@ -69,12 +69,12 @@ export default async function BlogPage({ searchParams }: PageProps) {
       <div className="relative w-[92%] xl:w-[80%] mx-auto space-y-10">
         {/* Page Header */}
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50 shadow-[0_0_15px_rgba(124,58,237,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-300 border border-violet-200 dark:border-violet-800/50 shadow-[0_0_15px_rgba(124,58,237,0.15)]">
             <span className="w-2.5 h-2.5 rounded-full bg-green-900 animate-pulse" />
             Latest Updates
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e293b] dark:text-white tracking-wider">
-            Blog & <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-800 to-violet-600 dark:from-violet-500 dark:to-violet-600">Articles</span>
+            Blog & <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-800 to-violet-600 dark:from-violet-400 dark:to-violet-300">Articles</span>
           </h1>
           <p className="text-slate-600 dark:text-gray-400 text-sm sm:text-base max-w-3xl leading-relaxed">
             Insights, tutorials, and deep-dives into modern web development.
@@ -105,7 +105,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                   {currentPage > 1 ? (
                     <Link
                       href={`/blog?page=${currentPage - 1}`}
-                      className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-500 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
+                      className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
                     >
                       <MoveLeft className="w-4 h-4" /> <span>Prev</span>
                     </Link>
@@ -116,7 +116,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                   )}
 
                   {/* Indicator Page / Total */}
-                  <span className="text-violet-800 dark:text-violet-500 font-bold px-2">
+                  <span className="text-violet-800 dark:text-violet-400 font-bold px-2">
                     {currentPage}/{totalPages}
                   </span>
 
@@ -124,7 +124,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                   {currentPage < totalPages ? (
                     <Link
                       href={`/blog?page=${currentPage + 1}`}
-                      className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-500 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
+                      className="flex items-center justify-center gap-1.5 text-violet-800 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
                     >
                       <span>Next</span> <MoveRight className="w-4 h-4" />
                     </Link>

@@ -87,7 +87,7 @@ export default function Contact() {
           <span className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-semibold tracking-[0.2em] uppercase mb-4">
             Contact
           </span>
-          <h2 className="font-syne text-2xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2 text-violet-800 ">
+          <h2 className="font-syne text-2xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2 text-violet-800 dark:text-violet-400">
             Let&apos;s work <span className="bg-clip-text">together.</span>
           </h2>
           <p className="mt-4 text-slate-400 text-base max-w-md leading-relaxed">
@@ -96,44 +96,6 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start w-full">
-          {/* ── Left Side ── */}
-          {/* <div className="fade-up fade-up-2 space-y-4 w-full">
-            {contactLinks.length === 0 && (
-              <p className="text-xs text-slate-500">No contact info added yet.</p>
-            )}
-            {contactLinks.map((item) => {
-              const Icon = ICON_MAP[item.iconName] ?? Mail;
-              const resolvedHref = item.iconName === "Mail" && !item.href.startsWith("mailto:") ? `mailto:${item.href}` : item.href;
-              return (
-                <Link
-                  key={item._id}
-                  href={resolvedHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-5 text-gray-400 rounded-2xl border border-gray-300 dark:border-gray-500 dark:bg-gray-900 hover:border-gray-400 hover:bg-white/5 transition-all duration-300 w-full"
-                >
-                  <span className="shrink-0 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-violet-400 group-hover:border-violet-500/40 transition-colors duration-300">
-                    <Icon size={18} />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-semibold tracking-widest text-slate-500 uppercase mb-0.5">
-                      {item.label}
-                    </p>
-                    <p className="text-sm text-slate-500 dark:text-slate-200 truncate">
-                      {item.value}
-                    </p>
-                  </div>
-                  <svg
-                    className="ml-auto shrink-0 text-slate-600 group-hover:text-violet-400 group-hover:translate-x-1 transition-all duration-200"
-                    width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"
-                  >
-                    <path d="M7 17 17 7M7 7h10v10" />
-                  </svg>
-                </Link>
-              );
-            })}
-          </div> */}
-
           <div className="fade-up fade-up-2 space-y-4 w-full">
             {contactLinks.length === 0 && (
               <p className="text-xs text-slate-500">No contact info added yet.</p>

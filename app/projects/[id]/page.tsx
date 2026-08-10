@@ -198,9 +198,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
 
           {/* ── Main grid ─────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 mt-8 pt-10">
-            {/* Left — title, description, tech */}
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_285px] gap-10 mt-0 md:mt-8 pt-2 md:pt-10">
+            {/* Left — title, description */}
+            <div className="border border-slate-200 dark:border-gray-800 rounded-2xl p-2 sm:p-4 order-2 md:order-1">
               <p className="text-md font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 mb-1 truncate">
                 {title}
               </p>
@@ -266,7 +266,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
 
             {/* Right sidebar */}
-            <aside className="lg:sticky lg:top-28 self-start space-y-4">
+            <aside className="lg:sticky lg:top-28 self-start space-y-4 order-1 md:order-2">
               <div className="rounded-2xl border border-slate-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">
                   Project Links
@@ -291,16 +291,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     className="flex items-center justify-center w-full gap-1.5 py-2 rounded-xl text-sm font-semibold text-[#1e293b] dark:text-gray-200 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-gray-800 hover:border-violet-300 dark:hover:border-violet-800"
                   />
                 )}
-
-                <div className="h-px bg-slate-100 dark:bg-gray-800 my-1" />
-
-                <Link
-                  href="/projects"
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 bg-violet-100/60 dark:bg-violet-900/30 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-all duration-200"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  All projects
-                </Link>
               </div>
 
               {techStack.length > 0 && (

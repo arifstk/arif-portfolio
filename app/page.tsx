@@ -12,6 +12,8 @@ import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/seo';
 import GitHubActivity from "@/components/GitHubActivity";
 import Newsletter from "@/components/Newsletter";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: { absolute: SITE_NAME },
   description: SITE_DESCRIPTION,
@@ -26,8 +28,8 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   const resolvedParams = await searchParams;
   const currentPage = Math.max(1, Number(resolvedParams.page) || 1);
   const ITEMS_PER_PAGE = 6;
+  
   const projects = await getProjects();
-
   const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE) || 1;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedProjects = projects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
@@ -46,6 +48,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
       <Script
         id="person-jsonld"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <HeroMobile />

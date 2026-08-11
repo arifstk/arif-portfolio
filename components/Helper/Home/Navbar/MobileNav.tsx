@@ -52,6 +52,7 @@ const MobileNav = () => {
 
       {/* ── Backdrop ── */}
       <div
+        onClick={() => setOpen(false)}
         className={`fixed inset-0 z-40 transition-all duration-300 md:hidden
           ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       />
@@ -74,7 +75,7 @@ const MobileNav = () => {
               <Link
                 key={link.path}
                 href={link.path}
-                onClick={() => setOpen(false)
+                onClick={() => setOpen(false)}
                 style={{ transitionDelay: open ? `${index * 50}ms` : '0ms' }}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
                   transition-all duration-200
@@ -96,7 +97,7 @@ const MobileNav = () => {
           {session && role === 'admin' && (
             <Link
               href="/admin/dashboard"
-              onClick={() => setOpen(false)
+              onClick={() => setOpen(false)}
               style={{ transitionDelay: open ? `${totalLinks * 50}ms` : '0ms' }}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
                 transition-all duration-200
@@ -117,9 +118,9 @@ const MobileNav = () => {
           {session && (
             <button
               onClick={() => {
-  setOpen(false)
-  signOut({ callbackUrl: '/' })
-}}
+                setOpen(false)
+                signOut({ callbackUrl: '/' })
+              }}
               style={{ transitionDelay: open ? `${(totalLinks + (role === 'admin' ? 1 : 0)) * 50}ms` : '0ms' }}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
                 transition-all duration-200 w-full text-left
@@ -141,3 +142,4 @@ const MobileNav = () => {
 
 export default MobileNav
 
+            

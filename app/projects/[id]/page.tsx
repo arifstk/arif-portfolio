@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
-import { ExternalLink, ArrowLeft, Code2, Layers } from "lucide-react";
+import { ExternalLink, ArrowLeft, Code2, Layers, SquareArrowOutUpRight } from "lucide-react";
 import ProjectGallery from "@/components/ProjectGallery";
 import SourceCodeButton from "@/components/SourceCodeButton";
 import HireButtonBanner from "@/components/HireButtonBanner";
@@ -18,6 +18,7 @@ interface PageProps {
 export const revalidate = 3600;
 
 /*
+// unstable_cache (legacy)
 const getCachedProjectById = (id: string) =>
   unstable_cache(
     async () => {
@@ -274,7 +275,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     ✔️ Outcome
                   </p>
                   <div className="relative overflow-hidden rounded-2xl space-y-3 bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] p-3 sm:p-6 border border-violet-200 dark:border-slate-800">
-                    <span className="absolute -bottom-2 sm:-bottom-7.5 -left-1.5 sm:-left-6 text-6xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
+                    <span className="absolute -bottom-6 sm:-bottom-8 -left-1.5 sm:-left-6 text-6xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
                       Outcome
                     </span>
                     <p className="text-base text-[#505c6c] dark:text-slate-300 leading-relaxed whitespace-pre-line">
@@ -288,7 +289,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {/* Right sidebar */}
             <aside className="lg:sticky lg:top-28 self-start space-y-4 order-1 md:order-2">
               <div className="rounded-2xl border border-slate-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-900/60 p-5 space-y-3">
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">
+                <p className="flex items-center gap-2 text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">
+                  <SquareArrowOutUpRight className="w-4 h-4" />
                   Project Links
                 </p>
 
@@ -319,11 +321,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {techStack.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2">
-                        <h2 className="flex items-center justify-center gap-3 text-xs pb-2 font-semibold text-slate-500 dark:text-slate-100 uppercase tracking-wider">
-                          <Code2 className="w-4 h-4 text-violet-700 dark:text-violet-400" />
+                        <h2 className="flex items-center justify-center gap-2 text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-4">
+                          <Code2 className="w-4 h-4" />
                           Tech Stack
-                          <span className="text-lg font-bold text-violet-700 dark:text-violet-400 tracking-widest flex items-center">
-                            {techStack.length}
+                          <span className="text-md font-extrabold text-violet-700 dark:text-violet-400 tracking-widest flex items-center">
+                            ({techStack.length})
                           </span>
                         </h2>
                       </div>

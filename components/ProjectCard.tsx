@@ -25,13 +25,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const remainingTechCount = techStack.length - maxVisibleTech;
 
   const contentText = outcome || (typeof description === 'string' ? description : '');
-
+  if (!_id) return null;  // Protect click if not have an id
+  
   return (
     <div>
       {/* DESKTOP */}
       <div className="hidden sm:block">
         {_id && (
           <Link href={`/projects/${_id}`}
+            prefetch={false}
             className="group relative w-full aspect-square rounded-2xl dark:bg-black/20 dark:border-gray-700 border border-slate-200 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/20 dark:hover:border-violet-500/20 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)] flex flex-col justify-end">
 
             <div className="absolute inset-0 w-full h-full overflow-hidden bg-slate-100">
@@ -109,6 +111,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {_id && (
           <Link
             href={`/projects/${_id}`}
+            prefetch={false}
             className=" flex flex-col h-full rounded-2xl dark:bg-black/20 dark:border-gray-700 border border-slate-200 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/20 dark:hover:border-violet-500/20 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
 
             <div className="block relative w-full h-48 sm:h-52 overflow-hidden bg-slate-100">

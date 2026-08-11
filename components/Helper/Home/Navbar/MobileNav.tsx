@@ -74,6 +74,7 @@ const MobileNav = () => {
               <Link
                 key={link.path}
                 href={link.path}
+                onClick={() => setOpen(false)
                 style={{ transitionDelay: open ? `${index * 50}ms` : '0ms' }}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
                   transition-all duration-200
@@ -95,6 +96,7 @@ const MobileNav = () => {
           {session && role === 'admin' && (
             <Link
               href="/admin/dashboard"
+              onClick={() => setOpen(false)
               style={{ transitionDelay: open ? `${totalLinks * 50}ms` : '0ms' }}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
                 transition-all duration-200
@@ -114,7 +116,10 @@ const MobileNav = () => {
           {/* ── Logout button ── */}
           {session && (
             <button
-              onClick={() => signOut({ callbackUrl: '/' })}
+              onClick={() => {
+  setOpen(false)
+  signOut({ callbackUrl: '/' })
+}}
               style={{ transitionDelay: open ? `${(totalLinks + (role === 'admin' ? 1 : 0)) * 50}ms` : '0ms' }}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
                 transition-all duration-200 w-full text-left

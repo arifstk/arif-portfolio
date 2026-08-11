@@ -10,7 +10,6 @@ import SocialLinks from "@/components/SocialLinks";
 import { Metadata } from "next";
 import Newsletter from "@/components/Newsletter";
 import { SITE_URL } from "@/lib/seo";
-import { unstable_cache } from "next/cache";
 
 interface Props {
   params: Promise<{ slug: string }>;

@@ -2,7 +2,8 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
-import { unstable_cache } from "next/cache";
+
+export const revalidate = 3600;
 
 async function fetchBlogsFromDB(skip?: number, limit?: number) {
   await connectDB();
@@ -19,16 +20,6 @@ async function fetchBlogsFromDB(skip?: number, limit?: number) {
   return { blogs, totalBlogs: blogs.length };
 }
 
-const getCachedBlogs = (skip?: number, limit?: number) =>
-  unstable_cache(
-    async () => fetchBlogsFromDB(skip, limit),
-    [`blogs-api-${skip ?? "all"}-${limit ?? "all"}`], // Unique Cache Key
-    {
-      revalidate: 3600,
-      tags: ["blogs"],
-    },
-  )();
-
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -40,13 +31,12 @@ export async function GET(request: Request) {
       const limit = Math.max(1, parseInt(limitParam || "6", 10));
       const skip = (page - 1) * limit;
 
-      // get data from cashed
-      const { blogs, totalBlogs } = await getCachedBlogs(skip, limit);
+      const { blogs, totalBlogs } = await fetchBlogsFromDB(skip, limit);
       const totalPages = Math.ceil(totalBlogs / limit) || 1;
 
       return NextResponse.json(
         {
-          blogs,
+          blogs: JSON.parse(JSON.stringify(blogs)),
           totalPages,
           currentPage: page,
           totalBlogs,
@@ -55,9 +45,10 @@ export async function GET(request: Request) {
       );
     }
 
-    // cash for all blog
-    const { blogs } = await getCachedBlogs();
-    return NextResponse.json(blogs, { status: 200 });
+    const { blogs } = await fetchBlogsFromDB();
+    return NextResponse.json(JSON.parse(JSON.stringify(blogs)), {
+      status: 200,
+    });
   } catch (error: any) {
     return NextResponse.json(
       { error: "Failed to fetch blogs" },

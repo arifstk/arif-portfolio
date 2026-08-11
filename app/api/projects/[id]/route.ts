@@ -3,18 +3,13 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
-import { unstable_cache } from "next/cache";
+
+export const revalidate = 3600;
 
 async function fetchProjectById(id: string) {
   await connectDB();
   return await Project.findById(id).lean();
 }
-
-const getCachedProjectById = (id: string) =>
-  unstable_cache(async () => fetchProjectById(id), [`project-single-${id}`], {
-    revalidate: 3600,
-    tags: ["projects", `project-${id}`],
-  })();
 
 export async function GET(
   _: Request,
@@ -23,12 +18,19 @@ export async function GET(
   try {
     const { id } = await params;
 
-    // get specific project from cash
-    const project = await getCachedProjectById(id);
+    // ✅ ২৪ ক্যারেক্টারের সঠিক Mongo ObjectId না হলে দ্রুত 400 এরর হ্যান্ডলিং
+    if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
+      return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
+    }
 
-    if (!project)
+    await connectDB();
+    const project = await Project.findById(id).lean();
+
+    if (!project) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
-    return NextResponse.json(project);
+    }
+
+    return NextResponse.json(JSON.parse(JSON.stringify(project)));
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }

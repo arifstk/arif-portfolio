@@ -10,6 +10,7 @@ import SocialLinks from "@/components/SocialLinks";
 import { Metadata } from "next";
 import Newsletter from "@/components/Newsletter";
 import { SITE_URL } from "@/lib/seo";
+import { cache } from "react";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -17,6 +18,7 @@ interface Props {
 
 export const revalidate = 3600;
 
+// ✅ React cache ব্যবহার করে Request Deduplication নিশ্চিত করা হলো
 const getBlogBySlug = cache(async (slug: string) => {
   if (!slug || slug === "undefined") return null;
 
@@ -110,7 +112,6 @@ function InlineFormattedText({ text }: { text: string }) {
 function RichParagraphRenderer({ content }: { content: string }) {
   if (!content) return null;
 
-  // Split content by clip syntax [clip: ...]
   const tokens = content.split(/(\[clip:\s*[^\]]+\])/g);
 
   return (
@@ -288,14 +289,12 @@ export default async function SingleBlogPage({ params }: Props) {
           <div className="space-y-8 text-[#1e293b] dark:text-gray-300 leading-relaxed">
             {blog.sections?.map((sec: any, secIdx: number) => (
               <div key={secIdx} className="space-y-4 pt-2">
-                {/* Section Heading */}
                 {sec.heading && (
                   <h2 className="text-xl sm:text-2xl font-bold text-[#1e293b] dark:text-gray-100 tracking-tight">
                     <InlineFormattedText text={sec.heading} />
                   </h2>
                 )}
 
-                {/* Render Content Blocks */}
                 {sec.blocks && sec.blocks.length > 0 && (
                   sec.blocks.map((block: any, blockIdx: number) => {
                     if (block.type === "paragraph" && block.value) {
@@ -333,4 +332,3 @@ export default async function SingleBlogPage({ params }: Props) {
     </main>
   );
 }
-

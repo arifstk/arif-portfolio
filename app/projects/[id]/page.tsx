@@ -9,7 +9,7 @@ import { ExternalLink, ArrowLeft, Code2, Layers } from "lucide-react";
 import ProjectGallery from "@/components/ProjectGallery";
 import SourceCodeButton from "@/components/SourceCodeButton";
 import HireButtonBanner from "@/components/HireButtonBanner";
-import { unstable_cache } from "next/cache";
+import { cache } from "react";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -17,6 +17,7 @@ interface PageProps {
 
 export const revalidate = 3600;
 
+/*
 const getCachedProjectById = (id: string) =>
   unstable_cache(
     async () => {
@@ -34,12 +35,31 @@ const getCachedProjectById = (id: string) =>
       tags: ["projects", `project-${id}`],
     }
   )();
+  */
 
-async function getProject(id: string) {
-  return await getCachedProjectById(id);
-}
+const getProject = cache(async (id: string) => {
+  if (!id || id === "undefined") return null;
 
-// ── Fixed Markdown & Rich Formatting Helper Component ──
+  try {
+    await connectDB();
+    
+    // Find by ID
+    let project = null;
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      project = await Project.findById(id).lean();
+    }
+    
+    if (!project) return null;
+
+    // Convert Mongo Object to Safe Plain Object
+    return JSON.parse(JSON.stringify(project));
+  } catch (error) {
+    console.error("Error fetching project:", error);
+    return null;
+  }
+});
+
+// ──  Markdown & Rich Formatting  ──
 function FormattedText({ text }: { text: string }) {
   if (!text) return null;
 

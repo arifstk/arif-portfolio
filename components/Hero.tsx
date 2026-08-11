@@ -43,9 +43,9 @@ const Hero = () => {
         <HeroDescription />
 
         {/* Modernized CTA Button */}
-        <div className="flex gap-4">
+        <div>
           <Link href="/projects">
-            <button className='group relative inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full text-violet-950 dark:text-white bg-linear-to-r from-violet-100 to-purple-100 hover:from-violet-200 hover:to-purple-200 dark:from-violet-900/40 dark:to-purple-900/40 dark:hover:from-violet-900/60 dark:hover:to-purple-900/60 border border-violet-300/60 dark:border-violet-700/50 shadow-sm hover:shadow-md hover:shadow-violet-500/10 transition-all duration-300 tracking-wide cursor-pointer'>
+            <button className='group relative inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 mb-4 rounded-full text-violet-950 dark:text-white bg-linear-to-r from-violet-100 to-purple-100 hover:from-violet-200 hover:to-purple-200 dark:from-violet-900/40 dark:to-purple-900/40 dark:hover:from-violet-900/60 dark:hover:to-purple-900/60 border border-violet-300/60 dark:border-violet-700/50 shadow-sm hover:shadow-md hover:shadow-violet-500/10 transition-all duration-300 tracking-wide cursor-pointer'>
               <span>My Works</span>
               <span className='inline-block transition-transform duration-200 group-hover:translate-x-1'>→</span>
             </button>
@@ -61,7 +61,6 @@ const Hero = () => {
         />
         <Photo />
       </div>
-
     </div>
   )
 }

@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="flex flex-col items-start gap-4 max-w-2xl">
             <Logo />
             <p className="text-sm sm:text-base text-[#64748b] leading-relaxed">
-              Developed by yours truly in <span className='text-violet-800 dark:text-violet-400 font-semibold'>Visual Studio</span> Code with GitHub dark theme. Built with <span className='text-violet-800 dark:text-violet-400 font-semibold'>Next.js</span> and deployed on <span className='text-violet-800 dark:text-violet-400 font-semibold'>Vercel.</span>
+              Developed by yours truly in <span className='text-violet-800 dark:text-violet-400 font-semibold'>Visual Studio</span> Code with dark plus theme. Built with <span className='text-violet-800 dark:text-violet-400 font-semibold'>Next.js</span> and deployed on <span className='text-violet-800 dark:text-violet-400 font-semibold'>Vercel.</span>
             </p>
           </div>
           <div className="text-sm sm:text-base text-[#64748b] leading-relaxed">

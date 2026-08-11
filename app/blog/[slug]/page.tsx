@@ -18,34 +18,22 @@ interface Props {
 
 export const revalidate = 3600;
 
-const getCachedBlogBySlug = (slug: string) =>
-  unstable_cache(
-    async () => {
-      if (!slug || slug === "undefined") return null;
+const getBlogBySlug = cache(async (slug: string) => {
+  if (!slug || slug === "undefined") return null;
 
-      try {
-        await connectDB();
-        let blog = await Blog.findOne({ slug }).lean();
-        if (!blog && slug.match(/^[0-9a-fA-F]{24}$/)) {
-          blog = await Blog.findById(slug).lean();
-        }
-        if (!blog) return null;
-
-        return JSON.parse(JSON.stringify(blog));
-      } catch {
-        return null;
-      }
-    },
-    [`blog-detail-${slug}`],
-    {
-      revalidate: 3600,
-      tags: ["blogs", `blog-${slug}`],
+  try {
+    await connectDB();
+    let blog = await Blog.findOne({ slug }).lean();
+    if (!blog && slug.match(/^[0-9a-fA-F]{24}$/)) {
+      blog = await Blog.findById(slug).lean();
     }
-  )();
+    if (!blog) return null;
 
-async function getBlogBySlug(slug: string) {
-  return await getCachedBlogBySlug(slug);
-}
+    return JSON.parse(JSON.stringify(blog));
+  } catch {
+    return null;
+  }
+});
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

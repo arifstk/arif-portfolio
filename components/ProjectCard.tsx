@@ -114,22 +114,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             prefetch={false}
             className=" flex flex-col h-full rounded-2xl dark:bg-black/20 dark:border-gray-700 border border-slate-200 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/20 dark:hover:border-violet-500/20 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
 
-            <div className="block relative w-full h-48 sm:h-52 overflow-hidden bg-slate-100">
-              {image ? (
-                <Image
-                  src={image}
-                  alt={`${title} Thumbnail`}
-                  width={600}
-                  height={400}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="w-full h-auto object-center transition-transform duration-500 ease-out group-hover:scale-105"
-                />
-              ) : (
-                <div className="flex items-center justify-center w-full h-full bg-slate-100 dark:bg-gray-900 text-slate-400 dark:text-gray-600 text-sm">
-                  No Image
-                </div>
-              )}
-            </div>
+            <div className="w-full overflow-hidden bg-slate-100 dark:bg-gray-900">
+  {image ? (
+    <Image
+      src={image}
+      alt={`${title} Thumbnail`}
+      width={600}
+      height={400}
+      sizes="100vw"
+      className="block w-full h-auto transition-transform duration-500 ease-out group-hover:scale-105"
+    />
+  ) : (
+    <div className="flex items-center justify-center min-h-48 text-sm text-slate-400 dark:text-gray-600">
+      No Image
+    </div>
+  )}
+</div>
 
             {/* Content Area */}
             <div className="flex flex-col grow p-3">

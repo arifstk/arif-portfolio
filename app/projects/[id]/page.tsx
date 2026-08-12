@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
-import { ExternalLink, ArrowLeft, Code2, Layers, SquareArrowOutUpRight } from "lucide-react";
+import { ExternalLink, Code2, Layers, SquareArrowOutUpRight, ChevronRight, Home } from "lucide-react";
 import ProjectGallery from "@/components/ProjectGallery";
 import SourceCodeButton from "@/components/SourceCodeButton";
 import HireButtonBanner from "@/components/HireButtonBanner";
@@ -17,39 +17,18 @@ interface PageProps {
 
 export const revalidate = 3600;
 
-/*
-// unstable_cache (legacy)
-const getCachedProjectById = (id: string) =>
-  unstable_cache(
-    async () => {
-      try {
-        await connectDB();
-        const project = await Project.findById(id).lean();
-        return project ? JSON.parse(JSON.stringify(project)) : null;
-      } catch {
-        return null;
-      }
-    },
-    [`project-detail-${id}`],
-    {
-      revalidate: 3600,
-      tags: ["projects", `project-${id}`],
-    }
-  )();
-  */
-
 const getProject = cache(async (id: string) => {
   if (!id || id === "undefined") return null;
 
   try {
     await connectDB();
-    
+
     // Find by ID
     let project = null;
     if (id.match(/^[0-9a-fA-F]{24}$/)) {
       project = await Project.findById(id).lean();
     }
-    
+
     if (!project) return null;
 
     // Convert Mongo Object to Safe Plain Object
@@ -186,16 +165,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   return (
     <main className='min-h-screen pt-20 md:pt-24 pb-5'>
       <div className="w-[92%] xl:w-[80%] mx-auto">
-        {/* ── Back nav ───────────────── */}
-        <div className="mb-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            Back to projects
+        {/* ── Breadcrumb ── */}
+        <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+          <Link href="/" className="hover:text-violet-600 transition-colors">
+            <Home className="w-4 h-4" />
           </Link>
-        </div>
+          <ChevronRight className="w-3 h-3" />
+          <Link href="/projects" className="hover:text-violet-600 transition-colors">
+            Work
+          </Link>
+          <ChevronRight className="w-3 h-3" />
+          <span className="text-slate-700 dark:text-slate-400 font-medium truncate">
+            {project.title}
+          </span>
+        </nav>
 
         <div>
           {/* Banner image frame */}

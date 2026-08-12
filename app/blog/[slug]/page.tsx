@@ -11,6 +11,7 @@ import { Metadata } from "next";
 import Newsletter from "@/components/Newsletter";
 import { SITE_URL } from "@/lib/seo";
 import { cache } from "react";
+import { ChevronRight, Home } from "lucide-react";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,7 +19,7 @@ interface Props {
 
 export const revalidate = 3600;
 
-// ✅ React cache ব্যবহার করে Request Deduplication নিশ্চিত করা হলো
+// ✅ React cache 
 const getBlogBySlug = cache(async (slug: string) => {
   if (!slug || slug === "undefined") return null;
 
@@ -215,12 +216,19 @@ export default async function SingleBlogPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="relative w-[92%] md:w-[80%] mx-auto space-y-6">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-violet-700 dark:text-gray-400 dark:hover:text-violet-400 transition-colors duration-200 mb-2"
-        >
-          <FiArrowLeft className="w-4 h-4" /> Back to Blogs
-        </Link>
+        <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+          <Link href="/" className="hover:text-violet-600 transition-colors">
+            <Home className="w-4 h-4" />
+          </Link>
+          <ChevronRight className="w-3 h-3" />
+          <Link href="/blog" className="hover:text-violet-600 transition-colors">
+            Blog
+          </Link>
+          <ChevronRight className="w-3 h-3" />
+          <span className="text-slate-700 dark:text-slate-400 font-medium truncate">
+            {blog.title}
+          </span>
+        </nav>
 
         {/* Header Section */}
         <div className="rounded-2xl bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-slate-200 dark:border-gray-700 p-3 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] space-y-6">

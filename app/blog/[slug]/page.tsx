@@ -313,12 +313,12 @@ export default async function SingleBlogPage({ params }: Props) {
                       return (
                         <div
                           key={blockIdx}
-                          className="relative my-4 rounded-xl bg-[#080d1a] border border-slate-800 shadow-xl overflow-hidden"
+                          className="relative my-4 rounded-xl bg-[#303841] border border-slate-800 shadow-xl overflow-hidden"
                         >
-                          <div className="flex items-center gap-2 px-4 py-3 bg-[#0d1527] border-b border-slate-800/80">
-                            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                          <div className="flex items-center gap-2 px-4 py-3 bg-[#292f37] border-b border-slate-800/80">
+                            <span className="w-2.5 h-2.5 rounded-full bg-red-500/90" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90" />
                           </div>
                           <pre className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-cyan-400 overflow-x-auto leading-relaxed">
                             <code>{block.value}</code>

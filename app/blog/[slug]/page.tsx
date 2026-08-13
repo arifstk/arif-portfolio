@@ -237,7 +237,7 @@ export default async function SingleBlogPage({ params }: Props) {
               {blog.category || "Web Application"}
             </span>
             {formattedDate && (
-              <span className="text-xs font-medium text-[#6d7f98] dark:text-slate-300 bg-[#f8fafc] dark:bg-gray-900 px-3 py-1 rounded-full border border-slate-100 dark:border-gray-800">
+              <span className="text-xs font-mono font-semibold text-[#6d7f98] dark:text-slate-300 bg-[#f8fafc] dark:bg-gray-900 px-3 py-1 rounded-full border border-slate-100 dark:border-gray-800">
                 {formattedDate}
               </span>
             )}
@@ -247,7 +247,7 @@ export default async function SingleBlogPage({ params }: Props) {
             {blog.title}
           </h1>
 
-          <div className="flex flex-wrap items-center justify-start gap-4 pt-4 border-t border-slate-100 dark:border-gray-800">
+          <div className="flex flex-wrap items-center justify-start gap-4 pt-4 border-t border-violet-200 dark:border-gray-800">
             <div className="flex items-center gap-3 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-800 px-3.5 py-2 rounded-xl">
               <div className="relative w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-gray-800 shrink-0 border border-slate-200 dark:border-gray-700">
                 <Image
@@ -313,12 +313,12 @@ export default async function SingleBlogPage({ params }: Props) {
                       return (
                         <div
                           key={blockIdx}
-                          className="relative my-4 rounded-xl bg-[#353839] border border-slate-800 shadow-xl overflow-hidden"
+                          className="relative my-4 rounded-xl bg-[#3c3c3c] border border-slate-800 shadow-xl overflow-hidden"
                         >
-                          <div className="flex items-center gap-2 px-4 py-3 bg-[#242124] border-b border-slate-800/80">
-                            <span className="w-2.5 h-2.5 rounded-full bg-red-500/90" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90" />
+                          <div className="flex items-center gap-2 px-4 py-3 bg-[#333333] border-b border-slate-800/80">
+                            <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                           </div>
                           <pre className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-cyan-400 overflow-x-auto leading-relaxed">
                             <code>{block.value}</code>

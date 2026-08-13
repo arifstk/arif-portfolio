@@ -579,7 +579,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                         {/* Code Snippet Input */}
                         {block.type === "code" && (
                           <textarea
-                            className="w-full bg-slate-950 text-cyan-300 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs font-mono placeholder-slate-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-200 resize-y"
+                            className="w-full bg-[#3c3c3c] text-cyan-300 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs font-mono placeholder-slate-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-200 resize-y"
                             rows={6}
                             value={block.value}
                             onChange={(e) => updateBlockValue(secIdx, blockIdx, e.target.value)}
@@ -600,7 +600,7 @@ export default function BlogsPanel({ autoOpen }: { autoOpen?: boolean }) {
                       <button
                         type="button"
                         onClick={() => addBlock(secIdx, "code")}
-                        className="px-2.5 py-1 text-[11px] font-bold bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-cyan-300 rounded-lg transition-colors cursor-pointer"
+                        className="px-2.5 py-1 text-[11px] font-bold bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-white rounded-lg transition-colors cursor-pointer"
                       >
                         + Add Code Snippet
                       </button>

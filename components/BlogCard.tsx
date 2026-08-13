@@ -28,9 +28,9 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
 
   return (
     <Link href={`/blog/${cardSlug}`} className="block group h-full">
-      <div className="relative flex flex-col justify-between h-full rounded-2xl bg-white dark:bg-black/20 border border-slate-300 dark:border-gray-700 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 dark:hover:border-violet-500/50 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
+      <div className="relative flex flex-col justify-between h-full rounded-2xl bg-white dark:bg-black/20 border border-violet-200 dark:border-gray-800/80 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 dark:hover:border-violet-500/50 hover:shadow-[0_12px_30px_rgba(124,58,237,0.18)]">
 
-        <span className="absolute -top-2 sm:-top-3 lg:-top-2  -right-0.5 text-3xl sm:text-4xl lg:text-5xl font-black text-violet-100 dark:text-violet-100/12 select-none pointer-events-none tracking-tighter uppercase z-0">
+        <span className="absolute -top-2 sm:-top-3 lg:-top-2  -right-0.5 text-3xl sm:text-4xl lg:text-5xl font-black text-violet-100/80 dark:text-violet-100/12 select-none pointer-events-none tracking-tighter uppercase z-0">
           {blog.category || "Web Application"}
         </span>
 
@@ -74,7 +74,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
           </div>
 
           {formattedDate && (
-            <span className="text-xs font-medium text-violet-800 dark:text-violet-300 bg-white/80 dark:bg-black/30 px-3 py-1 rounded-full border border-violet-200/80 dark:border-violet-800/50 shadow-xs">
+            <span className="text-xs font-semibold font-mono text-violet-800 dark:text-violet-300 bg-white/80 dark:bg-black/30 px-3 py-1 rounded-full border border-violet-200/80 dark:border-violet-800/50 shadow-xs">
               {formattedDate}
             </span>
           )}

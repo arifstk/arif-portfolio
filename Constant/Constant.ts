@@ -12,10 +12,10 @@ import { TbBrandMongodb, TbBrandSocketIo, TbBrandTypescript } from "react-icons/
 
 export const NavLinks = [
   // {name: 'Home', path: '/'},
-  {name: 'About', path: '/about'},
   // {name: 'Skills', path: '/skills'},
   {name: 'Work', path: '/projects'},
   {name: 'Blog', path: '/blog'},
+  {name: 'About', path: '/about'},
   // {name: 'Contact', path: '/contact'},
 ];
 
@@ -45,63 +45,6 @@ export const contactInfo = [
     href: "#",
   },
 ];
-
-// export const projects = [
-//   {
-//     title: "E-Commerce Platform",
-//     description:
-//       "A full-stack e-commerce solution with real-time inventory, payment processing, and admin dashboard.",
-//     image: "/images/p1.jpg",
-//     techStack: ["Next.js", "TypeScript", "Stripe", "MongoDB"],
-//     demoUrl: "https://example.com",
-//     githubUrl: "https://github.com",
-//   },
-//   {
-//     title: "Task Management App",
-//     description:
-//       "Collaborative project management tool with real-time updates, Kanban boards, and team analytics.",
-//     image: "/images/p2.jpg",
-//     techStack: ["React", "Node.js", "Socket.io", "PostgreSQL"],
-//     demoUrl: "https://example.com",
-//     githubUrl: "https://github.com",
-//   },
-//   {
-//     title: "AI Content Generator",
-//     description:
-//       "GPT-powered content creation platform for marketers with templates and workflow automation.",
-//     image: "/images/p3.jpg",
-//     techStack: ["React", "Python", "OpenAI", "FastAPI"],
-//     demoUrl: "https://example.com",
-//     githubUrl: "https://github.com",
-//   },
-//   {
-//     title: "Real Estate Platform",
-//     description:
-//       "Property listing platform with virtual tours, mortgage calculator, and agent booking system.",
-//     image: "/images/p4.jpg",
-//     techStack: ["Vue.js", "Node.js", "MongoDB", "Maps API"],
-//     demoUrl: "https://example.com",
-//     githubUrl: "https://github.com",
-//   },
-//   {
-//     title: "Fitness Tracker",
-//     description:
-//       "Cross-platform mobile app for workout tracking, nutrition logging, and progress analytics.",
-//     image: "/images/p5.jpg",
-//     techStack: ["React Native", "Firebase", "Node.js", "Charts"],
-//     demoUrl: "https://example.com",
-//     githubUrl: "https://github.com",
-//   },
-//   {
-//     title: "Learning Management System",
-//     description:
-//       "Educational platform with video streaming, quizzes, progress tracking, and certificates.",
-//     image: "/images/p6.jpg",
-//     techStack: ["Next.js", "Prisma", "AWS S3", "Stripe"],
-//     demoUrl: "https://example.com",
-//     githubUrl: "https://github.com",
-//   },
-// ];
 
 
 export const skillCategories = [

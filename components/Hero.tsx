@@ -30,7 +30,7 @@ const Hero = () => {
             </p>
           </div>
 
-          <p className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider text-gray-800 dark:text-white/90'>
+          <p className='text-3xl md:text-5xl mb-2 font-semibold tracking-wider text-gray-700 dark:text-white/90'>
             Hello I&apos;m
           </p>
 

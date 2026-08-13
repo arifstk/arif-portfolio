@@ -313,9 +313,9 @@ export default async function SingleBlogPage({ params }: Props) {
                       return (
                         <div
                           key={blockIdx}
-                          className="relative my-4 rounded-xl bg-[#303841] border border-slate-800 shadow-xl overflow-hidden"
+                          className="relative my-4 rounded-xl bg-[#1C1C1C] border border-slate-800 shadow-xl overflow-hidden"
                         >
-                          <div className="flex items-center gap-2 px-4 py-3 bg-[#292f37] border-b border-slate-800/80">
+                          <div className="flex items-center gap-2 px-4 py-3 bg-[#242124] border-b border-slate-800/80">
                             <span className="w-2.5 h-2.5 rounded-full bg-red-500/90" />
                             <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90" />
                             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90" />

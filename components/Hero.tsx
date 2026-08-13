@@ -21,11 +21,11 @@ const Hero = () => {
         <div>
           {/* Status Badge */}
           <div className='inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-violet-500/10 border border-violet-500/20 backdrop-blur-md'>
-            <span className='relative flex h-2 w-2'>
+            <span className='relative flex items-center justify-center h-3 w-3'>
               <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75' />
               <span className='relative inline-flex rounded-full h-2 w-2 bg-violet-600' />
             </span>
-            <p className='text-xs sm:text-sm font-semibold tracking-wider text-violet-700 dark:text-violet-300'>
+            <p className='text-xs sm:text-sm font-semibold tracking-wider text-violet-800 dark:text-violet-300'>
               Software Developer
             </p>
           </div>
@@ -36,8 +36,8 @@ const Hero = () => {
 
           {/* Gradient Modern Heading */}
           <h1 className='bg-linear-to-r from-violet-800 via-purple-600 to-indigo-600 dark:from-violet-500 dark:via-purple-500 dark:to-indigo-400 bg-clip-text text-transparent text-4xl md:text-6xl tracking-tight sm:tracking-normal font-extrabold drop-shadow-sm'>
-            Arif Hossain
-          </h1>
+            Shaikh Arif Hossain
+          </h1> 
         </div>
 
         <HeroDescription />
@@ -66,6 +66,4 @@ const Hero = () => {
 }
 
 export default Hero
-
-
 

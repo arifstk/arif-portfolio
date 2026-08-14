@@ -24,10 +24,11 @@ export default function CookieConsentBanner() {
   if (status !== "pending" || !visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900/91 text-white animate-in slide-in-from-bottom duration-300">
+    // <div className="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900/91 text-white animate-in slide-in-from-bottom duration-300">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-violet-800/90 text-white animate-in slide-in-from-bottom duration-300">
       <div className="w-[92%] xl:w-[80%] mx-auto py-2 sm:py-3 flex flex-row items-center justify-between gap-1 sm:gap-3">
-        <p className="flex sm:items-center gap-2 text-xs sm:text-sm text-neutral-300">
-          <Cookie size={15}/>  <span>This site uses cookies to personalize your site experience.</span>
+        <p className="flex sm:items-center gap-2 text-xs sm:text-sm md:text-md text-neutral-300">
+          <Cookie size={15} />  <span>This site uses cookies to personalize your site experience.</span>
         </p>
         <div className="flex gap-3 shrink-0">
           <button
@@ -38,7 +39,7 @@ export default function CookieConsentBanner() {
           </button>
           <button
             onClick={reject}
-            className="px-2 sm:px-4 py-1 text-xs sm:text-sm rounded-xl border border-neutral-600 hover:bg-neutral-800 hover:scale-96 transform transition duration-300 ease-in-out cursor-pointer"
+            className="px-2 sm:px-4 py-1 text-xs sm:text-sm rounded-xl border border-neutral-400 hover:border-neutral-800 hover:bg-neutral-800 hover:scale-96 transform transition duration-300 ease-in-out cursor-pointer"
           >
             Reject
           </button>

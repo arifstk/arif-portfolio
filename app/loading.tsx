@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-7 bg-stone-50 dark:bg-stone-950">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-7 bg-violet-50 dark:bg-stone-950">
       <div className="relative flex h-16 w-16 items-center justify-center">
         <div className="absolute inset-0 animate-ping rounded-full bg-violet-800 dark:bg-violet-400 opacity-20" />
 

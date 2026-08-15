@@ -1,26 +1,27 @@
+// components/HeroMobile.tsx
 
-// import SocialLinks from './SocialLinks'
 import Link from 'next/link'
 import Image from 'next/image'
 import HeroDescription from './HeroDescription'
+import SocialLinks from './SocialLinks'
 
 const HeroMobile = () => {
   return (
     <div>
       <div className=' md:hidden relative isolate overflow-hidden h-screen grid grid-cols-1 md:grid-cols-2 gap-10 -mt-3 pt-15 pb-[35%]'>
 
-        {/* ── Mobile-only full-bleed background photo ─────── */}
-        <div className='absolute inset-0 md:hidden'>
+        {/* ── Mobile-only background photo ─────── */}
+        <div className='absolute inset-0 md:hidden aspect-9/20'>
           <Image
             src="/images/hero.png"
             alt="Image of me"
             fill
             priority
             quality={100}
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 0vw"
             className="object-cover object-top"
           />
-          {/* gradients so text stays readable over the photo */}
+          {/* gradients on mobile */}
           <div className='absolute inset-0 bg-linear-to-t from-black/95 via-black/55 to-black/10' />
           <div className='absolute inset-0 bg-linear-to-r from-black/70 via-black/20 to-transparent' />
         </div>
@@ -57,7 +58,7 @@ const HeroMobile = () => {
               My Works
             </button>
           </Link>
-          {/* <SocialLinks /> */}
+          <SocialLinks />
         </div>
       </div>
     </div>

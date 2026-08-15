@@ -57,9 +57,10 @@ const circleColors = ["#5B21B6"];
         >
           <div className="w-62 h-62 md:w-100 md:h-100 mix-blend-lighten overflow-hidden rounded-full">
             <Image
-              src="/images/hero.png" width={400} height={400}
-              alt="heroImage"
-              quality={100}
+              src="/images/hero.webp" width={400} height={400}
+              alt="Arif's Profile Photo"
+              quality={60}
+              sizes="(max-width: 768px) 248px, 400px"
               className="object-contain w-full h-full"
               priority={true}
             />

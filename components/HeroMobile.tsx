@@ -13,11 +13,11 @@ const HeroMobile = () => {
         {/* ── Mobile-only background photo ─────── */}
         <div className='absolute inset-0 md:hidden aspect-9/20'>
           <Image
-            src="/images/hero.png"
+            src="/images/hero.webp"
             alt="Image of me"
             fill
             priority
-            quality={100}
+            quality={60}
             sizes="(max-width: 768px) 100vw, 0vw"
             className="object-cover object-top"
           />

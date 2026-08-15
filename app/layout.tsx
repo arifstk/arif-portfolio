@@ -36,8 +36,6 @@ const kalam = Kalam({
 });
 
 
-// const getCurrentTimestamp = () => new Date().toISOString();
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -102,12 +100,6 @@ export const metadata: Metadata = {
   },
   // ✅ others social media
   other: {
-    // 'og:image': `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
-    // 'og:image:secure_url': `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
-    // 'og:image:type': 'image/jpeg',
-    // 'og:image:width': '1200',
-    // 'og:image:height': '630',
-    // 'og:image:alt': 'Shaikh Arif | Software Developer Portfolio',
     'og:updated_time': new Date().toISOString(),
     'og:locale': 'en_US',
     'pinterest': 'nopin',
@@ -123,9 +115,6 @@ export default async function RootLayout({
   const pathname = headersList.get("x-pathname") ?? "";
   const isAdmin = pathname.startsWith("/admin");
 
-  // ✅ dynamic timestamp
-  // const timestamp = Date.now();
-
   return (
     <html
       lang="en"
@@ -136,23 +125,8 @@ export default async function RootLayout({
         {/* ✅ Pinterest */}
         <meta name="pinterest-rich-pin" content="true" />
 
-        {/* ✅ LinkedIn */}
-        {/* <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.jpg?t=${timestamp}`} /> */}
-
-        {/* ✅ WhatsApp / Instagram / Messenger */}
-        {/* <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Shaikh Arif | Software Developer Portfolio" /> */}
-
-        {/* ✅ dynamic  og:image  */}
-        {/* <meta property="og:image" content={`${SITE_URL}/og-image.jpg?t=${timestamp}`} /> */}
-
         {/* ✅ og:updated_time */}
         <meta property="og:updated_time" content={new Date().toISOString()} />
-
-        {/* ✅ Fallback */}
-        {/* <meta name="image" content={`${SITE_URL}/og-image.jpg?t=${timestamp}`} /> */}
 
         {/* ✅ Google verification */}
         <meta name="google-site-verification" content="btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8" />

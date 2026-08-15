@@ -1,6 +1,6 @@
 // components/Helper/Home/Navbar/Logo.tsx
 
-import { Caveat, Indie_Flower, Kalam, Permanent_Marker } from 'next/font/google';
+import { Kalam } from 'next/font/google';
 import Link from 'next/link';
 
 const affectionateScript = Kalam({

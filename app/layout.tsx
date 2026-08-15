@@ -1,7 +1,7 @@
 // app/layout.tsx
 
 import type { Metadata } from "next";
-import { Inter, Geist, Nunito } from "next/font/google";
+import { Inter, Geist, Kalam } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Provider from "@/components/Hoc/Provider";
@@ -9,21 +9,34 @@ import ResponsiveNav from "@/components/Helper/Home/Navbar/ResponsiveNav";
 import Footer from "@/components/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import { headers } from "next/headers";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { CookieConsentProvider } from "@/context/CookieConsentContext";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GAPageTracker from "@/components/GAPageTracker";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import { headers } from "next/headers";
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+const geist = Geist({ 
+  subsets: ['latin'], 
+  variable: '--font-sans',
+  display: 'swap' 
+});
+
 const font = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
+  display: 'swap',
+});
+
+const kalam = Kalam({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-kalam",
 });
 
 
-const getCurrentTimestamp = () => new Date().toISOString();
+// const getCurrentTimestamp = () => new Date().toISOString();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -63,14 +76,14 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Shaikh Arif | Software Developer Portfolio',
         type: 'image/jpeg',
       },
       {
-        url: `${SITE_URL}/og-image.jpg?t=${Date.now()}`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 800,
         height: 420,
         alt: 'Shaikh Arif | Software Developer Portfolio',
@@ -82,7 +95,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [`${SITE_URL}/og-image.jpg?t=${Date.now()}`],
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   verification: {
     google: 'btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8',
@@ -111,7 +124,7 @@ export default async function RootLayout({
   const isAdmin = pathname.startsWith("/admin");
 
   // ✅ dynamic timestamp
-  const timestamp = Date.now();
+  // const timestamp = Date.now();
 
   return (
     <html

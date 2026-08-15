@@ -251,7 +251,7 @@ export default async function SingleBlogPage({ params }: Props) {
             <div className="flex items-center gap-3 bg-[#f8fafc] dark:bg-gray-900 border border-slate-200 dark:border-gray-800 px-3.5 py-2 rounded-xl">
               <div className="relative w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-gray-800 shrink-0 border border-slate-200 dark:border-gray-700">
                 <Image
-                  src={blog.authorImage || "/author.jpg"}
+                  src={blog.authorImage || "/author.webp"}
                   alt={blog.authorName || "Author"}
                   fill
                   className="object-cover"

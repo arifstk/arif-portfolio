@@ -2,15 +2,24 @@
 
 import type { Metadata } from "next";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import Hero from '@/components/Hero';
 import HeroMobile from '@/components/HeroMobile';
-import HireButtonBanner from '@/components/HireButtonBanner';
-import Projects from '@/components/Projects';
-import Skills from '@/components/Skills';
+// import HireButtonBanner from '@/components/HireButtonBanner';
+// import Projects from '@/components/Projects';
+// import Skills from '@/components/Skills';
 import { getProjects } from '@/lib/data/projects';
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/seo';
-import GitHubActivity from "@/components/GitHubActivity";
-import Newsletter from "@/components/Newsletter";
+// import GitHubActivity from "@/components/GitHubActivity";
+// import Newsletter from "@/components/Newsletter";
+
+
+const Projects = dynamic(() => import("@/components/Projects"));
+const Skills = dynamic(() => import("@/components/Skills"));
+const HireButtonBanner = dynamic(() => import("@/components/HireButtonBanner"));
+const GitHubActivity = dynamic(() => import("@/components/GitHubActivity"));
+const Newsletter = dynamic(() => import("@/components/Newsletter"));
+
 
 export const revalidate = 3600;
 

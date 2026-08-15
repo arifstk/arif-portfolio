@@ -57,7 +57,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white dark:bg-gray-800 border border-violet-200 dark:border-violet-800/60 shrink-0">
               <Image
-                src={blog.authorImage || "/author.jpg"}
+                src={blog.authorImage || "/author.webp"}
                 alt={blog.authorName || "Author"}
                 fill
                 className="object-cover"

@@ -42,6 +42,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   src={image}
                   alt={`${title} Thumbnail`}
                   fill
+                  priority={index < 2}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                 />
@@ -119,8 +120,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 <Image
                   src={image}
                   alt={`${title} Thumbnail`}
-                  width={600}
-                  height={400}
+                  width={400}
+                  height={267}
+                  priority={index < 2}
                   sizes="100vw"
                   className="block w-full h-auto transition-transform duration-500 ease-out group-hover:scale-105"
                 />

@@ -74,7 +74,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
           </div>
 
           {formattedDate && (
-            <span className="text-xs font-semibold font-mono text-violet-800 dark:text-violet-300 bg-white/80 dark:bg-black/30 px-3 py-1 rounded-full border border-violet-200/80 dark:border-violet-800/50 shadow-xs">
+            <span className="text-xs font-semibold font-mono text-violet-800 dark:text-violet-300 bg-white/80 dark:bg-black/30 px-3 py-1 rounded-full border border-violet-200/80 dark:border-violet-800/50 shadow-xs tracking-tighter md:tracking-normal">
               {formattedDate}
             </span>
           )}

@@ -21,4 +21,3 @@ const SocialLinkSchema = new Schema<ISocialLink>(
 export default models.SocialLink ||
   mongoose.model<ISocialLink>("SocialLink", SocialLinkSchema);
 
-  

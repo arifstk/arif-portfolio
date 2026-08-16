@@ -47,7 +47,7 @@ const HeroMobile = () => {
             {/* <h1 className='text-white md:text-violet-500 text-4xl tracking-widest sm:tracking-normal font-semibold'>
             Arif Hossain
           </h1> */}
-            <h1 className='bg-linear-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent text-4xl tracking-tight sm:tracking-normal font-extrabold drop-shadow-sm'>
+            <h1 className='bg-linear-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent text-4xl tracking-tight sm:tracking-normal font-bold drop-shadow-sm'>
               Shaikh Arif Hossain
             </h1>
           </div>

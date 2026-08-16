@@ -1,6 +1,6 @@
 // Constant/Constant.ts
 
-import { Cloud, Code2, Database, GitBranch, Globe, Layers, Mail, MapPin, Palette, Phone, Server, Smartphone, Terminal } from "lucide-react";
+import { Cloud, GitBranch, Mail, MapPin, Phone, } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import { FaStripe } from "react-icons/fa6";
 import { SiExpress, SiMongoosedotws } from "react-icons/si";

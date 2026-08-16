@@ -52,7 +52,7 @@ export default async function GitHubActivity() {
     : null;
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-3.5 sm:p-5 text-slate-800 dark:border-slate-700/60 dark:bg-[#0d1424] dark:text-slate-200">
+    <div className="rounded-2xl border border-gray-200 bg-white p-3.5 sm:p-5 text-slate-800 dark:border-slate-700/50 dark:bg-gray-900/60 dark:text-slate-200">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
         <div className="flex items-center gap-2">

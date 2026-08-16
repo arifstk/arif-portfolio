@@ -237,7 +237,7 @@ export default async function SingleBlogPage({ params }: Props) {
               {blog.category || "Web Application"}
             </span>
             {formattedDate && (
-              <span className="text-xs font-mono font-semibold text-[#6d7f98] dark:text-slate-300 bg-[#f8fafc] dark:bg-gray-900 px-3 py-1 rounded-full border border-slate-100 dark:border-gray-800">
+              <span className="text-xs font-mono font-semibold text-[#6d7f98] tracking-tighter md:tracking-normal dark:text-slate-300 bg-[#f8fafc] dark:bg-gray-900 px-3 py-1 rounded-full border border-slate-100 dark:border-gray-800">
                 {formattedDate}
               </span>
             )}

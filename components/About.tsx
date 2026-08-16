@@ -31,10 +31,10 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="mt-1 pt-20 md:pt-25 mb-10 text-gray-800 dark:text-gray-200">
+    <section id="about" className="relative mt-1 pt-20 md:pt-25 mb-10 text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
-      <div className="">
+      <div>
         <p className="text-lg font-semibold tracking-widest text-violet-800 dark:text-violet-400 mb-2">
           About Me
         </p>
@@ -43,34 +43,34 @@ export default function About() {
         </p>
       </div>
 
-      <div className="mb-8 md:mb-10">
-      </div>
-      {/* banner */}
-      <div className="w-full h-full md:w-full md:h-full overflow-hidden rounded-2xl mb-10 md:mb-16">
+      {/* Sticky Banner Container */}
+      <div className="sticky top-20 z-0 w-full h-full md:w-full md:h-100 overflow-hidden mb-10 md:mb-16 px-0.5">
         <Image
-          src="/images/about-banner3.jpeg" width={400} height={400}
+          src="/images/about-banner3.jpeg"
+          width={800}
+          height={400}
           alt="about banner"
-          quality={100}
-          className="object-contain w-full h-full"
+          quality={80}
+          className="object-cover w-full h-full"
           priority={true}
         />
       </div>
 
-      {/* Main Layout Split */}
-      <div className="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-16 items-start">
+      {/* Main Content Section (Scrolls Over the Banner) */}
+      <div className="relative z-10 bg-slate-50 dark:bg-[#121212] pt-5 sm:pt-10 grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-16 items-start">
 
         {/* Left Side: Narrative Biography */}
         <div className="lg:col-span-5 space-y-5">
           <h3 className="text-lg md:text-2xl font-bold text-gray-800 dark:text-gray-300">
             Bridging Creativity & Code
           </h3>
-          <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             I am a software developer deeply passionate about crafting clean, efficient, and user-centric software solutions. My journey into tech stems from a curiosity about how complex back-end operations can elegantly translate into seamless front-end experiences.
           </p>
-          <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             Whether it’s architecting robust web applications, optimizing database workflows, or engineering responsive UI elements, I strive to write code that is not just functional, but <strong className="text-violet-700 dark:text-violet-400 font-bold">scalable and maintainable</strong>.
           </p>
-          <p className="text-[#64748b] text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             When I'm not coding, you can find me exploring new technical frameworks, refining my system design skills, or contributing to open-source collaborative projects.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function About() {
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900  dark:border-gray-700 p-6 rounded-xl border border-black/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,123,255,0.04)]"
+              className="bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 dark:border-gray-700 p-6 rounded-xl border border-black/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,123,255,0.04)]"
             >
               <div className="mb-4">
                 {pillar.icon}
@@ -88,7 +88,7 @@ export default function About() {
               <h4 className="text-lg font-bold text-[#1e293b] dark:text-gray-200 mb-2">
                 {pillar.title}
               </h4>
-              <p className="text-sm text-[#64748b] leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 {pillar.description}
               </p>
             </div>

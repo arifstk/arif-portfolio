@@ -150,10 +150,11 @@ export async function generateMetadata({ params }: PageProps) {
     return { title: "Project Not Found" };
   }
 
-  const desc =
-    typeof project.description === "string"
-      ? project.description
-      : project.description?.[0]?.text || project.title;
+  const desc = project.outcome 
+    ? project.outcome 
+    : (typeof project.description === "string"
+        ? project.description
+        : project.description?.[0]?.text || project.title);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const fallbackImage = `${siteUrl}/og-image.jpg`;

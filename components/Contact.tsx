@@ -81,7 +81,7 @@ export default function Contact() {
       `}</style>
 
       {/* Main */}
-      <div className="font-outfit w-full max-w-7xl mx-auto">
+      <div className="font-outfit w-full max-w-7xl mx-auto"> 
         {/* Header */}
         <div className="mb-12 md:mb-16 fade-up fade-up-1">
           <span className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-semibold tracking-[0.2em] uppercase mb-4">

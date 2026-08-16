@@ -47,15 +47,15 @@ const HeroMobile = () => {
             {/* <h1 className='text-white md:text-violet-500 text-4xl tracking-widest sm:tracking-normal font-semibold'>
             Arif Hossain
           </h1> */}
-            <h1 className='bg-linear-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent text-4xl tracking-tight sm:tracking-normal font-bold drop-shadow-sm'>
+            <h1 className='bg-linear-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent text-4xl tracking-tighter sm:tracking-normal font-bold drop-shadow-sm'>
               Shaikh Arif Hossain
             </h1>
           </div>
           <HeroDescription />
 
           <Link href="/projects">
-            <button className='bg-white/10 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none rounded-full border border-white/40 md:border-gray-500 dark:md:border-gray-500 font-semibold text-white md:text-gray-800 md:dark:text-white/70 hover:bg-[#369483] hover:text-white hover:border-[#369483] hover:shadow-md px-6 py-2 text-sm cursor-pointer transition-colors duration-200 tracking-widest -mt-5 mb-3'>
-              My Works
+            <button className='bg-violet-800/90 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none rounded-full dark:md:border-gray-500 font-semibold text-white md:text-gray-800 md:dark:text-white/70 hover:bg-[#369483] hover:text-white hover:border-[#369483] hover:shadow-md px-6 py-2 text-sm cursor-pointer transition-colors duration-200 tracking-widest -mt-5 mb-3'>
+              My Works →
             </button>
           </Link>
           <SocialLinks />

@@ -81,7 +81,7 @@ export default function Contact() {
       `}</style>
 
       {/* Main */}
-      <div className="font-outfit w-full max-w-7xl mx-auto"> 
+      <div className="font-outfit w-full max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12 md:mb-16 fade-up fade-up-1">
           <span className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-semibold tracking-[0.2em] uppercase mb-4">
@@ -201,7 +201,7 @@ export default function Contact() {
                 )}
                 <button
                   type="submit" disabled={status === "sending"}
-                  className="relative flex items-center justify-center gap-3 py-2 font-syne text-sm tracking-wide border border-gray-400 dark:border-white/50 bg-violet-800 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium px-3 rounded-xl text-white shadow-md shadow-violet-700/20 transition-colors duration-200 dark:backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="relative flex items-center justify-center gap-3 px-5 py-2 font-syne text-sm tracking-wide border border-gray-400 dark:border-white/50 bg-violet-800 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium rounded-xl text-white shadow-md shadow-violet-700/20 transition-colors duration-200 dark:backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {status === "sending" ? (
                     <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>Sending…</>
@@ -212,9 +212,11 @@ export default function Contact() {
               </form>
             )}
             {/* privacy-policy */}
-            <div>
-              By submitting this form, you agree to the Privacy policy
-              <Link href="/privacy-policy" className="text-sm text-violet-500 dark:text-violet-400 hover:underline">Privacy Policy</Link>
+            <div className="flex flex-col sm:flex-row gap-1 w-full pt-5 pb-5">
+              <span className=" text-[#30353e] dark:text-gray-400">
+                By submitting this form, you agree to the
+              </span>
+              <Link href="/privacy-policy" target="_blank" className="font-semibold text-violet-800 dark:text-violet-400 underline hover:text-violet-500 tracking-wide">Privacy Policy</Link>
             </div>
           </div>
         </div>

@@ -191,7 +191,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const { title, description, image, images = [], techStack = [], demoUrl, githubUrl, outcome } = project;
 
   return (
-    <main className='min-h-screen pt-20 md:pt-24 pb-5'>
+    <main className=' pt-20 md:pt-24 pb-5'>
       <div className="w-[92%] xl:w-[80%] mx-auto">
         {/* ── Breadcrumb ── */}
         <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
@@ -254,7 +254,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     {description.map((block: any, i: number) => (
                       <div key={i}>
                         {block.header && (
-                          <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">
+                          <h3 className="text-lg font-semibold text-zinc-700 dark:text-slate-100 mb-2">
                             {block.header}
                           </h3>
                         )}
@@ -289,7 +289,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     <span className="absolute -bottom-6 sm:-bottom-8 -left-1.5 sm:-left-6 text-6xl sm:text-8xl md:text-9xl font-black text-violet-900/5 dark:text-violet-100/5 select-none pointer-events-none tracking-tighter uppercase z-0">
                       Outcome
                     </span>
-                    <p className="text-base text-[#505c6c] dark:text-slate-300 leading-relaxed whitespace-pre-line">
+                    <p className="text-base text-zinc-700 dark:text-slate-400 leading-relaxed whitespace-pre-line">
                       {outcome}
                     </p>
                   </div>

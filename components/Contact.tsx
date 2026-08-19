@@ -65,7 +65,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="w-full px-1 sm:px-2 pt-20 md:pt-25 flex justify-center">
+    <section className="w-full pt-20 md:pt-25 pb-5 flex justify-center">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap');
         .font-syne { font-family: 'Syne', sans-serif; }
@@ -84,13 +84,13 @@ export default function Contact() {
       <div className="font-outfit w-full max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12 md:mb-16 fade-up fade-up-1">
-          <span className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-semibold tracking-[0.2em] uppercase mb-4">
+          <span className="inline-flex items-center gap-2 text-sm text-zinc-700 dark:text-gray-400 font-semibold tracking-[0.2em] uppercase mb-4">
             Contact
           </span>
           <h2 className="font-syne text-2xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2 text-violet-800 dark:text-violet-400">
             Let&apos;s work <span className="bg-clip-text">together.</span>
           </h2>
-          <p className="mt-4 text-slate-400 text-base max-w-md leading-relaxed">
+          <p className="mt-4 text-zinc-700 dark:text-gray-400 text-base max-w-md leading-relaxed">
             Have a project in mind? I&apos;d love to hear about it. Drop me a message and I&apos;ll get back to you within 24 hours.
           </p>
         </div>
@@ -115,10 +115,10 @@ export default function Contact() {
                     <Icon size={18} />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-semibold tracking-widest text-slate-500 uppercase mb-0.5">
+                    <p className="text-[10px] font-semibold tracking-widest text-zinc-700 dark:text-gray-400 uppercase mb-0.5">
                       {item.label}
                     </p>
-                    <p className="text-sm text-slate-500 dark:text-slate-200 truncate">
+                    <p className="text-sm text-zinc-600 dark:text-gray-400 truncate">
                       {item.value}
                     </p>
                   </div>
@@ -134,7 +134,7 @@ export default function Contact() {
           </div>
 
           {/* ── Right — Form ── */}
-          <div className="fade-up fade-up-3 w-full">
+          <div className="fade-up fade-up-3 w-full p-5 border border-slate-400 dark:border-gray-500 rounded-xl">
             {status === "success" ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-20 bg-violet-500/5   rounded-2xl  bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] border border-violet-200 dark:border-slate-800 ">
                 <div className="w-16 h-16 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-4 mt-5">
@@ -153,7 +153,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {(["name", "email"] as const).map((field) => (
                     <div key={field} className="flex flex-col gap-1.5 w-full">
-                      <label htmlFor={field} className="text-xs font-semibold tracking-widest text-slate-400 uppercase">
+                      <label htmlFor={field} className="text-xs font-semibold tracking-widest text-zinc-700 dark:text-gray-400 uppercase">
                         {field === "name" ? "Your Name" : "Email Address"}
                       </label>
                       <input
@@ -171,7 +171,7 @@ export default function Contact() {
                   ))}
                 </div>
                 <div className="flex flex-col gap-1.5 w-full">
-                  <label htmlFor="subject" className="text-xs font-semibold tracking-widest text-slate-400 uppercase pt-2">Subject</label>
+                  <label htmlFor="subject" className="text-xs font-semibold tracking-widest text-zinc-700 dark:text-gray-400 uppercase pt-2">Subject</label>
                   <input
                     id="subject" name="subject" type="text" required
                     placeholder="Project Inquiry / Freelance / Collaboration"
@@ -181,7 +181,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className="flex flex-col gap-1.5 w-full">
-                  <label htmlFor="message" className="text-xs font-semibold tracking-widest text-slate-400 uppercase">Message</label>
+                  <label htmlFor="message" className="text-xs font-semibold tracking-widest text-zinc-700 dark:text-gray-400 uppercase">Message</label>
                   <div className="relative w-full">
                     <textarea
                       id="message" name="message" required rows={6}
@@ -201,7 +201,7 @@ export default function Contact() {
                 )}
                 <button
                   type="submit" disabled={status === "sending"}
-                  className="relative flex items-center justify-center gap-3 px-5 py-2 font-syne text-sm tracking-wide border border-gray-400 dark:border-white/50 bg-violet-800 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium rounded-xl text-white shadow-md shadow-violet-700/20 transition-colors duration-200 dark:backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="relative flex w-full sm:w-auto items-center justify-center gap-3 px-5 py-2 font-syne text-sm tracking-wide border border-gray-400 dark:border-white/50 bg-violet-800 hover:bg-violet-600 dark:bg-violet-700 dark:hover:bg-violet-600 font-medium rounded-xl text-white shadow-md shadow-violet-700/20 transition-colors duration-200 dark:backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {status === "sending" ? (
                     <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>Sending…</>
@@ -212,11 +212,11 @@ export default function Contact() {
               </form>
             )}
             {/* privacy-policy */}
-            <div className="flex flex-col sm:flex-row gap-1 w-full pt-5 pb-5">
-              <span className=" text-[#30353e] dark:text-gray-400">
+            <div className="flex flex-col sm:flex-row gap-1 w-full pt-2">
+              <span className=" text-zinc-700 dark:text-gray-400">
                 By submitting this form, you agree to the
               </span>
-              <Link href="/privacy-policy" target="_blank" className="font-semibold text-violet-800 dark:text-violet-400 underline hover:text-violet-500 tracking-wide">Privacy Policy</Link>
+              <Link href="/privacy-policy" target="_blank" className=" text-violet-800 dark:text-violet-400 underline hover:text-violet-500 tracking-wide">Privacy Policy</Link>
             </div>
           </div>
         </div>

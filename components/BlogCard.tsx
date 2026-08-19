@@ -47,7 +47,7 @@ export default function BlogCard({ blog }: { blog: BlogCardProps }) {
           </h3>
 
           {/* Excerpt */}
-          <p className="text-sm text-[#64748b] dark:text-gray-400 line-clamp-3 leading-relaxed">
+          <p className="text-sm text-zinc-700 dark:text-gray-400 line-clamp-3 leading-relaxed">
             {blog.excerpt}
           </p>
         </div>

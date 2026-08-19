@@ -288,17 +288,17 @@ export default async function SingleBlogPage({ params }: Props) {
           )}
 
           {blog.excerpt && (
-            <p className="text-base sm:text-lg text-[#64748b] dark:text-gray-300 leading-relaxed font-medium border-b border-slate-100 dark:border-gray-800 pb-6">
+            <p className="text-base sm:text-lg text-zinc-700 dark:text-gray-300 leading-relaxed font-medium border-b border-slate-100 dark:border-gray-800 pb-6">
               {blog.excerpt}
             </p>
           )}
 
           {/* Article */}
-          <div className="space-y-8 text-[#1e293b] dark:text-gray-300 leading-relaxed">
+          <div className="space-y-8 text-[#1e293b] dark:text-gray-200 leading-relaxed">
             {blog.sections?.map((sec: any, secIdx: number) => (
               <div key={secIdx} className="space-y-4 pt-2">
                 {sec.heading && (
-                  <h2 className="text-xl sm:text-2xl font-bold text-[#1e293b] dark:text-gray-100 tracking-tight">
+                  <h2 className="text-xl sm:text-2xl font-bold text-zinc-700 dark:text-gray-200 tracking-tight">
                     <InlineFormattedText text={sec.heading} />
                   </h2>
                 )}

@@ -31,7 +31,7 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
   };
 
   const reject = () => {
-    localStorage.setItem(STORAGE_KEY, "rejected");
+    localStorage.setItem(STORAGE_KEY, "rejected"); 
     setStatus("rejected");
   };
 

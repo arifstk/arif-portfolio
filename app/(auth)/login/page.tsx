@@ -3,7 +3,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams, notFound } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -11,6 +11,15 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
+  // Verify secret parameter client-side
+  const searchParams = useSearchParams();
+  const secret = searchParams.get("secret");
+  const validSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
+
+  if (secret !== validSecret) {
+    notFound();
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -107,3 +116,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+

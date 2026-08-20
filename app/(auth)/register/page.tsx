@@ -3,10 +3,18 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 export default function RegisterPage() {
+  const searchParams = useSearchParams();
+  const secret = searchParams.get("secret");
+  const validSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
+
+  if (secret !== validSecret) {
+    notFound();
+  }
+
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const router = useRouter();

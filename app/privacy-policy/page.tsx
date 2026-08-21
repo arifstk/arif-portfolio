@@ -58,8 +58,8 @@ const page = () => {
           <p className="text-md text-zinc-700 dark:text-zinc-400 leading-relaxed tracking-wide">
             We are committed to protecting and respecting your privacy. This policy explains what data we collect, how we use it, and your rights regarding your information.
           </p>
-          <p className="text-md font-mono text-zinc-500 dark:text-zinc-500 leading-relaxed tracking-wide mt-5">
-            Effective date: 20 Jun 2026
+          <p className="text-sm tracking-tight font-mono text-zinc-500 dark:text-zinc-500 leading-relaxed mt-3">
+            Effective: 20 Jun 2026
           </p>
         </div>
 

@@ -116,7 +116,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                   )}
 
                   {/* Indicator Page / Total */}
-                  <span className="text-violet-800 dark:text-violet-400 font-bold px-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-semibold px-2">
                     {currentPage}/{totalPages}
                   </span>
 

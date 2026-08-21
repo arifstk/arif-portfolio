@@ -19,7 +19,7 @@ export async function PUT(
   try {
     await guardAdmin();
     await connectDB();
-    const { id } = await params;          // ← await here
+    const { id } = await params;
     const body = await req.json();
     const updated = await ContactInfo.findByIdAndUpdate(id, body, { new: true });
     if (!updated)
@@ -37,7 +37,7 @@ export async function DELETE(
   try {
     await guardAdmin();
     await connectDB();
-    const { id } = await params;          // ← await here
+    const { id } = await params;
     await ContactInfo.findByIdAndDelete(id);
     return NextResponse.json({ success: true });
   } catch (e: any) {

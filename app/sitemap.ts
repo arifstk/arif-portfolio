@@ -1,4 +1,4 @@
-// app/sitemap.ts ()
+// app/sitemap.ts 
 
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";

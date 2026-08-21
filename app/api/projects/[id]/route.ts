@@ -18,7 +18,7 @@ export async function GET(
   try {
     const { id } = await params;
 
-    // ✅ ২৪ ক্যারেক্টারের সঠিক Mongo ObjectId না হলে দ্রুত 400 এরর হ্যান্ডলিং
+    // 24 character Mongo ObjectId 
     if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
       return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
     }

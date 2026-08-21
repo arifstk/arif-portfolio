@@ -9,7 +9,6 @@ export async function GET() {
     await connectDB();
     let doc = await HireButton.findOne().lean();
     if (!doc) {
-      // First-ever load — create the singleton with sensible defaults.
       doc = await HireButton.create({
         logo: "",
         text: "Hire on Upwork",

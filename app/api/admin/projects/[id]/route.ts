@@ -41,7 +41,7 @@ export async function DELETE(
   try {
     await guardAdmin();
     await connectDB();
-    const { id } = await params; // ← await here
+    const { id } = await params;
     const project = await Project.findById(id);
     if (project?.imagePublicId) {
       await deleteImage(project.imagePublicId).catch(() => {});

@@ -58,6 +58,9 @@ const page = () => {
           <p className="text-md text-zinc-700 dark:text-zinc-400 leading-relaxed tracking-wide">
             We are committed to protecting and respecting your privacy. This policy explains what data we collect, how we use it, and your rights regarding your information.
           </p>
+          <p className="text-md font-mono text-zinc-500 dark:text-zinc-500 leading-relaxed tracking-wide mt-5">
+            Effective date: 20 Jun 2026
+          </p>
         </div>
 
         <div className=" flex flex-col justify-between rounded-2xl p-3 sm:p-5 bg-white dark:bg-black/20 border border-violet-200 dark:border-gray-800/80 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 ">

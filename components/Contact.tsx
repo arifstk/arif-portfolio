@@ -109,7 +109,7 @@ export default function Contact() {
                   href={resolvedHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-5 text-gray-400 rounded-2xl border border-gray-300 dark:border-gray-500 dark:bg-gray-900 hover:border-violet-500 hover:bg-white/5 transition-all duration-300 w-full"
+                  className="group flex items-center gap-4 p-5 text-gray-400 rounded-2xl border border-gray-300 dark:border-gray-500  hover:border-violet-500 hover:bg-white/5 transition-all duration-300 w-full"
                 >
                   <span className="shrink-0 w-10 h-10 rounded-xl bg-violet-800/10 border border-violet-500/20 flex items-center justify-center text-violet-700 dark:text-violet-400 group-hover:bg-violet-800 group-hover:text-white transition-colors duration-200">
                     <Icon size={18} />
@@ -134,7 +134,7 @@ export default function Contact() {
           </div>
 
           {/* ── Right — Form ── */}
-          <div className="fade-up fade-up-3 w-full p-5 border border-slate-400 dark:border-gray-500 rounded-xl">
+          <div className="fade-up fade-up-3 w-full p-5 border border-slate-300 dark:border-gray-500 rounded-xl">
             {status === "success" ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-20 bg-violet-500/5   rounded-2xl  bg-linear-to-br from-violet-300/60 via-purple-50/10 to-indigo-300/60 dark:from-violet-950/40 dark:via-purple-950/20 dark:to-slate-900 shadow-[0_10px_50px_rgba(139,92,246,0.15)] dark:shadow-[0_10px_50px_rgba(139,92,246,0.1)] border border-violet-200 dark:border-slate-800 ">
                 <div className="w-16 h-16 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-4 mt-5">
@@ -165,7 +165,7 @@ export default function Contact() {
                         onChange={handleChange}
                         onFocus={() => setFocused(field)}
                         onBlur={() => setFocused(null)}
-                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === field ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500"}`}
+                        className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === field ? "border-violet-500" : "border-gray-300 dark:border-gray-500"}`}
                       />
                     </div>
                   ))}
@@ -177,7 +177,7 @@ export default function Contact() {
                     placeholder="Project Inquiry / Freelance / Collaboration"
                     value={form.subject} onChange={handleChange}
                     onFocus={() => setFocused("subject")} onBlur={() => setFocused(null)}
-                    className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === "subject" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500 "}`}
+                    className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-3 rounded-xl border transition-all duration-300 ${focused === "subject" ? "border-violet-500" : "border-gray-300 dark:border-gray-500 "}`}
                   />
                 </div>
                 <div className="flex flex-col gap-1.5 w-full">
@@ -188,7 +188,7 @@ export default function Contact() {
                       placeholder="Tell me about your project..."
                       value={form.message} onChange={handleChange}
                       onFocus={() => setFocused("message")} onBlur={() => setFocused(null)}
-                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 resize-none ${focused === "message" ? "border-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.12)]" : "border-gray-300 dark:border-gray-500 "}`}
+                      className={`w-full bg-white/3 text-slate-500 dark:text-slate-100 placeholder-slate-400 text-sm outline-none py-3 px-4 rounded-xl border transition-all duration-300 resize-none ${focused === "message" ? "border-violet-500" : "border-gray-300 dark:border-gray-500 "}`}
                     />
                     <span className="absolute bottom-2 right-2 text-[10px] text-slate-600 font-mono">{form.message.length}</span>
                   </div>
@@ -216,7 +216,7 @@ export default function Contact() {
               <span className=" text-zinc-700 dark:text-gray-400">
                 By submitting this form, you agree to the
               </span>
-              <Link href="/privacy-policy" target="_blank" className=" text-violet-800 dark:text-violet-400 underline hover:text-violet-500 tracking-wide">Privacy Policy</Link>
+              <Link href="/privacy-policy" className=" text-violet-800 dark:text-violet-400 underline hover:text-violet-500 tracking-wide">Privacy Policy</Link>
             </div>
           </div>
         </div>

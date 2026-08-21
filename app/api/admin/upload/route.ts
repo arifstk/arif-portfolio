@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
     // Delete old image if replacing
     if (oldPublicId) {
-      await deleteImage(oldPublicId).catch(() => {}); // silently ignore
+      await deleteImage(oldPublicId).catch(() => {});
     }
 
     const { url, publicId } = await uploadImage(

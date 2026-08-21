@@ -45,7 +45,7 @@ export async function GET(req: Request) {
           ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
           : {}),
       },
-      cache: "no-store", // never let a stale "not found" get cached
+      cache: "no-store",
     });
 
     if (res.status === 404) {

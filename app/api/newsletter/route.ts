@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     if (existing) {
       return NextResponse.json(
         { error: "You are already subscribed!" },
-        { status: 400 }, // Changed to 400 so frontend catches it as duplicate error
+        { status: 400 },
       );
     }
 

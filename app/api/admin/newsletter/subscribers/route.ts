@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Subscriber from "@/models/Subscriber";
 
-// GET: Fetch subscribers list and total activity count
+
 export async function GET() {
   try {
     await connectDB();
@@ -20,7 +20,6 @@ export async function GET() {
   }
 }
 
-// DELETE: Remove a subscriber
 export async function DELETE(req: Request) {
   try {
     const { id } = await req.json();

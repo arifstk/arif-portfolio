@@ -98,7 +98,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8',
   },
-  // ✅ others social media
+  // others social media
   other: {
     'og:updated_time': new Date().toISOString(),
     'og:locale': 'en_US',

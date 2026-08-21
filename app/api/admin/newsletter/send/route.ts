@@ -4,7 +4,7 @@ import { connectDB } from "@/lib/db";
 import Subscriber from "@/models/Subscriber";
 import { getOfferEmailTemplate } from "@/lib/emailTemplate";
 
-// Create Nodemailer Transporter using .env variables
+
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT) || 465,

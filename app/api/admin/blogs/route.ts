@@ -7,7 +7,6 @@ import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import { revalidateTag } from "next/cache";
 
-// Admin Guard
 async function guardAdmin() {
   const session = await getServerSession(authOptions);
   if (!session || (session.user as any)?.role !== "admin") {
@@ -15,7 +14,6 @@ async function guardAdmin() {
   }
 }
 
-// Helper to generate clean slugs
 function slugify(text: string) {
   return text
     .toString()
@@ -26,7 +24,6 @@ function slugify(text: string) {
     .replace(/\-\-+/g, "-");
 }
 
-// GET: Fetch all blogs for admin panel
 export async function GET() {
   try {
     await guardAdmin();
@@ -42,7 +39,6 @@ export async function GET() {
   }
 }
 
-// POST: Create a new blog post
 export async function POST(req: Request) {
   try {
     await guardAdmin();
@@ -97,7 +93,6 @@ export async function POST(req: Request) {
   }
 }
 
-// PUT: Update blog by _id
 export async function PUT(req: Request) {
   try {
     await guardAdmin();
@@ -134,7 +129,6 @@ export async function PUT(req: Request) {
   }
 }
 
-// DELETE
 export async function DELETE(req: Request) {
   try {
     await guardAdmin();

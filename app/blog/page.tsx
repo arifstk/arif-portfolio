@@ -56,7 +56,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
   const paginatedBlogs = allBlogs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <main className="relative min-h-screen text-slate-800 dark:text-gray-200 py-13 transition-colors duration-300 overflow-hidden">
+    <main className="relative text-slate-800 dark:text-gray-200 py-13 transition-colors duration-300 overflow-hidden">
 
       {/* Background Ambient Violet Glow Effects */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-70 md:w-150 h-40 md:h-88 bg-violet-600/15 dark:bg-violet-600/20 blur-[120px] rounded-full" />

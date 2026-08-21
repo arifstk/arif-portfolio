@@ -210,7 +210,7 @@ export default async function SingleBlogPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen text-slate-800 dark:text-gray-200 py-12 pt-25 transition-colors duration-300">
+    <main className="text-slate-800 dark:text-gray-200 py-12 pt-25 transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

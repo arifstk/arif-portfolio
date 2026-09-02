@@ -23,16 +23,15 @@ const HeroMobile = () => {
           /> */}
 
           <Image
-  src="/images/hero.webp"
-  alt="Shaikh Arif Hossain"
-  fill
-  priority
-  fetchPriority="high" // Lighthouse warning দূর করবে
-  quality={70}
-  sizes="(max-width: 768px) 100vw, 1px" // ডেস্কটপে এটি ডাউনলোড হওয়া আটকাবে
-  className="object-cover object-top"
-/>
-          
+            src="/images/hero.webp"
+            alt="Shaikh Arif Hossain"
+            fill
+            priority
+            quality={60}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-top"
+          />
+
           {/* gradients on mobile */}
           <div className='absolute inset-0 bg-linear-to-t from-black/95 via-black/55 to-black/10' />
           <div className='absolute inset-0 bg-linear-to-r from-black/70 via-black/20 to-transparent' />

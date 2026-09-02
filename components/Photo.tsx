@@ -1,11 +1,11 @@
 // components/Photo.tsx
+
 'use client'
 import Image from 'next/image'
 import { motion } from "motion/react"
 
 const Photo = () => {
-
-const circleColors = ["#5B21B6"];
+  const circleColors = ["#5B21B6"];
 
   const circleVariants = {
     initial: {
@@ -29,8 +29,8 @@ const circleColors = ["#5B21B6"];
           repeatType: "reverse",
         },
         opacity: {
-          duration: 0.4,
-          delay: 2 + index * 0.4,
+          duration: 0.3,
+          delay: 0.1 + index * 0.2,
           ease: "easeIn",
         },
       },
@@ -39,33 +39,24 @@ const circleColors = ["#5B21B6"];
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: { delay: 0.5, duration: 0.4, ease: "easeIn" },
-        }}
-        className="relative"
-      >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 0.5, duration: 0.4, ease: "easeInOut" },
-          }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
-        >
-          <div className="w-62 h-62 md:w-100 md:h-100 mix-blend-lighten overflow-hidden rounded-full">
+      <div className="relative">
+        {/* ⚡ Image Wrapper — No Fade/Delay Animation on Critical Hero Image */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+          <div className="w-62 h-62 md:w-100 md:h-100 overflow-hidden rounded-full">
             <Image
-              src="/images/hero.webp" width={400} height={400}
+              src="/images/hero.webp"
+              width={400}
+              height={400}
               alt="Arif's Profile Photo"
-              quality={60}
+              quality={75}
+              priority
               sizes="(max-width: 768px) 248px, 400px"
               className="object-contain w-full h-full"
-              priority={true}
             />
           </div>
-        </motion.div>
+        </div>
+
+        {/* 🎨 Background SVG Animation (Runs independently) */}
         <svg
           className="w-70 h-70 md:w-110 md:h-110"
           viewBox="0 0 506 506"
@@ -89,9 +80,10 @@ const circleColors = ["#5B21B6"];
             />
           ))}
         </svg>
-      </motion.div>
+      </div>
     </div>
   );
 };
 
-export default Photo
+export default Photo;
+

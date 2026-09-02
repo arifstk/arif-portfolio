@@ -32,12 +32,12 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   const resolvedParams = await searchParams;
   const currentPage = Math.max(1, Number(resolvedParams?.page) || 1);
   const ITEMS_PER_PAGE = 6;
-  
+
   const projects = await getProjects();
   const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE) || 1;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedProjects = projects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  
+
 
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -56,12 +56,12 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <HeroMobile />
-      <Hero />
-      <Projects 
-        projects={paginatedProjects} 
-        currentPage={currentPage} 
-        totalPages={totalPages} 
+      <div className="md:hidden"> <HeroMobile /> </div>
+      <div className="hidden md:block"><Hero /></div>
+      <Projects
+        projects={paginatedProjects}
+        currentPage={currentPage}
+        totalPages={totalPages}
         baseUrl="/"
       />
       <Skills />

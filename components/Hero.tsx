@@ -1,7 +1,6 @@
 
 // components/Hero.tsx
 import Link from 'next/link'
-import Image from 'next/image'
 import SocialLinks from './SocialLinks'
 import Photo from './Photo'
 import HeroDescription from './HeroDescription'

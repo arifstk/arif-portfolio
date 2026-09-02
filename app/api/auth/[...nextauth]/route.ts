@@ -8,6 +8,11 @@ import User from "@/models/User";
 import { connectDB } from "@/lib/db";
 
 export const authOptions: AuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
+
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -93,7 +98,7 @@ export const authOptions: AuthOptions = {
     },
   },
   pages: { signIn: "/login" },
-  secret: process.env.NEXTAUTH_SECRET,
+  // secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);

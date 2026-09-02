@@ -12,7 +12,7 @@ const HeroMobile = () => {
 
         {/* ── Mobile-only background photo ─────── */}
         <div className='absolute inset-0 md:hidden aspect-9/20'>
-          <Image
+          {/* <Image
             src="/images/hero.webp"
             alt="Image of me"
             fill
@@ -20,7 +20,19 @@ const HeroMobile = () => {
             quality={60}
             sizes="(max-width: 768px) 100vw, 0vw"
             className="object-cover object-top"
-          />
+          /> */}
+
+          <Image
+  src="/images/hero.webp"
+  alt="Shaikh Arif Hossain"
+  fill
+  priority
+  fetchPriority="high" // Lighthouse warning দূর করবে
+  quality={70}
+  sizes="(max-width: 768px) 100vw, 1px" // ডেস্কটপে এটি ডাউনলোড হওয়া আটকাবে
+  className="object-cover object-top"
+/>
+          
           {/* gradients on mobile */}
           <div className='absolute inset-0 bg-linear-to-t from-black/95 via-black/55 to-black/10' />
           <div className='absolute inset-0 bg-linear-to-r from-black/70 via-black/20 to-transparent' />

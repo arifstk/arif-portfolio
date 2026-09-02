@@ -7,6 +7,7 @@ import { SITE_URL } from "@/lib/seo";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
+import { cache } from "react";
 
 export const revalidate = 3600;
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-async function getAllBlogs(): Promise<BlogCardProps[]> {
+const getAllBlogs = cache(async (): Promise<BlogCardProps[]> => {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const res = await fetch(`${baseUrl}/api/blogs`, {
@@ -38,7 +39,7 @@ async function getAllBlogs(): Promise<BlogCardProps[]> {
   } catch {
     return [];
   }
-}
+});
 
 interface PageProps {
   searchParams: Promise<{ page?: string }>;

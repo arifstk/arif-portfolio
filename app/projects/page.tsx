@@ -8,8 +8,13 @@ import HireButtonProductPg from '@/components/HireButtonProductPg';
 import Projects from '@/components/Projects';
 import { getProjects } from "@/lib/data/projects";
 import { MoveLeft, MoveRight } from "lucide-react";
+import { cache } from "react";
 
 export const revalidate = 3600;
+
+const getCachedProjects = cache(async () => {
+  return await getProjects();
+});
 
 const PAGE_TITLE = "Projects — Shaikh Arif | Full-Stack Developer";
 const PAGE_DESCRIPTION =
@@ -43,7 +48,7 @@ export default async function Page({ searchParams }: PageProps) {
   const currentPage = Math.max(1, Number(resolvedParams.page) || 1);
   const ITEMS_PER_PAGE = 6;
 
-  const allProjects = await getProjects();
+  const allProjects = await getCachedProjects();
 
   const totalPages = Math.ceil(allProjects.length / ITEMS_PER_PAGE) || 1;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;

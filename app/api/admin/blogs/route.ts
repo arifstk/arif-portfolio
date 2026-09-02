@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 async function guardAdmin() {
   const session = await getServerSession(authOptions);
@@ -83,6 +83,7 @@ export async function POST(req: Request) {
       sections: sections || [],
     });
     revalidateTag("blogs", "max");
+    revalidatePath("/blog");
 
     return NextResponse.json(newBlog, { status: 201 });
   } catch (error: any) {

@@ -3,7 +3,7 @@
 import { connectDB } from "@/lib/db";
 import ProjectModel from "@/models/Project";
 import type { Project } from "@/types";
-import { unstable_cache } from "next/cache";
+import { cacheTag } from "next/cache";
 
 async function fetchProjectsFromDB(): Promise<Project[]> {
   try {
@@ -31,15 +31,9 @@ async function fetchProjectsFromDB(): Promise<Project[]> {
   }
 }
 
+export async function getProjects() {
+  "use cache";
+  cacheTag("projects");
 
-// ✅ unstable_cache 
-export const getProjects = unstable_cache(
-  async () => {
-    return await fetchProjectsFromDB();
-  },
-  ["projects-list-cache"],
-  {
-    revalidate: 3600,
-    tags: ["projects"],
-  }
-);
+  return await fetchProjectsFromDB();
+}

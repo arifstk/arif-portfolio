@@ -2,7 +2,7 @@
 
 import { connectDB } from "@/lib/db";
 import BlogModel from "@/models/Blog";
-import { unstable_cache } from "next/cache";
+import { cacheTag } from "next/cache";
 
 async function fetchBlogsFromDB() {
   try {
@@ -23,13 +23,9 @@ async function fetchBlogsFromDB() {
   }
 }
 
-export const getBlogs = unstable_cache(
-  async () => {
-    return await fetchBlogsFromDB();
-  },
-  ["blogs-list-cache"],
-  {
-    revalidate: 3600,
-    tags: ["blogs"],
-  },
-);
+export async function getBlogs() {
+  "use cache";
+  cacheTag("blogs");
+
+  return await fetchBlogsFromDB();
+}

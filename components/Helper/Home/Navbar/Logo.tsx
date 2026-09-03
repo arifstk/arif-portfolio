@@ -40,7 +40,7 @@ export default function Logo() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 380 320"
-          className="w-12 h-10 sm:w-14 sm:h-12"
+          className="w-12 h-10"
           role="img"
           aria-label="SA logo"
         >

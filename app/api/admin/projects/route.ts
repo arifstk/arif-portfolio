@@ -5,7 +5,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
-
 import { revalidatePath, revalidateTag } from "next/cache";
 
 async function guardAdmin() {
@@ -34,6 +33,8 @@ export async function POST(req: Request) {
     await connectDB();
     const body = await req.json();
     const project = await Project.create(body);
+
+    // Invalidate cached data
     revalidateTag("projects", "max");
     revalidatePath("/projects");
     revalidatePath("/");

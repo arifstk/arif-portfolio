@@ -3,13 +3,13 @@
 import BlogCard, { BlogCardProps } from "@/components/BlogCard";
 import HireButtonBanner from "@/components/HireButtonBanner";
 import HireButtonBlog from "@/components/HireButtonBlog";
+import { connectDB } from "@/lib/db";
 import { SITE_URL } from "@/lib/seo";
+import Blog from "@/models/Blog";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { Metadata } from "next";
+import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
-import { cache } from "react";
-
-export const revalidate = 3600;
 
 const PAGE_TITLE = "Blog & Articles — Shaikh Arif | Full-Stack Developer";
 const PAGE_DESCRIPTION = "Insights, tutorials, and deep-dives into modern web development.";
@@ -22,24 +22,19 @@ export const metadata: Metadata = {
   },
 };
 
-const getAllBlogs = cache(async (): Promise<BlogCardProps[]> => {
+async function getAllBlogs(): Promise<BlogCardProps[]> {
+  'use cache';
+  cacheTag("blogs");
+  cacheLife({ stale: 3600 });
+
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/blogs`, {
-      next: {
-        revalidate: 3600,
-        tags: ["blogs"]
-      },
-    });
-    if (!res.ok) return [];
-
-    const data = await res.json();
-
-    return Array.isArray(data) ? data : data.blogs || [];
+    await connectDB();
+    const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
+    return JSON.parse(JSON.stringify(blogs));
   } catch {
     return [];
   }
-});
+}
 
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
@@ -58,12 +53,11 @@ export default async function BlogPage({ searchParams }: PageProps) {
 
   return (
     <main className="relative text-slate-800 dark:text-gray-200 py-13 transition-colors duration-300 overflow-hidden">
-
       {/* Background Ambient Violet Glow Effects */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-70 md:w-150 h-40 md:h-88 bg-violet-600/15 dark:bg-violet-600/20 blur-[120px] rounded-full" />
       <div className="pointer-events-none absolute top-1/3 -right-20 w-50 md:w-100 h-33 md:h-75 bg-violet-700/10 dark:bg-violet-700/15 blur-[100px] rounded-full" />
 
-      <div className='w-full sm:w-[92%] xl:w-[80%] mx-auto'>
+      <div className="w-full sm:w-[92%] xl:w-[80%] mx-auto">
         <HireButtonBlog />
       </div>
 
@@ -75,7 +69,10 @@ export default async function BlogPage({ searchParams }: PageProps) {
             Latest Updates
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e293b] dark:text-white tracking-wider">
-            Blog & <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-800 to-violet-600 dark:from-violet-400 dark:to-violet-300">Articles</span>
+            Blog &{" "}
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-800 to-violet-600 dark:from-violet-400 dark:to-violet-300">
+              Articles
+            </span>
           </h1>
           <p className="text-slate-600 dark:text-gray-400 text-sm sm:text-base max-w-3xl leading-relaxed">
             Insights, tutorials, and deep-dives into modern web development.
@@ -97,11 +94,10 @@ export default async function BlogPage({ searchParams }: PageProps) {
               ))}
             </div>
 
-            {/* --- Pagination --- */}
+            {/* Pagination */}
             {totalPages > 1 && (
               <div className="flex justify-center items-center pt-4">
                 <div className="inline-flex items-center justify-between gap-3 px-6 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 border border-slate-200/80 dark:border-gray-800 shadow-md backdrop-blur-md text-sm font-semibold">
-
                   {/* Previous Link */}
                   {currentPage > 1 ? (
                     <Link

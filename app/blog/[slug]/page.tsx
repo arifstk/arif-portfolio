@@ -3,24 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FiArrowLeft } from "react-icons/fi";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import SocialLinks from "@/components/SocialLinks";
 import { Metadata } from "next";
 import Newsletter from "@/components/Newsletter";
 import { SITE_URL } from "@/lib/seo";
-import { cache } from "react";
+import { cacheTag } from "next/cache";
 import { ChevronRight, Home } from "lucide-react";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 3600;
+async function getBlogBySlug(slug: string) {
+  'use cache';
+  cacheTag("blogs", `blog-${slug}`);
 
-// ✅ React cache 
-const getBlogBySlug = cache(async (slug: string) => {
   if (!slug || slug === "undefined") return null;
 
   try {
@@ -35,7 +34,7 @@ const getBlogBySlug = cache(async (slug: string) => {
   } catch {
     return null;
   }
-});
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -76,7 +75,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// (**bold**) and inline code (`code`)
 function InlineFormattedText({ text }: { text: string }) {
   if (!text) return null;
 
@@ -109,7 +107,6 @@ function InlineFormattedText({ text }: { text: string }) {
   );
 }
 
-// clip text ([clip: ...]), and bold
 function RichParagraphRenderer({ content }: { content: string }) {
   if (!content) return null;
 
@@ -303,7 +300,8 @@ export default async function SingleBlogPage({ params }: Props) {
                   </h2>
                 )}
 
-                {sec.blocks && sec.blocks.length > 0 && (
+                {sec.blocks &&
+                  sec.blocks.length > 0 &&
                   sec.blocks.map((block: any, blockIdx: number) => {
                     if (block.type === "paragraph" && block.value) {
                       return <RichParagraphRenderer key={blockIdx} content={block.value} />;
@@ -328,15 +326,16 @@ export default async function SingleBlogPage({ params }: Props) {
                     }
 
                     return null;
-                  })
-                )}
+                  })}
               </div>
             ))}
           </div>
         </article>
-
       </div>
-      <div className="pt-15 w-full sm:w-[92%] md:w-[80%] mx-auto"><Newsletter /></div>
+      <div className="pt-15 w-full sm:w-[92%] md:w-[80%] mx-auto">
+        <Newsletter />
+      </div>
     </main>
   );
 }
+

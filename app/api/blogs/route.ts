@@ -1,11 +1,15 @@
 // app/api/blogs/route.ts
+
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
-
-export const revalidate = 3600;
+import { cacheLife, cacheTag } from "next/cache";
 
 async function fetchBlogsFromDB(skip?: number, limit?: number) {
+  "use cache";
+  cacheTag("blogs");
+  cacheLife({ stale: 3600 });
+
   await connectDB();
 
   if (skip !== undefined && limit !== undefined) {

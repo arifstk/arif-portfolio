@@ -1,4 +1,3 @@
-
 // app/projects/[id]/page.tsx
 
 import { notFound } from "next/navigation";
@@ -10,15 +9,17 @@ import { ExternalLink, Code2, Layers, SquareArrowOutUpRight, ChevronRight, Home 
 import ProjectGallery from "@/components/ProjectGallery";
 import SourceCodeButton from "@/components/SourceCodeButton";
 import HireButtonBanner from "@/components/HireButtonBanner";
-import { cache } from "react";
+import { cacheLife, cacheTag } from "next/cache";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export const revalidate = 3600;
+async function getProject(id: string) {
+  'use cache';
+  cacheTag(`project-${id}`);
+  cacheLife({ stale: 3600 });
 
-const getProject = cache(async (id: string) => {
   if (!id || id === "undefined") return null;
 
   try {
@@ -38,7 +39,7 @@ const getProject = cache(async (id: string) => {
     console.error("Error fetching project:", error);
     return null;
   }
-});
+}
 
 // ──  Markdown & Rich Formatting  ──
 function FormattedText({ text }: { text: string }) {
@@ -150,11 +151,11 @@ export async function generateMetadata({ params }: PageProps) {
     return { title: "Project Not Found" };
   }
 
-  const desc = project.outcome 
-    ? project.outcome 
+  const desc = project.outcome
+    ? project.outcome
     : (typeof project.description === "string"
-        ? project.description
-        : project.description?.[0]?.text || project.title);
+      ? project.description
+      : project.description?.[0]?.text || project.title);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const fallbackImage = `${siteUrl}/og-image.jpg`;

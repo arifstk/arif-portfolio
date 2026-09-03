@@ -82,6 +82,8 @@ export async function POST(req: Request) {
       authorImage: authorImage || "/author.jpg",
       sections: sections || [],
     });
+
+    // 2-argument signature for revalidateTag
     revalidateTag("blogs", "max");
     revalidatePath("/blog");
 
@@ -119,7 +121,14 @@ export async function PUT(req: Request) {
         { status: 404 },
       );
     }
-    revalidateTag("blogs", "max");
+
+    // Immediately expire cache data on update
+    revalidateTag("blogs", { expire: 0 });
+    if (updatedBlog.slug) {
+      revalidateTag(`blog-${updatedBlog.slug}`, { expire: 0 });
+      revalidatePath(`/blog/${updatedBlog.slug}`);
+    }
+    revalidatePath("/blog");
 
     return NextResponse.json(updatedBlog);
   } catch (error: any) {
@@ -150,7 +159,13 @@ export async function DELETE(req: Request) {
     if (!deletedBlog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
-    revalidateTag("blogs", "max");
+
+    // Immediately expire cache data on delete
+    revalidateTag("blogs", { expire: 0 });
+    if (deletedBlog.slug) {
+      revalidateTag(`blog-${deletedBlog.slug}`, { expire: 0 });
+    }
+    revalidatePath("/blog");
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

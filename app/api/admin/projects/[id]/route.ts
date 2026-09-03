@@ -6,8 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
 import { deleteImage } from "@/lib/cloudinary";
-
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 async function guardAdmin() {
   const session = await getServerSession(authOptions);
@@ -24,13 +23,22 @@ export async function PUT(
     await connectDB();
     const { id } = await params;
     const body = await req.json();
+
     const updated = await Project.findByIdAndUpdate(id, body, { new: true });
     if (!updated)
       return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+    // Invalidate cached list & specific item
     revalidateTag("projects", "max");
+    revalidateTag(`project-${id}`, "max");
+    revalidatePath(`/projects/${id}`);
+
     return NextResponse.json(updated);
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json(
+      { error: e.message },
+      { status: e.message === "Unauthorized" ? 401 : 500 },
+    );
   }
 }
 
@@ -42,14 +50,24 @@ export async function DELETE(
     await guardAdmin();
     await connectDB();
     const { id } = await params;
+
     const project = await Project.findById(id);
     if (project?.imagePublicId) {
       await deleteImage(project.imagePublicId).catch(() => {});
     }
+
     await Project.findByIdAndDelete(id);
+
+    // Invalidate cached list & specific item
     revalidateTag("projects", "max");
+    revalidateTag(`project-${id}`, "max");
+    revalidatePath("/projects");
+
     return NextResponse.json({ success: true });
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json(
+      { error: e.message },
+      { status: e.message === "Unauthorized" ? 401 : 500 },
+    );
   }
 }

@@ -16,7 +16,7 @@ const GitHubActivity = dynamic(() => import("@/components/GitHubActivity"));
 const Newsletter = dynamic(() => import("@/components/Newsletter"));
 
 
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: { absolute: SITE_NAME },

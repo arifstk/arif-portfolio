@@ -1,4 +1,3 @@
-
 // app/projects/page.tsx
 
 import type { Metadata } from "next";
@@ -8,13 +7,15 @@ import HireButtonProductPg from '@/components/HireButtonProductPg';
 import Projects from '@/components/Projects';
 import { getProjects } from "@/lib/data/projects";
 import { MoveLeft, MoveRight } from "lucide-react";
-import { cache } from "react";
+import { cacheLife, cacheTag } from "next/cache";
 
-export const revalidate = 3600;
+async function getCachedProjects() {
+  'use cache';
+  cacheTag("projects");
+  cacheLife({ stale: 3600 });
 
-const getCachedProjects = cache(async () => {
   return await getProjects();
-});
+}
 
 const PAGE_TITLE = "Projects — Shaikh Arif | Full-Stack Developer";
 const PAGE_DESCRIPTION =
@@ -84,10 +85,10 @@ export default async function Page({ searchParams }: PageProps) {
       </div>
 
       {/* Render paginated list */}
-      <Projects 
-        projects={paginatedProjects} 
-        currentPage={currentPage} 
-        totalPages={totalPages} 
+      <Projects
+        projects={paginatedProjects}
+        currentPage={currentPage}
+        totalPages={totalPages}
         baseUrl="/projects"
       />
     </div>

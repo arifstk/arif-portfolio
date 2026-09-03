@@ -15,11 +15,12 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GAPageTracker from "@/components/GAPageTracker";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import { headers } from "next/headers";
+import { Suspense } from "react";
 
-const geist = Geist({ 
-  subsets: ['latin'], 
+const geist = Geist({
+  subsets: ['latin'],
   variable: '--font-sans',
-  display: 'swap' 
+  display: 'swap'
 });
 
 const font = Inter({
@@ -34,7 +35,6 @@ const kalam = Kalam({
   display: "swap",
   variable: "--font-kalam",
 });
-
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -98,23 +98,45 @@ export const metadata: Metadata = {
   verification: {
     google: 'btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8',
   },
-  // others social media
   other: {
-    'og:updated_time': new Date().toISOString(),
     'og:locale': 'en_US',
     'pinterest': 'nopin',
     'format-detection': 'telephone=no',
   },
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+// Isolated component for dynamic request context
+async function MainContent({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") ?? "";
   const isAdmin = pathname.startsWith("/admin");
 
+  return (
+    <Provider session={session}>
+      <CookieConsentProvider>
+        {isAdmin ? (
+          <>{children}</>
+        ) : (
+          <>
+            <ResponsiveNav />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </>
+        )}
+        <GoogleAnalytics />
+        <GAPageTracker />
+        <CookieConsentBanner />
+      </CookieConsentProvider>
+    </Provider>
+  );
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
@@ -125,45 +147,22 @@ export default async function RootLayout({
         {/* ✅ Pinterest */}
         <meta name="pinterest-rich-pin" content="true" />
 
-        {/* ✅ og:updated_time */}
-        <meta property="og:updated_time" content={new Date().toISOString()} />
-
         {/* ✅ Google verification */}
         <meta name="google-site-verification" content="btnaOk_cok44sK_BnN1Pz-trMY2KiXzEYTLT4L0Uyl8" />
       </head>
 
       <body className="min-h-screen flex flex-col bg-violet-50/60 dark:bg-transparent font-sans">
-        <Provider session={session}>
-          <CookieConsentProvider>
-            {isAdmin ? (
-              <>{children}</>
-            ) : (
-              <>
-                <ResponsiveNav />
-                <main>
-                  {children}
-                </main>
-                <Footer />
-              </>
-            )}
-            <GoogleAnalytics />
-            <GAPageTracker />
-            <CookieConsentBanner />
-          </CookieConsentProvider>
-        </Provider>
+        <Suspense fallback={<div className="min-h-screen flex flex-col bg-violet-50/60 dark:bg-transparent" />}>
+          <MainContent>{children}</MainContent>
+        </Suspense>
       </body>
     </html>
   );
 }
 
-
-// // Cookies & Google Analytics setup
-// // create file CookieConsentContext.tsx in context folder
-// // create file CookieConsentBanner.tsx in components folder
-// // create file GoogleAnalytics.tsx in components folder
-// // create file GAPageTracker.tsx in components folder
-// // intigreat all these files in layout.tsx
-
-
-
-
+// Cookies & Google Analytics setup
+// create file CookieConsentContext.tsx in context folder
+// create file CookieConsentBanner.tsx in components folder
+// create file GoogleAnalytics.tsx in components folder
+// create file GAPageTracker.tsx in components folder
+// intigreat all these files in layout.tsx

@@ -1,4 +1,4 @@
-// // components/Helper/Home/Navbar/Logo.tsx
+// components/Helper/Home/Navbar/Logo.tsx
 
 // import { Kalam } from 'next/font/google';
 // import Link from 'next/link';
@@ -24,8 +24,8 @@
 // }
 
 
-// // bg-[#2b7473]
-// // text-[#369483] 
+// bg-[#2b7473]
+// text-[#369483] 
 
 
 
@@ -39,59 +39,62 @@ export default function Logo() {
       <Link href="/" className="group relative inline-block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 380 320"
-          className="w-12 h-10"
+          viewBox="0 0 340 300"
+          className="w-12 h-10 select-none"
           role="img"
           aria-label="SA logo"
         >
-          <g transform="skewX(-8)">
+          <g transform="skewX(-6)">
+            {/* S - Outline */}
             <text
-              x="120"
-              y="230"
-              fontFamily="Arial, Helvetica, sans-serif"
+              x="95"
+              y="225"
+              fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
               fontWeight="900"
-              fontSize="270"
+              fontSize="240"
               fill="#ffffff"
               textAnchor="middle"
               stroke="#ffffff"
-              strokeWidth="16"
+              strokeWidth="20"
               strokeLinejoin="round"
             >
               S
             </text>
+            {/* S - Main Fill */}
             <text
-              x="120"
-              y="230"
-              fontFamily="Arial, Helvetica, sans-serif"
+              x="95"
+              y="225"
+              fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
               fontWeight="900"
-              fontSize="270"
+              fontSize="240"
               fill="#a09eff"
               textAnchor="middle"
             >
               S
             </text>
-          </g>
-          <g transform="skewX(-4)">
+
+            {/* A - Outline */}
             <text
-              x="255"
-              y="245"
-              fontFamily="Arial, Helvetica, sans-serif"
+              x="205"
+              y="225"
+              fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
               fontWeight="900"
-              fontSize="255"
+              fontSize="240"
               fill="#ffffff"
               textAnchor="middle"
               stroke="#ffffff"
-              strokeWidth="12"
+              strokeWidth="20"
               strokeLinejoin="round"
             >
               A
             </text>
+            {/* A - Main Fill */}
             <text
-              x="255"
-              y="245"
-              fontFamily="Arial, Helvetica, sans-serif"
+              x="205"
+              y="225"
+              fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
               fontWeight="900"
-              fontSize="255"
+              fontSize="240"
               fill="#4920ae"
               textAnchor="middle"
             >

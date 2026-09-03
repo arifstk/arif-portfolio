@@ -51,11 +51,16 @@ export async function GET(req: Request) {
     if (res.status === 404) {
       return NextResponse.json({ available: false });
     }
+
     if (res.ok) {
+      const data = await res.json();
+      if (data.private === true) {
+        return NextResponse.json({ available: false });
+      }
+
       return NextResponse.json({ available: true });
     }
 
-    // Rate-limited or some other GitHub-side hiccup — we genuinely don't know.
     return NextResponse.json({
       available: null,
       reason: `github-${res.status}`,

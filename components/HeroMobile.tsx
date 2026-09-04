@@ -19,7 +19,8 @@ const HeroMobile = () => {
             priority
             loading="eager"
             quality={60}
-            sizes="100vw"
+            // sizes="100vw"
+            sizes="(max-width: 768px) 248px, 400px"
             className="object-cover object-top"
           />
 

@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import dynamic from "next/dynamic";
+import { getImageProps } from "next/image";
 import Hero from '@/components/Hero';
 import HeroMobile from '@/components/HeroMobile';
 import { getProjects } from '@/lib/data/projects';
@@ -48,6 +49,18 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
     sameAs: [],
   };
 
+  // Must exactly match the <Image> props used in HeroMobile.tsx
+  // so the generated URL matches, and the preload actually gets used.
+  const {
+    props: { srcSet: heroSrcSet, src: heroSrc },
+  } = getImageProps({
+    src: "/images/hero.webp",
+    alt: "Shaikh Arif Hossain",
+    fill: true,
+    quality: 60,
+    sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  });
+
   return (
     <div className='overflow-hidden min-h-screen mt-1 pt-15 md:pt-20'>
       <Script
@@ -55,6 +68,13 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={heroSrc}
+        imageSrcSet={heroSrcSet}
+        fetchPriority="high"
       />
       <div className="md:hidden"> <HeroMobile /> </div>
       <div className="hidden md:block"><Hero /></div>

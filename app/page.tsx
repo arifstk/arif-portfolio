@@ -1,23 +1,19 @@
-// app/page.tsx (or wherever HomePage lives)
+// app/page.tsx
 
 import type { Metadata } from "next";
 import Script from "next/script";
 import dynamic from "next/dynamic";
-import { getImageProps } from "next/image";
+import { Suspense } from "react";
 import Hero from '@/components/Hero';
 import HeroMobile from '@/components/HeroMobile';
 import { getProjects } from '@/lib/data/projects';
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/seo';
-
 
 const Projects = dynamic(() => import("@/components/Projects"));
 const Skills = dynamic(() => import("@/components/Skills"));
 const HireButtonBanner = dynamic(() => import("@/components/HireButtonBanner"));
 const GitHubActivity = dynamic(() => import("@/components/GitHubActivity"));
 const Newsletter = dynamic(() => import("@/components/Newsletter"));
-
-
-// export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: { absolute: SITE_NAME },
@@ -39,7 +35,6 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedProjects = projects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -49,18 +44,6 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
     sameAs: [],
   };
 
-  // Must exactly match the <Image> props used in HeroMobile.tsx
-  // so the generated URL matches, and the preload actually gets used.
-  const {
-    props: { srcSet: heroSrcSet, src: heroSrc },
-  } = getImageProps({
-    src: "/images/hero.webp",
-    alt: "Shaikh Arif Hossain",
-    fill: true,
-    quality: 60,
-    sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
-  });
-
   return (
     <div className='overflow-hidden min-h-screen mt-1 pt-15 md:pt-20'>
       <Script
@@ -69,34 +52,35 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <link
-        rel="preload"
-        as="image"
-        href={heroSrc}
-        imageSrcSet={heroSrcSet}
-        fetchPriority="high"
-      />
+
       <div className="md:hidden"> <HeroMobile /> </div>
       <div className="hidden md:block"><Hero /></div>
-      <Projects
-        projects={paginatedProjects}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        baseUrl="/"
-      />
+
+      <Suspense fallback={<div className="min-h-75" />}>
+        <Projects
+          projects={paginatedProjects}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          baseUrl="/"
+        />
+      </Suspense>
+
       <Skills />
+
       <div className='pt-3 sm:pt-11 pb-4 w-full sm:w-[92%] xl:w-[80%] mx-auto'>
         <HireButtonBanner />
       </div>
+
       <div className='pt-3 sm:pt-11 pb-4 w-[92%] xl:w-[80%] mx-auto'>
         <GitHubActivity />
       </div>
+
       <div className='pt-3 sm:pt-11 pb-4 w-full sm:w-[92%] xl:w-[80%] mx-auto'>
         <Newsletter />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default HomePage;
 

@@ -120,15 +120,6 @@ export default function RootLayout({
       )}
     >
       <head>
-        {/* ✅ Mobile Optimized Hero Image Preload */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
-
         {/* ✅ Pinterest */}
         <meta name="pinterest-rich-pin" content="true" />
 
@@ -156,7 +147,7 @@ export default function RootLayout({
           </Provider>
         </Suspense>
       </body>
-    </html >
+    </html>
   );
 }
 

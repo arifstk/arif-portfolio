@@ -3,7 +3,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
-import { cacheLife, cacheTag } from "next/cache";
+import { cacheLife, cacheTag, revalidateTag, revalidatePath } from "next/cache";
 
 async function fetchProjectById(id: string) {
   "use cache";
@@ -33,6 +33,39 @@ export async function GET(
     }
 
     return NextResponse.json(JSON.parse(JSON.stringify(project)));
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  _: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params;
+
+    if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
+      return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
+    }
+
+    await connectDB();
+    const deletedProject = await Project.findByIdAndDelete(id);
+
+    if (!deletedProject) {
+      return NextResponse.json({ error: "Project not found" }, { status: 404 });
+    }
+
+    revalidateTag("projects", "id");
+    revalidateTag(`project-${id}`, "id");
+
+    revalidatePath("/");
+    revalidatePath("/projects");
+
+    return NextResponse.json({
+      success: true,
+      message: "Project deleted successfully",
+    });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }

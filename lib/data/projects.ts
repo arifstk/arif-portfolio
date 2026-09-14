@@ -3,7 +3,7 @@
 import { connectDB } from "@/lib/db";
 import ProjectModel from "@/models/Project";
 import type { Project } from "@/types";
-import { cacheTag } from "next/cache";
+import { cacheTag, cacheLife } from "next/cache";
 
 async function fetchProjectsFromDB(): Promise<Project[]> {
   try {
@@ -31,9 +31,10 @@ async function fetchProjectsFromDB(): Promise<Project[]> {
   }
 }
 
-export async function getProjects() {
+export async function getProjects(): Promise<Project[]> {
   "use cache";
   cacheTag("projects");
+  cacheLife("max");
 
   return await fetchProjectsFromDB();
 }

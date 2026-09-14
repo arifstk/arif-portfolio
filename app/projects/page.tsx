@@ -6,16 +6,15 @@ import Link from "next/link";
 import HireButtonProductPg from '@/components/HireButtonProductPg';
 import Projects from '@/components/Projects';
 import { getProjects } from "@/lib/data/projects";
-import { MoveLeft, MoveRight } from "lucide-react";
-import { cacheLife, cacheTag } from "next/cache";
+import { unstable_cache as cache } from "next/cache";
 
-async function getCachedProjects() {
-  'use cache';
-  cacheTag("projects");
-  cacheLife({ stale: 3600 });
-
-  return await getProjects();
-}
+const getCachedProjects = cache(
+  async () => {
+    return await getProjects();
+  },
+  ["projects-cache"],
+  { tags: ["projects"] }
+);
 
 const PAGE_TITLE = "Projects — Shaikh Arif | Full-Stack Developer";
 const PAGE_DESCRIPTION =

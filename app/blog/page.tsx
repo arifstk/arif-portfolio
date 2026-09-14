@@ -8,7 +8,7 @@ import { SITE_URL } from "@/lib/seo";
 import Blog from "@/models/Blog";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { Metadata } from "next";
-import { cacheLife, cacheTag } from "next/cache";
+import { unstable_cache as cache } from "next/cache";
 import Link from "next/link";
 
 const PAGE_TITLE = "Blog & Articles — Shaikh Arif | Full-Stack Developer";
@@ -22,18 +22,22 @@ export const metadata: Metadata = {
   },
 };
 
-async function getAllBlogs(): Promise<BlogCardProps[]> {
-  'use cache';
-  cacheTag("blogs");
-  cacheLife({ stale: 3600 });
+const getCachedBlogs = cache(
+  async (): Promise<BlogCardProps[]> => {
+    try {
+      await connectDB();
+      const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
+      return JSON.parse(JSON.stringify(blogs));
+    } catch {
+      return [];
+    }
+  },
+  ["blogs-page-cache"],
+  { tags: ["blogs"] }
+);
 
-  try {
-    await connectDB();
-    const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
-    return JSON.parse(JSON.stringify(blogs));
-  } catch {
-    return [];
-  }
+async function getAllBlogs(): Promise<BlogCardProps[]> {
+  return getCachedBlogs();
 }
 
 interface PageProps {

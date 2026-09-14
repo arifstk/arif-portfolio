@@ -30,7 +30,7 @@ export default function Page() {
   ];
 
   return (
-    <section className='w-[92%] xl:w-[80%] mx-auto'>
+    <section className='max-w-7xl mx-auto px-2'>
       <div id="about" className="relative mt-1 pt-20 md:pt-25 mb-10 text-gray-800 dark:text-gray-200">
 
         {/* Section Header */}

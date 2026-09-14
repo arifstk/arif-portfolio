@@ -4,7 +4,7 @@ import { skillCategories } from '@/Constant/Constant';
 import React from 'react';
 export default function Skills() {
   return (
-    <section id="skills" className="w-[92%] xl:w-[80%] mx-auto pt-15 pb-13 md:pt-25 text-gray-800 dark:text-gray-200">
+    <section id="skills" className="max-w-7xl mx-auto px-2 pt-15 pb-13 md:pt-25 text-gray-800 dark:text-gray-200">
 
       {/* Section Header */}
       <div className="mb-5">

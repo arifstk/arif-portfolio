@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className=" text-[#1e293b] pt-10 pb-3 ">
-      <div className="w-[92%] xl:w-[80%] mx-auto flex flex-col gap-4 md:pb-5">
+      <div className="max-w-7xl mx-auto flex flex-col gap-4 md:pb-5 px-2">
 
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-2">

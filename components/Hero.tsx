@@ -7,7 +7,7 @@ import HeroDescription from './HeroDescription'
 
 const Hero = () => {
   return (
-    <div className='hidden md:flex justify-between relative isolate overflow-hidden md:overflow-visible md:rounded-none min-h-150 md:min-h-0 flex-1 md:flex-2 gap-10 pt-2 md:py-5 md:w-[92%] xl:w-[80%] mx-auto'>
+    <div className='hidden md:flex justify-between relative isolate overflow-hidden md:overflow-visible md:rounded-none min-h-150 md:min-h-0 flex-1 md:flex-2 gap-10 pt-2 md:py-5 max-w-7xl mx-auto px-2'>
 
       {/* ── Background Ambient Light Glow Effect ────────────── */}
       <div

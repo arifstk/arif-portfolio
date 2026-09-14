@@ -167,7 +167,7 @@ export default async function Page({ searchParams }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className='w-full sm:w-[92%] xl:w-[80%] mx-auto'>
+      <div className='w-full max-w-7xl mx-auto'>
         <HireButtonProductPg />
       </div>
 

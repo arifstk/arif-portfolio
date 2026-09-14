@@ -20,7 +20,7 @@ export default function Projects({
 }: ProjectsProps) {
   return (
     <section className="pt-15 md:pt-20 mb-10">
-      <div className="w-[92%] xl:w-[80%] mx-auto">
+      <div className="max-w-7xl mx-auto px-2">
         {/* Header */}
         <div className="mb-3">
           <p className="text-lg  font-semibold tracking-widest text-violet-800 dark:text-violet-400 mb-2">

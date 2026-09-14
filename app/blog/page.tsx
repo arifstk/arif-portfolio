@@ -61,11 +61,11 @@ export default async function BlogPage({ searchParams }: PageProps) {
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-70 md:w-150 h-40 md:h-88 bg-violet-600/15 dark:bg-violet-600/20 blur-[120px] rounded-full" />
       <div className="pointer-events-none absolute top-1/3 -right-20 w-50 md:w-100 h-33 md:h-75 bg-violet-700/10 dark:bg-violet-700/15 blur-[100px] rounded-full" />
 
-      <div className="w-full sm:w-[92%] xl:w-[80%] mx-auto">
+      <div className="w-full max-w-7xl mx-auto">
         <HireButtonBlog />
       </div>
 
-      <div className="relative w-[92%] xl:w-[80%] mx-auto space-y-10">
+      <div className="relative max-w-7xl mx-auto px-2 space-y-10">
         {/* Page Header */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-300 border border-violet-200 dark:border-violet-800/50 shadow-[0_0_15px_rgba(124,58,237,0.15)]">

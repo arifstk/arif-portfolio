@@ -193,7 +193,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   return (
     <main className=' pt-20 md:pt-24 pb-5'>
-      <div className="w-[92%] xl:w-[80%] mx-auto">
+      <div className="max-w-7xl mx-auto px-2">
         {/* ── Breadcrumb ── */}
         <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
           <Link href="/" className="hover:text-violet-600 transition-colors">
@@ -365,7 +365,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
       </div>
       {/* Hire Banner */}
-      <div className="pt-10 sm:pt-11 w-full sm:w-[92%] xl:w-[80%] mx-auto">
+      <div className="pt-10 sm:pt-11 w-full max-w-7xl mx-auto md:px-2">
         <HireButtonBanner />
       </div>
     </main>

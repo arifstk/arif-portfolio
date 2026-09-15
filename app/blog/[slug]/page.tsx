@@ -212,7 +212,7 @@ export default async function SingleBlogPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="relative w-[92%] md:w-[80%] mx-auto space-y-6">
+      <div className="relative max-w-7xl mx-auto px-2 space-y-6">
         <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
           <Link href="/" className="hover:text-violet-600 transition-colors">
             <Home className="w-4 h-4" />
@@ -332,7 +332,7 @@ export default async function SingleBlogPage({ params }: Props) {
           </div>
         </article>
       </div>
-      <div className="pt-15 w-full sm:w-[92%] md:w-[80%] mx-auto">
+      <div className="pt-15 w-full max-w-7xl mx-auto md:px-2">
         <Newsletter />
       </div>
     </main>
